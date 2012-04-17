@@ -7,6 +7,10 @@ use MediAlchemyst\Exception;
 class Video extends Audio
 {
 
+    protected $width;
+    protected $height;
+    protected $videoCodec;
+
     const FILETYPE_X264 = 'x264';
     const FILETYPE_WEBM = 'WebM';
     const FILETYPE_OGG  = 'Ogg';
@@ -28,12 +32,12 @@ class Video extends Audio
 
     public function setVideoCodec($audioCodec)
     {
-        $this->audioCodec = $audioCodec;
+        $this->videoCodec = $audioCodec;
     }
 
     public function getVideoCodec()
     {
-        return $this->audioCodec;
+        return $this->videoCodec;
     }
 
     public function setDimensions($width, $height)
