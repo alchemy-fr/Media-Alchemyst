@@ -4,7 +4,7 @@ namespace MediAlchemyst\Driver;
 
 use Monolog\Logger;
 use FFMpeg\Exception as FFMpegException;
-use FFMpeg\FFMpeg;
+use FFMpeg\FFMpeg as FFMpegDriver;
 
 class FFMpeg extends Provider
 {
@@ -17,13 +17,13 @@ class FFMpeg extends Provider
 
         if ($use_binary)
         {
-            $this->driver = new FFMpeg($use_binary, $this->logger);
+            $this->driver = new FFMpegDriver($use_binary, $this->logger);
         }
         else
         {
             try
             {
-                $this->driver = FFMpeg::load($this->logger);
+                $this->driver = FFMpegDriver::load($this->logger);
             }
             catch (FFMpegException\BinaryNotFoundException $e)
             {
