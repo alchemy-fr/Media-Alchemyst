@@ -28,7 +28,15 @@
     },
     "autoload": {
         "psr-0": {
-            "FFMpeg": "src"
+            "MediAlchemyst": "src"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+        "PHPExiftool\\Vendors::Init"
+        ],
+        "post-update-cmd": [
+        "PHPExiftool\\Vendors::Init"
+        ]
     }
 }
