@@ -12,9 +12,6 @@ class Audio extends Provider
     protected $audioSampleRate;
     protected $fileType;
 
-    const FILETYPE_FLAC = 'flac';
-    const FILETYPE_MP3  = 'mp3';
-
     public function __construct()
     {
 
@@ -23,21 +20,6 @@ class Audio extends Provider
     public function getType()
     {
         return self::TYPE_AUDIO;
-    }
-
-    public function getFileType()
-    {
-        return $this->fileType;
-    }
-
-    public function setFileType($fileType)
-    {
-        if ( ! in_array($fileType, array(self::FILETYPE_FLAC, self::FILETYPE_MP3)))
-        {
-            throw new Exception\InvalidArgumentException(sprintf('Invalid format %s', $fileType));
-        }
-        
-        $this->fileType = $fileType;
     }
 
     public function setKiloBitrate($kiloBitrate)

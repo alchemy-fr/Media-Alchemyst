@@ -24,28 +24,6 @@ class VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediAlchemyst\Specification\Video::setFileType
-     * @covers MediAlchemyst\Specification\Video::getFileType
-     */
-    public function testSetFileType()
-    {
-        $this->object->setFileType(Video::FILETYPE_WEBM);
-        $this->assertEquals(Video::FILETYPE_WEBM, $this->object->getFileType());
-        $this->object->setFileType(Video::FILETYPE_X264);
-        $this->assertEquals(Video::FILETYPE_X264, $this->object->getFileType());
-    }
-
-    /**
-     * @covers MediAlchemyst\Specification\Video::setFileType
-     * @covers MediAlchemyst\Exception\InvalidArgumentException
-     * @expectedException MediAlchemyst\Exception\InvalidArgumentException
-     */
-    public function testSetWrongFileType()
-    {
-        $this->object->setFileType(Video::FILETYPE_FLAC);
-    }
-
-    /**
      * @covers MediAlchemyst\Specification\Video::setVideoCodec
      * @covers MediAlchemyst\Specification\Video::getVideoCodec
      */

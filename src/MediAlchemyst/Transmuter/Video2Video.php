@@ -17,7 +17,7 @@ class Video2Video extends Provider
         }
 
         /* @var $spec \MediAlchemyst\Specification\Video */
-        $format = $this->getFormatFromFileType($spec->getFileType(), $spec->getWidth(), $spec->getHeight());
+        $format = $this->getFormatFromFileType($dest, $spec->getWidth(), $spec->getHeight());
 
         if ($spec->getAudioCodec())
         {
@@ -42,21 +42,23 @@ class Video2Video extends Provider
           ->close();
     }
 
-    protected function getFormatFromFileType($fileType, $width, $height)
+    protected function getFormatFromFileType($dest, $width, $height)
     {
-        switch ($fileType)
+        $extension = strtolower(pathinfo($dest, PATHINFO_EXTENSION));
+
+        switch ($extension)
         {
-            case Specification\Video::FILETYPE_X264:
-                $format = new \FFMpeg\Format\Video\X264($width, $height);
-                break;
-            case Specification\Video::FILETYPE_WEBM:
+            case 'webm':
                 $format = new \FFMpeg\Format\Video\WebM($width, $height);
                 break;
-            case Specification\Video::FILETYPE_OGG:
+            case 'mp4':
+                $format = new \FFMpeg\Format\Video\X264($width, $height);
+                break;
+            case 'ogv':
                 $format = new \FFMpeg\Format\Video\Ogg($width, $height);
                 break;
             default:
-                throw new Exception\FormatNotSupportedException(sprintf('Unsupported %s format', $fileType));
+                throw new Exception\FormatNotSupportedException(sprintf('Unsupported %s format', $extension));
                 break;
         }
 

@@ -11,23 +11,9 @@ class Video extends Audio
     protected $height;
     protected $videoCodec;
 
-    const FILETYPE_X264 = 'x264';
-    const FILETYPE_WEBM = 'WebM';
-    const FILETYPE_OGG  = 'Ogg';
-
     public function getType()
     {
         return self::TYPE_VIDEO;
-    }
-
-    public function setFileType($fileType)
-    {
-        if ( ! in_array($fileType, array(self::FILETYPE_X264, self::FILETYPE_WEBM, self::FILETYPE_OGG)))
-        {
-            throw new Exception\InvalidArgumentException(sprintf('Invalid format %s', $fileType));
-        }
-
-        $this->fileType = $fileType;
     }
 
     public function setVideoCodec($audioCodec)

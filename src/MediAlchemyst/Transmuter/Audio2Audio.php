@@ -17,19 +17,7 @@ class Audio2Audio extends Provider
         }
 
         /* @var $spec \MediAlchemyst\Specification\Audio */
-
-        if ($spec->getFileType() == Specification\Audio::FILETYPE_FLAC)
-        {
-            $format = new \FFMpeg\Format\Audio\Flac();
-        }
-        elseif ($spec->getFileType() == Specification\Audio::FILETYPE_MP3)
-        {
-            $format = new \FFMpeg\Format\Audio\Mp3();
-        }
-        else
-        {
-            throw new Exception\FormatNotSupportedException(sprintf('Unsupported %s format', $format));
-        }
+        $format = $this->getFormatFromFileType($dest);
 
         if ($spec->getAudioCodec())
         {
@@ -48,6 +36,26 @@ class Audio2Audio extends Provider
           ->open($source->getFile()->getPathname())
           ->encode($format, $dest)
           ->close();
+    }
+
+    protected function getFormatFromFileType($dest)
+    {
+        $extension = strtolower(pathinfo($dest, PATHINFO_EXTENSION));
+
+        switch ($extension)
+        {
+            case 'flac':
+                $format = new \FFMpeg\Format\Audio\Flac();
+                break;
+            case 'mp3':
+                $format = new \FFMpeg\Format\Audio\Mp3();
+                break;
+            default:
+                throw new Exception\FormatNotSupportedException(sprintf('Unsupported %s format', $extension));
+                break;
+        }
+
+        return $format;
     }
 
 }

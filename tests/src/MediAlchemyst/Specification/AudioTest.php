@@ -27,28 +27,6 @@ class AudioTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediAlchemyst\Specification\Audio::setFileType
-     * @covers MediAlchemyst\Specification\Audio::getFileType
-     */
-    public function testGetFileType()
-    {
-        $this->object->setFileType(Audio::FILETYPE_FLAC);
-        $this->assertEquals(Audio::FILETYPE_FLAC, $this->object->getFileType());
-        $this->object->setFileType(Audio::FILETYPE_MP3);
-        $this->assertEquals(Audio::FILETYPE_MP3, $this->object->getFileType());
-    }
-
-    /**
-     * @covers MediAlchemyst\Specification\Audio::setFileType
-     * @covers MediAlchemyst\Exception\InvalidArgumentException
-     * @expectedException MediAlchemyst\Exception\InvalidArgumentException
-     */
-    public function testSetWrongFileType()
-    {
-        $this->object->setFileType('Tarte aux pommes');
-    }
-
-    /**
      * @covers MediAlchemyst\Specification\Audio::setKiloBitrate
      * @covers MediAlchemyst\Specification\Audio::getKiloBitrate
      */

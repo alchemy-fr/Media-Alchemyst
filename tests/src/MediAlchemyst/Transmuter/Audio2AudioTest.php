@@ -20,7 +20,6 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
         $this->object = new Audio2Audio(new \MediAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
         $this->specs = new \MediAlchemyst\Specification\Audio();
-        $this->specs->setFileType(\MediAlchemyst\Specification\Audio::FILETYPE_FLAC);
 
         $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Audio.mp3'));
         $this->dest = __DIR__ . '/../../../files/output_audio.flac';
@@ -69,7 +68,6 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteMp3Type()
     {
-        $this->specs->setFileType(\MediAlchemyst\Specification\Audio::FILETYPE_MP3);
         $this->dest = __DIR__ . '/../../../files/output_audio.mp3';
 
         $this->object->execute($this->specs, $this->source, $this->dest);

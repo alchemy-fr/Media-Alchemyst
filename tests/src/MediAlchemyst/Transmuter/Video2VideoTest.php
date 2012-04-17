@@ -21,7 +21,6 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
         $this->specs = new \MediAlchemyst\Specification\Video();
         $this->specs->setDimensions(320, 240);
-        $this->specs->setFileType(\MediAlchemyst\Specification\Video::FILETYPE_WEBM);
 
         $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
         $this->dest = __DIR__ . '/../../../files/output_video.webm';
@@ -83,22 +82,22 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider getFormats
      * @covers MediAlchemyst\Transmuter\Video2Video::getFormatFromFileType
      */
-    public function testGetFormatFromFileType()
+    public function testGetFormatFromFileType($file, $instance)
     {
         $Object = new Video2VideoExtended();
+        $this->assertInstanceOf($instance, $Object->testgetFormatFromFileType($file, 200, 200));
+    }
 
-        $formats = array(
-          \MediAlchemyst\Specification\Video::FILETYPE_WEBM,
-          \MediAlchemyst\Specification\Video::FILETYPE_X264,
-          \MediAlchemyst\Specification\Video::FILETYPE_OGG,
+    public function getFormats()
+    {
+        return array(
+          array('file.ogv', '\\FFMpeg\\Format\\Video\\Ogg'),
+          array('file.mp4', '\\FFMpeg\\Format\\Video\\X264'),
+          array('file.webm', '\\FFMpeg\\Format\\Video\\WebM'),
         );
-
-        foreach ($formats as $fileType)
-        {
-            $Object->testgetFormatFromFileType($fileType, 200, 200);
-        }
     }
 
     /**
@@ -110,7 +109,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
     {
         $Object = new Video2VideoExtended();
 
-        $Object->testgetFormatFromFileType(\MediAlchemyst\Specification\Audio::FILETYPE_MP3, 200, 200);
+        $Object->testgetFormatFromFileType('out.jpg', 200, 200);
     }
 
 }
@@ -123,9 +122,9 @@ class Video2VideoExtended extends Video2Video
 
     }
 
-    public function testgetFormatFromFileType($fileType, $width, $height)
+    public function testgetFormatFromFileType($dest, $width, $height)
     {
-        return parent::getFormatFromFileType($fileType, $width, $height);
+        return parent::getFormatFromFileType($dest, $width, $height);
     }
 
 }
