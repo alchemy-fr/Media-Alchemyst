@@ -52,6 +52,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediAlchemyst\Specification\Image::setResizeMode
+     * @covers MediAlchemyst\Exception\InvalidArgumentException
      * @expectedException MediAlchemyst\Exception\InvalidArgumentException
      */
     public function testSetResizeModeFail()

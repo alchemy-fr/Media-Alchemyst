@@ -4,8 +4,6 @@ namespace MediAlchemyst\Transmuter;
 
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
 
-require_once dirname(__FILE__) . '/../../../../src/MediAlchemyst/Transmuter/Video2Video.php';
-
 class Video2VideoTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -76,6 +74,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediAlchemyst\Transmuter\Video2Video::execute
+     * @covers MediAlchemyst\Exception\SpecNotSupportedException
      * @expectedException MediAlchemyst\Exception\SpecNotSupportedException
      */
     public function testExecuteWithBasSpecs()
@@ -104,6 +103,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediAlchemyst\Transmuter\Video2Video::getFormatFromFileType
+     * @covers MediAlchemyst\Exception\FormatNotSupportedException
      * @expectedException MediAlchemyst\Exception\FormatNotSupportedException
      */
     public function testGetFormatFromWrongFileType()

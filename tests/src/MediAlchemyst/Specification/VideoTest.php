@@ -37,6 +37,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediAlchemyst\Specification\Video::setFileType
+     * @covers MediAlchemyst\Exception\InvalidArgumentException
      * @expectedException MediAlchemyst\Exception\InvalidArgumentException
      */
     public function testSetWrongFileType()

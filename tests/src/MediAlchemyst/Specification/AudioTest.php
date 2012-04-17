@@ -40,6 +40,7 @@ class AudioTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediAlchemyst\Specification\Audio::setFileType
+     * @covers MediAlchemyst\Exception\InvalidArgumentException
      * @expectedException MediAlchemyst\Exception\InvalidArgumentException
      */
     public function testSetWrongFileType()

@@ -33,6 +33,7 @@ class ImagineTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediAlchemyst\Driver\Imagine::__construct
+     * @covers MediAlchemyst\Exception\RuntimeException
      * @expectedException MediAlchemyst\Exception\RuntimeException
      */
     public function testUnexistantDriver()
