@@ -11,20 +11,24 @@ class DriversContainer extends \Pimple
     {
         if ( ! $logger)
         {
-            $logger = new \Monolog\Logger();
+            $logger = new \Monolog\Logger('Drivers');
             $logger->pushHandler(new \Monolog\Handler\NullHandler());
         }
 
-        $this['FFMpeg'] = $this->share(function() use ($logger)
+        $this['FFMpeg'] = $this->share(function() use ($configuration, $logger)
           {
-              $driver = new \MediAlchemyst\Driver\FFMpeg($logger);
+              $ffmpeg = $configuration->has('ffmpeg') ? $configuration->get('ffmpeg') : null;
+
+              $driver = new \MediAlchemyst\Driver\FFMpeg($logger, $ffmpeg);
 
               return $driver->getDriver();
           });
 
-        $this['Imagine'] = $this->share(function() use ($logger)
+        $this['Imagine'] = $this->share(function() use ($configuration, $logger)
           {
-              $driver = new \MediAlchemyst\Driver\Imagine($logger);
+              $imagine = $configuration->has('imagine') ? $configuration->get('imagine') : null;
+
+              $driver = new \MediAlchemyst\Driver\Imagine($logger, $imagine);
 
               return $driver->getDriver();
           });
