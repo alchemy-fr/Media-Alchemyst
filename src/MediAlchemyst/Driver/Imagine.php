@@ -2,12 +2,20 @@
 
 namespace MediAlchemyst\Driver;
 
+use Monolog\Logger;
+use Imagine\Exception as ImagineException;
+use MediAlchemyst\Exception;
+
 class Imagine extends Provider
 {
 
+    const DRIVER_GMAGICK = 'Gmagick';
+    const DRIVER_IMAGICK = 'Imagick';
+    const DRIVER_GD      = 'GD';
+
     protected $driver;
 
-    public function __construct(\Monolog\Logger $logger, $workWithDriver = null)
+    public function __construct(Logger $logger, $workWithDriver = null)
     {
         $this->logger = $logger;
 
@@ -17,9 +25,9 @@ class Imagine extends Provider
           self::DRIVER_GD      => '\\Imagine\\GD\\Imagine',
         );
 
-        foreach ($drivers as $driver)
+        foreach ($drivers as $driverName => $driver)
         {
-            if ($driver !== $workWithDriver)
+            if ($workWithDriver && $driverName !== $workWithDriver)
             {
                 continue;
             }
@@ -27,8 +35,9 @@ class Imagine extends Provider
             try
             {
                 $this->driver = new $driver;
+                break;
             }
-            catch (\Imagine\Exception\RuntimeException $e)
+            catch (ImagineException\RuntimeException $e)
             {
                 $this->logger->addWarning($e->getMessage());
                 continue;
@@ -37,7 +46,7 @@ class Imagine extends Provider
 
         if ( ! $this->driver)
         {
-            throw new \MediAlchemyst\Exception\RuntimeException('No driver available');
+            throw new Exception\RuntimeException('No driver available');
         }
     }
 
