@@ -16,7 +16,12 @@ class Image extends Provider
     const RESIZE_MODE_INBOUND  = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
     const RESIZE_MODE_OUTBOUND = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
 
-    public function __construct($width, $height)
+    public function __construct()
+    {
+
+    }
+
+    public function setDimensions($width, $height)
     {
         $this->width = $width;
         $this->height = $height;

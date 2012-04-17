@@ -16,7 +16,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new Image(320, 240);
+        $this->object = new Image();
     }
 
     /**
@@ -28,18 +28,14 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers MediAlchemyst\Specification\Image::setDimensions
      * @covers MediAlchemyst\Specification\Image::getWidth
-     */
-    public function testGetWith()
-    {
-        $this->assertEquals(320, $this->object->getWidth());
-    }
-
-    /**
      * @covers MediAlchemyst\Specification\Image::getHeight
      */
-    public function testGetHeight()
+    public function testSetDimensions()
     {
+        $this->object->setDimensions(320, 240);
+        $this->assertEquals(320, $this->object->getWidth());
         $this->assertEquals(240, $this->object->getHeight());
     }
 
