@@ -21,15 +21,15 @@ class Image extends Provider
 
     }
 
+    public function getType()
+    {
+        return self::TYPE_IMAGE;
+    }
+
     public function setDimensions($width, $height)
     {
         $this->width = $width;
         $this->height = $height;
-    }
-
-    public function getType()
-    {
-        return self::TYPE_IMAGE;
     }
 
     public function getWidth()

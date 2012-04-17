@@ -2,6 +2,8 @@
 
 namespace MediAlchemyst\Transmuter;
 
+require_once __DIR__ . '/../Specification/UnknownSpecs.php';
+
 class Image2ImageTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -22,6 +24,14 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
         $this->specs = new \MediAlchemyst\Specification\Image();
         $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/photo03.JPG'));
         $this->dest = __DIR__ . '/../../../files/output_auto_rotate.jpg';
+    }
+
+    public function tearDown()
+    {
+        if(file_exists($this->dest) && is_writable($this->dest))
+        {
+            unlink($this->dest);
+        }
     }
 
     /**
@@ -92,17 +102,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testWrongSpecs()
     {
-        $this->object->execute(new UnknownSpecs(), $this->source, $this->dest);
-    }
-
-}
-
-class UnknownSpecs extends \MediAlchemyst\Specification\Provider
-{
-
-    public function getType()
-    {
-
+        $this->object->execute(new \MediAlchemyst\Specification\UnknownSpecs(), $this->source, $this->dest);
     }
 
 }
