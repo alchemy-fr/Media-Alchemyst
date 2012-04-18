@@ -32,16 +32,42 @@ class DriversContainer extends \Pimple
 
               return $driver->getDriver();
           });
+
+        $this['SwfRender'] = $this->share(function() use ($configuration, $logger)
+          {
+              $SwfRender = $configuration->has('SwfRender') ? $configuration->get('SwfRender') : null;
+
+              $driver = new \MediAlchemyst\Driver\SwfRender($logger, $SwfRender);
+
+              return $driver->getDriver();
+          });
     }
 
+    /**
+     *
+     * @return \FFMpeg\FFMpeg
+     */
     public function getFFMpeg()
     {
         return $this['FFMpeg'];
     }
 
+    /**
+     *
+     * @return \Imagine\Image\ImagineInterface
+     */
     public function getImagine()
     {
         return $this['Imagine'];
+    }
+
+    /**
+     *
+     * @return \SwfTools\Binary\Swfrender
+     */
+    public function getSwfRender()
+    {
+        return $this['SwfRender'];
     }
 
 }
