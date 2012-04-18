@@ -68,7 +68,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $specs);
 
-
+        unlink($dest);
     }
 
 }
