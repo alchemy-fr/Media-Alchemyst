@@ -22,6 +22,7 @@
         "mediavorus/mediavorus": "dev-master",
         "swftools/swftools": "dev-master",
         "php-ffmpeg/php-ffmpeg": "dev-master",
+        "php-unoconv/php-unoconv": "dev-master",
         "imagine/imagine": "dev-develop",
         "monolog/monolog": "dev-master",
         "symfony/dependency-injection": ">2.0"
