@@ -36,4 +36,28 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\\Imagine\\Image\\ImagineInterface', $this->object->getImagine());
     }
 
+    /**
+     * @covers MediaAlchemyst\DriversContainer::getPdf2Swf
+     */
+    public function testGetPdf2Swf()
+    {
+        $this->assertInstanceOf('\\SwfTools\\Binary\\Pdf2Swf', $this->object->getPdf2Swf());
+    }
+
+    /**
+     * @covers MediaAlchemyst\DriversContainer::getSwfRender
+     */
+    public function testgetSwfRender()
+    {
+        $this->assertInstanceOf('\\SwfTools\\Binary\\SwfRender', $this->object->getSwfRender());
+    }
+
+    /**
+     * @covers MediaAlchemyst\DriversContainer::getUnoconv
+     */
+    public function testgetUnoconv()
+    {
+        $this->assertInstanceOf('\\Unoconv\\Unoconv', $this->object->getUnoconv());
+    }
+
 }
