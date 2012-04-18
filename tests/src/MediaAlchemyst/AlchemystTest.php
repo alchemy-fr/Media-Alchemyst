@@ -77,6 +77,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsAudio);
 
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_AUDIO, $media->getType());
+
         unlink($dest);
 
         $this->object->close();
@@ -93,6 +96,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
         $dest = __DIR__ . '/../../files/output.png';
 
         $this->object->turnInto($dest, $this->specsImage);
+
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
 
@@ -111,6 +117,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
+
         unlink($dest);
 
         $this->object->close();
@@ -127,6 +136,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
         $dest = __DIR__ . '/../../files/output.swf';
 
         $this->object->turnInto($dest, $this->specsFlash);
+
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_FLASH, $media->getType());
 
         unlink($dest);
 
@@ -145,6 +157,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
+
         unlink($dest);
 
         $this->object->close();
@@ -162,6 +177,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
+
         unlink($dest);
 
         $this->object->close();
@@ -178,6 +196,9 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
         $dest = __DIR__ . '/../../files/output.webm';
 
         $this->object->turnInto($dest, $this->specsVideo);
+
+        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $this->assertEquals(\MediaVorus\Media\Media::TYPE_VIDEO, $media->getType());
 
         unlink($dest);
 
