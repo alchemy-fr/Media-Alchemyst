@@ -23,7 +23,7 @@ class Document2Image extends Provider
          * imagine => image
          */
         $this->container->getUnoconv()
-          ->open($source->getFile()->getPathfile())
+          ->open($source->getFile()->getPathname())
           ->saveAs(\Unoconv\Unoconv::TYPE_PDF, $tmpDest, '1-1')
           ->close();
 

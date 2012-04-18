@@ -23,7 +23,7 @@ class Document2Flash extends Provider
          * imagine => image
          */
         $this->container->getUnoconv()
-          ->open($source->getFile()->getPathfile())
+          ->open($source->getFile()->getPathname())
           ->saveAs(\Unoconv\Unoconv::TYPE_PDF, $tmpDest)
           ->close();
 
