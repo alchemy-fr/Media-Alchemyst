@@ -22,7 +22,7 @@ class Imagine extends Provider
         $drivers = array(
           self::DRIVER_GMAGICK => '\\Imagine\\Gmagick\\Imagine',
           self::DRIVER_IMAGICK => '\\Imagine\\Imagick\\Imagine',
-          self::DRIVER_GD      => '\\Imagine\\GD\\Imagine',
+          self::DRIVER_GD      => '\\Imagine\\Gd\\Imagine',
         );
 
         foreach ($drivers as $driverName => $driver)
