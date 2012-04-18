@@ -35,7 +35,7 @@ class Flash2ImageTest extends \PHPUnit_Framework_TestCase
      * @covers MediAlchemyst\Exception\SpecNotSupportedException
      * @expectedException MediAlchemyst\Exception\SpecNotSupportedException
      */
-    public function testExecute()
+    public function testExecuteWrongSpecs()
     {
         $this->specs = new \MediAlchemyst\Specification\Video();
         $this->object->execute($this->specs, $this->source, $this->dest);
@@ -44,7 +44,7 @@ class Flash2ImageTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers MediAlchemyst\Transmuter\Flash2Image::execute
      */
-    public function testExecuteWrongSpecs()
+    public function testExecute()
     {
         $this->specs->setDimensions(320, 240);
 
