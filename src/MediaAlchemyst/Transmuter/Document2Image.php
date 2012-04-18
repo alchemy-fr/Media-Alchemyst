@@ -18,10 +18,6 @@ class Document2Image extends Provider
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
 
-        /**
-         * unoconv =>pdf
-         * imagine => image
-         */
         $this->container->getUnoconv()
           ->open($source->getFile()->getPathname())
           ->saveAs(\Unoconv\Unoconv::TYPE_PDF, $tmpDest, '1-1')
