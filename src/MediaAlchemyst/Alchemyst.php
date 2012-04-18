@@ -82,11 +82,7 @@ class Alchemyst
                 $transmuter = new Transmuter\Document2Image($this->drivers);
                 break;
             case sprintf('%s-%s', Media::TYPE_DOCUMENT, Specification::TYPE_SWF):
-
-                throw new Exception\RuntimeException('Not transmuter avalaible... Implement it !');
-
-//                $transmuter = new Transmuter\Document2Swf($this->drivers);
-
+                $transmuter = new Transmuter\Document2Flash($this->drivers);
                 break;
 
             case sprintf('%s-%s', Media::TYPE_IMAGE, Specification::TYPE_IMAGE):
