@@ -24,7 +24,7 @@ class Document2Flash extends Provider
          */
         $this->container->getUnoconv()
           ->open($source->getFile()->getPathname())
-          ->saveAs(\Unoconv\Unoconv::TYPE_PDF, $tmpDest)
+          ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
           ->close();
 
         $this->container->getPdf2Swf()
