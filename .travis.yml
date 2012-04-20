@@ -2,7 +2,7 @@ language: php
 
 before_script:
   - sudo apt-get update
-  - sudo apt-get install -y ffmpeg libavcodec-extra-53 openoffice.org openoffice.org-writer unoconv ghoscript gsfonts ufraw graphicsmagick libgraphicsmagick1-dev libfreetype6-dev libjpeg-dev libgif-dev imagemagick imagemagick libtiff-dev libdjvulibre-dev libwmf-dev libmagickcore-dev libmagickwand-dev libpng-dev xpdf libexpat-dev gettext zlib1g-dev build-essential
+  - sudo apt-get install -y ffmpeg libavcodec-extra-53 openoffice.org openoffice.org-writer unoconv ghostcript gsfonts ufraw graphicsmagick libgraphicsmagick1-dev libfreetype6-dev libjpeg-dev libgif-dev imagemagick imagemagick libtiff-dev libdjvulibre-dev libwmf-dev libmagickcore-dev libmagickwand-dev libpng-dev xpdf libexpat-dev gettext zlib1g-dev build-essential
   - wget http://www.swftools.org/swftools-0.9.1.tar.gz
   - sh -c "tar xzvf swftools-0.9.1.tar.gz && cd swftools-0.9.1 && ./configure && make && sudo make install"
   - wget http://pecl.php.net/get/imagick-3.0.1.tgz
