@@ -3,7 +3,7 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
-use SwfTools\Binary\Pdf2Swf as Pdf2SwfBinary;
+use SwfTools\Binary\Pdf2swf as Pdf2swfBinary;
 use SwfTools\Exception;
 
 class Pdf2Swf extends Provider
@@ -17,13 +17,13 @@ class Pdf2Swf extends Provider
 
         if ($use_binary)
         {
-            $this->driver = new Pdf2SwfBinary($use_binary);
+            $this->driver = new Pdf2swfBinary($use_binary);
         }
         else
         {
             try
             {
-                $this->driver = Pdf2SwfBinary::load(new \SwfTools\Configuration());
+                $this->driver = Pdf2swfBinary::load(new \SwfTools\Configuration());
             }
             catch (Exception\BinaryNotFoundException $e)
             {
