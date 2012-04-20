@@ -17,7 +17,7 @@
     }
     ],
     "require": {
-        "php": ">=5.3.6",
+        "php": ">=5.3.2",
         "pimple/pimple": "master",
         "mediavorus/mediavorus": "dev-master",
         "swftools/swftools": "dev-master",
