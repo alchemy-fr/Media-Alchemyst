@@ -36,7 +36,7 @@ class UnoconvTest extends \PHPUnit_Framework_TestCase
     {
         $driver = $this->build();
 
-        $this->assertInstanceOf('\\SwfTools\\Binary\\Pdf2Swf', $driver->getDriver());
+        $this->assertInstanceOf('\\Unoconv\\Unoconv', $driver->getDriver());
     }
 
 }
