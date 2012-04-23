@@ -65,7 +65,15 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testgetExiftoolExtractor()
     {
-        $this->assertInstanceOf('\\PHPExiftool\\Extractor', $this->object->getExiftoolExtractor());
+        $this->assertInstanceOf('\\PHPExiftool\\PreviewExtractor', $this->object->getExiftoolExtractor());
+    }
+
+    /**
+     * @covers MediaAlchemyst\DriversContainer::getExiftoolExtractor
+     */
+    public function testgetMP4Box()
+    {
+        $this->assertInstanceOf('\\MP4Box\\MP4Box', $this->object->getMP4Box());
     }
 
 }

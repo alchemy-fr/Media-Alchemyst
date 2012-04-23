@@ -67,6 +67,15 @@ class DriversContainer extends \Pimple
 
               return $driver->getDriver();
           });
+
+        $this['MP4Box'] = $this->share(function() use ($configuration, $logger)
+          {
+              $MP4Box = $configuration->has('MP4Box') ? $configuration->get('MP4Box') : null;
+
+              $driver = new Driver\MP4Box($logger, $MP4Box);
+
+              return $driver->getDriver();
+          });
     }
 
     /**
@@ -121,6 +130,15 @@ class DriversContainer extends \Pimple
     public function getExiftoolExtractor()
     {
         return $this['ExiftoolExtractor'];
+    }
+
+    /**
+     *
+     * @return \MP4Box\MP4Box
+     */
+    public function getMP4Box()
+    {
+        return $this['MP4Box'];
     }
 
 }
