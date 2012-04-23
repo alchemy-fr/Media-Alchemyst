@@ -24,7 +24,7 @@
         "php-ffmpeg/php-ffmpeg": "dev-master",
         "php-unoconv/php-unoconv": "dev-master",
         "imagine/imagine": "dev-develop",
-        "monolog/monolog": "dev-master",
+        "monolog/monolog": "1.0.*",
         "symfony/dependency-injection": ">2.0"
     },
     "autoload": {
