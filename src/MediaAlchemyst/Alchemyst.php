@@ -92,6 +92,9 @@ class Alchemyst
             case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_IMAGE):
                 $transmuter = new Transmuter\Video2Image($this->drivers);
                 break;
+            case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_ANIMATION):
+                $transmuter = new Transmuter\Video2Animation($this->drivers);
+                break;
             case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_VIDEO):
                 $transmuter = new Transmuter\Video2Video($this->drivers);
                 break;
