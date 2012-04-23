@@ -5,6 +5,7 @@ namespace MediaAlchemyst\Driver;
 use Monolog\Logger;
 use MP4Box\Exception as MP4BoxException;
 use MP4Box\MP4Box as MP4BoxDriver;
+use MediaAlchemyst\Exception;
 
 class MP4Box extends Provider
 {

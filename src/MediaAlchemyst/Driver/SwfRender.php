@@ -4,7 +4,8 @@ namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
 use SwfTools\Binary\Swfrender as SwfRenderBinary;
-use SwfTools\Exception;
+use SwfTools\Exception as SwfToolsException;
+use MediaAlchemyst\Exception;
 
 class SwfRender extends Provider
 {
@@ -25,7 +26,7 @@ class SwfRender extends Provider
             {
                 $this->driver = SwfRenderBinary::load(new \SwfTools\Configuration());
             }
-            catch (Exception\BinaryNotFoundException $e)
+            catch (SwfToolsException\BinaryNotFoundException $e)
             {
                 throw new Exception\RuntimeException('No driver available');
             }

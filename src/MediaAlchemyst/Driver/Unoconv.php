@@ -4,6 +4,7 @@ namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
 use Unoconv\Unoconv as UnoconvBinary;
+use MediaAlchemyst\Exception;
 
 class Unoconv extends Provider
 {

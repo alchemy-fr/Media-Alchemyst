@@ -4,7 +4,8 @@ namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
 use SwfTools\Binary\Pdf2swf as Pdf2swfBinary;
-use SwfTools\Exception;
+use SwfTools\Exception as SwfToolsException;
+use MediaAlchemyst\Exception;
 
 class Pdf2Swf extends Provider
 {
@@ -25,7 +26,7 @@ class Pdf2Swf extends Provider
             {
                 $this->driver = Pdf2swfBinary::load(new \SwfTools\Configuration());
             }
-            catch (Exception\BinaryNotFoundException $e)
+            catch (SwfToolsException\BinaryNotFoundException $e)
             {
                 throw new Exception\RuntimeException('No driver available');
             }
