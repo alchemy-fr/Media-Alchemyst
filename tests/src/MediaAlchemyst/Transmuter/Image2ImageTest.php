@@ -64,6 +64,24 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+     * @covers MediaAlchemyst\Transmuter\Image2Image::extractEmbeddedImage
+     */
+    public function testExecutePreviewExtract()
+    {
+        Image2Image::$lookForEmbeddedPreview = true;
+
+        $source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/ExifTool.jpg'));
+
+        $this->object->execute($this->specs, $source, $this->dest);
+
+        $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertEquals(192, $MediaDest->getHeight());
+        $this->assertEquals(288, $MediaDest->getWidth());
+    }
+
+    /**
+     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
      */
     public function testExecuteSimpleResize()
     {
