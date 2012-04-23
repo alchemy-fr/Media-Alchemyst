@@ -10,7 +10,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     protected $object;
 
-
     /**
      * @covers MediaAlchemyst\Specification\Image::__construct
      */
@@ -68,6 +67,25 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->setRotationAngle(90);
         $this->assertEquals(90, $this->object->getRotationAngle());
+    }
+
+    /**
+     * @covers MediaAlchemyst\Specification\Image::setQuality
+     * @covers MediaAlchemyst\Specification\Image::getQuality
+     */
+    public function testSetQuality()
+    {
+        $this->object->setQuality(60);
+        $this->assertEquals(60, $this->object->getQuality());
+    }
+
+    /**
+     * @covers MediaAlchemyst\Specification\Image::setQuality
+     * @expectedException MediaAlchemyst\Exception\InvalidArgumentException
+     */
+    public function testSetWrongQuality()
+    {
+        $this->object->setQuality(160);
     }
 
     /**

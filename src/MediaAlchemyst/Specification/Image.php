@@ -9,6 +9,7 @@ class Image extends Provider
 
     protected $width;
     protected $height;
+    protected $quality    = 75;
     protected $resizeMode = self::RESIZE_MODE_INBOUND;
     protected $rotationAngle;
     protected $strip;
@@ -55,6 +56,21 @@ class Image extends Provider
     public function getResizeMode()
     {
         return $this->resizeMode;
+    }
+
+    public function setQuality($quality)
+    {
+        if ($quality < 0 || $quality > 100)
+        {
+            throw new Exception\InvalidArgumentException('Invalid quality value');
+        }
+
+        $this->quality = (int) $quality;
+    }
+
+    public function getQuality()
+    {
+        return $this->quality;
     }
 
     public function setRotationAngle($angle)
