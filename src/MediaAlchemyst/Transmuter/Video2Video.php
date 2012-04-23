@@ -40,8 +40,23 @@ class Video2Video extends Provider
           ->open($source->getFile()->getPathname())
           ->encode($format, $dest)
           ->close();
+
+        if ($format instanceof \FFMpeg\Format\Video\X264)
+        {
+            $this->container->getMP4Box()->open($dest)->process()->close();
+        }
+
+        return $this;
     }
 
+    /**
+     *
+     * @param string $dest
+     * @param int $width
+     * @param int $height
+     * @return \FFMpeg\Format\Video\VideoFormat
+     * @throws Exception\FormatNotSupportedException
+     */
     protected function getFormatFromFileType($dest, $width, $height)
     {
         $extension = strtolower(pathinfo($dest, PATHINFO_EXTENSION));
