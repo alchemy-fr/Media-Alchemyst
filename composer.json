@@ -23,6 +23,7 @@
         "swftools/swftools": "dev-master",
         "php-ffmpeg/php-ffmpeg": "dev-master",
         "php-unoconv/php-unoconv": "dev-master",
+        "php-mp4box/php-mp4box": "dev-master",
         "imagine/imagine": "dev-develop",
         "monolog/monolog": "1.0.*",
         "symfony/dependency-injection": ">2.0"
