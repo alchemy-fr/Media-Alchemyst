@@ -1,8 +1,8 @@
 {
-    "name": "php-ffmpeg/php-ffmpeg",
+    "name": "media-alchemyst/media-alchemyst",
     "type": "library",
-    "description": "FFMpeg PHP, an Object Oriented library for easy file conversion, image extraction with ffmpeg",
-    "keywords": ["video processing", "video", "audio processing", "audio"],
+    "description": "An Object Oriented wrapper for easy multimedia conversion, based on Imagine, FFMpeg, SwfTools, Unoconv and other libs",
+    "keywords": ["video processing", "video", "audio processing", "audio", "image", "image processing"],
     "license": "MIT",
     "authors": [
     {
