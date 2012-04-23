@@ -60,4 +60,12 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\\Unoconv\\Unoconv', $this->object->getUnoconv());
     }
 
+    /**
+     * @covers MediaAlchemyst\DriversContainer::getExiftoolExtractor
+     */
+    public function testgetExiftoolExtractor()
+    {
+        $this->assertInstanceOf('\\PHPExiftool\\Extractor', $this->object->getExiftoolExtractor());
+    }
+
 }

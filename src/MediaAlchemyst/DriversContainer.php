@@ -60,6 +60,13 @@ class DriversContainer extends \Pimple
 
               return $driver->getDriver();
           });
+
+        $this['ExiftoolExtractor'] = $this->share(function() use ($configuration, $logger)
+          {
+              $driver = new Driver\ExiftoolExtractor($logger, null);
+
+              return $driver->getDriver();
+          });
     }
 
     /**
@@ -105,6 +112,15 @@ class DriversContainer extends \Pimple
     public function getUnoconv()
     {
         return $this['Unoconv'];
+    }
+
+    /**
+     *
+     * @return \PHPExiftool\PreviewExtractor
+     */
+    public function getExiftoolExtractor()
+    {
+        return $this['ExiftoolExtractor'];
     }
 
 }
