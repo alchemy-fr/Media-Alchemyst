@@ -54,9 +54,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteMP4()
     {
-        $this->dest = __DIR__ . '/../../../files/output_video.mp4';
-
-        $this->specs->setAudioCodec('faac');
+        $this->specs->setAudioCodec('libfaac');
         $this->specs->setVideoCodec('libx264');
         $this->specs->setAudioSampleRate(10025);
         $this->specs->setKiloBitrate(1000);
