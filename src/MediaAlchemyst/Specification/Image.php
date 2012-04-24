@@ -3,6 +3,7 @@
 namespace MediaAlchemyst\Specification;
 
 use MediaAlchemyst\Exception;
+use Imagine\Image\ImageInterface;
 
 class Image extends Provider
 {
@@ -13,9 +14,14 @@ class Image extends Provider
     protected $resizeMode = self::RESIZE_MODE_INBOUND;
     protected $rotationAngle;
     protected $strip;
+    protected $resolution_x = 72;
+    protected $resolution_y = 72;
+    protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
 
-    const RESIZE_MODE_INBOUND  = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
-    const RESIZE_MODE_OUTBOUND = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
+    const RESIZE_MODE_INBOUND  = ImageInterface::THUMBNAIL_INSET;
+    const RESIZE_MODE_OUTBOUND = ImageInterface::THUMBNAIL_OUTBOUND;
+    const RESOLUTION_PIXELPERINCH       = 'ppi';//ImageInterface::RESOLUTION_PIXELSPERINCH;
+    const RESOLUTION_PIXELPERCENTIMETER = 'ppc';//ImageInterface::RESOLUTION_PIXELSPERCENTIMETER;
 
     public function __construct()
     {
@@ -56,6 +62,39 @@ class Image extends Provider
     public function getResizeMode()
     {
         return $this->resizeMode;
+    }
+
+    public function setResolution($resolution_x, $resolution_y, $units = self::RESOLUTION_PIXELPERINCH)
+    {
+        if ($resolution_x <= 0 || $resolution_y <= 0)
+        {
+            throw new Exception\InvalidArgumentException('Resolution should be greater than 0');
+        }
+        if ( ! in_array($units, array(self::RESOLUTION_PIXELPERCENTIMETER, self::RESOLUTION_PIXELPERINCH)))
+        {
+            throw new Exception\InvalidArgumentException('Unkonwn resolution units');
+        }
+
+        $this->resolution_units = $units;
+        $this->resolution_x = $resolution_x;
+        $this->resolution_y = $resolution_y;
+
+        return $this;
+    }
+
+    public function getResolutionUnit()
+    {
+        return $this->resolution_units;
+    }
+
+    public function getResolutionX()
+    {
+        return $this->resolution_x;
+    }
+
+    public function getResolutionY()
+    {
+        return $this->resolution_y;
     }
 
     public function setQuality($quality)
