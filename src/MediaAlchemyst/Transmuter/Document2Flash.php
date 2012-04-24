@@ -18,17 +18,20 @@ class Document2Flash extends Provider
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'pdf2swf');
 
-        /**
-         * unoconv =>pdf
-         * imagine => image
-         */
-        $this->container->getUnoconv()
-          ->open($source->getFile()->getPathname())
-          ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
-          ->close();
+        try
+        {
+            $this->container->getUnoconv()
+              ->open($source->getFile()->getPathname())
+              ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
+              ->close();
+        }
+        catch (Unoconv\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
 
         $this->container->getPdf2Swf()
-          ->toSwf(new \SplFileInfo($tmpDest), $dest );
+          ->toSwf(new \SplFileInfo($tmpDest), $dest);
 
         unlink($tmpDest);
     }

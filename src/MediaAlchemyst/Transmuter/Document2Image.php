@@ -25,7 +25,7 @@ class Document2Image extends Provider
               ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
               ->close();
         }
-        catch (Unoconv\Exception\RuntimeException $e)
+        catch (Unoconv\Exception\Exception $e)
         {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
