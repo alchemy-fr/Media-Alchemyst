@@ -41,6 +41,8 @@ class Alchemyst
         {
             throw new Exception\FileNotFoundException(sprintf('File %s not found', $pathfile));
         }
+
+        return $this;
     }
 
     public function turnInto($pathfile_dest, Specification $specs)
@@ -51,11 +53,15 @@ class Alchemyst
         }
 
         $this->routeAction($pathfile_dest, $specs);
+
+        return $this;
     }
 
     public function close()
     {
         $this->mediaFile = null;
+
+        return $this;
     }
 
     protected function routeAction($pathfile_dest, Specification $specs)
@@ -108,6 +114,8 @@ class Alchemyst
         }
 
         $transmuter->execute($specs, $this->mediaFile, $pathfile_dest);
+
+        return $this;
     }
 
 }
