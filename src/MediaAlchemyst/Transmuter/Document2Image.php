@@ -18,10 +18,17 @@ class Document2Image extends Provider
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
 
-        $this->container->getUnoconv()
-          ->open($source->getFile()->getPathname())
-          ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
-          ->close();
+        try
+        {
+            $this->container->getUnoconv()
+              ->open($source->getFile()->getPathname())
+              ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
+              ->close();
+        }
+        catch (Unoconv\Exception\RuntimeException $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
 
         $image = $this->container->getImagine()->open($tmpDest);
 
