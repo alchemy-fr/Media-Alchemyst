@@ -37,7 +37,14 @@ class Video2Image extends Provider
             $image = $image->resize($box);
         }
 
-        $image->save($dest);
+        $options = array(
+          'quality'          => $spec->getQuality(),
+          'resolution-units' => $spec->getResolutionUnit(),
+          'resolution-x'     => $spec->getResolutionX(),
+          'resolution-y'     => $spec->getResolutionY(),
+        );
+
+        $image->save($dest, $options);
 
         unlink($tmpDest);
     }

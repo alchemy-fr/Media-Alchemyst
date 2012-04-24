@@ -69,7 +69,14 @@ class Image2Image extends Provider
             $image = $image->strip();
         }
 
-        $image->save($dest, array('quality' => $spec->getQuality()));
+        $options = array(
+          'quality'          => $spec->getQuality(),
+          'resolution-units' => $spec->getResolutionUnit(),
+          'resolution-x'     => $spec->getResolutionX(),
+          'resolution-y'     => $spec->getResolutionY(),
+        );
+
+        $image->save($dest, $options);
 
         if ($to_remove)
         {
@@ -88,7 +95,7 @@ class Image2Image extends Provider
 
         $to_unlink = array();
         $selected = null;
-        $size = null;
+        $size     = null;
 
         foreach ($files as $file)
         {
@@ -100,7 +107,7 @@ class Image2Image extends Provider
             if (is_null($selected) || $file->getSize() > $size)
             {
                 $selected = $file->getPathname();
-                $size = $file->getSize();
+                $size     = $file->getSize();
             }
             else
             {

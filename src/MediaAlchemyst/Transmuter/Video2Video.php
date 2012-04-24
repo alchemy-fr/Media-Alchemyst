@@ -35,6 +35,14 @@ class Video2Video extends Provider
         {
             $format->getKiloBitrate($spec->getKiloBitrate());
         }
+        if ($spec->getGOPSize())
+        {
+            $format->setGOPsize($spec->getGOPSize());
+        }
+        if ($spec->getFramerate())
+        {
+            $format->setFrameRate($spec->getFramerate());
+        }
 
         $this->container->getFFMpeg()
           ->open($source->getFile()->getPathname())
