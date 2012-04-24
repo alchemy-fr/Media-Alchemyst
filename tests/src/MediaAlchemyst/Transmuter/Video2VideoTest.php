@@ -54,6 +54,8 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteMP4()
     {
+        $this->dest = __DIR__ . '/../../../files/output_video.mp4';
+
         $this->specs->setAudioCodec('faac');
         $this->specs->setVideoCodec('libx264');
         $this->specs->setAudioSampleRate(10025);
@@ -70,8 +72,6 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(320, $mediaDest->getWidth());
         $this->assertEquals(240, $mediaDest->getHeight());
     }
-
-
 
     /**
      * @covers MediaAlchemyst\Transmuter\Video2Video::execute
