@@ -69,7 +69,7 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getExiftoolExtractor
+     * @covers MediaAlchemyst\DriversContainer::getMP4Box
      */
     public function testgetMP4Box()
     {

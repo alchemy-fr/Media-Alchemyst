@@ -36,7 +36,6 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Transmuter\Video2Video::execute
-     * @todo Implement testExecute().
      */
     public function testExecute()
     {
@@ -52,7 +51,30 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Transmuter\Video2Video::execute
-     * @todo Implement testExecute().
+     */
+    public function testExecuteMP4()
+    {
+        $this->specs->setAudioCodec('faac');
+        $this->specs->setVideoCodec('libx264');
+        $this->specs->setAudioSampleRate(10025);
+        $this->specs->setKiloBitrate(1000);
+        $this->specs->setGOPSize(10);
+        $this->specs->setFramerate(5);
+
+        $this->object->execute($this->specs, $this->source, $this->dest);
+
+        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertEquals('video/mp4', $mediaDest->getFile()->getMimeType());
+        $this->assertEquals($this->source->getDuration(), $mediaDest->getDuration());
+        $this->assertEquals(320, $mediaDest->getWidth());
+        $this->assertEquals(240, $mediaDest->getHeight());
+    }
+
+
+
+    /**
+     * @covers MediaAlchemyst\Transmuter\Video2Video::execute
      */
     public function testExecuteWithOptions()
     {
@@ -60,6 +82,8 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
         $this->specs->setVideoCodec('libvpx');
         $this->specs->setAudioSampleRate(10025);
         $this->specs->setKiloBitrate(1000);
+        $this->specs->setGOPSize(10);
+        $this->specs->setFramerate(5);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 

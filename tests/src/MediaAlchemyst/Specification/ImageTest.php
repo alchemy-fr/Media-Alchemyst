@@ -80,6 +80,46 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers MediaAlchemyst\Specification\Image::setResolution
+     * @covers MediaAlchemyst\Specification\Image::getResolutionUnit
+     * @covers MediaAlchemyst\Specification\Image::getResolutionX
+     * @covers MediaAlchemyst\Specification\Image::getResolutionY
+     */
+    public function testSetResolution()
+    {
+        $this->object->setResolution(60, 80, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH);
+        $this->assertEquals(60, $this->object->getResolutionX());
+        $this->assertEquals(80, $this->object->getResolutionY());
+        $this->assertEquals(\MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH, $this->object->getResolutionUnit());
+
+        $this->object->setResolution(70, 90, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERCENTIMETER);
+        $this->assertEquals(70, $this->object->getResolutionX());
+        $this->assertEquals(90, $this->object->getResolutionY());
+        $this->assertEquals(\MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERCENTIMETER, $this->object->getResolutionUnit());
+    }
+
+    /**
+     * @dataProvider getWrongResolutions
+     * @covers MediaAlchemyst\Specification\Image::setResolution
+     * @expectedException MediaAlchemyst\Exception\InvalidArgumentException
+     */
+    public function testSetWrongResolution($res_x, $res_y, $res_unit)
+    {
+        $this->object->setResolution($res_x, $res_y, $res_unit);
+    }
+
+    public function getWrongResolutions()
+    {
+        return array(
+          array(10, 20, 'pixelparpied'),
+          array(0, 20, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
+          array(-5, 20, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
+          array(10, 0, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
+          array(10, -5, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
+        );
+    }
+
+    /**
      * @covers MediaAlchemyst\Specification\Image::setQuality
      * @expectedException MediaAlchemyst\Exception\InvalidArgumentException
      */

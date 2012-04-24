@@ -48,6 +48,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Transmuter\Audio2Audio::execute
+     * @covers MediaAlchemyst\Transmuter\Audio2Audio::getFormatFromFile
      */
     public function testExecuteWithOptions()
     {

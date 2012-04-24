@@ -45,4 +45,24 @@ class VideoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(220, $this->object->getHeight());
     }
 
+    /**
+     * @covers MediaAlchemyst\Specification\Video::setGOPSize
+     * @covers MediaAlchemyst\Specification\Video::getGOPSize
+     */
+    public function testSetGOPSize()
+    {
+        $this->object->setGOPSize(10);
+        $this->assertEquals(10, $this->object->getGOPSize());
+    }
+
+    /**
+     * @covers MediaAlchemyst\Specification\Video::setFrameRate
+     * @covers MediaAlchemyst\Specification\Video::getFrameRate
+     */
+    public function testSetFrameRate()
+    {
+        $this->object->setFramerate(10);
+        $this->assertEquals(10, $this->object->getFramerate());
+    }
+
 }
