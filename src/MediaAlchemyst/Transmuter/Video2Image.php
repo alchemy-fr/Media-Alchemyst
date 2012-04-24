@@ -24,29 +24,40 @@ class Video2Image extends Provider
 
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
 
-        $this->container->getFFMpeg()
-          ->open($source->getFile()->getPathname())
-          ->extractImage($time, $tmpDest)
-          ->close();
-
-        $image = $this->container->getImagine()->open($tmpDest);
-
-        if ($spec->getWidth() && $spec->getHeight())
+        try
         {
-            $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
-            $image = $image->resize($box);
+            $this->container->getFFMpeg()
+              ->open($source->getFile()->getPathname())
+              ->extractImage($time, $tmpDest)
+              ->close();
+
+            $image = $this->container->getImagine()->open($tmpDest);
+
+            if ($spec->getWidth() && $spec->getHeight())
+            {
+                $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
+                $image = $image->resize($box);
+            }
+
+            $options = array(
+              'quality'          => $spec->getQuality(),
+              'resolution-units' => $spec->getResolutionUnit(),
+              'resolution-x'     => $spec->getResolutionX(),
+              'resolution-y'     => $spec->getResolutionY(),
+            );
+
+            $image->save($dest, $options);
+
+            unlink($tmpDest);
         }
-
-        $options = array(
-          'quality'          => $spec->getQuality(),
-          'resolution-units' => $spec->getResolutionUnit(),
-          'resolution-x'     => $spec->getResolutionX(),
-          'resolution-y'     => $spec->getResolutionY(),
-        );
-
-        $image->save($dest, $options);
-
-        unlink($tmpDest);
+        catch (\FFMpeg\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
+        catch (\Imagine\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     protected function parseTimeAsRatio($time)

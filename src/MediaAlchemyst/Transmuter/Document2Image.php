@@ -24,30 +24,34 @@ class Document2Image extends Provider
               ->open($source->getFile()->getPathname())
               ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
               ->close();
+
+            $image = $this->container->getImagine()->open($tmpDest);
+
+            if ($spec->getWidth() && $spec->getHeight())
+            {
+                $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
+                $image = $image->resize($box);
+            }
+
+            $options = array(
+              'quality'          => $spec->getQuality(),
+              'resolution-units' => $spec->getResolutionUnit(),
+              'resolution-x'     => $spec->getResolutionX(),
+              'resolution-y'     => $spec->getResolutionY(),
+            );
+
+            $image->save($dest, $options);
+
+            unlink($tmpDest);
         }
-        catch (Unoconv\Exception\Exception $e)
+        catch (\Unoconv\Exception\Exception $e)
         {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
-
-        $image = $this->container->getImagine()->open($tmpDest);
-
-        if ($spec->getWidth() && $spec->getHeight())
+        catch(\Imagine\Exception\Exception $e)
         {
-            $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
-            $image = $image->resize($box);
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
-
-        $options = array(
-          'quality'          => $spec->getQuality(),
-          'resolution-units' => $spec->getResolutionUnit(),
-          'resolution-x'     => $spec->getResolutionX(),
-          'resolution-y'     => $spec->getResolutionY(),
-        );
-
-        $image->save($dest, $options);
-
-        unlink($tmpDest);
     }
 
 }

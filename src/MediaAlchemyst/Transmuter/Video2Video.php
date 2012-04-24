@@ -44,14 +44,25 @@ class Video2Video extends Provider
             $format->setFrameRate($spec->getFramerate());
         }
 
-        $this->container->getFFMpeg()
-          ->open($source->getFile()->getPathname())
-          ->encode($format, $dest)
-          ->close();
-
-        if ($format instanceof \FFMpeg\Format\Video\X264)
+        try
         {
-            $this->container->getMP4Box()->open($dest)->process()->close();
+            $this->container->getFFMpeg()
+              ->open($source->getFile()->getPathname())
+              ->encode($format, $dest)
+              ->close();
+
+            if ($format instanceof \FFMpeg\Format\Video\X264)
+            {
+                $this->container->getMP4Box()->open($dest)->process()->close();
+            }
+        }
+        catch (\FFMpeg\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
+        catch (\MP4Box\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
 
         return $this;

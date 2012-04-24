@@ -24,16 +24,20 @@ class Document2Flash extends Provider
               ->open($source->getFile()->getPathname())
               ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
               ->close();
+
+            $this->container->getPdf2Swf()
+              ->toSwf(new \SplFileInfo($tmpDest), $dest);
+
+            unlink($tmpDest);
         }
-        catch (Unoconv\Exception\Exception $e)
+        catch (\Unoconv\Exception\Exception $e)
         {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
-
-        $this->container->getPdf2Swf()
-          ->toSwf(new \SplFileInfo($tmpDest), $dest);
-
-        unlink($tmpDest);
+        catch (\SwfTools\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
 }

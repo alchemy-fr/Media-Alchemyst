@@ -30,47 +30,58 @@ class Video2Animation extends Provider
             throw new Exception\RuntimeException('Gmagick is required for animated gif');
         }
 
-        $movie = $this->container->getFFMpeg()->open($source->getFile()->getPathname());
-
-        $duration = $source->getDuration();
-
-        $time  = $pas   = Max(1, $duration / 11);
-        $files = array();
-
-        while ($time < $duration)
+        try
         {
-            $files[] = $tmpFile = tempnam(sys_get_temp_dir(), 'ffmpeg');
-            $movie->extractImage(round($time), $tmpFile);
-            $time += $pas;
-        }
+            $movie = $this->container->getFFMpeg()->open($source->getFile()->getPathname());
 
-        $movie->close();
+            $duration = $source->getDuration();
 
-        $GIF = new \Gmagick();
+            $time  = $pas   = Max(1, $duration / 11);
+            $files = array();
 
-        $GIF->readImage(array_shift($files));
-        $GIF->setImageFormat('GIF');
-        $GIF->setImageDelay(80);
-        $GIF->nextImage();
+            while ($time < $duration)
+            {
+                $files[] = $tmpFile = tempnam(sys_get_temp_dir(), 'ffmpeg');
+                $movie->extractImage(round($time), $tmpFile);
+                $time += $pas;
+            }
 
-        foreach ($files as $file)
-        {
-            $frame = new \Gmagick();
+            $movie->close();
 
-            $frame->readImage($file);
-            $frame->setImageFormat('GIF');
-            $frame->setImageDelay(80);
+            $GIF = new \Gmagick();
 
-            $GIF->addImage($frame);
+            $GIF->readImage(array_shift($files));
+            $GIF->setImageFormat('GIF');
+            $GIF->setImageDelay(80);
             $GIF->nextImage();
 
-            $frame->clear();
-            $frame->destroy();
-        }
+            foreach ($files as $file)
+            {
+                $frame = new \Gmagick();
 
-        $GIF->writeimage($dest);
-        $GIF->clear();
-        $GIF->destroy();
+                $frame->readImage($file);
+                $frame->setImageFormat('GIF');
+                $frame->setImageDelay(80);
+
+                $GIF->addImage($frame);
+                $GIF->nextImage();
+
+                $frame->clear();
+                $frame->destroy();
+            }
+
+            $GIF->writeimage($dest);
+            $GIF->clear();
+            $GIF->destroy();
+        }
+        catch (\FFMpeg\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
+        catch (\GmagickException $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
 
         return $this;
     }

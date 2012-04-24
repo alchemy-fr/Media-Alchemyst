@@ -25,63 +25,78 @@ class Image2Image extends Provider
             throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Images');
         }
 
-        $to_remove = null;
-
-        if (static::$lookForEmbeddedPreview)
+        try
         {
-            $tmpFile = $this->extractEmbeddedImage($source->getFile()->getPathname());
+            $to_remove = null;
 
-            if ($tmpFile instanceof Media)
+            if (static::$lookForEmbeddedPreview)
             {
-                $source    = $tmpFile;
-                $to_remove = $tmpFile->getFile();
+                $tmpFile = $this->extractEmbeddedImage($source->getFile()->getPathname());
+
+                if ($tmpFile instanceof Media)
+                {
+                    $source    = $tmpFile;
+                    $to_remove = $tmpFile->getFile();
+                }
+            }
+
+            $image = $this->container->getImagine()->open($source->getFile()->getPathname());
+
+            if ($spec->getWidth() && $spec->getHeight())
+            {
+                $box = new Image\Box($spec->getWidth(), $spec->getHeight());
+
+                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND)
+                {
+                    /* @var $image \Imagine\Gmagick\Image */
+                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                }
+                else
+                {
+                    $image = $image->resize($box);
+                }
+            }
+
+            if (static::$autorotate)
+            {
+                $image = $image->rotate(- $source->getOrientation());
+            }
+            elseif (null !== $angle = $spec->getRotationAngle())
+            {
+                $image = $image->rotate($angle);
+            }
+
+            if (true == $spec->getStrip())
+            {
+                $image = $image->strip();
+            }
+
+            $options = array(
+              'quality'          => $spec->getQuality(),
+              'resolution-units' => $spec->getResolutionUnit(),
+              'resolution-x'     => $spec->getResolutionX(),
+              'resolution-y'     => $spec->getResolutionY(),
+            );
+
+            $image->save($dest, $options);
+
+            if ($to_remove)
+            {
+                unlink($to_remove);
+                rmdir(dirname($to_remove));
             }
         }
-
-        $image = $this->container->getImagine()->open($source->getFile()->getPathname());
-
-        if ($spec->getWidth() && $spec->getHeight())
+        catch (\MediaVorus\Exception\Exception $e)
         {
-            $box = new Image\Box($spec->getWidth(), $spec->getHeight());
-
-            if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND)
-            {
-                /* @var $image \Imagine\Gmagick\Image */
-                $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
-            }
-            else
-            {
-                $image = $image->resize($box);
-            }
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
-
-        if (static::$autorotate)
+        catch (\PHPExiftool\Exception\Exception $e)
         {
-            $image = $image->rotate(- $source->getOrientation());
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
-        elseif (null !== $angle = $spec->getRotationAngle())
+        catch (\Imagine\Exception\Exception $e)
         {
-            $image = $image->rotate($angle);
-        }
-
-        if (true == $spec->getStrip())
-        {
-            $image = $image->strip();
-        }
-
-        $options = array(
-          'quality'          => $spec->getQuality(),
-          'resolution-units' => $spec->getResolutionUnit(),
-          'resolution-x'     => $spec->getResolutionX(),
-          'resolution-y'     => $spec->getResolutionY(),
-        );
-
-        $image->save($dest, $options);
-
-        if ($to_remove)
-        {
-            unlink($to_remove);
-            rmdir(dirname($to_remove));
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 

@@ -32,10 +32,17 @@ class Audio2Audio extends Provider
             $format->getKiloBitrate($spec->getKiloBitrate());
         }
 
-        $this->container->getFFMpeg()
-          ->open($source->getFile()->getPathname())
-          ->encode($format, $dest)
-          ->close();
+        try
+        {
+            $this->container->getFFMpeg()
+              ->open($source->getFile()->getPathname())
+              ->encode($format, $dest)
+              ->close();
+        }
+        catch (\FFMpeg\Exception\Exception $e)
+        {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 
     protected function getFormatFromFileType($dest)
