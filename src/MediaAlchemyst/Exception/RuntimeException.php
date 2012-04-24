@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Exception;
 
-class RuntimeException extends \Exception
+class RuntimeException extends \RuntimeException implements Exception
 {
 
 }

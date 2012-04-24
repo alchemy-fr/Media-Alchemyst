@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Exception;
 
-class SpecNotSupportedException extends \Exception
+class SpecNotSupportedException extends \Exception implements Exception
 {
 
 }
