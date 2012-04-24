@@ -10,6 +10,8 @@ class Video extends Audio
     protected $width;
     protected $height;
     protected $videoCodec;
+    protected $GOPSize;
+    protected $framerate;
 
     public function getType()
     {
@@ -40,6 +42,26 @@ class Video extends Audio
     public function getHeight()
     {
         return $this->height;
+    }
+
+    public function getGOPSize()
+    {
+        return $this->GOPSize;
+    }
+
+    public function setGOPSize($GOPSize)
+    {
+        $this->GOPSize = $GOPSize;
+    }
+
+    public function getFramerate()
+    {
+        return $this->framerate;
+    }
+
+    public function setFramerate($framerate)
+    {
+        $this->framerate = $framerate;
     }
 
 }
