@@ -68,7 +68,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
         $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('video/mp4', $mediaDest->getFile()->getMimeType());
-        $this->assertEquals($this->source->getDuration(), $mediaDest->getDuration());
+        $this->assertEquals(floor($this->source->getDuration()), floor($mediaDest->getDuration()));
         $this->assertEquals(320, $mediaDest->getWidth());
         $this->assertEquals(240, $mediaDest->getHeight());
     }
