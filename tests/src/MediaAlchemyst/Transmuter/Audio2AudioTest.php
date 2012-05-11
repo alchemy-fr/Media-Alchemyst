@@ -43,7 +43,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
         $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('audio/x-flac', $mediaDest->getFile()->getMimeType());
-        $this->assertEquals($this->source->getDuration(), $mediaDest->getDuration());
+        $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
     }
 
     /**
@@ -61,7 +61,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
         $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('audio/x-flac', $mediaDest->getFile()->getMimeType());
-        $this->assertEquals($this->source->getDuration(), $mediaDest->getDuration());
+        $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
     }
 
     /**
@@ -76,7 +76,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
         $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('audio/mpeg', $mediaDest->getFile()->getMimeType());
-        $this->assertEquals($this->source->getDuration(), $mediaDest->getDuration());
+        $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
     }
 
     /**
