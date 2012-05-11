@@ -20,7 +20,7 @@ class Video2Image extends Provider
 
         /* @var $spec \MediaAlchemyst\Specification\Image */
 
-        $tmpDest = tempnam(sys_get_temp_dir(), 'ffmpeg');
+        $tmpDest = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
 
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
 
