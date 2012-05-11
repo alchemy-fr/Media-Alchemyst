@@ -123,4 +123,18 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
         $this->object->execute(new \MediaAlchemyst\Specification\UnknownSpecs(), $this->source, $this->dest);
     }
 
+    /**
+     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+     */
+    public function testExecuteRawImage()
+    {
+        $source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/RAW_CANON_40D_RAW_V105.cr2'));
+        $this->object->execute($this->specs, $source, $this->dest);
+
+        $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertEquals(1936, $MediaDest->getWidth());
+        $this->assertEquals(1288, $MediaDest->getHeight());
+    }
+
 }
