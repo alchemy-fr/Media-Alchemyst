@@ -34,7 +34,7 @@ class Video2Animation extends Provider
             $time = $pas = Max(1, $duration / 11);
             $files = array();
 
-            while ($time < $duration) {
+            while (ceil($time) < floor($duration)) {
                 $files[] = $tmpFile = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
                 $movie->extractImage(round($time), $tmpFile);
                 $time += $pas;
