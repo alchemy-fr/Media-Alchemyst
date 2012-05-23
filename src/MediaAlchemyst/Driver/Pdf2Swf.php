@@ -16,18 +16,12 @@ class Pdf2Swf extends Provider
     {
         $this->logger = $logger;
 
-        if ($use_binary)
-        {
+        if ($use_binary) {
             $this->driver = new Pdf2swfBinary($use_binary);
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $this->driver = Pdf2swfBinary::load(new \SwfTools\Configuration());
-            }
-            catch (SwfToolsException\BinaryNotFoundException $e)
-            {
+            } catch (SwfToolsException\BinaryNotFoundException $e) {
                 throw new Exception\RuntimeException('No driver available');
             }
         }

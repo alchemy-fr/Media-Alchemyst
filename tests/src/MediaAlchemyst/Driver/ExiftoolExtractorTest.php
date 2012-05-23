@@ -2,8 +2,6 @@
 
 namespace MediaAlchemyst\Driver;
 
-require_once dirname(__FILE__) . '/../../../../src/MediaAlchemyst/Driver/ExiftoolExtractor.php';
-
 class ExiftoolExtractorTest extends \PHPUnit_Framework_TestCase
 {
 

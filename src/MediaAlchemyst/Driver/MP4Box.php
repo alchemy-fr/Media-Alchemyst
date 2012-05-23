@@ -16,18 +16,12 @@ class MP4Box extends Provider
     {
         $this->logger = $logger;
 
-        if ($use_binary)
-        {
+        if ($use_binary) {
             $this->driver = new MP4BoxDriver($use_binary, $this->logger);
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $this->driver = MP4BoxDriver::load($this->logger);
-            }
-            catch (MP4BoxException\BinaryNotFoundException $e)
-            {
+            } catch (MP4BoxException\BinaryNotFoundException $e) {
                 throw new Exception\RuntimeException('No driver available');
             }
         }

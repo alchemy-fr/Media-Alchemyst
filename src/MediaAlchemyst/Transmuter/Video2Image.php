@@ -13,8 +13,7 @@ class Video2Image extends Provider
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image)
-        {
+        if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
         }
 
@@ -24,8 +23,7 @@ class Video2Image extends Provider
 
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
 
-        try
-        {
+        try {
             $this->container->getFFMpeg()
               ->open($source->getFile()->getPathname())
               ->extractImage($time, $tmpDest)
@@ -33,8 +31,7 @@ class Video2Image extends Provider
 
             $image = $this->container->getImagine()->open($tmpDest);
 
-            if ($spec->getWidth() && $spec->getHeight())
-            {
+            if ($spec->getWidth() && $spec->getHeight()) {
                 $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
                 $image = $image->resize($box);
             }
@@ -50,21 +47,16 @@ class Video2Image extends Provider
 
             $image = null;
             unlink($tmpDest);
-        }
-        catch (\FFMpeg\Exception\Exception $e)
-        {
+        } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        }
-        catch (\Imagine\Exception\Exception $e)
-        {
+        } catch (\Imagine\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
     protected function parseTimeAsRatio($time)
     {
-        if (substr($time, -1) === '%')
-        {
+        if (substr($time, -1) === '%') {
             return substr($time, 0, strlen($time) - 1) / 100;
         }
 

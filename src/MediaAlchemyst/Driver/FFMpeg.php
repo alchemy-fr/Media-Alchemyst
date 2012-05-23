@@ -16,18 +16,12 @@ class FFMpeg extends Provider
     {
         $this->logger = $logger;
 
-        if ($use_binary)
-        {
+        if ($use_binary) {
             $this->driver = new FFMpegDriver($use_binary, $this->logger);
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $this->driver = FFMpegDriver::load($this->logger);
-            }
-            catch (FFMpegException\BinaryNotFoundException $e)
-            {
+            } catch (FFMpegException\BinaryNotFoundException $e) {
                 throw new Exception\RuntimeException('No driver available');
             }
         }

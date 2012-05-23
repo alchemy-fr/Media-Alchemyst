@@ -11,36 +11,29 @@ class Audio2Audio extends Provider
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Audio)
-        {
+        if ( ! $spec instanceof Specification\Audio) {
             throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Audio specs');
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Audio */
         $format = $this->getFormatFromFileType($dest);
 
-        if ($spec->getAudioCodec())
-        {
+        if ($spec->getAudioCodec()) {
             $format->setAudioCodec($spec->getAudioCodec());
         }
-        if ($spec->getAudioSampleRate())
-        {
+        if ($spec->getAudioSampleRate()) {
             $format->setAudioSampleRate($spec->getAudioSampleRate());
         }
-        if ($spec->getKiloBitrate())
-        {
+        if ($spec->getKiloBitrate()) {
             $format->getKiloBitrate($spec->getKiloBitrate());
         }
 
-        try
-        {
+        try {
             $this->container->getFFMpeg()
               ->open($source->getFile()->getPathname())
               ->encode($format, $dest)
               ->close();
-        }
-        catch (\FFMpeg\Exception\Exception $e)
-        {
+        } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -49,8 +42,7 @@ class Audio2Audio extends Provider
     {
         $extension = strtolower(pathinfo($dest, PATHINFO_EXTENSION));
 
-        switch ($extension)
-        {
+        switch ($extension) {
             case 'flac':
                 $format = new \FFMpeg\Format\Audio\Flac();
                 break;

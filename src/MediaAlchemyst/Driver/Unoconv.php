@@ -15,18 +15,12 @@ class Unoconv extends Provider
     {
         $this->logger = $logger;
 
-        if ($use_binary)
-        {
+        if ($use_binary) {
             $this->driver = new UnoconvBinary($use_binary, $logger);
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $this->driver = UnoconvBinary::load($logger);
-            }
-            catch (Exception\BinaryNotFoundException $e)
-            {
+            } catch (Exception\BinaryNotFoundException $e) {
                 throw new Exception\RuntimeException('No driver available');
             }
         }

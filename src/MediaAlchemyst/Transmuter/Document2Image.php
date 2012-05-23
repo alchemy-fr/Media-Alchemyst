@@ -11,15 +11,13 @@ class Document2Image extends Provider
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image)
-        {
+        if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
 
-        try
-        {
+        try {
             $this->container->getUnoconv()
               ->open($source->getFile()->getPathname())
               ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
@@ -27,8 +25,7 @@ class Document2Image extends Provider
 
             $image = $this->container->getImagine()->open($tmpDest);
 
-            if ($spec->getWidth() && $spec->getHeight())
-            {
+            if ($spec->getWidth() && $spec->getHeight()) {
                 $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
                 $image = $image->resize($box);
             }
@@ -43,13 +40,9 @@ class Document2Image extends Provider
             $image->save($dest, $options);
 
             unlink($tmpDest);
-        }
-        catch (\Unoconv\Exception\Exception $e)
-        {
+        } catch (\Unoconv\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        }
-        catch(\Imagine\Exception\Exception $e)
-        {
+        } catch (\Imagine\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }

@@ -3,8 +3,6 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
-use FFMpeg\Exception as FFMpegException;
-use FFMpeg\FFMpeg as FFMpegDriver;
 
 class ExiftoolExtractor extends Provider
 {

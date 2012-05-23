@@ -2,7 +2,6 @@
 
 namespace MediaAlchemyst\Specification;
 
-use MediaAlchemyst\Exception;
 
 class Video extends Audio
 {

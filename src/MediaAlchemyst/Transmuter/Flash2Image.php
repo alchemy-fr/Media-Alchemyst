@@ -11,22 +11,19 @@ class Flash2Image extends Provider
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image)
-        {
+        if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'swfrender');
 
-        try
-        {
+        try {
             $this->container->getSwfRender()
               ->render($source->getFile(), $tmpDest, null);
 
             $image = $this->container->getImagine()->open($tmpDest);
 
-            if ($spec->getWidth() && $spec->getHeight())
-            {
+            if ($spec->getWidth() && $spec->getHeight()) {
                 $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
                 $image = $image->resize($box);
             }
@@ -41,13 +38,9 @@ class Flash2Image extends Provider
             $image->save($dest, $options);
 
             unlink($tmpDest);
-        }
-        catch (\SwfTools\Exception\Exception $e)
-        {
+        } catch (\SwfTools\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        }
-        catch (\Imagine\Exception\Exception $e)
-        {
+        } catch (\Imagine\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }

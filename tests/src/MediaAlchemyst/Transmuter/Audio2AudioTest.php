@@ -27,8 +27,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        if (file_exists($this->dest) && is_writable($this->dest))
-        {
+        if (file_exists($this->dest) && is_writable($this->dest)) {
             unlink($this->dest);
         }
     }

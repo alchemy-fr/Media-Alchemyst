@@ -28,17 +28,13 @@ class Alchemyst
 
     public function open($pathfile)
     {
-        if ($this->mediaFile)
-        {
+        if ($this->mediaFile) {
             $this->close();
         }
 
-        try
-        {
+        try {
             $this->mediaFile = MediaVorus\MediaVorus::guess(new MediaVorus\File($pathfile, true));
-        }
-        catch (MediaVorus\Exception\FileNotFoundException $e)
-        {
+        } catch (MediaVorus\Exception\FileNotFoundException $e) {
             throw new Exception\FileNotFoundException(sprintf('File %s not found', $pathfile));
         }
 
@@ -47,8 +43,7 @@ class Alchemyst
 
     public function turnInto($pathfile_dest, Specification $specs)
     {
-        if ( ! $this->mediaFile)
-        {
+        if ( ! $this->mediaFile) {
             throw new Exception\LogicException('You must open a file before transmute it');
         }
 
@@ -68,8 +63,7 @@ class Alchemyst
     {
         $route = sprintf('%s-%s', $this->mediaFile->getType(), $specs->getType());
 
-        switch ($route)
-        {
+        switch ($route) {
             case sprintf('%s-%s', Media::TYPE_AUDIO, Specification::TYPE_IMAGE):
                 throw new Exception\RuntimeException('Not transmuter avalaible... Implement it !');
                 break;

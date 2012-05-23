@@ -25,27 +25,21 @@ class Imagine extends Provider
           self::DRIVER_GD      => '\\Imagine\\Gd\\Imagine',
         );
 
-        foreach ($drivers as $driverName => $driver)
-        {
-            if ($workWithDriver && $driverName !== $workWithDriver)
-            {
+        foreach ($drivers as $driverName => $driver) {
+            if ($workWithDriver && $driverName !== $workWithDriver) {
                 continue;
             }
 
-            try
-            {
+            try {
                 $this->driver = new $driver;
                 break;
-            }
-            catch (ImagineException\RuntimeException $e)
-            {
+            } catch (ImagineException\RuntimeException $e) {
                 $this->logger->addWarning($e->getMessage());
                 continue;
             }
         }
 
-        if ( ! $this->driver)
-        {
+        if ( ! $this->driver) {
             throw new Exception\RuntimeException('No driver available');
         }
     }

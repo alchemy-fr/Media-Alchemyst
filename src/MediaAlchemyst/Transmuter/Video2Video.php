@@ -11,57 +11,44 @@ class Video2Video extends Provider
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Video)
-        {
+        if ( ! $spec instanceof Specification\Video) {
             throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Video */
         $format = $this->getFormatFromFileType($dest, $spec->getWidth(), $spec->getHeight());
 
-        if ($spec->getAudioCodec())
-        {
+        if ($spec->getAudioCodec()) {
             $format->setAudioCodec($spec->getAudioCodec());
         }
-        if ($spec->getVideoCodec())
-        {
+        if ($spec->getVideoCodec()) {
             $format->setVideoCodec($spec->getVideoCodec());
         }
-        if ($spec->getAudioSampleRate())
-        {
+        if ($spec->getAudioSampleRate()) {
             $format->setAudioSampleRate($spec->getAudioSampleRate());
         }
-        if ($spec->getKiloBitrate())
-        {
+        if ($spec->getKiloBitrate()) {
             $format->getKiloBitrate($spec->getKiloBitrate());
         }
-        if ($spec->getGOPSize())
-        {
+        if ($spec->getGOPSize()) {
             $format->setGOPsize($spec->getGOPSize());
         }
-        if ($spec->getFramerate())
-        {
+        if ($spec->getFramerate()) {
             $format->setFrameRate($spec->getFramerate());
         }
 
-        try
-        {
+        try {
             $this->container->getFFMpeg()
               ->open($source->getFile()->getPathname())
               ->encode($format, $dest)
               ->close();
 
-            if ($format instanceof \FFMpeg\Format\Video\X264)
-            {
+            if ($format instanceof \FFMpeg\Format\Video\X264) {
                 $this->container->getMP4Box()->open($dest)->process()->close();
             }
-        }
-        catch (\FFMpeg\Exception\Exception $e)
-        {
+        } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        }
-        catch (\MP4Box\Exception\Exception $e)
-        {
+        } catch (\MP4Box\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
 
@@ -70,9 +57,9 @@ class Video2Video extends Provider
 
     /**
      *
-     * @param string $dest
-     * @param int $width
-     * @param int $height
+     * @param  string                                $dest
+     * @param  int                                   $width
+     * @param  int                                   $height
      * @return \FFMpeg\Format\Video\VideoFormat
      * @throws Exception\FormatNotSupportedException
      */
@@ -80,8 +67,7 @@ class Video2Video extends Provider
     {
         $extension = strtolower(pathinfo($dest, PATHINFO_EXTENSION));
 
-        switch ($extension)
-        {
+        switch ($extension) {
             case 'webm':
                 $format = new \FFMpeg\Format\Video\WebM($width, $height);
                 break;

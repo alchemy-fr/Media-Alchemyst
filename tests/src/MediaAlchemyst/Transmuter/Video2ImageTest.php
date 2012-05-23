@@ -29,8 +29,7 @@ class Video2ImageTest extends \PHPUnit_Framework_TestCase
 
     protected function tearDown()
     {
-        if (file_exists($this->dest) && is_writable($this->dest))
-        {
+        if (file_exists($this->dest) && is_writable($this->dest)) {
             unlink($this->dest);
         }
     }
