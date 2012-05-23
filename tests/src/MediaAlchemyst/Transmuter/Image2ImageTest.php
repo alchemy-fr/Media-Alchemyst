@@ -48,6 +48,20 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers MediaAlchemyst\Transmuter\Image2Image::execute
      */
+    public function testExecuteCR2()
+    {
+        $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/test001.CR2'));
+        $this->object->execute($this->specs, $this->source, $this->dest);
+
+        $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertEquals($this->source->getWidth(), $MediaDest->getHeight());
+        $this->assertEquals($this->source->getHeight(), $MediaDest->getWidth());
+    }
+
+    /**
+     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+     */
     public function testExecuteAutorotate()
     {
         Image2Image::$autorotate = true;
