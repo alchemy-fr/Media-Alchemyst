@@ -48,6 +48,7 @@ class Video2Image extends Provider
 
             $image->save($dest, $options);
 
+            $image = null;
             unlink($tmpDest);
         }
         catch (\FFMpeg\Exception\Exception $e)

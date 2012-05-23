@@ -20,6 +20,11 @@ abstract class Provider
         $this->container = $container;
     }
 
+    public function __destruct()
+    {
+        $this->container = null;
+    }
+
     abstract public function execute(Specification $spec, Media $source, $dest);
 
 }

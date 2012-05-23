@@ -41,6 +41,7 @@ class Video2Animation extends Provider
             }
 
             $movie->close();
+            $movie = null;
 
             $GIF = new \Gmagick();
 
@@ -61,11 +62,14 @@ class Video2Animation extends Provider
 
                 $frame->clear();
                 $frame->destroy();
+                $frame = null;
             }
 
             $GIF->writeimage($dest);
             $GIF->clear();
             $GIF->destroy();
+
+            $GIF = null;
         } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\GmagickException $e) {
