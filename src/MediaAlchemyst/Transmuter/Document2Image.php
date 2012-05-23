@@ -15,17 +15,32 @@ class Document2Image extends Provider
             throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
-        $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
+        $toremove = array();
+        $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
 
         try {
             $this->container->getUnoconv()
-              ->open($source->getFile()->getPathname())
-              ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
-              ->close();
+                ->open($source->getFile()->getPathname())
+                ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
+                ->close();
 
             $image = $this->container->getImagine()->open($tmpDest);
 
+            $options = array(
+                'quality'          => $spec->getQuality(),
+                'resolution-units' => $spec->getResolutionUnit(),
+                'resolution-x'     => $spec->getResolutionX(),
+                'resolution-y'     => $spec->getResolutionY(),
+            );
+
+            $image->save($dest, $options);
+
             if ($spec->getWidth() && $spec->getHeight()) {
+
+                $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
+                rename($dest, $tmpDest);
+
+                $image = $this->container->getImagine()->open($tmpDest);
 
                 $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($tmpDest));
 
@@ -38,19 +53,15 @@ class Document2Image extends Provider
                     $image = $image->resize($box);
                 }
 
+                $image->save($dest, $options);
+
                 unset($media);
             }
+            
+            foreach ($toremove as $tmpDest) {
+                unlink($tmpDest);
+            }
 
-            $options = array(
-              'quality'          => $spec->getQuality(),
-              'resolution-units' => $spec->getResolutionUnit(),
-              'resolution-x'     => $spec->getResolutionX(),
-              'resolution-y'     => $spec->getResolutionY(),
-            );
-
-            $image->save($dest, $options);
-
-            unlink($tmpDest);
         } catch (\Unoconv\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Imagine\Exception\Exception $e) {
