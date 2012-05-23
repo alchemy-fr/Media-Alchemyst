@@ -6,7 +6,6 @@ require_once __DIR__ . '/../Specification/UnknownSpecs.php';
 
 class Image2ImageTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Image2Image
      */
@@ -28,8 +27,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        if(file_exists($this->dest) && is_writable($this->dest))
-        {
+        if (file_exists($this->dest) && is_writable($this->dest)) {
             unlink($this->dest);
         }
     }
@@ -115,6 +113,24 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+     */
+    public function testExecuteInSetFixedRatio()
+    {
+        $this->specs->setDimensions(200, 200);
+        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND_FIXEDRATIO);
+
+        $this->object->execute($this->specs, $this->source, $this->dest);
+
+        $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertTrue(200 >= $MediaDest->getHeight());
+        $this->assertTrue(200 >= $MediaDest->getWidth());
+
+        $this->assertEquals(round($this->source->getWidth() / $this->source->getHeight()), round($MediaDest->getWidth() / $MediaDest->getHeight()));
+    }
+
+    /**
+     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
      * @covers MediaAlchemyst\Exception\SpecNotSupportedException
      * @expectedException \MediaAlchemyst\Exception\SpecNotSupportedException
      */
@@ -136,5 +152,4 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1936, $MediaDest->getWidth());
         $this->assertEquals(1288, $MediaDest->getHeight());
     }
-
 }

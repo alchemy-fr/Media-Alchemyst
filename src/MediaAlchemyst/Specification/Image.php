@@ -7,10 +7,9 @@ use Imagine\Image\ImageInterface;
 
 class Image extends Provider
 {
-
     protected $width;
     protected $height;
-    protected $quality    = 75;
+    protected $quality = 75;
     protected $resizeMode = self::RESIZE_MODE_INBOUND;
     protected $rotationAngle;
     protected $strip;
@@ -18,10 +17,11 @@ class Image extends Provider
     protected $resolution_y = 72;
     protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
 
-    const RESIZE_MODE_INBOUND  = ImageInterface::THUMBNAIL_INSET;
+    const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
+    const RESIZE_MODE_INBOUND_FIXEDRATIO = 'INSET_FIXEDRATIO';
     const RESIZE_MODE_OUTBOUND = ImageInterface::THUMBNAIL_OUTBOUND;
-    const RESOLUTION_PIXELPERINCH       = 'ppi';//ImageInterface::RESOLUTION_PIXELSPERINCH;
-    const RESOLUTION_PIXELPERCENTIMETER = 'ppc';//ImageInterface::RESOLUTION_PIXELSPERCENTIMETER;
+    const RESOLUTION_PIXELPERINCH = 'ppi';
+    const RESOLUTION_PIXELPERCENTIMETER = 'ppc';
 
     public function __construct()
     {
@@ -51,8 +51,7 @@ class Image extends Provider
 
     public function setResizeMode($mode)
     {
-        if ( ! in_array($mode, array(self::RESIZE_MODE_INBOUND, self::RESIZE_MODE_OUTBOUND)))
-        {
+        if ( ! in_array($mode, array(self::RESIZE_MODE_INBOUND, self::RESIZE_MODE_OUTBOUND, self::RESIZE_MODE_INBOUND_FIXEDRATIO))) {
             throw new Exception\InvalidArgumentException('Invalid resize mode');
         }
 
@@ -66,12 +65,10 @@ class Image extends Provider
 
     public function setResolution($resolution_x, $resolution_y, $units = self::RESOLUTION_PIXELPERINCH)
     {
-        if ($resolution_x <= 0 || $resolution_y <= 0)
-        {
+        if ($resolution_x <= 0 || $resolution_y <= 0) {
             throw new Exception\InvalidArgumentException('Resolution should be greater than 0');
         }
-        if ( ! in_array($units, array(self::RESOLUTION_PIXELPERCENTIMETER, self::RESOLUTION_PIXELPERINCH)))
-        {
+        if ( ! in_array($units, array(self::RESOLUTION_PIXELPERCENTIMETER, self::RESOLUTION_PIXELPERINCH))) {
             throw new Exception\InvalidArgumentException('Unkonwn resolution units');
         }
 
@@ -99,8 +96,7 @@ class Image extends Provider
 
     public function setQuality($quality)
     {
-        if ($quality < 0 || $quality > 100)
-        {
+        if ($quality < 0 || $quality > 100) {
             throw new Exception\InvalidArgumentException('Invalid quality value');
         }
 
@@ -131,5 +127,4 @@ class Image extends Provider
     {
         return $this->strip;
     }
-
 }
