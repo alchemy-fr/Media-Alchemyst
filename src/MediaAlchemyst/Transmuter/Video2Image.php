@@ -32,6 +32,8 @@ class Video2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
+                $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($tmpDest));
+
                 $box = $this->boxFromImageSpec($spec, $source);
 
                 if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
@@ -40,6 +42,8 @@ class Video2Image extends Provider
                 } else {
                     $image = $image->resize($box);
                 }
+
+                unset($media);
             }
 
             $options = array(
@@ -56,6 +60,8 @@ class Video2Image extends Provider
         } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Imagine\Exception\Exception $e) {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (\MediaVorus\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }

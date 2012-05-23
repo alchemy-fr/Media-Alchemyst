@@ -27,7 +27,9 @@ class Document2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $box = $this->boxFromImageSpec($spec, $source);
+                $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($tmpDest));
+
+                $box = $this->boxFromImageSpec($spec, $media);
 
                 if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
@@ -35,6 +37,8 @@ class Document2Image extends Provider
                 } else {
                     $image = $image->resize($box);
                 }
+
+                unset($media);
             }
 
             $options = array(
@@ -50,6 +54,8 @@ class Document2Image extends Provider
         } catch (\Unoconv\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Imagine\Exception\Exception $e) {
+            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (\MediaVorus\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
