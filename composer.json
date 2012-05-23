@@ -28,6 +28,9 @@
         "monolog/monolog": "1.0.*",
         "symfony/dependency-injection": ">2.0"
     },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "dev-master"
+    },
     "autoload": {
         "psr-0": {
             "MediaAlchemyst": "src"
