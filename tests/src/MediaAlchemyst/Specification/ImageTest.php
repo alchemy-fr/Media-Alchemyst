@@ -44,7 +44,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetResizeMode()
     {
-        $this->assertEquals(Image::RESIZE_MODE_INBOUND, $this->object->getResizeMode());
+        $this->assertEquals(Image::RESIZE_MODE_INBOUND_FIXEDRATIO, $this->object->getResizeMode());
         $this->object->setResizeMode(Image::RESIZE_MODE_OUTBOUND);
         $this->assertEquals(Image::RESIZE_MODE_OUTBOUND, $this->object->getResizeMode());
     }

@@ -8,7 +8,6 @@ use MediaVorus\Media\Media;
 
 class Video2Image extends Provider
 {
-
     public static $time = '60%';
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
@@ -25,22 +24,29 @@ class Video2Image extends Provider
 
         try {
             $this->container->getFFMpeg()
-              ->open($source->getFile()->getPathname())
-              ->extractImage($time, $tmpDest)
-              ->close();
+                ->open($source->getFile()->getPathname())
+                ->extractImage($time, $tmpDest)
+                ->close();
 
             $image = $this->container->getImagine()->open($tmpDest);
 
             if ($spec->getWidth() && $spec->getHeight()) {
-                $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
-                $image = $image->resize($box);
+
+                $box = $this->boxFromImageSpec($spec, $source);
+
+                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
+                    /* @var $image \Imagine\Gmagick\Image */
+                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                } else {
+                    $image = $image->resize($box);
+                }
             }
 
             $options = array(
-              'quality'          => $spec->getQuality(),
-              'resolution-units' => $spec->getResolutionUnit(),
-              'resolution-x'     => $spec->getResolutionX(),
-              'resolution-y'     => $spec->getResolutionY(),
+                'quality'          => $spec->getQuality(),
+                'resolution-units' => $spec->getResolutionUnit(),
+                'resolution-x'     => $spec->getResolutionX(),
+                'resolution-y'     => $spec->getResolutionY(),
             );
 
             $image->save($dest, $options);
@@ -62,5 +68,4 @@ class Video2Image extends Provider
 
         return Max(Min((float) $time, 1), 0);
     }
-
 }

@@ -26,8 +26,15 @@ class Document2Image extends Provider
             $image = $this->container->getImagine()->open($tmpDest);
 
             if ($spec->getWidth() && $spec->getHeight()) {
-                $box   = new \Imagine\Image\Box($spec->getWidth(), $spec->getHeight());
-                $image = $image->resize($box);
+
+                $box = $this->boxFromImageSpec($spec, $source);
+
+                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
+                    /* @var $image \Imagine\Gmagick\Image */
+                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                } else {
+                    $image = $image->resize($box);
+                }
             }
 
             $options = array(

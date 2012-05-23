@@ -10,7 +10,7 @@ class Image extends Provider
     protected $width;
     protected $height;
     protected $quality = 75;
-    protected $resizeMode = self::RESIZE_MODE_INBOUND;
+    protected $resizeMode = self::RESIZE_MODE_INBOUND_FIXEDRATIO;
     protected $rotationAngle;
     protected $strip;
     protected $resolution_x = 72;
@@ -18,7 +18,7 @@ class Image extends Provider
     protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
 
     const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
-    const RESIZE_MODE_INBOUND_FIXEDRATIO = 'INSET_FIXEDRATIO';
+    const RESIZE_MODE_INBOUND_FIXEDRATIO = 'inset_fixedRatio';
     const RESIZE_MODE_OUTBOUND = ImageInterface::THUMBNAIL_OUTBOUND;
     const RESOLUTION_PIXELPERINCH = 'ppi';
     const RESOLUTION_PIXELPERCENTIMETER = 'ppc';

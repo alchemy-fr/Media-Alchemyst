@@ -38,26 +38,7 @@ class Image2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_INBOUND_FIXEDRATIO) {
-
-                    $ratioOut = $spec->getWidth() / $spec->getHeight();
-                    $ratioIn = $source->getWidth() / $source->getHeight();
-
-                    if ($ratioOut > $ratioIn) {
-
-                        $outHeight = $spec->getHeight();
-                        $outWidth = $ratioIn * $outHeight;
-                    } else {
-
-                        $outWidth = $spec->getWidth();
-                        $outHeight = $outWidth / $ratioIn;
-                    }
-
-                    $box = new Image\Box($outWidth, $outHeight);
-                } else {
-
-                    $box = new Image\Box($spec->getWidth(), $spec->getHeight());
-                }
+                $box = $this->boxFromImageSpec($spec, $source);
 
                 if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */

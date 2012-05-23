@@ -39,6 +39,7 @@ class Document2ImageTest extends \PHPUnit_Framework_TestCase
     public function testExecute()
     {
         $this->specs->setDimensions(320, 240);
+        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 

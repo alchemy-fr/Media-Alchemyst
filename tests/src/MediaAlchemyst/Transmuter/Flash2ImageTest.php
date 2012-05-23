@@ -46,6 +46,7 @@ class Flash2ImageTest extends \PHPUnit_Framework_TestCase
     public function testExecute()
     {
         $this->specs->setDimensions(320, 240);
+        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -53,6 +54,15 @@ class Flash2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(320, $MediaDest->getWidth());
         $this->assertEquals(240, $MediaDest->getHeight());
+
+        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND_FIXEDRATIO);
+
+        $this->object->execute($this->specs, $this->source, $this->dest);
+
+        $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertEquals(320, $MediaDest->getWidth());
+        $this->assertEquals(148, $MediaDest->getHeight());
     }
 
 }
