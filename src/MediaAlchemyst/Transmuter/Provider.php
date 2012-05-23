@@ -29,8 +29,8 @@ abstract class Provider
     /**
      * Return the box for a spec
      *
-     * @param Specification\Image $spec
-     * @param Media $source
+     * @param  Specification\Image $spec
+     * @param  Media               $source
      * @return \Image\Box
      */
     protected function boxFromImageSpec(Specification\Image $spec, Media $source)
