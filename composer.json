@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "pimple/pimple": "dev-master",
+        "pimple/pimple": "1.*",
         "mediavorus/mediavorus": "dev-master",
         "swftools/swftools": "dev-master",
         "php-ffmpeg/php-ffmpeg": "dev-master",
