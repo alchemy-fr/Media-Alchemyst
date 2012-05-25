@@ -82,6 +82,8 @@ class Video2Video extends Provider
                 break;
         }
 
+        $format->setDimensions($width, $height);
+
         return $format;
     }
 
