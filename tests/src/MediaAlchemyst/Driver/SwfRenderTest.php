@@ -5,6 +5,14 @@ namespace MediaAlchemyst\Driver;
 class SwfRenderTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function setUp()
+    {
+        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        if ( ! $executableFinder->find('swfrender')) {
+            $this->markTestSkipped('SwfRender is not installed');
+        }
+    }
+
     protected function build($binary = null)
     {
         $logger = new \Monolog\Logger('test');

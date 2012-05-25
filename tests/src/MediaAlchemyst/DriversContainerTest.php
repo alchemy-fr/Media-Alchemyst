@@ -57,6 +57,11 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testgetUnoconv()
     {
+        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        if ( ! $executableFinder->find('unoconv')) {
+            $this->markTestSkipped('Unoconv is not installed');
+        }
+        
         $this->assertInstanceOf('\\Unoconv\\Unoconv', $this->object->getUnoconv());
     }
 

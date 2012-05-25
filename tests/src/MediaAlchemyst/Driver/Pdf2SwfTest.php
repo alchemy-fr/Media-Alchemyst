@@ -5,6 +5,14 @@ namespace MediaAlchemyst\Driver;
 class Pdf2SwfTest extends \PHPUnit_Framework_TestCase
 {
 
+    public function setUp()
+    {
+        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        if ( ! $executableFinder->find('pdf2swf')) {
+            $this->markTestSkipped('Pdf2Swf is not installed');
+        }
+    }
+
     protected function build($binary = null)
     {
         $logger = new \Monolog\Logger('test');

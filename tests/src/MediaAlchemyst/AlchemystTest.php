@@ -111,6 +111,11 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoDocumentImage()
     {
+        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        if ( ! $executableFinder->find('unoconv')) {
+            $this->markTestSkipped('Unoconv is not installed');
+        }
+
         $this->object->open(__DIR__ . '/../../files/Hello.odt');
 
         $dest = __DIR__ . '/../../files/output.png';
@@ -131,6 +136,11 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoDocumentFlash()
     {
+        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        if ( ! $executableFinder->find('unoconv')) {
+            $this->markTestSkipped('Unoconv is not installed');
+        }
+        
         $this->object->open(__DIR__ . '/../../files/Hello.odt');
 
         $dest = __DIR__ . '/../../files/output.swf';

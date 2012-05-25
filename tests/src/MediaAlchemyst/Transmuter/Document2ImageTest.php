@@ -15,6 +15,11 @@ class Document2ImageTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        if ( ! $executableFinder->find('unoconv')) {
+            $this->markTestSkipped('Unoconv is not installed');
+        }
+
         $this->object = new Document2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
         $this->specs = new \MediaAlchemyst\Specification\Image();
