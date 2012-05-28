@@ -14,7 +14,7 @@
         {
             "package": "mediavorus/mediavorus",
             "version": "dev-master",
-            "source-reference": "c556702d890bf18c5d9839c812a91f0313ea6ce2"
+            "source-reference": "77521ba977284ef2f4ef80a27be7e0c0171c5fa4"
         },
         {
             "package": "monolog/monolog",
@@ -23,7 +23,7 @@
         {
             "package": "php-ffmpeg/php-ffmpeg",
             "version": "dev-master",
-            "source-reference": "e930f3a3598ecf62d424931b51b55ada30bfc419"
+            "source-reference": "fc7529822f9714ddaf2bdd5ed405cd5df0876f56"
         },
         {
             "package": "php-mp4box/php-mp4box",

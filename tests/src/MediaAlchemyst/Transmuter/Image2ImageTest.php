@@ -50,13 +50,13 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteCR2()
     {
-        $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../files/test001.CR2'));
+        $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/test001.CR2'));
         $this->object->execute($this->specs, $this->source, $this->dest);
 
         $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
 
-        $this->assertEquals($this->source->getWidth(), $MediaDest->getHeight());
-        $this->assertEquals($this->source->getHeight(), $MediaDest->getWidth());
+        $this->assertEquals(1872, $MediaDest->getHeight());
+        $this->assertEquals(2808, $MediaDest->getWidth());
     }
 
     /**
