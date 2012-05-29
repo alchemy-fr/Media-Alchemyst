@@ -36,6 +36,9 @@ class Video2Video extends Provider
         if ($spec->getFramerate()) {
             $format->setFrameRate($spec->getFramerate());
         }
+        if ($spec->getResizeMode()) {
+            $format->setResizeMode($spec->getResizeMode());
+        }
 
         try {
             $this->container->getFFMpeg()

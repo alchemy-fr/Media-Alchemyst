@@ -17,10 +17,11 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->object = new Video2Video(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
+        $this->object = new Video2Video(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), new \Monolog\Logger('test')));
 
         $this->specs = new \MediaAlchemyst\Specification\Video();
         $this->specs->setDimensions(320, 240);
+        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Video::RESIZE_MODE_FIT);
 
         $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
         $this->dest = __DIR__ . '/../../../files/output_video.webm';
@@ -46,6 +47,24 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
         $this->assertEquals(320, $mediaDest->getWidth());
         $this->assertEquals(240, $mediaDest->getHeight());
+    }
+
+    /**
+     * @covers MediaAlchemyst\Transmuter\Video2Video::execute
+     */
+    public function testExecuteInset()
+    {
+        $this->specs->setDimensions(320, 240);
+        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Video::RESIZE_MODE_INSET);
+        
+        $this->object->execute($this->specs, $this->source, $this->dest);
+
+        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+
+        $this->assertEquals('video/webm', $mediaDest->getFile()->getMimeType());
+        $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
+        $this->assertLessThanOrEqual(320, $mediaDest->getWidth());
+        $this->assertLessThanOrEqual(240, $mediaDest->getHeight());
     }
 
     /**

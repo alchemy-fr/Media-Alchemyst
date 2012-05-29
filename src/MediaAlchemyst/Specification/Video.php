@@ -2,19 +2,37 @@
 
 namespace MediaAlchemyst\Specification;
 
+use FFMpeg\Format\Video as VideoFormat;
 
 class Video extends Audio
 {
-
     protected $width;
     protected $height;
     protected $videoCodec;
+    protected $resizeMode = self::RESIZE_MODE_INSET;
     protected $GOPSize;
     protected $framerate;
+
+    const RESIZE_MODE_FIT = VideoFormat::RESIZEMODE_FIT;
+    const RESIZE_MODE_INSET = VideoFormat::RESIZEMODE_INSET;
 
     public function getType()
     {
         return self::TYPE_VIDEO;
+    }
+
+    public function setResizeMode($mode)
+    {
+        if ( ! in_array($mode, array(self::RESIZE_MODE_INSET, self::RESIZE_MODE_FIT))) {
+            throw new Exception\InvalidArgumentException('Invalid resize mode');
+        }
+
+        $this->resizeMode = $mode;
+    }
+
+    public function getResizeMode()
+    {
+        return $this->resizeMode;
     }
 
     public function setVideoCodec($audioCodec)
@@ -62,5 +80,4 @@ class Video extends Audio
     {
         $this->framerate = $framerate;
     }
-
 }

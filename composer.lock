@@ -23,7 +23,7 @@
         {
             "package": "php-ffmpeg/php-ffmpeg",
             "version": "dev-master",
-            "source-reference": "fc7529822f9714ddaf2bdd5ed405cd5df0876f56"
+            "source-reference": "96820c5d0fdf2cafd957ffb3184345e59c4d5b59"
         },
         {
             "package": "php-mp4box/php-mp4box",
