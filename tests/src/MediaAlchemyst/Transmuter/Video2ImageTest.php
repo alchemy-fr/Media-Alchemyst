@@ -20,7 +20,10 @@ class Video2ImageTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->object = new Video2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
+        $logger = new \Monolog\Logger('test');
+        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        
+        $this->object = new Video2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), $logger));
 
         $this->specs = new \MediaAlchemyst\Specification\Image();
         $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));

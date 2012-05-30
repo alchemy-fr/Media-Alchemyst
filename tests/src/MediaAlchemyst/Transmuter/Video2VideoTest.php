@@ -17,7 +17,10 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->object = new Video2Video(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), new \Monolog\Logger('test')));
+        $logger = new \Monolog\Logger('test');
+        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        
+        $this->object = new Video2Video(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), $logger));
 
         $this->specs = new \MediaAlchemyst\Specification\Video();
         $this->specs->setDimensions(320, 240);
