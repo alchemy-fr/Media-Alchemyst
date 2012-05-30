@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Specification;
 
-use FFMpeg\Format\Video as VideoFormat;
+use FFMpeg\Format\Video\DefaultVideo;
 
 class Video extends Audio
 {
@@ -13,8 +13,8 @@ class Video extends Audio
     protected $GOPSize;
     protected $framerate;
 
-    const RESIZE_MODE_FIT = VideoFormat::RESIZEMODE_FIT;
-    const RESIZE_MODE_INSET = VideoFormat::RESIZEMODE_INSET;
+    const RESIZE_MODE_FIT = DefaultVideo::RESIZEMODE_FIT;
+    const RESIZE_MODE_INSET = DefaultVideo::RESIZEMODE_INSET;
 
     public function getType()
     {

@@ -63,7 +63,7 @@ class Video2Video extends Provider
      * @param  string                                $dest
      * @param  int                                   $width
      * @param  int                                   $height
-     * @return \FFMpeg\Format\Video\VideoFormat
+     * @return \FFMpeg\Format\Video\DefaultVideo
      * @throws Exception\FormatNotSupportedException
      */
     protected function getFormatFromFileType($dest, $width, $height)
