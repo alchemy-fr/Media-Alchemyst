@@ -17,10 +17,10 @@ class SwfRender extends Provider
         $this->logger = $logger;
 
         if ($use_binary) {
-            $this->driver = new SwfRenderBinary($use_binary);
+            $this->driver = new SwfRenderBinary($use_binary, $this->logger);
         } else {
             try {
-                $this->driver = SwfRenderBinary::load(new \SwfTools\Configuration());
+                $this->driver = SwfRenderBinary::load(new \SwfTools\Configuration(), $this->logger);
             } catch (SwfToolsException\BinaryNotFoundException $e) {
                 throw new Exception\RuntimeException('No driver available');
             }
