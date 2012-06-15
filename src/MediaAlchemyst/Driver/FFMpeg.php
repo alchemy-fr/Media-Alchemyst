@@ -12,7 +12,7 @@ class FFMpeg extends Provider
 {
     protected $driver;
 
-    public function __construct(Logger $logger, $useBinary = null, $useProberBinary = null)
+    public function __construct(Logger $logger, $useBinary = null, $useProberBinary = null, $threads = 1)
     {
         $this->logger = $logger;
 
@@ -21,18 +21,24 @@ class FFMpeg extends Provider
         } else {
             try {
                 $this->driver = FFMpegDriver::load($this->logger);
-
-                if ($useProberBinary) {
-                    $prober = new FFMpegProber($useProberBinary, $this->logger);
-                } else {
-                    $prober = FFMpegProber::load($this->logger);
-                }
-
-                $this->driver->setProber($prober);
             } catch (FFMpegException\BinaryNotFoundException $e) {
                 throw new Exception\RuntimeException('No driver available');
             }
         }
+
+        try {
+
+            if ($useProberBinary) {
+                $prober = new FFMpegProber($useProberBinary, $this->logger);
+            } else {
+                $prober = FFMpegProber::load($this->logger);
+            }
+        } catch (FFMpegException\BinaryNotFoundException $e) {
+            throw new Exception\RuntimeException('No driver available');
+        }
+
+        $this->driver->setProber($prober);
+        $this->driver->setThreads($threads);
     }
 
     public function getDriver()

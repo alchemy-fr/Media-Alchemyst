@@ -16,58 +16,60 @@ class DriversContainer extends \Pimple
         }
 
         $this['FFMpeg'] = $this->share(function() use ($configuration, $logger) {
-              $ffmpeg = $configuration->has('ffmpeg') ? $configuration->get('ffmpeg') : null;
+                $ffmpeg = $configuration->has('ffmpeg') ? $configuration->get('ffmpeg') : null;
+                $ffprobe = $configuration->has('ffprobe') ? $configuration->get('ffprobe') : null;
+                $threads = $configuration->has('ffmpeg.threads') ? $configuration->get('ffmpeg.threads') : 1;
 
-              $driver = new Driver\FFMpeg($logger, $ffmpeg);
+                $driver = new Driver\FFMpeg($logger, $ffmpeg, $ffprobe, $threads);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
 
         $this['Imagine'] = $this->share(function() use ($configuration, $logger) {
-              $imagine = $configuration->has('imagine') ? $configuration->get('imagine') : null;
+                $imagine = $configuration->has('imagine') ? $configuration->get('imagine') : null;
 
-              $driver = new Driver\Imagine($logger, $imagine);
+                $driver = new Driver\Imagine($logger, $imagine);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
 
         $this['SwfRender'] = $this->share(function() use ($configuration, $logger) {
-              $SwfRender = $configuration->has('SwfRender') ? $configuration->get('SwfRender') : null;
+                $SwfRender = $configuration->has('SwfRender') ? $configuration->get('SwfRender') : null;
 
-              $driver = new Driver\SwfRender($logger, $SwfRender);
+                $driver = new Driver\SwfRender($logger, $SwfRender);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
 
         $this['Pdf2Swf'] = $this->share(function() use ($configuration, $logger) {
-              $SwfRender = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
+                $SwfRender = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
 
-              $driver = new Driver\Pdf2Swf($logger, $SwfRender);
+                $driver = new Driver\Pdf2Swf($logger, $SwfRender);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
 
         $this['Unoconv'] = $this->share(function() use ($configuration, $logger) {
-              $unoconv = $configuration->has('Unoconv') ? $configuration->get('Unoconv') : null;
+                $unoconv = $configuration->has('Unoconv') ? $configuration->get('Unoconv') : null;
 
-              $driver = new Driver\Unoconv($logger, $unoconv);
+                $driver = new Driver\Unoconv($logger, $unoconv);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
 
         $this['ExiftoolExtractor'] = $this->share(function() use ($configuration, $logger) {
-              $driver = new Driver\ExiftoolExtractor($logger, null);
+                $driver = new Driver\ExiftoolExtractor($logger, null);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
 
         $this['MP4Box'] = $this->share(function() use ($configuration, $logger) {
-              $MP4Box = $configuration->has('MP4Box') ? $configuration->get('MP4Box') : null;
+                $MP4Box = $configuration->has('MP4Box') ? $configuration->get('MP4Box') : null;
 
-              $driver = new Driver\MP4Box($logger, $MP4Box);
+                $driver = new Driver\MP4Box($logger, $MP4Box);
 
-              return $driver->getDriver();
-          });
+                return $driver->getDriver();
+            });
     }
 
     /**
@@ -132,5 +134,4 @@ class DriversContainer extends \Pimple
     {
         return $this['MP4Box'];
     }
-
 }
