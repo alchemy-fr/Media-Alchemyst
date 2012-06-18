@@ -11,6 +11,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
      * @var Alchemyst
      */
     protected $object;
+    protected $mediavorus;
     protected $specsAudio;
     protected $specsFlash;
     protected $specsImage;
@@ -21,6 +22,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $this->mediavorus = new \MediaVorus\MediaVorus();
         $this->object = new Alchemyst(new DriversContainer(new ParameterBag(array())));
 
         $this->specsAudio = new Specification\Audio();
@@ -77,7 +79,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsAudio);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_AUDIO, $media->getType());
 
         unlink($dest);
@@ -97,7 +99,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
@@ -122,7 +124,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
@@ -147,7 +149,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsFlash);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_FLASH, $media->getType());
 
         unlink($dest);
@@ -167,7 +169,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
@@ -187,7 +189,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsImage);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
@@ -207,7 +209,7 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto($dest, $this->specsVideo);
 
-        $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($dest));
+        $media = $this->mediavorus->guess(new \SplFileInfo($dest));
         $this->assertEquals(\MediaVorus\Media\Media::TYPE_VIDEO, $media->getType());
 
         unlink($dest);

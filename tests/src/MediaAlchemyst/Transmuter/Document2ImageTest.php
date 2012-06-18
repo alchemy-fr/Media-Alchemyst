@@ -12,9 +12,11 @@ class Document2ImageTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
+    protected $mediavorus;
 
     protected function setUp()
     {
+        $this->mediavorus = new \MediaVorus\MediaVorus();
         $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
@@ -23,7 +25,7 @@ class Document2ImageTest extends \PHPUnit_Framework_TestCase
         $this->object = new Document2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
         $this->specs = new \MediaAlchemyst\Specification\Image();
-        $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Hello.odt'));
+        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Hello.odt'));
         $this->dest = __DIR__ . '/../../../files/output.jpg';
     }
 
@@ -48,7 +50,7 @@ class Document2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals(320, $MediaDest->getWidth());
         $this->assertEquals(240, $MediaDest->getHeight());

@@ -14,14 +14,16 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
+    protected $mediavorus;
 
     protected function setUp()
     {
+        $this->mediavorus = new \MediaVorus\MediaVorus();
         $this->object = new Audio2Audio(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
         $this->specs = new \MediaAlchemyst\Specification\Audio();
 
-        $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Audio.mp3'));
+        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Audio.mp3'));
         $this->dest = __DIR__ . '/../../../files/output_audio.flac';
     }
 
@@ -39,7 +41,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('audio/x-flac', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
@@ -57,7 +59,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('audio/x-flac', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
@@ -72,7 +74,7 @@ class Audio2AudioTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('audio/mpeg', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));

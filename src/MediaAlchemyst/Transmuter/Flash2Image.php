@@ -25,7 +25,7 @@ class Flash2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($tmpDest));
+                $media = $this->container['mediavorus']->guess(new \SplFileInfo($tmpDest));
 
                 $box = $this->boxFromImageSpec($spec, $media);
 

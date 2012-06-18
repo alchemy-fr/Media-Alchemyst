@@ -14,9 +14,11 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
+    protected $mediavorus;
 
     protected function setUp()
     {
+        $this->mediavorus = new \MediaVorus\MediaVorus();
         $logger = new \Monolog\Logger('test');
         $logger->pushHandler(new \Monolog\Handler\NullHandler());
         
@@ -26,7 +28,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
         $this->specs->setDimensions(320, 240);
         $this->specs->setResizeMode(\MediaAlchemyst\Specification\Video::RESIZE_MODE_FIT);
 
-        $this->source = \MediaVorus\MediaVorus::guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
+        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
         $this->dest = __DIR__ . '/../../../files/output_video.webm';
     }
 
@@ -44,7 +46,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('video/webm', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
@@ -62,7 +64,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
         
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('video/webm', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
@@ -86,7 +88,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('video/mp4', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(floor($this->source->getDuration()), floor($mediaDest->getDuration()));
@@ -108,7 +110,7 @@ class Video2VideoTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = \MediaVorus\MediaVorus::guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals('video/webm', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));

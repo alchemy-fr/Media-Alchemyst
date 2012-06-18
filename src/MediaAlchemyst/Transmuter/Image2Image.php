@@ -112,7 +112,7 @@ class Image2Image extends Provider
         }
 
         if ($selected) {
-            return \MediaVorus\MediaVorus::guess(new \SplFileInfo($selected));
+            return $this->container['mediavorus']->guess(new \SplFileInfo($selected));
         }
 
         rmdir($tmpDir);

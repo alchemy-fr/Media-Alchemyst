@@ -2,8 +2,11 @@
 
 namespace MediaAlchemyst;
 
-use MediaVorus;
+use MediaAlchemyst\Exception\FileNotFoundException;
+use MediaVorus\MediaVorus;
+use MediaVorus\File as MediaVorusFile;
 use MediaVorus\Media\Media;
+use MediaVorus\Exception\FileNotFoundException as MediaVorusFileNotFoundException;
 use MediaAlchemyst\Specification\Specification;
 
 class Alchemyst
@@ -33,9 +36,9 @@ class Alchemyst
         }
 
         try {
-            $this->mediaFile = MediaVorus\MediaVorus::guess(new MediaVorus\File($pathfile, true));
-        } catch (MediaVorus\Exception\FileNotFoundException $e) {
-            throw new Exception\FileNotFoundException(sprintf('File %s not found', $pathfile));
+            $this->mediaFile = $this->drivers['mediavorus']->guess(new MediaVorusFile($pathfile, true));
+        } catch (MediaVorusFileNotFoundException $e) {
+            throw new FileNotFoundException(sprintf('File %s not found', $pathfile));
         }
 
         return $this;

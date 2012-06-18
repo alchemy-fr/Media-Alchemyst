@@ -4,6 +4,7 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
+use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\Media;
 
 class Document2Image extends Provider
@@ -42,7 +43,7 @@ class Document2Image extends Provider
 
                 $image = $this->container->getImagine()->open($tmpDest);
 
-                $media = \MediaVorus\MediaVorus::guess(new \SplFileInfo($tmpDest));
+                $media = $this->container['mediavorus']->guess(new \SplFileInfo($tmpDest));
 
                 $box = $this->boxFromImageSpec($spec, $media);
 
@@ -63,11 +64,11 @@ class Document2Image extends Provider
             }
 
         } catch (\Unoconv\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Imagine\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\MediaVorus\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 

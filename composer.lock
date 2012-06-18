@@ -14,7 +14,7 @@
         {
             "package": "mediavorus/mediavorus",
             "version": "dev-master",
-            "source-reference": "1621c3eaa3f08172fdf0100fd4e2152210ad3fd2"
+            "source-reference": "28e3ce826a37126e901b5d80c3253090af74647a"
         },
         {
             "package": "monolog/monolog",
@@ -23,7 +23,7 @@
         {
             "package": "php-ffmpeg/php-ffmpeg",
             "version": "dev-master",
-            "source-reference": "37dda27077cb32b623033f107db7d40b44c4a71b"
+            "source-reference": "52b7ba1e606b0a2944c8c9111105c10fb1bef4e8"
         },
         {
             "package": "php-mp4box/php-mp4box",
@@ -77,14 +77,14 @@
         {
             "package": "symfony/dependency-injection",
             "version": "dev-master",
-            "source-reference": "c7fc49daf41dc76e2e2f629474e8777837ba3fd0"
+            "source-reference": "c7fc49daf41dc76e2e2f629474e8777837ba3fd0",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/dependency-injection",
             "version": "dev-master",
-            "source-reference": "c7fc49daf41dc76e2e2f629474e8777837ba3fd0",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
+            "source-reference": "c7fc49daf41dc76e2e2f629474e8777837ba3fd0"
         },
         {
             "package": "symfony/http-foundation",
@@ -101,14 +101,14 @@
         {
             "package": "symfony/process",
             "version": "dev-master",
-            "source-reference": "f4f101fc7c1adb8b157058dcc1715f28f1d53208"
+            "source-reference": "f4f101fc7c1adb8b157058dcc1715f28f1d53208",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/process",
             "version": "dev-master",
-            "source-reference": "f4f101fc7c1adb8b157058dcc1715f28f1d53208",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
+            "source-reference": "f4f101fc7c1adb8b157058dcc1715f28f1d53208"
         }
     ],
     "packages-dev": null,

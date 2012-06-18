@@ -70,6 +70,11 @@ class DriversContainer extends \Pimple
 
                 return $driver->getDriver();
             });
+
+        $this['mediavorus'] = $this->share(function() use ($configuration, $logger) {
+
+                return new \MediaVorus\MediaVorus();
+            });
     }
 
     /**
