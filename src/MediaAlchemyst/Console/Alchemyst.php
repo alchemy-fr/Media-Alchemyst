@@ -65,7 +65,7 @@ class Alchemyst extends Command
         }
         if (method_exists($spec, 'setFrameRate')) {
             if ($input->getOption('framerate')) {
-                $spec->setFrameRate(($input->getOption('framerate'));
+                $spec->setFrameRate($input->getOption('framerate'));
             }
         }
         if (method_exists($spec, 'setDimensions')) {
