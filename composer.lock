@@ -4,17 +4,20 @@
         {
             "package": "doctrine/common",
             "version": "2.2.x-dev",
-            "source-reference": "1e0aa60d109c630d19543d999f12e2852ef8f932"
+            "source-reference": "1e0aa60d109c630d19543d999f12e2852ef8f932",
+            "commit-date": "1334303204"
         },
         {
             "package": "imagine/Imagine",
             "version": "dev-develop",
-            "source-reference": "ea555767c851236f31ee1e048b4cd51f448cab2e"
+            "source-reference": "ea555767c851236f31ee1e048b4cd51f448cab2e",
+            "commit-date": "1339599310"
         },
         {
             "package": "mediavorus/mediavorus",
             "version": "dev-master",
-            "source-reference": "28e3ce826a37126e901b5d80c3253090af74647a"
+            "source-reference": "28e3ce826a37126e901b5d80c3253090af74647a",
+            "commit-date": "1339782829"
         },
         {
             "package": "monolog/monolog",
@@ -23,99 +26,105 @@
         {
             "package": "php-ffmpeg/php-ffmpeg",
             "version": "dev-master",
-            "source-reference": "52b7ba1e606b0a2944c8c9111105c10fb1bef4e8"
+            "source-reference": "b6b8bd502131e0dd82f53517ccc84d3de2c09424",
+            "commit-date": "1340268165"
         },
         {
             "package": "php-mp4box/php-mp4box",
             "version": "dev-master",
-            "source-reference": "ed3ae359984793a699c540871acc1d68ca6589fe"
+            "source-reference": "ed3ae359984793a699c540871acc1d68ca6589fe",
+            "commit-date": "1335481578"
         },
         {
             "package": "php-unoconv/php-unoconv",
             "version": "dev-master",
-            "source-reference": "27f257203be01e3343128b902a06fb82363876b8"
+            "source-reference": "27f257203be01e3343128b902a06fb82363876b8",
+            "commit-date": "1335481542"
         },
         {
             "package": "phpexiftool/exiftool",
             "version": "dev-master",
-            "source-reference": "999e660215b25a12fd3409df9a31883b6c617570"
+            "source-reference": "999e660215b25a12fd3409df9a31883b6c617570",
+            "commit-date": "1339513761"
         },
         {
             "package": "phpexiftool/phpexiftool",
             "version": "dev-master",
-            "source-reference": "5dc6e9a21e4b0faf6809070bc4f1cc4fef06ead6"
+            "source-reference": "5dc6e9a21e4b0faf6809070bc4f1cc4fef06ead6",
+            "commit-date": "1339680734"
         },
         {
             "package": "pimple/pimple",
             "version": "dev-master",
-            "source-reference": "694448bdd2b7d802517104bdafe1a6f2591506c8",
             "alias-pretty-version": "1.0.x-dev",
             "alias-version": "1.0.9999999.9999999-dev"
         },
         {
             "package": "pimple/pimple",
             "version": "dev-master",
-            "source-reference": "694448bdd2b7d802517104bdafe1a6f2591506c8"
+            "source-reference": "d2cfa2f02f50abef65c238747c753a5f6786f6be",
+            "commit-date": "1341139100"
         },
         {
             "package": "swftools/swftools",
             "version": "dev-master",
-            "source-reference": "72f339293ca74606814f41fd95f8c552257d8c3b"
+            "source-reference": "72f339293ca74606814f41fd95f8c552257d8c3b",
+            "commit-date": "1339439296"
         },
         {
             "package": "symfony/console",
             "version": "dev-master",
-            "source-reference": "afc5ecf2967bf3510363535c0389ddc0f6284784",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/console",
             "version": "dev-master",
-            "source-reference": "afc5ecf2967bf3510363535c0389ddc0f6284784"
+            "source-reference": "4458137cead530271007bf82711dcd718d263a16",
+            "commit-date": "1341926729"
         },
         {
             "package": "symfony/dependency-injection",
             "version": "dev-master",
-            "source-reference": "c7fc49daf41dc76e2e2f629474e8777837ba3fd0",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/dependency-injection",
             "version": "dev-master",
-            "source-reference": "c7fc49daf41dc76e2e2f629474e8777837ba3fd0"
+            "source-reference": "803f11bdfd4730da01221b5ecb6a935a5f9b6bff",
+            "commit-date": "1341838460"
         },
         {
             "package": "symfony/http-foundation",
             "version": "dev-master",
-            "source-reference": "5d15807c883c6a927eb3ac3c04e9a3f62b92e5b4"
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/http-foundation",
             "version": "dev-master",
-            "source-reference": "5d15807c883c6a927eb3ac3c04e9a3f62b92e5b4",
+            "source-reference": "1a450955d5c487d85a7aaae4d8e306316c2a2f79",
+            "commit-date": "1341951444"
+        },
+        {
+            "package": "symfony/process",
+            "version": "dev-master",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/process",
             "version": "dev-master",
-            "source-reference": "f4f101fc7c1adb8b157058dcc1715f28f1d53208",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/process",
-            "version": "dev-master",
-            "source-reference": "f4f101fc7c1adb8b157058dcc1715f28f1d53208"
+            "source-reference": "87965e10667c3c3b753fc0aef4ae1a458d3bbb98",
+            "commit-date": "1341992393"
         }
     ],
     "packages-dev": null,
     "aliases": [
 
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "mediavorus/mediavorus": 20,
         "swftools/swftools": 20,
