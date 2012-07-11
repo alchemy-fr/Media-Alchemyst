@@ -1,5 +1,5 @@
 {
-    "hash": "60e963745986b4adf5aa52024f4fdd42",
+    "hash": "9f0feb9195947fc311e796522a69cb9a",
     "packages": [
         {
             "package": "doctrine/common",
@@ -124,7 +124,7 @@
     "aliases": [
 
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "mediavorus/mediavorus": 20,
         "swftools/swftools": 20,
