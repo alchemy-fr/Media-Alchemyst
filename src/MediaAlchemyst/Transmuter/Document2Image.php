@@ -20,10 +20,19 @@ class Document2Image extends Provider
         $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
 
         try {
-            $this->container->getUnoconv()
-                ->open($source->getFile()->getPathname())
-                ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
-                ->close();
+
+            /**
+             * Support for unoconv < 0.4 : pagerange is not supported
+             */
+            if ($source->getFile()->getMimeType() != 'application/pdf') {
+                $this->container->getUnoconv()
+                    ->open($source->getFile()->getPathname())
+                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
+//                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
+                    ->close();
+            } else {
+                copy($source->getFile()->getPathname(), $tmpDest);
+            }
 
             $image = $this->container->getImagine()->open($tmpDest);
 
@@ -58,11 +67,10 @@ class Document2Image extends Provider
 
                 unset($media);
             }
-            
+
             foreach ($toremove as $tmpDest) {
                 unlink($tmpDest);
             }
-
         } catch (\Unoconv\Exception\Exception $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Imagine\Exception\Exception $e) {
@@ -71,5 +79,4 @@ class Document2Image extends Provider
             throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
-
 }
