@@ -26,6 +26,8 @@ class Alchemyst extends Command
         $this->addOption('vcodec', null, InputOption::VALUE_OPTIONAL, 'Video codec (for video specs)');
         $this->addOption('width', null, InputOption::VALUE_OPTIONAL, 'Width (for video/image specs)');
         $this->addOption('height', null, InputOption::VALUE_OPTIONAL, 'Height (for video/image specs)');
+        $this->addOption('threads', null, InputOption::VALUE_OPTIONAL, 'Number of threads');
+        $this->addOption('framerate', null, InputOption::VALUE_OPTIONAL, 'The frame rate');
 
         return $this;
     }
@@ -61,6 +63,11 @@ class Alchemyst extends Command
                 $spec->setVideoCodec($input->getOption('vcodec'));
             }
         }
+        if (method_exists($spec, 'setFrameRate')) {
+            if ($input->getOption('framerate')) {
+                $spec->setFrameRate(($input->getOption('framerate'));
+            }
+        }
         if (method_exists($spec, 'setDimensions')) {
             if ($input->getOption('width') && $input->getOption('height')) {
                 $spec->setDimensions($input->getOption('width'), $input->getOption('height'));
@@ -72,7 +79,9 @@ class Alchemyst extends Command
 
         $logger = new \Monolog\Logger('Logger');
 
-        $parameters = new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array());
+        $parameters = new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array(
+                'ffmpeg.threads' => $input->getOption('threads') ? $input->getOption('threads') : 1
+            ));
 
         $drivers = new \MediaAlchemyst\DriversContainer($parameters, $logger);
 
