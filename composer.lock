@@ -1,5 +1,5 @@
 {
-    "hash": "9f0feb9195947fc311e796522a69cb9a",
+    "hash": "c2bfdbd3060519816810a0cef99db69a",
     "packages": [
         {
             "package": "doctrine/common",
@@ -16,8 +16,8 @@
         {
             "package": "mediavorus/mediavorus",
             "version": "dev-master",
-            "source-reference": "28e3ce826a37126e901b5d80c3253090af74647a",
-            "commit-date": "1339782829"
+            "source-reference": "1987597da05a87b3e0676a666f51f1b0b13fe093",
+            "commit-date": "1342193047"
         },
         {
             "package": "monolog/monolog",
@@ -80,8 +80,8 @@
         {
             "package": "symfony/console",
             "version": "dev-master",
-            "source-reference": "4458137cead530271007bf82711dcd718d263a16",
-            "commit-date": "1341926729"
+            "source-reference": "1438f833e8dd2fcc07683fbfe264d2977e444129",
+            "commit-date": "1342170356"
         },
         {
             "package": "symfony/dependency-injection",
@@ -104,8 +104,8 @@
         {
             "package": "symfony/http-foundation",
             "version": "dev-master",
-            "source-reference": "1a450955d5c487d85a7aaae4d8e306316c2a2f79",
-            "commit-date": "1341951444"
+            "source-reference": "3399f6f068cd41f1b42140699db1f1e6d3bcb361",
+            "commit-date": "1342107786"
         },
         {
             "package": "symfony/process",
@@ -116,11 +116,42 @@
         {
             "package": "symfony/process",
             "version": "dev-master",
-            "source-reference": "87965e10667c3c3b753fc0aef4ae1a458d3bbb98",
-            "commit-date": "1341992393"
+            "source-reference": "f78e5d1e0f74532ff2e9269a18c7202dc25159e9",
+            "commit-date": "1342010717"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+        {
+            "package": "fabpot/php-cs-fixer",
+            "version": "dev-master",
+            "source-reference": "9b13373840537c91bf830b1b45e39b223e5dd438",
+            "commit-date": "1341582702"
+        },
+        {
+            "package": "symfony/filesystem",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/filesystem",
+            "version": "dev-master",
+            "source-reference": "fb6c06fc937f4e2bf48f137974d06bcde444f6b1",
+            "commit-date": "1341958957"
+        },
+        {
+            "package": "symfony/finder",
+            "version": "dev-master",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/finder",
+            "version": "dev-master",
+            "source-reference": "53377047bae92edd04e232c79b653d2beb309bf6",
+            "commit-date": "1341846417"
+        }
+    ],
     "aliases": [
 
     ],
