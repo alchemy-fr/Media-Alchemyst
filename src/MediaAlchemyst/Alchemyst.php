@@ -101,12 +101,8 @@ class Alchemyst
             case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_VIDEO):
                 $transmuter = new Transmuter\Video2Video($this->drivers);
                 break;
-            case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_AUDIO):
-                throw new Exception\RuntimeException('Not transmuter avalaible... Implement it !');
-                break;
-
             default:
-                throw new Exception\RuntimeException('Not transmuter avalaible... Implement it !');
+                throw new Exception\RuntimeException(sprintf('Not transmuter avalaible for `%s` Implement it !', $route));
                 break;
         }
 
