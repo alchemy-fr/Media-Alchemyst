@@ -18,13 +18,18 @@ class Document2Flash extends Provider
         $tmpDest = tempnam(sys_get_temp_dir(), 'pdf2swf');
 
         try {
-            $this->container->getUnoconv()
-              ->open($source->getFile()->getPathname())
-              ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
-              ->close();
+
+            if ($source->getFile()->getMimeType() != 'application/pdf') {
+                $this->container->getUnoconv()
+                    ->open($source->getFile()->getPathname())
+                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
+                    ->close();
+            } else {
+                copy($source->getFile()->getPathname(), $tmpDest);
+            }
 
             $this->container->getPdf2Swf()
-              ->toSwf(new \SplFileInfo($tmpDest), $dest);
+                ->toSwf(new \SplFileInfo($tmpDest), $dest);
 
             unlink($tmpDest);
         } catch (\Unoconv\Exception\Exception $e) {
@@ -33,5 +38,4 @@ class Document2Flash extends Provider
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
-
 }
