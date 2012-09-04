@@ -6,7 +6,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers MediaAlchemyst\Driver\Provider::setLogger
+     * @covers MediaAlchemyst\Driver\AbstractDriver::setLogger
      */
     public function testSetLogger()
     {
@@ -20,7 +20,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
 
 }
 
-class TestProvider extends Provider
+class TestProvider extends AbstractDriver
 {
 
     public function getLogger()

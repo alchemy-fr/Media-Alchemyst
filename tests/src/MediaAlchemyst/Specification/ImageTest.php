@@ -11,7 +11,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     protected $object;
 
     /**
-     * @covers MediaAlchemyst\Specification\Image::__construct
+     * @covers MediaAlchemyst\Specification\Image
      */
     protected function setUp()
     {
