@@ -3,7 +3,7 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
-use Unoconv\Unoconv;
+use Unoconv\Unoconv as UnoconvDriver;
 use Unoconv\Exception\RuntimeException as UnoconvRuntimeException;
 use MediaAlchemyst\Exception\RuntimeException;
 
@@ -17,9 +17,9 @@ class Unoconv extends AbstractDriver
 
         try {
             if ($use_binary) {
-                $this->driver = new Unoconv($use_binary, $logger);
+                $this->driver = new UnoconvDriver($use_binary, $logger);
             } else {
-                $this->driver = UnoconvBinary::load($logger);
+                $this->driver = UnoconvDriver::load($logger);
             }
         } catch (UnoconvRuntimeException $e) {
             throw new RuntimeException('No driver available');
