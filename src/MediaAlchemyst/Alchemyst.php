@@ -8,6 +8,7 @@ use MediaVorus\File as MediaVorusFile;
 use MediaVorus\Media\MediaInterface;
 use MediaVorus\Exception\FileNotFoundException as MediaVorusFileNotFoundException;
 use MediaAlchemyst\Specification\Specification;
+use Pimple;
 
 class Alchemyst
 {
@@ -20,11 +21,11 @@ class Alchemyst
 
     /**
      *
-     * @var \MediaAlchemyst\DriversContainer
+     * @var Pimple
      */
     protected $drivers;
 
-    public function __construct(DriversContainer $container)
+    public function __construct(Pimple $container)
     {
         $this->drivers = $container;
     }
