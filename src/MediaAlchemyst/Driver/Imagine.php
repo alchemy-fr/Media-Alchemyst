@@ -6,7 +6,7 @@ use Monolog\Logger;
 use Imagine\Exception\RuntimeException as ImagineRuntimeException;
 use MediaAlchemyst\Exception\RuntimeException;
 
-class Imagine extends AsbtractDriver
+class Imagine extends AbstractDriver
 {
 
     const DRIVER_GMAGICK = 'Gmagick';

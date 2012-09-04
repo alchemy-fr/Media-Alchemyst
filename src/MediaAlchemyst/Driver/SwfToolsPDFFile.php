@@ -6,7 +6,7 @@ use Monolog\Logger;
 use SwfTools\Configuration;
 use SwfTools\Processor\PDFFile;
 
-class SwfToolsPDFFile extends AsbtractDriver
+class SwfToolsPDFFile extends AbstractDriver
 {
     protected $driver;
 

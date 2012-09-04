@@ -8,7 +8,6 @@ use MediaAlchemyst\Exception\FileNotFoundException;
 use MediaAlchemyst\Exception\LogicException;
 use MediaAlchemyst\Exception\RuntimeException;
 use MediaAlchemyst\Specification\SpecificationInterface;
-use MediaAlchemyst\Transmuter\Video2Video;
 use MediaAlchemyst\Transmuter\Audio2Audio;
 use MediaAlchemyst\Transmuter\Document2Flash;
 use MediaAlchemyst\Transmuter\Document2Image;

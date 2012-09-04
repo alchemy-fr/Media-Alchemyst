@@ -8,7 +8,7 @@ use SwfTools\Binary\Pdf2swf as Pdf2swfBinary;
 use SwfTools\Exception\BinaryNotFoundException;
 use MediaAlchemyst\Exception\RuntimeException;
 
-class Pdf2Swf extends AsbtractDriver
+class Pdf2Swf extends AbstractDriver
 {
     protected $driver;
 

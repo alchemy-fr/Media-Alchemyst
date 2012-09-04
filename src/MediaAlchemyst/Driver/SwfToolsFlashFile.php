@@ -6,7 +6,7 @@ use Monolog\Logger;
 use SwfTools\Configuration;
 use SwfTools\Processor\FlashFile;
 
-class SwfToolsFlashFile extends AsbtractDriver
+class SwfToolsFlashFile extends AbstractDriver
 {
     protected $driver;
 
