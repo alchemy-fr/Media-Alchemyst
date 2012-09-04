@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Exception;
 
-interface Exception
+interface ExceptionInterface
 {
 
 }
