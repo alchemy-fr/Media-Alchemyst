@@ -17,7 +17,7 @@ class AnimationTest extends \PHPUnit_Framework_TestCase
 
     public function testGetType()
     {
-        $this->assertEquals(Specification::TYPE_ANIMATION, $this->object->getType());
+        $this->assertEquals(SpecificationInterface::TYPE_ANIMATION, $this->object->getType());
     }
 
     /**

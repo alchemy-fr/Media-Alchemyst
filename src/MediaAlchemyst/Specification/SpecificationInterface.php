@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Specification;
 
-interface Specification
+interface SpecificationInterface
 {
     const TYPE_IMAGE = 'image';
     const TYPE_ANIMATION = 'animation';

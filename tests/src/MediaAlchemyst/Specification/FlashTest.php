@@ -11,7 +11,7 @@ class FlashTest extends \PHPUnit_Framework_TestCase
     public function testGetType()
     {
         $specs = new Flash;
-        $this->assertEquals(Specification::TYPE_SWF, $specs->getType());
+        $this->assertEquals(SpecificationInterface::TYPE_SWF, $specs->getType());
     }
 
 }

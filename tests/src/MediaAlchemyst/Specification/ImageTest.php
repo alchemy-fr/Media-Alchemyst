@@ -23,7 +23,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetType()
     {
-        $this->assertEquals(Specification::TYPE_IMAGE, $this->object->getType());
+        $this->assertEquals(SpecificationInterface::TYPE_IMAGE, $this->object->getType());
     }
 
     /**

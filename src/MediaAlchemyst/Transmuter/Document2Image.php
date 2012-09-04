@@ -2,18 +2,24 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use Imagine\Exception\Exception as ImagineException;
+use Imagine\Image\ImageInterface;
+use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
 use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\MediaInterface;
+use Unoconv\Unoconv;
+use Unoconv\Exception\ExceptionInterface as UnoconvException;
 
-class Document2Image extends Provider
+class Document2Image extends AbstractTransmuter
 {
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image) {
-            throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
+        if ( ! $spec instanceof Image) {
+            throw new SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
         $toremove = array();
@@ -27,7 +33,7 @@ class Document2Image extends Provider
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container['unoconv']
                     ->open($source->getFile()->getPathname())
-                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
+                    ->saveAs(Unoconv::FORMAT_PDF, $tmpDest)
                     ->close();
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
@@ -55,9 +61,9 @@ class Document2Image extends Provider
 
                 $box = $this->boxFromImageSpec($spec, $media);
 
-                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
+                if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
-                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                    $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
                 } else {
                     $image = $image->resize($box);
                 }
@@ -70,12 +76,12 @@ class Document2Image extends Provider
             foreach ($toremove as $tmpDest) {
                 unlink($tmpDest);
             }
-        } catch (\Unoconv\Exception\Exception $e) {
-            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\Imagine\Exception\Exception $e) {
-            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\MediaVorus\Exception\Exception $e) {
-            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (UnoconvException $e) {
+            throw new RuntimeException('Unable to transmute document to image due to Unoconv', null, $e);
+        } catch (ImagineException $e) {
+            throw new RuntimeException('Unable to transmute document to image due to Imagine', null, $e);
+        } catch (MediaVorusException $e) {
+            throw new RuntimeException('Unable to transmute document to image due to MediaVorus', null, $e);
         }
     }
 }

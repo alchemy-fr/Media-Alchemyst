@@ -3,7 +3,7 @@
 namespace MediaAlchemyst\Specification;
 
 
-class Audio extends Provider
+class Audio extends AbstractSpecification
 {
 
     protected $kiloBitrate;

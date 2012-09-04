@@ -99,19 +99,19 @@ class Alchemyst extends Command
     protected function getSpecification($name)
     {
         switch ($name) {
-            case Specification\Specification::TYPE_ANIMATION:
+            case Specification\SpecificationInterface::TYPE_ANIMATION:
                 return new Specification\Animation();
                 break;
-            case Specification\Specification::TYPE_VIDEO:
+            case Specification\SpecificationInterface::TYPE_VIDEO:
                 return new Specification\Video();
                 break;
-            case Specification\Specification::TYPE_SWF:
+            case Specification\SpecificationInterface::TYPE_SWF:
                 return new Specification\Flash();
                 break;
-            case Specification\Specification::TYPE_IMAGE:
+            case Specification\SpecificationInterface::TYPE_IMAGE:
                 return new Specification\Image();
                 break;
-            case Specification\Specification::TYPE_AUDIO:
+            case Specification\SpecificationInterface::TYPE_AUDIO:
                 return new Specification\Audio();
                 break;
         }

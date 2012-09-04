@@ -2,21 +2,22 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use Imagine\Image;
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Specification\Provider as SpecProvider;
-use MediaAlchemyst\DriversContainer;
+use Imagine\Image\Box;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\InvalidArgumentException;
 use MediaVorus\Media\MediaInterface;
+use Pimple;
 
-abstract class Provider
+abstract class AbstractTransmuter
 {
     /**
      *
-     * @var \MediaAlchemyst\DriversContainer
+     * @var Pimple
      */
     protected $container;
 
-    public function __construct(\Pimple $container)
+    public function __construct(Pimple $container)
     {
         $this->container = $container;
     }
@@ -33,13 +34,13 @@ abstract class Provider
      * @param  MediaInterface               $source
      * @return \Image\Box
      */
-    protected function boxFromImageSpec(Specification\Image $spec, MediaInterface $source)
+    protected function boxFromImageSpec(Image $spec, MediaInterface $source)
     {
         if ( ! $spec->getWidth() && ! $spec->getHeight()) {
-            throw new \MediaAlchemyst\Exception\InvalidArgumentException('The specification you provide must have width nad height');
+            throw new InvalidArgumentException('The specification you provide must have width nad height');
         }
 
-        if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_INBOUND_FIXEDRATIO) {
+        if ($spec->getResizeMode() == Image::RESIZE_MODE_INBOUND_FIXEDRATIO) {
 
             $ratioOut = $spec->getWidth() / $spec->getHeight();
             $ratioIn = $source->getWidth() / $source->getHeight();
@@ -54,11 +55,11 @@ abstract class Provider
                 $outHeight = round($outWidth / $ratioIn);
             }
 
-            return new Image\Box($outWidth, $outHeight);
+            return new Box($outWidth, $outHeight);
         }
 
-        return new Image\Box($spec->getWidth(), $spec->getHeight());
+        return new Box($spec->getWidth(), $spec->getHeight());
     }
 
-    abstract public function execute(SpecProvider $spec, MediaInterface $source, $dest);
+    abstract public function execute(SpecificationInterface $spec, MediaInterface $source, $dest);
 }

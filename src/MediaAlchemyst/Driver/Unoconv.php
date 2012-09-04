@@ -3,8 +3,9 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
-use Unoconv\Unoconv as UnoconvBinary;
-use MediaAlchemyst\Exception;
+use Unoconv\Unoconv;
+use Unoconv\Exception\RuntimeException as UnoconvRuntimeException;
+use MediaAlchemyst\Exception\RuntimeException;
 
 class Unoconv extends Provider
 {
@@ -16,12 +17,12 @@ class Unoconv extends Provider
 
         try {
             if ($use_binary) {
-                $this->driver = new UnoconvBinary($use_binary, $logger);
+                $this->driver = new Unoconv($use_binary, $logger);
             } else {
                 $this->driver = UnoconvBinary::load($logger);
             }
-        } catch (Exception\BinaryNotFoundException $e) {
-            throw new Exception\RuntimeException('No driver available');
+        } catch (UnoconvRuntimeException $e) {
+            throw new RuntimeException('No driver available');
         }
     }
 

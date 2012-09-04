@@ -2,10 +2,10 @@
 
 namespace MediaAlchemyst\Driver;
 
+use MediaAlchemyst\Exception\RuntimeException;
 use Monolog\Logger;
-use MP4Box\Exception as MP4BoxException;
+use MP4Box\Exception\BinaryNotFoundException;
 use MP4Box\MP4Box as MP4BoxDriver;
-use MediaAlchemyst\Exception;
 
 class MP4Box extends Provider
 {
@@ -21,8 +21,8 @@ class MP4Box extends Provider
             } else {
                 $this->driver = MP4BoxDriver::load($this->logger);
             }
-        } catch (MP4BoxException\BinaryNotFoundException $e) {
-            throw new Exception\RuntimeException('No driver available');
+        } catch (BinaryNotFoundException $e) {
+            throw new RuntimeException('No driver available');
         }
     }
 

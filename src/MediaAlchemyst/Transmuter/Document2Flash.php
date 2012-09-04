@@ -2,17 +2,22 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use MediaAlchemyst\Specification\Flash;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
+use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\MediaInterface;
+use SwfTools\Exception\ExceptionInterface as SwfToolsException;
+use Unoconv\Unoconv;
+use Unoconv\Exception\ExceptionInterface as UnoconvException;
 
-class Document2Flash extends Provider
+class Document2Flash extends AbstractTransmuter
 {
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Flash) {
-            throw new Exception\SpecNotSupportedException('SwfTools only accept Flash specs');
+        if ( ! $spec instanceof Flash) {
+            throw new SpecNotSupportedException('SwfTools only accept Flash specs');
         }
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'pdf2swf');
@@ -22,20 +27,20 @@ class Document2Flash extends Provider
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container['unoconv']
                     ->open($source->getFile()->getPathname())
-                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
+                    ->saveAs(Unoconv::FORMAT_PDF, $tmpDest)
                     ->close();
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $this->container['xpdf.pdf2swf']
-                ->toSwf(new \SplFileInfo($tmpDest), $dest);
+            $this->container['swftools.pdf-file']
+                ->toSwf($tmpDest, $dest);
 
             unlink($tmpDest);
-        } catch (\Unoconv\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\SwfTools\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (UnoconvException $e) {
+            throw new RuntimeException('Unable to transmute document to flash due to Unoconv', null, $e);
+        } catch (SwfToolsException $e) {
+            throw new RuntimeException('Unable to transmute document to flash due to SwfTools', null, $e);
         }
     }
 }

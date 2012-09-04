@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Specification;
 
-class UnknownSpecs extends \MediaAlchemyst\Specification\Provider
+class UnknownSpecs extends AbstractSpecification
 {
 
     public function getType()

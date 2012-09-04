@@ -2,18 +2,24 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use FFMpeg\Exception\ExceptionInterface as FFMpegException;
+use Imagine\Exception\Exception as ImagineException;
+use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Specification\Image;
+use Imagine\Image\ImageInterface;
+use MediaAlchemyst\Exception\RuntimeException;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
 use MediaVorus\Media\MediaInterface;
 
-class Video2Image extends Provider
+class Video2Image extends AbstractTransmuter
 {
     public static $time = '60%';
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image) {
-            throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
+        if ( ! $spec instanceof Image) {
+            throw new SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Image */
@@ -32,13 +38,13 @@ class Video2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $media =  $this->container['mediavorus']->guess($tmpDest);
+                $media = $this->container['mediavorus']->guess($tmpDest);
 
                 $box = $this->boxFromImageSpec($spec, $source);
 
-                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
+                if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
-                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                    $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
                 } else {
                     $image = $image->resize($box);
                 }
@@ -57,12 +63,12 @@ class Video2Image extends Provider
 
             $image = null;
             unlink($tmpDest);
-        } catch (\FFMpeg\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\Imagine\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\MediaVorus\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (FFMpegException $e) {
+            throw new RuntimeException('Unable to transmute video to image due to FFMpeg', null, $e);
+        } catch (ImagineException $e) {
+            throw new RuntimeException('Unable to transmute video to image due to Imagine', null, $e);
+        } catch (MediaVorusException $e) {
+            throw new RuntimeException('Unable to transmute video to image due to Mediavorus', null, $e);
         }
     }
 

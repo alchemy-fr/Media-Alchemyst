@@ -2,9 +2,15 @@
 
 namespace MediaAlchemyst\Driver;
 
+use FFMpeg\Exception\BinaryNotFoundException;
+use FFMpeg\FFProbe;
 use Monolog\Logger;
-use Imagine\Exception as ImagineException;
-use MediaAlchemyst\Exception;
+use MediaAlchemyst\Exception\RuntimeException;
+use MediaVorus\MediaVorus as MediaVorusDriver;
+use PHPExiftool\Exiftool;
+use PHPExiftool\Reader;
+use PHPExiftool\RDFParser;
+use PHPExiftool\Writer;
 
 class MediaVorus extends Provider
 {
@@ -14,25 +20,19 @@ class MediaVorus extends Provider
     {
         $this->logger = $logger;
 
-        $exiftool = new \PHPExiftool\Exiftool();
+        $exiftool = new Exiftool();
 
         try {
-        if ($use_binary) {
-            $ffprobe = new \FFMpeg\FFProbe($use_binary, $this->logger);
-        } else {
-            $ffprobe = \FFMpeg\FFProbe::load($this->logger);
+            if ($use_binary) {
+                $ffprobe = new FFProbe($use_binary, $this->logger);
+            } else {
+                $ffprobe = FFProbe::load($this->logger);
+            }
+        } catch (BinaryNotFoundException $e) {
+            throw new RuntimeException('Unable to load FFProbe for MediaVorus');
         }
-        } catch(\FFMpeg\Exception\ExceptionInterface $e){
-            throw new Exception\RuntimeException('Unable to load FFProbe for MediaVorus');
-        }
 
-
-        $this->driver = new \MediaVorus\MediaVorus(new \PHPExiftool\Reader($exiftool, new \PHPExiftool\RDFParser()), new \PHPExiftool\Writer($exiftool), $ffprobe);
-
-
-        if ( ! $this->driver) {
-            throw new Exception\RuntimeException('No driver available');
-        }
+        $this->driver = new MediaVorusDriver(new Reader($exiftool, new RDFParser()), new Writer($exiftool), $ffprobe);
     }
 
     public function getDriver()

@@ -2,17 +2,25 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use FFMpeg\Format\Video\X264;
+use FFMpeg\Format\Video\WebM;
+use FFMpeg\Format\Video\Ogg;
+use FFMpeg\Format\Video\DefaultVideo;
+use MP4Box\Exception\ExceptionInterface as MP4BoxException;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Specification\Video;
+use MediaAlchemyst\Exception\RuntimeException;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
+use MediaAlchemyst\Exception\FormatNotSupportedException;
 use MediaVorus\Media\MediaInterface;
 
-class Video2Video extends Provider
+class Video2Video extends AbstractTransmuter
 {
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Video) {
-            throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
+        if ( ! $spec instanceof Video) {
+            throw new SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Video */
@@ -42,17 +50,20 @@ class Video2Video extends Provider
 
         try {
             $this->container['ffmpeg.ffmpeg']
-              ->open($source->getFile()->getPathname())
-              ->encode($format, $dest)
-              ->close();
+                ->open($source->getFile()->getPathname())
+                ->encode($format, $dest)
+                ->close();
 
-            if ($format instanceof \FFMpeg\Format\Video\X264) {
-                $this->container['mp4box']->open($dest)->process()->close();
+            if ($format instanceof X264) {
+                $this->container['mp4box']
+                    ->open($dest)
+                    ->process()
+                    ->close();
             }
-        } catch (\FFMpeg\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\MP4Box\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (FFMpegException $e) {
+            throw new RuntimeException('Unable to transmute video to video due to FFMpeg', null, $e);
+        } catch (MP4BoxException $e) {
+            throw new RuntimeException('Unable to transmute video to video due to MP4Box', null, $e);
         }
 
         return $this;
@@ -61,10 +72,12 @@ class Video2Video extends Provider
     /**
      *
      * @param  string                                $dest
-     * @param  int                                   $width
-     * @param  int                                   $height
-     * @return \FFMpeg\Format\Video\DefaultVideo
-     * @throws Exception\FormatNotSupportedException
+     * @param  integer                                   $width
+     * @param  integer                                   $height
+     *
+     * @return DefaultVideo
+     *
+     * @throws FormatNotSupportedException
      */
     protected function getFormatFromFileType($dest, $width, $height)
     {
@@ -72,16 +85,16 @@ class Video2Video extends Provider
 
         switch ($extension) {
             case 'webm':
-                $format = new \FFMpeg\Format\Video\WebM($width, $height);
+                $format = new WebM($width, $height);
                 break;
             case 'mp4':
-                $format = new \FFMpeg\Format\Video\X264($width, $height);
+                $format = new X264($width, $height);
                 break;
             case 'ogv':
-                $format = new \FFMpeg\Format\Video\Ogg($width, $height);
+                $format = new Ogg($width, $height);
                 break;
             default:
-                throw new Exception\FormatNotSupportedException(sprintf('Unsupported %s format', $extension));
+                throw new FormatNotSupportedException(sprintf('Unsupported %s format', $extension));
                 break;
         }
 
@@ -89,5 +102,4 @@ class Video2Video extends Provider
 
         return $format;
     }
-
 }

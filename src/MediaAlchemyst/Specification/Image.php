@@ -5,7 +5,7 @@ namespace MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
 use Imagine\Image\ImageInterface;
 
-class Image extends Provider
+class Image extends AbstractSpecification
 {
     protected $width;
     protected $height;

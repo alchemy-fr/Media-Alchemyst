@@ -3,8 +3,8 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
-use Imagine\Exception as ImagineException;
-use MediaAlchemyst\Exception;
+use Imagine\Exception\RuntimeException as ImagineRuntimeException;
+use MediaAlchemyst\Exception\RuntimeException;
 
 class Imagine extends Provider
 {
@@ -33,14 +33,14 @@ class Imagine extends Provider
             try {
                 $this->driver = new $driver;
                 break;
-            } catch (ImagineException\RuntimeException $e) {
+            } catch (ImagineRuntimeException $e) {
                 $this->logger->addWarning($e->getMessage());
                 continue;
             }
         }
 
         if ( ! $this->driver) {
-            throw new Exception\RuntimeException('No driver available');
+            throw new RuntimeException('No driver available');
         }
     }
 

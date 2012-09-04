@@ -3,7 +3,7 @@
 namespace MediaAlchemyst\Specification;
 
 
-class Flash extends Provider
+class Flash extends AbstractSpecification
 {
 
     public function getType()

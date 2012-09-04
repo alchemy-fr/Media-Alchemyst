@@ -20,7 +20,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetType()
     {
-        $this->assertEquals(Specification::TYPE_VIDEO, $this->object->getType());
+        $this->assertEquals(SpecificationInterface::TYPE_VIDEO, $this->object->getType());
     }
 
     /**

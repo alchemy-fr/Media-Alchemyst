@@ -42,6 +42,14 @@ class DriversContainer extends \Pimple
                 return $driver->getDriver();
             });
 
+        $this['swftools.pdf-file'] = $this->share(function() use ($configuration, $logger) {
+                $pdf2swf = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
+
+                $driver = new Driver\SwfToolsPDFFile($logger, $pdf2swf);
+
+                return $driver->getDriver();
+            });
+
         $this['xpdf.pdf2swf'] = $this->share(function() use ($configuration, $logger) {
                 $SwfRender = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
 

@@ -2,17 +2,22 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use Imagine\Exception\Exception as ImagineException;
+use Imagine\Image\ImageInterface;
+use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
 use MediaVorus\Media\MediaInterface;
+use SwfTools\Exception\ExceptionInterface as SwfToolsException;
 
-class Flash2Image extends Provider
+class Flash2Image extends AbstractTransmuter
 {
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image) {
-            throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
+        if ( ! $spec instanceof Image) {
+            throw new SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
         $tmpDest = tempnam(sys_get_temp_dir(), 'swfrender');
@@ -31,9 +36,9 @@ class Flash2Image extends Provider
 
                 $box = $this->boxFromImageSpec($spec, $media);
 
-                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
+                if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
-                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                    $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
                 } else {
                     $image = $image->resize($box);
                 }
@@ -51,12 +56,12 @@ class Flash2Image extends Provider
             $image->save($dest, $options);
 
             unlink($tmpDest);
-        } catch (\SwfTools\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\Imagine\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\MediaVorus\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (SwfToolsException $e) {
+            throw new RuntimeException('Unable to transmute flash to image due to SwfTools', null, $e);
+        } catch (ImagineException $e) {
+            throw new RuntimeException('Unable to transmute flash to image due to Imagine', null, $e);
+        } catch (MediaVorusException $e) {
+            throw new RuntimeException('Unable to transmute flash to image due to MediaVorus', null, $e);
         }
     }
 }

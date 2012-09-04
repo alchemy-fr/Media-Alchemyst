@@ -2,11 +2,11 @@
 
 namespace MediaAlchemyst\Driver;
 
-use Monolog\Logger;
-use FFMpeg\Exception as FFMpegException;
+use FFMpeg\Exception\BinaryNotFoundException;
 use FFMpeg\FFMpeg as FFMpegDriver;
-use FFMpeg\FFProbe as FFMpegProber;
-use MediaAlchemyst\Exception;
+use FFMpeg\FFProbe;
+use MediaAlchemyst\Exception\RuntimeException;
+use Monolog\Logger;
 
 class FFMpeg extends Provider
 {
@@ -22,19 +22,19 @@ class FFMpeg extends Provider
             } else {
                 $this->driver = FFMpegDriver::load($this->logger);
             }
-        } catch (FFMpegException\BinaryNotFoundException $e) {
-            throw new Exception\RuntimeException('No driver available');
+        } catch (BinaryNotFoundException $e) {
+            throw new RuntimeException('No driver available');
         }
 
         try {
 
             if ($useProberBinary) {
-                $prober = new FFMpegProber($useProberBinary, $this->logger);
+                $prober = new FFProbe($useProberBinary, $this->logger);
             } else {
-                $prober = FFMpegProber::load($this->logger);
+                $prober = FFProbe::load($this->logger);
             }
-        } catch (FFMpegException\BinaryNotFoundException $e) {
-            throw new Exception\RuntimeException('No driver available');
+        } catch (BinaryNotFoundException $e) {
+            throw new RuntimeException('No driver available');
         }
 
         $this->driver->setProber($prober);

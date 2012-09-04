@@ -2,28 +2,32 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use FFMpeg\Exception\ExceptionInterface as FFMpegException;
+use Gmagick;
+use GmagickException;
+use MediaAlchemyst\Specification\Animation;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
+use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\MediaInterface;
-use Imagine\Image;
 
-class Video2Animation extends Provider
+class Video2Animation extends AbstractTransmuter
 {
     public static $autorotate = false;
     public static $lookForEmbeddedPreview = false;
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Animation) {
-            throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Image specs');
+        if ( ! $spec instanceof Animation) {
+            throw new SpecNotSupportedException('Imagine Adapter only supports Image specs');
         }
 
         if ($source->getType() !== MediaInterface::TYPE_VIDEO) {
-            throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Images');
+            throw new SpecNotSupportedException('Imagine Adapter only supports Images');
         }
 
         if ( ! class_exists('\\Gmagick')) {
-            throw new Exception\RuntimeException('Gmagick is required for animated gif');
+            throw new RuntimeException('Gmagick is required for animated gif');
         }
 
         try {
@@ -43,7 +47,7 @@ class Video2Animation extends Provider
             $movie->close();
             $movie = null;
 
-            $GIF = new \Gmagick();
+            $GIF = new Gmagick();
 
             $GIF->readImage(array_shift($files));
             $GIF->setImageFormat('GIF');
@@ -70,10 +74,10 @@ class Video2Animation extends Provider
             $GIF->destroy();
 
             $GIF = null;
-        } catch (\FFMpeg\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\GmagickException $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (FFMpegException $e) {
+            throw new RuntimeException('Unable to transmute video to animation due to FFMpeg', null, $e);
+        } catch (GmagickException $e) {
+            throw new RuntimeException('Unable to transmute video to animation due to Gmagick', null, $e);
         }
 
         return $this;

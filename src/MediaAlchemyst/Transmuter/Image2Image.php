@@ -2,24 +2,29 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-use MediaAlchemyst\Specification;
-use MediaAlchemyst\Exception;
+use Imagine\Exception\Exception as ImagineException;
+use Imagine\Image\ImageInterface;
+use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\SpecNotSupportedException;
+use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\MediaInterface;
-use Imagine\Image;
+use PHPExiftool\Exception\ExceptionInterface as PHPExiftoolException;
 
-class Image2Image extends Provider
+class Image2Image extends AbstractTransmuter
 {
     public static $autorotate = false;
     public static $lookForEmbeddedPreview = false;
 
-    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
+    public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Specification\Image) {
-            throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Image specs');
+        if ( ! $spec instanceof Image) {
+            throw new SpecNotSupportedException('Imagine Adapter only supports Image specs');
         }
 
         if ($source->getType() !== MediaInterface::TYPE_IMAGE) {
-            throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Images');
+            throw new SpecNotSupportedException('Imagine Adapter only supports Images');
         }
 
         try {
@@ -40,9 +45,9 @@ class Image2Image extends Provider
 
                 $box = $this->boxFromImageSpec($spec, $source);
 
-                if ($spec->getResizeMode() == Specification\Image::RESIZE_MODE_OUTBOUND) {
+                if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
-                    $image = $image->thumbnail($box, Image\ImageInterface::THUMBNAIL_OUTBOUND);
+                    $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
                 } else {
                     $image = $image->resize($box);
                 }
@@ -71,12 +76,12 @@ class Image2Image extends Provider
                 unlink($to_remove);
                 rmdir(dirname($to_remove));
             }
-        } catch (\MediaVorus\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\PHPExiftool\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\Imagine\Exception\Exception $e) {
-            throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } catch (MediaVorusException $e) {
+            throw new RuntimeException('Unable to transmute image to image due to Mediavorus', null, $e);
+        } catch (PHPExiftoolException $e) {
+            throw new RuntimeException('Unable to transmute image to image due to PHPExiftool', null, $e);
+        } catch (ImagineException $e) {
+            throw new RuntimeException('Unable to transmute image to image due to Imagine', null, $e);
         }
     }
 
