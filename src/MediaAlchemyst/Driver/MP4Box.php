@@ -7,7 +7,7 @@ use Monolog\Logger;
 use MP4Box\Exception\BinaryNotFoundException;
 use MP4Box\MP4Box as MP4BoxDriver;
 
-class MP4Box extends Provider
+class MP4Box extends AsbtractDriver
 {
     protected $driver;
 

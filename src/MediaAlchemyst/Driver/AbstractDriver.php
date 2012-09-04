@@ -4,7 +4,7 @@ namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
 
-abstract class Provider implements Driver
+abstract class AsbtractDriver implements DriverInterface
 {
 
     /**

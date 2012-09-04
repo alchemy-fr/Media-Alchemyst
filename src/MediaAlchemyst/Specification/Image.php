@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Specification;
 
-use MediaAlchemyst\Exception;
+use MediaAlchemyst\Exception\InvalidArgumentException;
 use Imagine\Image\ImageInterface;
 
 class Image extends AbstractSpecification
@@ -23,10 +23,6 @@ class Image extends AbstractSpecification
     const RESOLUTION_PIXELPERINCH = 'ppi';
     const RESOLUTION_PIXELPERCENTIMETER = 'ppc';
 
-    public function __construct()
-    {
-
-    }
 
     public function getType()
     {
@@ -52,7 +48,7 @@ class Image extends AbstractSpecification
     public function setResizeMode($mode)
     {
         if ( ! in_array($mode, array(self::RESIZE_MODE_INBOUND, self::RESIZE_MODE_OUTBOUND, self::RESIZE_MODE_INBOUND_FIXEDRATIO))) {
-            throw new Exception\InvalidArgumentException('Invalid resize mode');
+            throw new InvalidArgumentException('Invalid resize mode');
         }
 
         $this->resizeMode = $mode;
@@ -66,10 +62,10 @@ class Image extends AbstractSpecification
     public function setResolution($resolution_x, $resolution_y, $units = self::RESOLUTION_PIXELPERINCH)
     {
         if ($resolution_x <= 0 || $resolution_y <= 0) {
-            throw new Exception\InvalidArgumentException('Resolution should be greater than 0');
+            throw new InvalidArgumentException('Resolution should be greater than 0');
         }
         if ( ! in_array($units, array(self::RESOLUTION_PIXELPERCENTIMETER, self::RESOLUTION_PIXELPERINCH))) {
-            throw new Exception\InvalidArgumentException('Unkonwn resolution units');
+            throw new InvalidArgumentException('Unkonwn resolution units');
         }
 
         $this->resolution_units = $units;
@@ -97,7 +93,7 @@ class Image extends AbstractSpecification
     public function setQuality($quality)
     {
         if ($quality < 0 || $quality > 100) {
-            throw new Exception\InvalidArgumentException('Invalid quality value');
+            throw new InvalidArgumentException('Invalid quality value');
         }
 
         $this->quality = (int) $quality;

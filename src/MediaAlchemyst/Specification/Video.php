@@ -3,6 +3,7 @@
 namespace MediaAlchemyst\Specification;
 
 use FFMpeg\Format\Video\DefaultVideo;
+use MediaAlchemyst\Exception\InvalidArgumentException;
 
 class Video extends Audio
 {
@@ -24,7 +25,7 @@ class Video extends Audio
     public function setResizeMode($mode)
     {
         if ( ! in_array($mode, array(self::RESIZE_MODE_INSET, self::RESIZE_MODE_FIT))) {
-            throw new Exception\InvalidArgumentException('Invalid resize mode');
+            throw new InvalidArgumentException('Invalid resize mode');
         }
 
         $this->resizeMode = $mode;

@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Driver;
 
-interface Driver
+interface DriverInterface
 {
 
     public function getDriver();

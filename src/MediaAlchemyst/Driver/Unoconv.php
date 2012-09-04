@@ -7,7 +7,7 @@ use Unoconv\Unoconv;
 use Unoconv\Exception\RuntimeException as UnoconvRuntimeException;
 use MediaAlchemyst\Exception\RuntimeException;
 
-class Unoconv extends Provider
+class Unoconv extends AsbtractDriver
 {
     protected $driver;
 

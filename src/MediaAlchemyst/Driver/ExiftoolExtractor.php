@@ -6,7 +6,7 @@ use Monolog\Logger;
 use PHPExiftool\Exiftool;
 use PHPExiftool\PreviewExtractor;
 
-class ExiftoolExtractor extends Provider
+class ExiftoolExtractor extends AsbtractDriver
 {
 
     protected $driver;

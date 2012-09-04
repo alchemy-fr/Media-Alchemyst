@@ -4,7 +4,12 @@ namespace MediaAlchemyst\Console;
 
 use MediaAlchemyst\Alchemyst;
 use MediaAlchemyst\DriversContainer;
-use MediaAlchemyst\Specification;
+use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Specification\Animation;
+use MediaAlchemyst\Specification\Flash;
+use MediaAlchemyst\Specification\Video;
+use MediaAlchemyst\Specification\Audio;
+use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Exception\InvalidArgumentException;
 use Monolog\Logger;
 use Symfony\Component\Console\Input\InputInterface;
@@ -99,20 +104,20 @@ class Alchemyst extends Command
     protected function getSpecification($name)
     {
         switch ($name) {
-            case Specification\SpecificationInterface::TYPE_ANIMATION:
-                return new Specification\Animation();
+            case SpecificationInterface::TYPE_ANIMATION:
+                return new Animation();
                 break;
-            case Specification\SpecificationInterface::TYPE_VIDEO:
-                return new Specification\Video();
+            case SpecificationInterface::TYPE_VIDEO:
+                return new Video();
                 break;
-            case Specification\SpecificationInterface::TYPE_SWF:
-                return new Specification\Flash();
+            case SpecificationInterface::TYPE_SWF:
+                return new Flash();
                 break;
-            case Specification\SpecificationInterface::TYPE_IMAGE:
-                return new Specification\Image();
+            case SpecificationInterface::TYPE_IMAGE:
+                return new Image();
                 break;
-            case Specification\SpecificationInterface::TYPE_AUDIO:
-                return new Specification\Audio();
+            case SpecificationInterface::TYPE_AUDIO:
+                return new Audio();
                 break;
         }
 

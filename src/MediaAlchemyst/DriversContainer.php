@@ -2,17 +2,28 @@
 
 namespace MediaAlchemyst;
 
-use MediaAlchemyst\Driver;
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
+use MediaAlchemyst\Driver\ExiftoolExtractor;
+use MediaAlchemyst\Driver\FFMpeg;
+use MediaAlchemyst\Driver\Imagine;
+use MediaAlchemyst\Driver\MP4Box;
+use MediaAlchemyst\Driver\MediaVorus;
+use MediaAlchemyst\Driver\Pdf2Swf;
+use MediaAlchemyst\Driver\SwfToolsFlashFile;
+use MediaAlchemyst\Driver\SwfToolsPDFFile;
+use MediaAlchemyst\Driver\Unoconv;
+use Pimple;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
-class DriversContainer extends \Pimple
+class DriversContainer extends Pimple
 {
 
-    public function __construct(ParameterBag $configuration, \Monolog\Logger $logger = null)
+    public function __construct(ParameterBag $configuration, Logger $logger = null)
     {
         if ( ! $logger) {
-            $logger = new \Monolog\Logger('Drivers');
-            $logger->pushHandler(new \Monolog\Handler\NullHandler());
+            $logger = new Logger('Drivers');
+            $logger->pushHandler(new NullHandler());
         }
 
         $this['ffmpeg.ffmpeg'] = $this->share(function() use ($configuration, $logger) {
@@ -20,7 +31,7 @@ class DriversContainer extends \Pimple
                 $ffprobe = $configuration->has('ffprobe') ? $configuration->get('ffprobe') : null;
                 $threads = $configuration->has('ffmpeg.threads') ? $configuration->get('ffmpeg.threads') : 1;
 
-                $driver = new Driver\FFMpeg($logger, $ffmpeg, $ffprobe, $threads);
+                $driver = new FFMpeg($logger, $ffmpeg, $ffprobe, $threads);
 
                 return $driver->getDriver();
             });
@@ -28,7 +39,7 @@ class DriversContainer extends \Pimple
         $this['imagine'] = $this->share(function() use ($configuration, $logger) {
                 $imagine = $configuration->has('imagine') ? $configuration->get('imagine') : null;
 
-                $driver = new Driver\Imagine($logger, $imagine);
+                $driver = new Imagine($logger, $imagine);
 
                 return $driver->getDriver();
             });
@@ -37,7 +48,7 @@ class DriversContainer extends \Pimple
                 $SwfRender = $configuration->has('SwfRender') ? $configuration->get('SwfRender') : null;
                 $SwfExtract = $configuration->has('SwfExtract') ? $configuration->get('SwfExtract') : null;
 
-                $driver = new Driver\SwfToolsFlashFile($logger, $SwfExtract, $SwfRender);
+                $driver = new SwfToolsFlashFile($logger, $SwfExtract, $SwfRender);
 
                 return $driver->getDriver();
             });
@@ -45,7 +56,7 @@ class DriversContainer extends \Pimple
         $this['swftools.pdf-file'] = $this->share(function() use ($configuration, $logger) {
                 $pdf2swf = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
 
-                $driver = new Driver\SwfToolsPDFFile($logger, $pdf2swf);
+                $driver = new SwfToolsPDFFile($logger, $pdf2swf);
 
                 return $driver->getDriver();
             });
@@ -53,7 +64,7 @@ class DriversContainer extends \Pimple
         $this['xpdf.pdf2swf'] = $this->share(function() use ($configuration, $logger) {
                 $SwfRender = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
 
-                $driver = new Driver\Pdf2Swf($logger, $SwfRender);
+                $driver = new Pdf2Swf($logger, $SwfRender);
 
                 return $driver->getDriver();
             });
@@ -61,13 +72,13 @@ class DriversContainer extends \Pimple
         $this['unoconv'] = $this->share(function() use ($configuration, $logger) {
                 $unoconv = $configuration->has('Unoconv') ? $configuration->get('Unoconv') : null;
 
-                $driver = new Driver\Unoconv($logger, $unoconv);
+                $driver = new Unoconv($logger, $unoconv);
 
                 return $driver->getDriver();
             });
 
         $this['exiftool.preview-extractor'] = $this->share(function() use ($configuration, $logger) {
-                $driver = new Driver\ExiftoolExtractor($logger, null);
+                $driver = new ExiftoolExtractor($logger, null);
 
                 return $driver->getDriver();
             });
@@ -75,7 +86,7 @@ class DriversContainer extends \Pimple
         $this['mp4box'] = $this->share(function() use ($configuration, $logger) {
                 $MP4Box = $configuration->has('MP4Box') ? $configuration->get('MP4Box') : null;
 
-                $driver = new Driver\MP4Box($logger, $MP4Box);
+                $driver = new MP4Box($logger, $MP4Box);
 
                 return $driver->getDriver();
             });
@@ -84,7 +95,7 @@ class DriversContainer extends \Pimple
 
                 $ffprobeConf = $configuration->has('ffprobe') ? $configuration->get('ffprobe') : null;
 
-                $driver = new Driver\MediaVorus($logger, $ffprobeConf);
+                $driver = new MediaVorus($logger, $ffprobeConf);
 
                 return $driver->getDriver();
             });

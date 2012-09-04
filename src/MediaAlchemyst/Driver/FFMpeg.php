@@ -8,7 +8,7 @@ use FFMpeg\FFProbe;
 use MediaAlchemyst\Exception\RuntimeException;
 use Monolog\Logger;
 
-class FFMpeg extends Provider
+class FFMpeg extends AsbtractDriver
 {
     protected $driver;
 

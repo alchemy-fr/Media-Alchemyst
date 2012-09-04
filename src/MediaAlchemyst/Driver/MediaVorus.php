@@ -12,7 +12,7 @@ use PHPExiftool\Reader;
 use PHPExiftool\RDFParser;
 use PHPExiftool\Writer;
 
-class MediaVorus extends Provider
+class MediaVorus extends AsbtractDriver
 {
     protected $driver;
 
