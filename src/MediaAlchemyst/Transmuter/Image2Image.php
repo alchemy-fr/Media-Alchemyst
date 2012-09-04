@@ -28,7 +28,7 @@ class Image2Image extends Provider
             if (static::$lookForEmbeddedPreview) {
                 $tmpFile = $this->extractEmbeddedImage($source->getFile()->getPathname());
 
-                if ($tmpFile instanceof Media) {
+                if ($tmpFile instanceof MediaInterface) {
                     $source = $tmpFile;
                     $to_remove = $tmpFile->getFile();
                 }
