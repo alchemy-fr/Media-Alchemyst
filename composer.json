@@ -31,7 +31,9 @@
     },
     "minimum-stability": "dev",
     "require-dev": {
-        "fabpot/php-cs-fixer": "dev-master"
+        "fabpot/php-cs-fixer": "dev-master",
+        "grom/silex-service-provider": "dev-master",
+        "silex/silex": "dev-master"
     },
     "autoload": {
         "psr-0": {
