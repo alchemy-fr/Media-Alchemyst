@@ -2,7 +2,11 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-class Document2FlashTest extends \PHPUnit_Framework_TestCase
+use MediaAlchemyst\AbstractAlchemystTester;
+
+require_once __DIR__ . '/../AbstractAlchemystTester.php';
+
+class Document2FlashTest extends AbstractAlchemystTester
 {
 
     /**
@@ -12,11 +16,9 @@ class Document2FlashTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
-    protected $mediavorus;
 
     protected function setUp()
     {
-        $this->mediavorus = new \MediaVorus\MediaVorus();
         $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
@@ -26,7 +28,7 @@ class Document2FlashTest extends \PHPUnit_Framework_TestCase
 
         $this->specs = new \MediaAlchemyst\Specification\Flash();
 
-        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Hello.odt'));
+        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Hello.odt');
         $this->dest = __DIR__ . '/../../../files/output.swf';
     }
 
@@ -44,9 +46,9 @@ class Document2FlashTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
-        $this->assertEquals(\MediaVorus\Media\Media::TYPE_FLASH, $MediaDest->getType());
+        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_FLASH, $MediaDest->getType());
     }
 
     /**

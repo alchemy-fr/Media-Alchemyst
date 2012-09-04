@@ -2,9 +2,12 @@
 
 namespace MediaAlchemyst\Transmuter;
 
+use MediaAlchemyst\AbstractAlchemystTester;
+
+require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
 
-class Image2ImageTest extends \PHPUnit_Framework_TestCase
+class Image2ImageTest extends AbstractAlchemystTester
 {
     /**
      * @var Image2Image
@@ -13,17 +16,15 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
-    protected $mediavorus;
 
     protected function setUp()
     {
-        $this->mediavorus = new \MediaVorus\MediaVorus();
         $this->object = new Image2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
         Image2Image::$autorotate = false;
 
         $this->specs = new \MediaAlchemyst\Specification\Image();
-        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/photo03.JPG'));
+        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/photo03.JPG');
         $this->dest = __DIR__ . '/../../../files/output_auto_rotate.jpg';
     }
 
@@ -41,7 +42,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals($this->source->getWidth(), $MediaDest->getWidth());
         $this->assertEquals($this->source->getHeight(), $MediaDest->getHeight());
@@ -52,10 +53,10 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteCR2()
     {
-        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/test001.CR2'));
+        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/test001.CR2');
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals(1872, $MediaDest->getHeight());
         $this->assertEquals(2808, $MediaDest->getWidth());
@@ -70,7 +71,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals($this->source->getWidth(), $MediaDest->getHeight());
         $this->assertEquals($this->source->getHeight(), $MediaDest->getWidth());
@@ -84,11 +85,11 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
     {
         Image2Image::$lookForEmbeddedPreview = true;
 
-        $source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/ExifTool.jpg'));
+        $source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/ExifTool.jpg');
 
         $this->object->execute($this->specs, $source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals(192, $MediaDest->getHeight());
         $this->assertEquals(288, $MediaDest->getWidth());
@@ -103,7 +104,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertTrue($MediaDest->getHeight() <= 240);
         $this->assertTrue($MediaDest->getWidth() <= 320);
@@ -121,7 +122,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals(240, $MediaDest->getHeight());
         $this->assertEquals(260, $MediaDest->getWidth());
@@ -137,7 +138,7 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertTrue(200 >= $MediaDest->getHeight());
         $this->assertTrue(200 >= $MediaDest->getWidth());
@@ -160,10 +161,10 @@ class Image2ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testExecuteRawImage()
     {
-        $source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/RAW_CANON_40D_RAW_V105.cr2'));
+        $source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/RAW_CANON_40D_RAW_V105.cr2');
         $this->object->execute($this->specs, $source, $this->dest);
 
-        $MediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals(1936, $MediaDest->getWidth());
         $this->assertEquals(1288, $MediaDest->getHeight());

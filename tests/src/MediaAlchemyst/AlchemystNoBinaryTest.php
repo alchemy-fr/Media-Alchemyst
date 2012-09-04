@@ -4,7 +4,7 @@ namespace MediaAlchemyst;
 
 use \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
-class AlchemystTest extends \PHPUnit_Framework_TestCase
+class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -47,19 +47,20 @@ class AlchemystTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers MediaAlchemyst\Alchemyst::open
      * @covers MediaAlchemyst\Alchemyst::close
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testOpen()
     {
-        $this->object->open(__DIR__ . '/../../files/Audio.mp3');
+        $this->object->open(__DIR__ . '/../../files/ExifTool.jpg');
         $this->object->close();
-        $this->object->open(__DIR__ . '/../../files/Audio.mp3');
-        $this->object->open(__DIR__ . '/../../files/Test.ogv');
+        $this->object->open(__DIR__ . '/../../files/ExifTool.jpg');
+        $this->object->open(__DIR__ . '/../../files/photo03.JPG');
     }
 
     /**
      * @covers MediaAlchemyst\Alchemyst::open
      * @covers MediaAlchemyst\Exception\FileNotFoundException
-     * @expectedException MediaAlchemyst\Exception\FileNotFoundException
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testOpenUnknownFile()
     {

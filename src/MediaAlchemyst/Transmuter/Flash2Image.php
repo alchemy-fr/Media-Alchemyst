@@ -4,12 +4,12 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 class Flash2Image extends Provider
 {
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
@@ -18,14 +18,16 @@ class Flash2Image extends Provider
         $tmpDest = tempnam(sys_get_temp_dir(), 'swfrender');
 
         try {
-            $this->container->getSwfRender()
-              ->render($source->getFile(), $tmpDest, null);
+            $tmpDest = $this->container['swftools.flash-file']
+                ->open($source->getFile()->getPathname())
+                ->render($tmpDest);
+            $this->container['swftools.flash-file']->close();
 
-            $image = $this->container->getImagine()->open($tmpDest);
+            $image = $this->container['imagine']->open($tmpDest);
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $media = $this->container['mediavorus']->guess(new \SplFileInfo($tmpDest));
+                $media = $this->container['mediavorus']->guess($tmpDest);
 
                 $box = $this->boxFromImageSpec($spec, $media);
 
@@ -40,10 +42,10 @@ class Flash2Image extends Provider
             }
 
             $options = array(
-              'quality'          => $spec->getQuality(),
-              'resolution-units' => $spec->getResolutionUnit(),
-              'resolution-x'     => $spec->getResolutionX(),
-              'resolution-y'     => $spec->getResolutionY(),
+                'quality'          => $spec->getQuality(),
+                'resolution-units' => $spec->getResolutionUnit(),
+                'resolution-x'     => $spec->getResolutionX(),
+                'resolution-y'     => $spec->getResolutionY(),
             );
 
             $image->save($dest, $options);
@@ -57,5 +59,4 @@ class Flash2Image extends Provider
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
-
 }

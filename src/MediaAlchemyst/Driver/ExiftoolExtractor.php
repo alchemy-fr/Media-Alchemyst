@@ -3,6 +3,8 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
+use PHPExiftool\Exiftool;
+use PHPExiftool\PreviewExtractor;
 
 class ExiftoolExtractor extends Provider
 {
@@ -13,7 +15,7 @@ class ExiftoolExtractor extends Provider
     {
         $this->logger = $logger;
 
-        $this->driver = new \PHPExiftool\PreviewExtractor();
+        $this->driver = new PreviewExtractor(new Exiftool());
     }
 
     public function getDriver()

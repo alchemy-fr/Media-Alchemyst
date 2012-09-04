@@ -31,6 +31,7 @@ class UnoconvTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Driver\Unoconv::__construct
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testConstructOwnBinary()
     {

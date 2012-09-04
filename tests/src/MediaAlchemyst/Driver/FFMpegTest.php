@@ -31,6 +31,7 @@ class FFMpegTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Driver\FFMpeg::__construct
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testConstructOwnBinary()
     {

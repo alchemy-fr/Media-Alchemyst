@@ -4,7 +4,7 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 use Imagine\Image;
 
 class Image2Image extends Provider
@@ -12,13 +12,13 @@ class Image2Image extends Provider
     public static $autorotate = false;
     public static $lookForEmbeddedPreview = false;
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Image specs');
         }
 
-        if ($source->getType() !== Media::TYPE_IMAGE) {
+        if ($source->getType() !== MediaInterface::TYPE_IMAGE) {
             throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Images');
         }
 
@@ -34,7 +34,7 @@ class Image2Image extends Provider
                 }
             }
 
-            $image = $this->container->getImagine()->open($source->getFile()->getPathname());
+            $image = $this->container['imagine']->open($source->getFile()->getPathname());
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
@@ -86,7 +86,7 @@ class Image2Image extends Provider
 
         mkdir($tmpDir);
 
-        $files = $this->container->getExiftoolExtractor()->extract($pathfile, $tmpDir);
+        $files = $this->container['exiftool.preview-extractor']->extract($pathfile, $tmpDir);
 
         $to_unlink = array();
         $selected = null;
@@ -112,7 +112,7 @@ class Image2Image extends Provider
         }
 
         if ($selected) {
-            return $this->container['mediavorus']->guess(new \SplFileInfo($selected));
+            return $this->container['mediavorus']->guess($selected);
         }
 
         rmdir($tmpDir);

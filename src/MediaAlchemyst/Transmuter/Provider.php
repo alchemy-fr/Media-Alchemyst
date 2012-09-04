@@ -6,7 +6,7 @@ use Imagine\Image;
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Specification\Provider as SpecProvider;
 use MediaAlchemyst\DriversContainer;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 abstract class Provider
 {
@@ -16,7 +16,7 @@ abstract class Provider
      */
     protected $container;
 
-    public function __construct(DriversContainer $container)
+    public function __construct(\Pimple $container)
     {
         $this->container = $container;
     }
@@ -30,10 +30,10 @@ abstract class Provider
      * Return the box for a spec
      *
      * @param  Specification\Image $spec
-     * @param  Media               $source
+     * @param  MediaInterface               $source
      * @return \Image\Box
      */
-    protected function boxFromImageSpec(Specification\Image $spec, Media $source)
+    protected function boxFromImageSpec(Specification\Image $spec, MediaInterface $source)
     {
         if ( ! $spec->getWidth() && ! $spec->getHeight()) {
             throw new \MediaAlchemyst\Exception\InvalidArgumentException('The specification you provide must have width nad height');
@@ -60,5 +60,5 @@ abstract class Provider
         return new Image\Box($spec->getWidth(), $spec->getHeight());
     }
 
-    abstract public function execute(SpecProvider $spec, Media $source, $dest);
+    abstract public function execute(SpecProvider $spec, MediaInterface $source, $dest);
 }

@@ -2,7 +2,11 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-class Video2ImageTest extends \PHPUnit_Framework_TestCase
+use MediaAlchemyst\AbstractAlchemystTester;
+
+require_once __DIR__ . '/../AbstractAlchemystTester.php';
+
+class Video2ImageTest extends AbstractAlchemystTester
 {
 
     /**
@@ -17,18 +21,16 @@ class Video2ImageTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
-    protected $mediavorus;
 
     protected function setUp()
     {
-        $this->mediavorus = new \MediaVorus\MediaVorus();
         $logger = new \Monolog\Logger('test');
         $logger->pushHandler(new \Monolog\Handler\NullHandler());
-        
+
         $this->object = new Video2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), $logger));
 
         $this->specs = new \MediaAlchemyst\Specification\Image();
-        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
+        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
         $this->dest = __DIR__ . '/../../../files/output_.png';
     }
 
@@ -46,7 +48,7 @@ class Video2ImageTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals('image/png', $mediaDest->getFile()->getMimeType());
         $this->assertTrue(abs($this->source->getWidth() - $mediaDest->getWidth()) <= 16);
@@ -63,7 +65,7 @@ class Video2ImageTest extends \PHPUnit_Framework_TestCase
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $mediaDest = $this->mediavorus->guess(new \SplFileInfo($this->dest));
+        $mediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals('image/png', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(320, $mediaDest->getWidth());

@@ -4,13 +4,13 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 class Video2Image extends Provider
 {
     public static $time = '60%';
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
@@ -23,16 +23,16 @@ class Video2Image extends Provider
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
 
         try {
-            $this->container->getFFMpeg()
+            $this->container['ffmpeg.ffmpeg']
                 ->open($source->getFile()->getPathname())
                 ->extractImage($time, $tmpDest)
                 ->close();
 
-            $image = $this->container->getImagine()->open($tmpDest);
+            $image = $this->container['imagine']->open($tmpDest);
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $media =  $this->container['mediavorus']->guess(new \SplFileInfo($tmpDest));
+                $media =  $this->container['mediavorus']->guess($tmpDest);
 
                 $box = $this->boxFromImageSpec($spec, $source);
 

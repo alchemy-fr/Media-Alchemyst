@@ -2,7 +2,11 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-class Video2AnimationTest extends \PHPUnit_Framework_TestCase
+use MediaAlchemyst\AbstractAlchemystTester;
+
+require_once __DIR__ . '/../AbstractAlchemystTester.php';
+
+class Video2AnimationTest extends AbstractAlchemystTester
 {
 
     /**
@@ -17,15 +21,13 @@ class Video2AnimationTest extends \PHPUnit_Framework_TestCase
     protected $specs;
     protected $source;
     protected $dest;
-    protected $mediavorus;
 
     protected function setUp()
     {
-        $this->mediavorus = new \MediaVorus\MediaVorus();
         $this->object = new Video2Animation(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
         $this->specs = new \MediaAlchemyst\Specification\Animation();
-        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
+        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
         $this->dest = __DIR__ . '/../../../files/output_.gif';
     }
 

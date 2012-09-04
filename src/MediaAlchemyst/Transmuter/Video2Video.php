@@ -4,12 +4,12 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 class Video2Video extends Provider
 {
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Video) {
             throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
@@ -41,13 +41,13 @@ class Video2Video extends Provider
         }
 
         try {
-            $this->container->getFFMpeg()
+            $this->container['ffmpeg.ffmpeg']
               ->open($source->getFile()->getPathname())
               ->encode($format, $dest)
               ->close();
 
             if ($format instanceof \FFMpeg\Format\Video\X264) {
-                $this->container->getMP4Box()->open($dest)->process()->close();
+                $this->container['mp4box']->open($dest)->process()->close();
             }
         } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);

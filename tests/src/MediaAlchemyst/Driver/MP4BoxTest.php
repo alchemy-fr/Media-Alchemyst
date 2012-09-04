@@ -31,6 +31,7 @@ class MP4BoxTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Driver\MP4Box::__construct
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testConstructOwnBinary()
     {

@@ -21,39 +21,39 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getFFMpeg
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testGetFFMpeg()
     {
-        $this->assertInstanceOf('\\FFMpeg\\FFMpeg', $this->object->getFFMpeg());
+        $this->assertInstanceOf('\\FFMpeg\\FFMpeg', $this->object['ffmpeg.ffmpeg']);
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getImagine
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testGetImagine()
     {
-        $this->assertInstanceOf('\\Imagine\\Image\\ImagineInterface', $this->object->getImagine());
+        $this->assertInstanceOf('\\Imagine\\Image\\ImagineInterface', $this->object['imagine']);
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getPdf2Swf
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testGetPdf2Swf()
     {
-        $this->assertInstanceOf('\\SwfTools\\Binary\\Pdf2Swf', $this->object->getPdf2Swf());
+        $this->assertInstanceOf('\\SwfTools\\Binary\\Pdf2Swf', $this->object['xpdf.pdf2swf']);
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getSwfRender
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testgetSwfRender()
     {
-        $this->assertInstanceOf('\\SwfTools\\Binary\\SwfRender', $this->object->getSwfRender());
+        $this->assertInstanceOf('\\SwfTools\\Processor\\FlashFile', $this->object['swftools.flash-file']);
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getUnoconv
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testgetUnoconv()
     {
@@ -61,24 +61,24 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }
-        
-        $this->assertInstanceOf('\\Unoconv\\Unoconv', $this->object->getUnoconv());
+
+        $this->assertInstanceOf('\\Unoconv\\Unoconv', $this->object['unoconv']);
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getExiftoolExtractor
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testgetExiftoolExtractor()
     {
-        $this->assertInstanceOf('\\PHPExiftool\\PreviewExtractor', $this->object->getExiftoolExtractor());
+        $this->assertInstanceOf('\\PHPExiftool\\PreviewExtractor', $this->object['exiftool.preview-extractor']);
     }
 
     /**
-     * @covers MediaAlchemyst\DriversContainer::getMP4Box
+     * @covers MediaAlchemyst\DriversContainer
      */
     public function testgetMP4Box()
     {
-        $this->assertInstanceOf('\\MP4Box\\MP4Box', $this->object->getMP4Box());
+        $this->assertInstanceOf('\\MP4Box\\MP4Box', $this->object['mp4box']);
     }
 
 }

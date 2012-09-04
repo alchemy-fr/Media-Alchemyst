@@ -4,12 +4,12 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 class Document2Flash extends Provider
 {
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Flash) {
             throw new Exception\SpecNotSupportedException('SwfTools only accept Flash specs');
@@ -20,7 +20,7 @@ class Document2Flash extends Provider
         try {
 
             if ($source->getFile()->getMimeType() != 'application/pdf') {
-                $this->container->getUnoconv()
+                $this->container['unoconv']
                     ->open($source->getFile()->getPathname())
                     ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
                     ->close();
@@ -28,7 +28,7 @@ class Document2Flash extends Provider
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $this->container->getPdf2Swf()
+            $this->container['xpdf.pdf2swf']
                 ->toSwf(new \SplFileInfo($tmpDest), $dest);
 
             unlink($tmpDest);

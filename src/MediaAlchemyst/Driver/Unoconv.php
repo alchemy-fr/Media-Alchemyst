@@ -8,21 +8,20 @@ use MediaAlchemyst\Exception;
 
 class Unoconv extends Provider
 {
-
     protected $driver;
 
     public function __construct(Logger $logger, $use_binary = null)
     {
         $this->logger = $logger;
 
-        if ($use_binary) {
-            $this->driver = new UnoconvBinary($use_binary, $logger);
-        } else {
-            try {
+        try {
+            if ($use_binary) {
+                $this->driver = new UnoconvBinary($use_binary, $logger);
+            } else {
                 $this->driver = UnoconvBinary::load($logger);
-            } catch (Exception\BinaryNotFoundException $e) {
-                throw new Exception\RuntimeException('No driver available');
             }
+        } catch (Exception\BinaryNotFoundException $e) {
+            throw new Exception\RuntimeException('No driver available');
         }
     }
 
@@ -30,5 +29,4 @@ class Unoconv extends Provider
     {
         return $this->driver;
     }
-
 }

@@ -5,12 +5,12 @@ namespace MediaAlchemyst\Transmuter;
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
 use MediaAlchemyst\Exception\RuntimeException;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 class Document2Image extends Provider
 {
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Image) {
             throw new Exception\SpecNotSupportedException('SwfTools only accept Image specs');
@@ -25,16 +25,15 @@ class Document2Image extends Provider
              * Support for unoconv < 0.4 : pagerange is not supported
              */
             if ($source->getFile()->getMimeType() != 'application/pdf') {
-                $this->container->getUnoconv()
+                $this->container['unoconv']
                     ->open($source->getFile()->getPathname())
                     ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
-//                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
                     ->close();
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $image = $this->container->getImagine()->open($tmpDest);
+            $image = $this->container['imagine']->open($tmpDest);
 
             $options = array(
                 'quality'          => $spec->getQuality(),
@@ -50,9 +49,9 @@ class Document2Image extends Provider
                 $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
                 rename($dest, $tmpDest);
 
-                $image = $this->container->getImagine()->open($tmpDest);
+                $image = $this->container['imagine']->open($tmpDest);
 
-                $media = $this->container['mediavorus']->guess(new \SplFileInfo($tmpDest));
+                $media = $this->container['mediavorus']->guess($tmpDest);
 
                 $box = $this->boxFromImageSpec($spec, $media);
 

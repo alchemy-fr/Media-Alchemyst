@@ -5,7 +5,7 @@ namespace MediaAlchemyst;
 use MediaAlchemyst\Exception\FileNotFoundException;
 use MediaVorus\MediaVorus;
 use MediaVorus\File as MediaVorusFile;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 use MediaVorus\Exception\FileNotFoundException as MediaVorusFileNotFoundException;
 use MediaAlchemyst\Specification\Specification;
 
@@ -14,7 +14,7 @@ class Alchemyst
 
     /**
      *
-     * @var \MediaVorus\media\Media
+     * @var \MediaVorus\media\MediaMediaInterface
      */
     protected $mediaFile;
 
@@ -36,7 +36,7 @@ class Alchemyst
         }
 
         try {
-            $this->mediaFile = $this->drivers['mediavorus']->guess(new MediaVorusFile($pathfile, true));
+            $this->mediaFile = $this->drivers['mediavorus']->guess($pathfile);
         } catch (MediaVorusFileNotFoundException $e) {
             throw new FileNotFoundException(sprintf('File %s not found', $pathfile));
         }
@@ -67,38 +67,38 @@ class Alchemyst
         $route = sprintf('%s-%s', $this->mediaFile->getType(), $specs->getType());
 
         switch ($route) {
-            case sprintf('%s-%s', Media::TYPE_AUDIO, Specification::TYPE_IMAGE):
+            case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, Specification::TYPE_IMAGE):
                 throw new Exception\RuntimeException('Not transmuter avalaible... Implement it !');
                 break;
-            case sprintf('%s-%s', Media::TYPE_AUDIO, Specification::TYPE_VIDEO):
+            case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, Specification::TYPE_VIDEO):
                 throw new Exception\RuntimeException('Not transmuter avalaible... Implement it !');
                 break;
-            case sprintf('%s-%s', Media::TYPE_AUDIO, Specification::TYPE_AUDIO):
+            case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, Specification::TYPE_AUDIO):
                 $transmuter = new Transmuter\Audio2Audio($this->drivers);
                 break;
 
-            case sprintf('%s-%s', Media::TYPE_FLASH, Specification::TYPE_IMAGE):
+            case sprintf('%s-%s', MediaInterface::TYPE_FLASH, Specification::TYPE_IMAGE):
                 $transmuter = new Transmuter\Flash2Image($this->drivers);
                 break;
 
-            case sprintf('%s-%s', Media::TYPE_DOCUMENT, Specification::TYPE_IMAGE):
+            case sprintf('%s-%s', MediaInterface::TYPE_DOCUMENT, Specification::TYPE_IMAGE):
                 $transmuter = new Transmuter\Document2Image($this->drivers);
                 break;
-            case sprintf('%s-%s', Media::TYPE_DOCUMENT, Specification::TYPE_SWF):
+            case sprintf('%s-%s', MediaInterface::TYPE_DOCUMENT, Specification::TYPE_SWF):
                 $transmuter = new Transmuter\Document2Flash($this->drivers);
                 break;
 
-            case sprintf('%s-%s', Media::TYPE_IMAGE, Specification::TYPE_IMAGE):
+            case sprintf('%s-%s', MediaInterface::TYPE_IMAGE, Specification::TYPE_IMAGE):
                 $transmuter = new Transmuter\Image2Image($this->drivers);
                 break;
 
-            case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_IMAGE):
+            case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, Specification::TYPE_IMAGE):
                 $transmuter = new Transmuter\Video2Image($this->drivers);
                 break;
-            case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_ANIMATION):
+            case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, Specification::TYPE_ANIMATION):
                 $transmuter = new Transmuter\Video2Animation($this->drivers);
                 break;
-            case sprintf('%s-%s', Media::TYPE_VIDEO, Specification::TYPE_VIDEO):
+            case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, Specification::TYPE_VIDEO):
                 $transmuter = new Transmuter\Video2Video($this->drivers);
                 break;
             default:

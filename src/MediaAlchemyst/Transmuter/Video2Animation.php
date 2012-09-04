@@ -4,7 +4,7 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 use Imagine\Image;
 
 class Video2Animation extends Provider
@@ -12,13 +12,13 @@ class Video2Animation extends Provider
     public static $autorotate = false;
     public static $lookForEmbeddedPreview = false;
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Animation) {
             throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Image specs');
         }
 
-        if ($source->getType() !== Media::TYPE_VIDEO) {
+        if ($source->getType() !== MediaInterface::TYPE_VIDEO) {
             throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Images');
         }
 
@@ -27,7 +27,7 @@ class Video2Animation extends Provider
         }
 
         try {
-            $movie = $this->container->getFFMpeg()->open($source->getFile()->getPathname());
+            $movie = $this->container['ffmpeg.ffmpeg']->open($source->getFile()->getPathname());
 
             $duration = $source->getDuration();
 

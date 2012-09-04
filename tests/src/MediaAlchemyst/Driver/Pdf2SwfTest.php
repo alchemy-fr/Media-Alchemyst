@@ -31,6 +31,7 @@ class Pdf2SwfTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers MediaAlchemyst\Driver\Pdf2Swf::__construct
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testConstructOwnBinary()
     {

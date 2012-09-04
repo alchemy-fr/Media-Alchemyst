@@ -4,12 +4,12 @@ namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
-use MediaVorus\Media\Media;
+use MediaVorus\Media\MediaInterface;
 
 class Audio2Audio extends Provider
 {
 
-    public function execute(Specification\Provider $spec, Media $source, $dest)
+    public function execute(Specification\Provider $spec, MediaInterface $source, $dest)
     {
         if ( ! $spec instanceof Specification\Audio) {
             throw new Exception\SpecNotSupportedException('FFMpeg Adapter only supports Audio specs');
@@ -29,7 +29,7 @@ class Audio2Audio extends Provider
         }
 
         try {
-            $this->container->getFFMpeg()
+            $this->container['ffmpeg.ffmpeg']
               ->open($source->getFile()->getPathname())
               ->encode($format, $dest)
               ->close();

@@ -2,12 +2,17 @@
 
 namespace MediaAlchemyst\Console;
 
+use MediaAlchemyst\Alchemyst;
+use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification;
+use MediaAlchemyst\Exception\InvalidArgumentException;
+use Monolog\Logger;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class Alchemyst extends Command
 {
@@ -39,18 +44,18 @@ class Alchemyst extends Command
         $file = $input->getArgument('file');
 
         if ( ! file_exists($file)) {
-            throw new \InvalidArgumentException(sprintf('file `%s` does not exists', $file));
+            throw new InvalidArgumentException(sprintf('file `%s` does not exists', $file));
         }
 
         $target = $input->getArgument('target');
         $force = $input->getOption('force');
 
         if (realpath($file) === realpath($target)) {
-            throw new \InvalidArgumentException('Source and target should be different');
+            throw new InvalidArgumentException('Source and target should be different');
         }
 
         if (file_exists($target) && ! $force) {
-            throw new \InvalidArgumentException(sprintf('file `%s` already exists ; use --force to overwrite', $target));
+            throw new InvalidArgumentException(sprintf('file `%s` already exists ; use --force to overwrite', $target));
         }
 
         if (method_exists($spec, 'setAudioCodec')) {
@@ -73,19 +78,19 @@ class Alchemyst extends Command
                 $spec->setDimensions($input->getOption('width'), $input->getOption('height'));
             } elseif (( ! $input->getOption('width') && $input->getOption('height'))
                 || ($input->getOption('width') && ! $input->getOption('height'))) {
-                throw new \InvalidArgumentException('You should provide both dimensions or no dimensions');
+                throw new InvalidArgumentException('You should provide both dimensions or no dimensions');
             }
         }
 
-        $logger = new \Monolog\Logger('Logger');
+        $logger = new Logger('Logger');
 
-        $parameters = new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array(
+        $parameters = new ParameterBag(array(
                 'ffmpeg.threads' => $input->getOption('threads') ? $input->getOption('threads') : 1
             ));
 
-        $drivers = new \MediaAlchemyst\DriversContainer($parameters, $logger);
+        $drivers = new DriversContainer($parameters, $logger);
 
-        $Alchemyst = new \MediaAlchemyst\Alchemyst($drivers);
+        $Alchemyst = new Alchemyst($drivers);
         $Alchemyst->open($file);
         $Alchemyst->turnInto($target, $spec);
         $Alchemyst->close();
@@ -111,6 +116,6 @@ class Alchemyst extends Command
                 break;
         }
 
-        throw new \InvalidArgumentException(sprintf('Spec `s` is unknown', $name));
+        throw new InvalidArgumentException(sprintf('Spec `s` is unknown', $name));
     }
 }
