@@ -34,7 +34,9 @@ class Document2Flash extends AbstractTransmuter
             }
 
             $this->container['swftools.pdf-file']
-                ->toSwf($tmpDest, $dest);
+                ->open($tmpDest)
+                ->toSwf($dest);
+             $this->container['swftools.pdf-file']->close();
 
             unlink($tmpDest);
         } catch (UnoconvException $e) {
