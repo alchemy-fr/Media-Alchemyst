@@ -38,8 +38,8 @@
         {
             "package": "php-unoconv/php-unoconv",
             "version": "dev-master",
-            "source-reference": "2b3d1839ce0ca510c9644ceca057348282bd0a62",
-            "commit-date": "1346706337"
+            "source-reference": "c78fbbd7ce0dfb2663f0f0e3e9c1f9276ab198b8",
+            "commit-date": "1346840978"
         },
         {
             "package": "phpexiftool/exiftool",
@@ -184,8 +184,8 @@
         {
             "package": "symfony/http-kernel",
             "version": "dev-master",
-            "source-reference": "aeffdc93a69b65dad2f61c917f73c84b8e387ba4",
-            "commit-date": "1346143430"
+            "source-reference": "27e082967d9f417a0ad2f853ee4e37f6b752aa98",
+            "commit-date": "1345973524"
         },
         {
             "package": "symfony/routing",
