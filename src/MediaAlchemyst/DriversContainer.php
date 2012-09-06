@@ -61,14 +61,6 @@ class DriversContainer extends Pimple
                 return $driver->getDriver();
             });
 
-        $this['xpdf.pdf2swf'] = $this->share(function() use ($configuration, $logger) {
-                $SwfRender = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
-
-                $driver = new Pdf2Swf($logger, $SwfRender);
-
-                return $driver->getDriver();
-            });
-
         $this['unoconv'] = $this->share(function() use ($configuration, $logger) {
                 $unoconv = $configuration->has('Unoconv') ? $configuration->get('Unoconv') : null;
 
