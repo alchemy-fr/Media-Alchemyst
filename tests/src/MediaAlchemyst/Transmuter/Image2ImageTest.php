@@ -3,6 +3,10 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\UnknownSpecs;
+use MediaAlchemyst\Specification\Image;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
@@ -19,11 +23,11 @@ class Image2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Image2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
+        $this->object = new Image2Image(new DriversContainer(new ParameterBag(array())));
 
         Image2Image::$autorotate = false;
 
-        $this->specs = new \MediaAlchemyst\Specification\Image();
+        $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/photo03.JPG');
         $this->dest = __DIR__ . '/../../../files/output_auto_rotate.jpg';
     }
@@ -118,7 +122,7 @@ class Image2ImageTest extends AbstractAlchemystTester
         $this->specs->setDimensions(240, 260);
         $this->specs->setStrip(true);
         $this->specs->setRotationAngle(-90);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_OUTBOUND);
+        $this->specs->setResizeMode(Image::RESIZE_MODE_OUTBOUND);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -134,7 +138,7 @@ class Image2ImageTest extends AbstractAlchemystTester
     public function testExecuteInSetFixedRatio()
     {
         $this->specs->setDimensions(200, 200);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND_FIXEDRATIO);
+        $this->specs->setResizeMode(Image::RESIZE_MODE_INBOUND_FIXEDRATIO);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -153,7 +157,7 @@ class Image2ImageTest extends AbstractAlchemystTester
      */
     public function testWrongSpecs()
     {
-        $this->object->execute(new \MediaAlchemyst\Specification\UnknownSpecs(), $this->source, $this->dest);
+        $this->object->execute(new UnknownSpecs(), $this->source, $this->dest);
     }
 
     /**

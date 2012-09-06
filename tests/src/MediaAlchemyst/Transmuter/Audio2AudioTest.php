@@ -3,6 +3,10 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\Audio;
+use MediaAlchemyst\Specification\UnknownSpecs;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
@@ -20,10 +24,8 @@ class Audio2AudioTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Audio2Audio(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
-
-        $this->specs = new \MediaAlchemyst\Specification\Audio();
-
+        $this->object = new Audio2Audio(new DriversContainer(new ParameterBag(array())));
+        $this->specs = new Audio();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Audio.mp3');
         $this->dest = __DIR__ . '/../../../files/output_audio.flac';
     }
@@ -88,7 +90,7 @@ class Audio2AudioTest extends AbstractAlchemystTester
      */
     public function testWrongSpecs()
     {
-        $this->object->execute(new \MediaAlchemyst\Specification\UnknownSpecs(), $this->source, $this->dest);
+        $this->object->execute(new UnknownSpecs(), $this->source, $this->dest);
     }
 
 }

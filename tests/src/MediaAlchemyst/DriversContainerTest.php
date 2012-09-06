@@ -2,7 +2,8 @@
 
 namespace MediaAlchemyst;
 
-use \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class DriversContainerTest extends \PHPUnit_Framework_TestCase
 {
@@ -57,7 +58,7 @@ class DriversContainerTest extends \PHPUnit_Framework_TestCase
      */
     public function testgetUnoconv()
     {
-        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        $executableFinder = new ExecutableFinder();
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }

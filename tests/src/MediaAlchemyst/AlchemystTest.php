@@ -2,7 +2,13 @@
 
 namespace MediaAlchemyst;
 
-use \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use MediaAlchemyst\Specification\Audio;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\Flash;
+use MediaAlchemyst\Specification\Video;
+use MediaVorus\Media\MediaInterface;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/AbstractAlchemystTester.php';
 
@@ -25,11 +31,11 @@ class AlchemystTest extends AbstractAlchemystTester
     {
         $this->object = new Alchemyst(new DriversContainer(new ParameterBag(array())));
 
-        $this->specsAudio = new Specification\Audio();
-        $this->specsFlash = new Specification\Flash();
-        $this->specsVideo = new Specification\Video();
+        $this->specsAudio = new Audio();
+        $this->specsFlash = new Flash();
+        $this->specsVideo = new Video();
         $this->specsVideo->setDimensions(320, 240);
-        $this->specsImage = new Specification\Image();
+        $this->specsImage = new Image();
         $this->specsImage->setDimensions(320, 240);
     }
 
@@ -62,7 +68,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     public function testTurnIntoNoFile()
     {
-        $specs = new Specification\Audio();
+        $specs = new Audio();
 
         $this->object->turnInto(__DIR__ . '/../../files/output', $specs);
     }
@@ -80,7 +86,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsAudio);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_AUDIO, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_AUDIO, $media->getType());
 
         unlink($dest);
 
@@ -100,7 +106,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsImage);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_IMAGE, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
 
@@ -113,7 +119,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     public function testTurnIntoDocumentImage()
     {
-        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        $executableFinder = new ExecutableFinder();
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }
@@ -125,7 +131,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsImage);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_IMAGE, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
 
@@ -138,7 +144,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     public function testTurnIntoDocumentFlash()
     {
-        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        $executableFinder = new ExecutableFinder();
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }
@@ -150,7 +156,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsFlash);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_FLASH, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
 
         unlink($dest);
 
@@ -170,7 +176,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsImage);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_IMAGE, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
 
@@ -190,7 +196,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsImage);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_IMAGE, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_IMAGE, $media->getType());
 
         unlink($dest);
 
@@ -210,7 +216,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto($dest, $this->specsVideo);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(\MediaVorus\Media\MediaInterface::TYPE_VIDEO, $media->getType());
+        $this->assertEquals(MediaInterface::TYPE_VIDEO, $media->getType());
 
         unlink($dest);
 

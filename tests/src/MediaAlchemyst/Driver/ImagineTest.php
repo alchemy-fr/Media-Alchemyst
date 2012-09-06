@@ -2,13 +2,16 @@
 
 namespace MediaAlchemyst\Driver;
 
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
+
 class ImagineTest extends \PHPUnit_Framework_TestCase
 {
 
     protected function build($driver = null)
     {
-        $logger = new \Monolog\Logger('test');
-        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
 
         return new Imagine($logger, $driver);
     }

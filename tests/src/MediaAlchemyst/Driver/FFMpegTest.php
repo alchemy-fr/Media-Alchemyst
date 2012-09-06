@@ -2,12 +2,16 @@
 
 namespace MediaAlchemyst\Driver;
 
+use Symfony\Component\Process\ExecutableFinder;
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
+
 class FFMpegTest extends \PHPUnit_Framework_TestCase
 {
 
     public function setUp()
     {
-        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        $executableFinder = new ExecutableFinder();
         if ( ! $executableFinder->find('ffmpeg')) {
             $this->markTestSkipped('FFMpeg is not installed');
         }
@@ -15,8 +19,8 @@ class FFMpegTest extends \PHPUnit_Framework_TestCase
 
     protected function build($binary = null)
     {
-        $logger = new \Monolog\Logger('test');
-        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
 
         return new FFMpeg($logger, $binary);
     }

@@ -2,6 +2,8 @@
 
 namespace MediaAlchemyst\Driver;
 
+use Monolog\Logger;
+
 class ProviderTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -10,7 +12,7 @@ class ProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetLogger()
     {
-        $logger = new \Monolog\Logger('test');
+        $logger = new Logger('test');
 
         $provider = new TestProvider();
         $provider->setLogger($logger);

@@ -87,15 +87,15 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetResolution()
     {
-        $this->object->setResolution(60, 80, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH);
+        $this->object->setResolution(60, 80, Image::RESOLUTION_PIXELPERINCH);
         $this->assertEquals(60, $this->object->getResolutionX());
         $this->assertEquals(80, $this->object->getResolutionY());
-        $this->assertEquals(\MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH, $this->object->getResolutionUnit());
+        $this->assertEquals(Image::RESOLUTION_PIXELPERINCH, $this->object->getResolutionUnit());
 
-        $this->object->setResolution(70, 90, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERCENTIMETER);
+        $this->object->setResolution(70, 90, Image::RESOLUTION_PIXELPERCENTIMETER);
         $this->assertEquals(70, $this->object->getResolutionX());
         $this->assertEquals(90, $this->object->getResolutionY());
-        $this->assertEquals(\MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERCENTIMETER, $this->object->getResolutionUnit());
+        $this->assertEquals(Image::RESOLUTION_PIXELPERCENTIMETER, $this->object->getResolutionUnit());
     }
 
     /**
@@ -112,10 +112,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     {
         return array(
           array(10, 20, 'pixelparpied'),
-          array(0, 20, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
-          array(-5, 20, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
-          array(10, 0, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
-          array(10, -5, \MediaAlchemyst\Specification\Image::RESOLUTION_PIXELPERINCH),
+          array(0, 20, Image::RESOLUTION_PIXELPERINCH),
+          array(-5, 20, Image::RESOLUTION_PIXELPERINCH),
+          array(10, 0, Image::RESOLUTION_PIXELPERINCH),
+          array(10, -5, Image::RESOLUTION_PIXELPERINCH),
         );
     }
 

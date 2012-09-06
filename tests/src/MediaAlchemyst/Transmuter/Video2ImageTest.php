@@ -3,6 +3,12 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\Video;
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
@@ -24,12 +30,12 @@ class Video2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $logger = new \Monolog\Logger('test');
-        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
 
-        $this->object = new Video2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), $logger));
+        $this->object = new Video2Image(new DriversContainer(new ParameterBag(array()), $logger));
 
-        $this->specs = new \MediaAlchemyst\Specification\Image();
+        $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
         $this->dest = __DIR__ . '/../../../files/output_.png';
     }
@@ -61,7 +67,7 @@ class Video2ImageTest extends AbstractAlchemystTester
     public function testExecuteWithOptions()
     {
         $this->specs->setDimensions(320, 240);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND);
+        $this->specs->setResizeMode(Image::RESIZE_MODE_INBOUND);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -78,7 +84,7 @@ class Video2ImageTest extends AbstractAlchemystTester
      */
     public function testExecuteWrongSpecs()
     {
-        $this->object->execute(new \MediaAlchemyst\Specification\Video(), $this->source, $this->dest);
+        $this->object->execute(new Video(), $this->source, $this->dest);
     }
 
     /**

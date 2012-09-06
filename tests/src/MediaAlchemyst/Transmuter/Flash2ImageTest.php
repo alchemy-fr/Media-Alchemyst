@@ -3,6 +3,10 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\Video;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
@@ -19,9 +23,9 @@ class Flash2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Flash2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
+        $this->object = new Flash2Image(new DriversContainer(new ParameterBag(array())));
 
-        $this->specs = new \MediaAlchemyst\Specification\Image();
+        $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/flashfile.swf');
         $this->dest = __DIR__ . '/../../../files/output.jpg';
     }
@@ -40,7 +44,7 @@ class Flash2ImageTest extends AbstractAlchemystTester
      */
     public function testExecuteWrongSpecs()
     {
-        $this->specs = new \MediaAlchemyst\Specification\Video();
+        $this->specs = new Video();
         $this->object->execute($this->specs, $this->source, $this->dest);
     }
 
@@ -50,7 +54,7 @@ class Flash2ImageTest extends AbstractAlchemystTester
     public function testExecute()
     {
         $this->specs->setDimensions(320, 240);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND);
+        $this->specs->setResizeMode(Image::RESIZE_MODE_INBOUND);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -59,7 +63,7 @@ class Flash2ImageTest extends AbstractAlchemystTester
         $this->assertEquals(320, $MediaDest->getWidth());
         $this->assertEquals(240, $MediaDest->getHeight());
 
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND_FIXEDRATIO);
+        $this->specs->setResizeMode(Image::RESIZE_MODE_INBOUND_FIXEDRATIO);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 

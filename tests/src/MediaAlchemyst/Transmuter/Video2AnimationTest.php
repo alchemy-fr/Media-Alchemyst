@@ -3,6 +3,9 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\Animation;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
@@ -24,9 +27,9 @@ class Video2AnimationTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Video2Animation(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
+        $this->object = new Video2Animation(new DriversContainer(new ParameterBag(array())));
 
-        $this->specs = new \MediaAlchemyst\Specification\Animation();
+        $this->specs = new Animation();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
         $this->dest = __DIR__ . '/../../../files/output_.gif';
     }

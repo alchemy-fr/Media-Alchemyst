@@ -3,6 +3,12 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\UnknownSpecs;
+use MediaAlchemyst\Specification\Video;
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
@@ -21,14 +27,14 @@ class Video2VideoTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $logger = new \Monolog\Logger('test');
-        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
 
-        $this->object = new Video2Video(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()), $logger));
+        $this->object = new Video2Video(new DriversContainer(new ParameterBag(array()), $logger));
 
-        $this->specs = new \MediaAlchemyst\Specification\Video();
+        $this->specs = new Video();
         $this->specs->setDimensions(320, 240);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Video::RESIZE_MODE_FIT);
+        $this->specs->setResizeMode(Video::RESIZE_MODE_FIT);
 
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
         $this->dest = __DIR__ . '/../../../files/output_video.webm';
@@ -62,7 +68,7 @@ class Video2VideoTest extends AbstractAlchemystTester
     public function testExecuteInset()
     {
         $this->specs->setDimensions(320, 240);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Video::RESIZE_MODE_INSET);
+        $this->specs->setResizeMode(Video::RESIZE_MODE_INSET);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -127,7 +133,7 @@ class Video2VideoTest extends AbstractAlchemystTester
      */
     public function testExecuteWithBasSpecs()
     {
-        $this->object->execute(new \MediaAlchemyst\Specification\UnknownSpecs(), $this->source, $this->dest);
+        $this->object->execute(new UnknownSpecs(), $this->source, $this->dest);
     }
 
     /**

@@ -2,12 +2,16 @@
 
 namespace MediaAlchemyst\Driver;
 
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
+use Symfony\Component\Process\ExecutableFinder;
+
 class UnoconvTest extends \PHPUnit_Framework_TestCase
 {
 
     public function setUp()
     {
-        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
+        $executableFinder = new ExecutableFinder();
         if ( ! $executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }
@@ -15,8 +19,8 @@ class UnoconvTest extends \PHPUnit_Framework_TestCase
 
     protected function build($binary = null)
     {
-        $logger = new \Monolog\Logger('test');
-        $logger->pushHandler(new \Monolog\Handler\NullHandler());
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
 
         return new Unoconv($logger, $binary);
     }

@@ -3,12 +3,16 @@
 namespace MediaAlchemyst\Transmuter;
 
 use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\Video;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
 class Document2ImageTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Document2Image
      */
@@ -19,14 +23,15 @@ class Document2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $executableFinder = new \Symfony\Component\Process\ExecutableFinder();
-        if ( ! $executableFinder->find('unoconv')) {
+        $executableFinder = new ExecutableFinder();
+        if (!$executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }
 
-        $this->object = new Document2Image(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
 
-        $this->specs = new \MediaAlchemyst\Specification\Image();
+        $this->object = new Document2Image(new DriversContainer(new ParameterBag(array())));
+
+        $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Hello.odt');
         $this->dest = __DIR__ . '/../../../files/output.jpg';
     }
@@ -48,7 +53,7 @@ class Document2ImageTest extends AbstractAlchemystTester
     public function testExecute()
     {
         $this->specs->setDimensions(320, 240);
-        $this->specs->setResizeMode(\MediaAlchemyst\Specification\Image::RESIZE_MODE_INBOUND);
+        $this->specs->setResizeMode(Image::RESIZE_MODE_INBOUND);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 
@@ -65,8 +70,7 @@ class Document2ImageTest extends AbstractAlchemystTester
      */
     public function testExecuteWrongSpecs()
     {
-        $this->specs = new \MediaAlchemyst\Specification\Video();
+        $this->specs = new Video();
         $this->object->execute($this->specs, $this->source, $this->dest);
     }
-
 }
