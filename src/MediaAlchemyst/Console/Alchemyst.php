@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Console;
 
-use MediaAlchemyst\Alchemyst;
+use MediaAlchemyst\Alchemyst as AlchemystTransmuter;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Specification\Animation;
@@ -95,7 +95,7 @@ class Alchemyst extends Command
 
         $drivers = new DriversContainer($parameters, $logger);
 
-        $Alchemyst = new Alchemyst($drivers);
+        $Alchemyst = new AlchemystTransmuter($drivers);
         $Alchemyst->open($file);
         $Alchemyst->turnInto($target, $spec);
         $Alchemyst->close();
