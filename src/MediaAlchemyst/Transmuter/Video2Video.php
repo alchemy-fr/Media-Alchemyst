@@ -6,6 +6,7 @@ use FFMpeg\Format\Video\X264;
 use FFMpeg\Format\Video\WebM;
 use FFMpeg\Format\Video\Ogg;
 use FFMpeg\Format\Video\DefaultVideo;
+use FFMpeg\Exception\ExceptionInterface as FFMpegException;
 use MP4Box\Exception\ExceptionInterface as MP4BoxException;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Specification\Video;
