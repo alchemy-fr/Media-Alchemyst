@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/AbstractDriversContainerTest.php';
 
-class ApplicationServiceProviderTest extends AbstractDriversContainerTest
+class DriversContainersTest extends AbstractDriversContainerTest
 {
     public function getDrivers()
     {
