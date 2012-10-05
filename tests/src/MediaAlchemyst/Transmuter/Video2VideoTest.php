@@ -99,7 +99,7 @@ class Video2VideoTest extends AbstractAlchemystTester
         $mediaDest = $this->getMediaVorus()->guess($this->dest);
 
         $this->assertEquals('video/mp4', $mediaDest->getFile()->getMimeType());
-        $this->assertEquals(floor($this->source->getDuration()), floor($mediaDest->getDuration()));
+        $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
         $this->assertEquals(320, $mediaDest->getWidth());
         $this->assertEquals(240, $mediaDest->getHeight());
     }
