@@ -71,7 +71,12 @@ class Alchemyst
         return $this;
     }
 
-    protected function routeAction($pathfile_dest, SpecificationInterface $specs)
+    public static function create()
+    {
+        return new static(DriversContainer::create());
+    }
+
+    private function routeAction($pathfile_dest, SpecificationInterface $specs)
     {
         $route = sprintf('%s-%s', $this->mediaFile->getType(), $specs->getType());
 

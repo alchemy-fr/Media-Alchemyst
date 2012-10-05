@@ -93,4 +93,9 @@ class DriversContainer extends Pimple
             });
     }
 
+    public static function create()
+    {
+        return new static(new ParameterBag());
+    }
+
 }
