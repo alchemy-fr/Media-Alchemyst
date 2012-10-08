@@ -11,11 +11,11 @@ class ExiftoolExtractor extends AbstractDriver
 
     protected $driver;
 
-    public function __construct(Logger $logger, $use_binary = null)
+    public function __construct(Exiftool $exiftool, Logger $logger, $use_binary = null)
     {
         $this->logger = $logger;
 
-        $this->driver = new PreviewExtractor(new Exiftool());
+        $this->driver = new PreviewExtractor($exiftool);
     }
 
     public function getDriver()

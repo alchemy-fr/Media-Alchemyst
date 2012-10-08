@@ -23,7 +23,7 @@ class Flash2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Flash2Image(new DriversContainer(new ParameterBag(array())));
+        $this->object = new Flash2Image(new DriversContainer());
 
         $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/flashfile.swf');

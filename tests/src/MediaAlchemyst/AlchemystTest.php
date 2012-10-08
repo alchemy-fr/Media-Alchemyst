@@ -29,7 +29,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     protected function setUp()
     {
-        $this->object = new Alchemyst(new DriversContainer(new ParameterBag(array())));
+        $this->object = Alchemyst::create();
 
         $this->specsAudio = new Audio();
         $this->specsFlash = new Flash();

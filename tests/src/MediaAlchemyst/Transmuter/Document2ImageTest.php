@@ -29,7 +29,7 @@ class Document2ImageTest extends AbstractAlchemystTester
         }
 
 
-        $this->object = new Document2Image(new DriversContainer(new ParameterBag(array())));
+        $this->object = new Document2Image(new DriversContainer());
 
         $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Hello.odt');

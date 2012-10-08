@@ -21,18 +21,15 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $drivers = array(
-          'unoconv'    => 'nofile',
-          'mp4box'     => 'nofile',
-          'ffmpeg'     => 'nofile',
-          'ffprobe'    => 'nofile',
-          'exiftool'   => 'nofile',
-          'pdf2swf'    => 'nofile',
-          'swfrender'  => 'nofile',
-          'swfextract' => 'nofile',
-        );
+        $driversContainer = new DriversContainer();
 
-        $driversContainer = new DriversContainer(new ParameterBag($drivers));
+        $driversContainer['unoconv.binary'] = 'nofile';
+        $driversContainer['mp4box.binary'] = 'nofile';
+        $driversContainer['ffmpeg.ffmpeg.binary'] = 'nofile';
+        $driversContainer['ffmpeg.ffprobe.binary'] = 'nofile';
+        $driversContainer['pdf2swf.binary'] = 'nofile';
+        $driversContainer['swf-render.binary'] = 'nofile';
+        $driversContainer['swf-extract.binary'] = 'nofile';
 
         $this->object = new Alchemyst($driversContainer);
 

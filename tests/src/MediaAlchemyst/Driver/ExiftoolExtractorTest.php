@@ -3,6 +3,7 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
+use PHPExiftool\Exiftool;
 
 class ExiftoolExtractorTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,7 +21,7 @@ class ExiftoolExtractorTest extends \PHPUnit_Framework_TestCase
     {
         $logger = new Logger('test');
 
-        $this->object = new ExiftoolExtractor($logger);
+        $this->object = new ExiftoolExtractor(new Exiftool, $logger);
     }
 
 

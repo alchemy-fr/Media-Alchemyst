@@ -14,88 +14,95 @@ use MediaAlchemyst\Driver\SwfToolsFlashFile;
 use MediaAlchemyst\Driver\SwfToolsPDFFile;
 use MediaAlchemyst\Driver\Unoconv;
 use Pimple;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use PHPExiftool\Exiftool;
 
 class DriversContainer extends Pimple
 {
 
-    public function __construct(ParameterBag $configuration, Logger $logger = null)
+    public function __construct()
     {
-        if ( ! $logger) {
-            $logger = new Logger('Drivers');
-            $logger->pushHandler(new NullHandler());
-        }
+        $this['logger.name'] = 'Media-Alchemyst drivers logger';
 
-        $this['ffmpeg.ffmpeg'] = $this->share(function() use ($configuration, $logger) {
-                $ffmpeg = $configuration->has('ffmpeg') ? $configuration->get('ffmpeg') : null;
-                $ffprobe = $configuration->has('ffprobe') ? $configuration->get('ffprobe') : null;
-                $threads = $configuration->has('ffmpeg.threads') ? $configuration->get('ffmpeg.threads') : 1;
+        $this['logger.level'] = function (Pimple $container) {
+            return Logger::DEBUG;
+        };
 
-                $driver = new FFMpeg($logger, $ffmpeg, $ffprobe, $threads);
+        $this['logger.handler'] = $this->share(function(Pimple $container) {
+            return new NullHandler($container['logger.level']);
+        });
 
-                return $driver->getDriver();
-            });
+        $bridge = class_exists('Symfony\Bridge\Monolog\Logger');
 
-        $this['imagine'] = $this->share(function() use ($configuration, $logger) {
-                $imagine = $configuration->has('imagine') ? $configuration->get('imagine') : null;
+        $this['logger.class'] = $bridge ? 'Symfony\Bridge\Monolog\Logger' : 'Monolog\Logger';
 
-                $driver = new Imagine($logger, $imagine);
+        $this['logger'] = $this->share(function(Pimple $container) {
+            $logger = new $container['logger.class']($container['logger.name']);
+            $logger->pushHandler($container['logger.handler']);
 
-                return $driver->getDriver();
-            });
+            return $logger;
+        });
 
-        $this['swftools.flash-file'] = $this->share(function() use ($configuration, $logger) {
-                $SwfRender = $configuration->has('SwfRender') ? $configuration->get('SwfRender') : null;
-                $SwfExtract = $configuration->has('SwfExtract') ? $configuration->get('SwfExtract') : null;
+        $this['ffmpeg.ffprobe.binary'] = $this['mp4box.binary'] = $this['unoconv.binary']
+            = $this['pdf2swf.binary'] = $this['swf-render.binary'] = $this['swf-extract.binary']
+            = $this['imagine.driver'] = $this['ffmpeg.ffmpeg.binary'] = null;
 
-                $driver = new SwfToolsFlashFile($logger, $SwfExtract, $SwfRender);
+        $this['ffmpeg.threads'] = 1;
 
-                return $driver->getDriver();
-            });
+        $this['ffmpeg.ffmpeg'] = $this->share(function(Pimple $container) {
+            $driver = new FFMpeg($container['logger'], $container['ffmpeg.ffmpeg.binary'], $container['ffmpeg.ffprobe.binary'], $container['ffmpeg.threads']);
 
-        $this['swftools.pdf-file'] = $this->share(function() use ($configuration, $logger) {
-                $pdf2swf = $configuration->has('Pdf2Swf') ? $configuration->get('Pdf2Swf') : null;
+            return $driver->getDriver();
+        });
 
-                $driver = new SwfToolsPDFFile($logger, $pdf2swf);
+        $this['imagine'] = $this->share(function(Pimple $container) {
+            $driver = new Imagine($container['logger'], $container['imagine.driver']);
 
-                return $driver->getDriver();
-            });
+            return $driver->getDriver();
+        });
 
-        $this['unoconv'] = $this->share(function() use ($configuration, $logger) {
-                $unoconv = $configuration->has('Unoconv') ? $configuration->get('Unoconv') : null;
+        $this['swftools.flash-file'] = $this->share(function(Pimple $container) {
+            $driver = new SwfToolsFlashFile($container['logger'], $container['swf-extract.binary'], $container['swf-render.binary']);
 
-                $driver = new Unoconv($logger, $unoconv);
+            return $driver->getDriver();
+        });
 
-                return $driver->getDriver();
-            });
+        $this['swftools.pdf-file'] = $this->share(function(Pimple $container) {
+            $driver = new SwfToolsPDFFile($container['logger'], $container['pdf2swf.binary']);
 
-        $this['exiftool.preview-extractor'] = $this->share(function() use ($configuration, $logger) {
-                $driver = new ExiftoolExtractor($logger, null);
+            return $driver->getDriver();
+        });
 
-                return $driver->getDriver();
-            });
+        $this['unoconv'] = $this->share(function(Pimple $container) {
+            $driver = new Unoconv($container['logger'], $container['unoconv.binary']);
 
-        $this['mp4box'] = $this->share(function() use ($configuration, $logger) {
-                $MP4Box = $configuration->has('MP4Box') ? $configuration->get('MP4Box') : null;
+            return $driver->getDriver();
+        });
 
-                $driver = new MP4Box($logger, $MP4Box);
+        $this['exiftool.exiftool'] = $this->share(function() {
+            return new Exiftool();
+        });
 
-                return $driver->getDriver();
-            });
+        $this['exiftool.preview-extractor'] = $this->share(function(Pimple $container) {
+            $driver = new ExiftoolExtractor($container['exiftool.exiftool'], $container['logger'], null);
 
-        $this['mediavorus'] = $this->share(function() use ($configuration, $logger) {
+            return $driver->getDriver();
+        });
 
-                $ffprobeConf = $configuration->has('ffprobe') ? $configuration->get('ffprobe') : null;
+        $this['mp4box'] = $this->share(function(Pimple $container) {
+            $driver = new MP4Box($container['logger'], $container['mp4box.binary']);
 
-                $driver = new MediaVorus($logger, $ffprobeConf);
+            return $driver->getDriver();
+        });
 
-                return $driver->getDriver();
-            });
+        $this['mediavorus'] = $this->share(function(Pimple $container) {
+            $driver = new MediaVorus($container['logger'], $container['ffmpeg.ffprobe.binary']);
+
+            return $driver->getDriver();
+        });
     }
 
     public static function create()
     {
-        return new static(new ParameterBag());
+        return new static();
     }
-
 }

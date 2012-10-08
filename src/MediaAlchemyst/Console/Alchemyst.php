@@ -88,12 +88,10 @@ class Alchemyst extends Command
         }
 
         $logger = new Logger('Logger');
+        new \Monolog\Handler\StreamHandler();
 
-        $parameters = new ParameterBag(array(
-                'ffmpeg.threads' => $input->getOption('threads') ? $input->getOption('threads') : 1
-            ));
-
-        $drivers = new DriversContainer($parameters, $logger);
+        $drivers = new DriversContainer();
+        $drivers['ffmpeg.threads'] = $input->getOption('threads') ?: 1;
 
         $Alchemyst = new AlchemystTransmuter($drivers);
         $Alchemyst->open($file);

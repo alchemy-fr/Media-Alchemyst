@@ -23,7 +23,7 @@ class Image2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Image2Image(new DriversContainer(new ParameterBag(array())));
+        $this->object = new Image2Image(new DriversContainer());
 
         Image2Image::$autorotate = false;
 

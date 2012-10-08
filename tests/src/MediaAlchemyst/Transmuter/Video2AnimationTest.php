@@ -27,7 +27,7 @@ class Video2AnimationTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Video2Animation(new DriversContainer(new ParameterBag(array())));
+        $this->object = new Video2Animation(new DriversContainer());
 
         $this->specs = new Animation();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');

@@ -24,7 +24,7 @@ class Audio2AudioTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Audio2Audio(new DriversContainer(new ParameterBag(array())));
+        $this->object = new Audio2Audio(new DriversContainer());
         $this->specs = new Audio();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Audio.mp3');
         $this->dest = __DIR__ . '/../../../files/output_audio.flac';

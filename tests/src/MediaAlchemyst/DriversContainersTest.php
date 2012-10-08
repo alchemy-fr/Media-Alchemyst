@@ -13,6 +13,6 @@ class DriversContainersTest extends AbstractDriversContainerTest
 {
     public function getDrivers()
     {
-        return new DriversContainer(new ParameterBag());
+        return new DriversContainer();
     }
 }
