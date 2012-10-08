@@ -46,6 +46,29 @@ $alchemyst->open('movie.mp4')
 * Unoconv (for Office documents processing)
 * SwfTools (for Flash files processing)
 
+## Silex service provider ?
+
+Need a [Silex](silex.sensiolabs.org) service provider ? Of course it's provided !
+
+```php
+
+use Silex\Application;
+use MediaAlchemyst\Alchemyst;
+use MediaAlchemyst\MediaAlchemystServiceProvider;
+use MediaVorus\MediaVorusServiceProvider;
+
+$app = new Application();
+$app->register(new MediaAlchemystSerciceProvider());
+
+// MediaVorus service provider is required to use MediaAlchemyst service provider
+// Find it here https://github.com/romainneutron/MediaVorus
+$app->register(new MediaVorusServiceProvider());
+
+// Have fun OH YEAH
+assert($app['media-alchemyst'] instanceof Alchemyst);
+
+```
+
 ## Customize drivers
 
 Drivers preferences can be specified through the `DriversContainer` :
