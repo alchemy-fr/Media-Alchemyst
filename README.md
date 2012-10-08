@@ -28,6 +28,7 @@ $video->setDimensions(320, 240)
     ->setFramerate(15)
     ->setGOPSize(200);
 
+// AMAZING
 $alchemyst->open('movie.mp4')
     ->turnInto('animation.gif', new Animation())
     ->turnInto('screenshot.jpg', new Image())
@@ -36,7 +37,7 @@ $alchemyst->open('movie.mp4')
 
 ```
 
-## What you need for that
+## What is currently supported ?
 
 * Working install of FFMpeg (for AUdio / Video processing)
 * Gpac (for X264 Video processing)
@@ -47,8 +48,16 @@ $alchemyst->open('movie.mp4')
 
 ## Customize drivers
 
+Drivers preferences can be specified through the `DriversContainer` :
+
 ```php
-// to do
+
+$container = new DriversContainer();
+
+$container['ffmpeg.ffmpeg.binary'] = '/path/to/ffmpeg/custom/build';
+$container['image.driver'] = 'Gmagick'; // use Gmagick ImagineDriver
+$container['mp4box.binary'] = '/path/to/mp4box/custom/build';
+
 ```
 
 ## License
