@@ -31,6 +31,7 @@
     },
     "minimum-stability": "dev",
     "require-dev": {
+        "phpexiftool/phpexiftool": "dev-master",
         "grom/silex-service-provider": "dev-master"
     },
     "autoload": {

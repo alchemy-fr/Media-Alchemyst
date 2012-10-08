@@ -1,5 +1,5 @@
 {
-    "hash": "dbc928652bbaca5b9a5907c2af3c2a5f",
+    "hash": "94760b90864081b0fa4cc99c6cf728e7",
     "packages": [
         {
             "name": "doctrine/common",
@@ -7,18 +7,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common",
-                "reference": "9e3bea96c8f4fb65d62270f66c4e8cee4de20438"
+                "reference": "150cb23135aa338b8f425fe40fa450ed372c8085"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/common/zipball/9e3bea96c8f4fb65d62270f66c4e8cee4de20438",
-                "reference": "9e3bea96c8f4fb65d62270f66c4e8cee4de20438",
+                "url": "https://github.com/doctrine/common/zipball/150cb23135aa338b8f425fe40fa450ed372c8085",
+                "reference": "150cb23135aa338b8f425fe40fa450ed372c8085",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1349083159",
+            "time": "1349626836",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -54,7 +54,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -891,18 +891,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "64fe72c44346dc6ee0a51075e7722ee0af1388ca"
+                "reference": "5f18e1d5b901b320d05230aa91934e7d81f64bb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/zipball/64fe72c44346dc6ee0a51075e7722ee0af1388ca",
-                "reference": "64fe72c44346dc6ee0a51075e7722ee0af1388ca",
+                "url": "https://github.com/symfony/HttpFoundation/zipball/5f18e1d5b901b320d05230aa91934e7d81f64bb4",
+                "reference": "5f18e1d5b901b320d05230aa91934e7d81f64bb4",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1349363877",
+            "time": "1349553277",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -939,12 +939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel",
-                "reference": "970a66bcaca90d160b3cc920c87c275147a7142b"
+                "reference": "676a7bb2c6c4d5669ca073cceae3ac393748752a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpKernel/zipball/970a66bcaca90d160b3cc920c87c275147a7142b",
-                "reference": "970a66bcaca90d160b3cc920c87c275147a7142b",
+                "url": "https://github.com/symfony/HttpKernel/zipball/676a7bb2c6c4d5669ca073cceae3ac393748752a",
+                "reference": "676a7bb2c6c4d5669ca073cceae3ac393748752a",
                 "shasum": ""
             },
             "require": {
@@ -970,7 +970,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "1349363877",
+            "time": "1349553277",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1006,18 +1006,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process",
-                "reference": "2965a0340c138d7b47e74ed6c44402d946f0bbd2"
+                "reference": "fc5b082e436161427e29652e3316d7def5f7a64f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Process/zipball/2965a0340c138d7b47e74ed6c44402d946f0bbd2",
-                "reference": "2965a0340c138d7b47e74ed6c44402d946f0bbd2",
+                "url": "https://github.com/symfony/Process/zipball/fc5b082e436161427e29652e3316d7def5f7a64f",
+                "reference": "fc5b082e436161427e29652e3316d7def5f7a64f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1349363877",
+            "time": "1349553363",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1119,6 +1119,7 @@
         "php-unoconv/php-unoconv": 20,
         "php-mp4box/php-mp4box": 20,
         "imagine/imagine": 20,
+        "phpexiftool/phpexiftool": 20,
         "grom/silex-service-provider": 20
     }
 }
