@@ -7,6 +7,7 @@ use Imagine\Image\ImageInterface;
 use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\SpecificationInterface;
+use MediaAlchemyst\Exception\RuntimeException;
 use MediaAlchemyst\Exception\SpecNotSupportedException;
 use MediaVorus\Media\MediaInterface;
 use SwfTools\Exception\ExceptionInterface as SwfToolsException;

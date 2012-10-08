@@ -9,7 +9,6 @@ use MediaAlchemyst\Driver\FFMpeg;
 use MediaAlchemyst\Driver\Imagine;
 use MediaAlchemyst\Driver\MP4Box;
 use MediaAlchemyst\Driver\MediaVorus;
-use MediaAlchemyst\Driver\Pdf2Swf;
 use MediaAlchemyst\Driver\SwfToolsFlashFile;
 use MediaAlchemyst\Driver\SwfToolsPDFFile;
 use MediaAlchemyst\Driver\Unoconv;
