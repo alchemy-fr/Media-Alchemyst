@@ -30,6 +30,9 @@ class Video2AnimationTest extends AbstractAlchemystTester
         $this->object = new Video2Animation(new DriversContainer());
 
         $this->specs = new Animation();
+        $this->specs->setDimensions(130, 110);
+        $this->specs->setResizeMode(Animation::RESIZE_MODE_OUTBOUND);
+
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
         $this->dest = __DIR__ . '/../../../files/output_.gif';
     }
@@ -41,6 +44,11 @@ class Video2AnimationTest extends AbstractAlchemystTester
     public function testExecute()
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
+
+        $output = $this->getMediaVorus()->guess($this->dest);
+
+        $this->assertEquals(130, $output->getWidth());
+        $this->assertEquals(110, $output->getHeight());
     }
 
 }

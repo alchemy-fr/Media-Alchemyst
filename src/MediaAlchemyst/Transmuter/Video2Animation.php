@@ -3,6 +3,7 @@
 namespace MediaAlchemyst\Transmuter;
 
 use FFMpeg\Exception\ExceptionInterface as FFMpegException;
+use Imagine\Image\ImageInterface;
 use Gmagick;
 use GmagickException;
 use MediaAlchemyst\Specification\Animation;
@@ -55,7 +56,7 @@ class Video2Animation extends AbstractTransmuter
 
                     $box = $this->boxFromImageSpec($spec, $this->container['mediavorus']->guess($file));
 
-                    if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
+                    if ($spec->getResizeMode() == Animation::RESIZE_MODE_OUTBOUND) {
                         /* @var $image \Imagine\Gmagick\Image */
                         $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
                     } else {
