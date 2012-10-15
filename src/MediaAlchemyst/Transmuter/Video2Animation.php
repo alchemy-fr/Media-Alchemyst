@@ -45,7 +45,33 @@ class Video2Animation extends AbstractTransmuter
             }
 
             $movie->close();
-            $movie = null;
+            unset($movie);
+
+            foreach ($files as $file) {
+
+                $image = $this->container['imagine']->open($file);
+
+                if ($spec->getWidth() && $spec->getHeight()) {
+
+                    $box = $this->boxFromImageSpec($spec, $this->container['mediavorus']->guess($file));
+
+                    if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
+                        /* @var $image \Imagine\Gmagick\Image */
+                        $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
+                    } else {
+                        $image = $image->resize($box);
+                    }
+                }
+
+                $image->save($file, array(
+                    'quality'          => $spec->getQuality(),
+                    'resolution-units' => $spec->getResolutionUnit(),
+                    'resolution-x'     => $spec->getResolutionX(),
+                    'resolution-y'     => $spec->getResolutionY(),
+                ));
+
+                unset($image);
+            }
 
             $GIF = new Gmagick();
 
