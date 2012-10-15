@@ -2,6 +2,7 @@
 
 namespace MediaAlchemyst\Transmuter;
 
+use Imagine\Image\ImageInterface;
 use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
 use MediaVorus\Media\Media;
@@ -49,9 +50,9 @@ class Video2Animation extends Provider
 
                 if ($spec->getWidth() && $spec->getHeight()) {
 
-                    $box = $this->boxFromImageSpec($spec, $this->container['mediavorus']->guess($file));
+                    $box = $this->boxFromImageSpec($spec, $this->container['mediavorus']->guess(new \SplFileInfo($file)));
 
-                    if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
+                    if ($spec->getResizeMode() == Specification\Animation::RESIZE_MODE_OUTBOUND) {
                         /* @var $image \Imagine\Gmagick\Image */
                         $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
                     } else {
