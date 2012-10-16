@@ -46,7 +46,7 @@ class Video2Animation extends Provider
 
             foreach ($files as $file) {
 
-                $image = $this->container['imagine']->open($file);
+                $image = $this->container->getImagine()->open($file);
 
                 if ($spec->getWidth() && $spec->getHeight()) {
 
