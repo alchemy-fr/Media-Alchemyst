@@ -12,12 +12,12 @@ use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Exception\InvalidArgumentException;
 use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class Alchemyst extends Command
 {
@@ -88,7 +88,7 @@ class Alchemyst extends Command
         }
 
         $logger = new Logger('Logger');
-        new \Monolog\Handler\StreamHandler();
+        new StreamHandler('php://stdout');
 
         $drivers = new DriversContainer();
         $drivers['ffmpeg.threads'] = $input->getOption('threads') ?: 1;
