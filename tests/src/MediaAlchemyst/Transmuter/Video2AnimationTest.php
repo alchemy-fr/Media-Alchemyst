@@ -2,6 +2,8 @@
 
 namespace MediaAlchemyst\Transmuter;
 
+use MediaAlchemyst\Specification\Animation;
+
 class Video2AnimationTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -22,13 +24,14 @@ class Video2AnimationTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->mediavorus = new \MediaVorus\MediaVorus();
-        $this->object = new Video2Animation(new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array())));
+        $drivers = new \MediaAlchemyst\DriversContainer(new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag(array()));
+        $this->object = new Video2Animation($drivers);
 
         $this->specs = new Animation();
         $this->specs->setDimensions(130, 110);
         $this->specs->setResizeMode(Animation::RESIZE_MODE_OUTBOUND);
 
-        $this->source = $this->getMediaVorus()->guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
+        $this->source = $this->mediavorus->guess(new \SplFileInfo(__DIR__ . '/../../../files/Test.ogv'));
         $this->dest = __DIR__ . '/../../../files/output_.gif';
     }
 
@@ -40,7 +43,7 @@ class Video2AnimationTest extends \PHPUnit_Framework_TestCase
     {
         $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $output = $this->getMediaVorus()->guess($this->dest);
+        $output = $this->mediavorus->guess(new \SplFileInfo($this->dest));
 
         $this->assertEquals(130, $output->getWidth());
         $this->assertEquals(110, $output->getHeight());

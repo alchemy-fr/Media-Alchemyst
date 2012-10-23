@@ -75,6 +75,12 @@ class DriversContainer extends \Pimple
 
                 return new \MediaVorus\MediaVorus();
             });
+
+        $this['ghostscript.transcoder'] = $this->share(function() use ($configuration, $logger) {
+                $binary = $configuration->has('ghostscript') ? $configuration->get('ghostscript') : null;
+
+                return new Driver\Ghostscript($logger, $binary);
+            });
     }
 
     /**

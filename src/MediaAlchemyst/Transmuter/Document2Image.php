@@ -21,20 +21,24 @@ class Document2Image extends Provider
 
         try {
 
-            /**
-             * Support for unoconv < 0.4 : pagerange is not supported
-             */
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container->getUnoconv()
                     ->open($source->getFile()->getPathname())
-                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest)
-//                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
+                    ->saveAs(\Unoconv\Unoconv::FORMAT_PDF, $tmpDest, '1-1')
                     ->close();
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $image = $this->container->getImagine()->open($tmpDest);
+            $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
+
+            $this->container['ghostscript.transcoder']->open($tmpDest)
+                ->transcode($tmpDestSinglePage, 1, 1)
+                ->close();
+
+            $toremove[] = $tmpDest;
+
+            $image = $this->container->getImagine()->open($tmpDestSinglePage);
 
             $options = array(
                 'quality'          => $spec->getQuality(),
@@ -47,8 +51,8 @@ class Document2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
-                rename($dest, $tmpDest);
+                $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv');
+                rename($dest, $tmpDestSinglePage);
 
                 $image = $this->container->getImagine()->open($tmpDest);
 
@@ -71,6 +75,8 @@ class Document2Image extends Provider
             foreach ($toremove as $tmpDest) {
                 unlink($tmpDest);
             }
+        } catch (\Ghostscript\Exception\ExceptionInterface $e) {
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Unoconv\Exception\Exception $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\Imagine\Exception\Exception $e) {

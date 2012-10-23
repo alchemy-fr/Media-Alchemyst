@@ -21,6 +21,7 @@
         "pimple/pimple": "1.*",
         "mediavorus/mediavorus": "dev-master",
         "swftools/swftools": "dev-master",
+        "alchemy/ghostscript": "dev-master",
         "php-ffmpeg/php-ffmpeg": "dev-master",
         "php-unoconv/php-unoconv": "dev-master",
         "php-mp4box/php-mp4box": "dev-master",
@@ -30,9 +31,6 @@
         "symfony/console": ">2.0"
     },
     "minimum-stability": "dev",
-    "require-dev": {
-        "fabpot/php-cs-fixer": "dev-master"
-    },
     "autoload": {
         "psr-0": {
             "MediaAlchemyst": "src"
