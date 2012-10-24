@@ -78,8 +78,9 @@ class DriversContainer extends \Pimple
 
         $this['ghostscript.transcoder'] = $this->share(function() use ($configuration, $logger) {
                 $binary = $configuration->has('ghostscript') ? $configuration->get('ghostscript') : null;
+                $driver = new Driver\Ghostscript($logger, $binary);
 
-                return new Driver\Ghostscript($logger, $binary);
+                return $driver->getDriver();
             });
     }
 
