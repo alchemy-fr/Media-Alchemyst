@@ -9,6 +9,7 @@ use MediaAlchemyst\Driver\FFMpeg;
 use MediaAlchemyst\Driver\Imagine;
 use MediaAlchemyst\Driver\MP4Box;
 use MediaAlchemyst\Driver\MediaVorus;
+use MediaAlchemyst\Driver\Ghostscript;
 use MediaAlchemyst\Driver\SwfToolsFlashFile;
 use MediaAlchemyst\Driver\SwfToolsPDFFile;
 use MediaAlchemyst\Driver\Unoconv;
@@ -43,7 +44,8 @@ class DriversContainer extends Pimple
 
         $this['ffmpeg.ffprobe.binary'] = $this['mp4box.binary'] = $this['unoconv.binary']
             = $this['pdf2swf.binary'] = $this['swf-render.binary'] = $this['swf-extract.binary']
-            = $this['imagine.driver'] = $this['ffmpeg.ffmpeg.binary'] = null;
+            = $this['imagine.driver'] = $this['ffmpeg.ffmpeg.binary'] 
+            = $this['ghostscript.binary'] = null;
 
         $this['ffmpeg.threads'] = 1;
 
@@ -79,6 +81,12 @@ class DriversContainer extends Pimple
 
         $this['exiftool.exiftool'] = $this->share(function() {
             return new Exiftool();
+        });
+
+        $this['ghostscript.pdf-transcoder'] = $this->share(function(Pimple $container) {
+            $driver = new Ghostscript($container['logger'], $container['ghostscript.binary']);
+
+            return $driver->getDriver();
         });
 
         $this['exiftool.preview-extractor'] = $this->share(function(Pimple $container) {

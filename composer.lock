@@ -1,6 +1,59 @@
 {
-    "hash": "10f79a3ee61875cc62513a098b1a07c1",
+    "hash": "19ea0402583e3f016e7276beacd8b42f",
     "packages": [
+        {
+            "name": "alchemy/ghostscript",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/alchemy-fr/Ghostscript-PHP.git",
+                "reference": "5ee945dd5db00f76326dc017ea8f0d77cc87370e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/zipball/5ee945dd5db00f76326dc017ea8f0d77cc87370e",
+                "reference": "5ee945dd5db00f76326dc017ea8f0d77cc87370e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/process": ">=2.0,<=2.2",
+                "monolog/monolog": "1.*"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "master",
+                "sami/sami": "dev-master",
+                "silex/silex": "dev-master"
+            },
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Ghostscript": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romain Neutron",
+                    "email": "imprec@gmail.com",
+                    "homepage": "http://www.lickmychip.com/"
+                },
+                {
+                    "name": "Phraseanet Team",
+                    "email": "info@alchemy.fr",
+                    "homepage": "http://www.phraseanet.com/"
+                }
+            ],
+            "description": "Ghostscript PDF, a library to handle PDF through ghostscript",
+            "keywords": [
+                "pdf",
+                "ghostscript"
+            ],
+            "time": "1351010495"
+        },
         {
             "name": "doctrine/common",
             "version": "dev-master",
@@ -71,63 +124,17 @@
             ]
         },
         {
-            "name": "grom/silex-service-provider",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GromNaN/SilexServiceProvider.git",
-                "reference": "1d37fa54aaecfacb68fde4c60392da0c1ca6300d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/GromNaN/SilexServiceProvider/zipball/1d37fa54aaecfacb68fde4c60392da0c1ca6300d",
-                "reference": "1d37fa54aaecfacb68fde4c60392da0c1ca6300d",
-                "shasum": ""
-            },
-            "require": {
-                "silex/silex": ">=1.0.0-dev",
-                "knplabs/knp-snappy": "dev-master",
-                "imagine/imagine": "*"
-            },
-            "time": "1338686843",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Grom\\Silex": "src"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jérôme Tamarelle",
-                    "email": "jerome@tamarelle.net"
-                }
-            ],
-            "description": "Imagine & KnpSnappy integration for Silex.",
-            "homepage": "http://github.com/GromNaN/SilexServiceProvider",
-            "keywords": [
-                "silex",
-                "image",
-                "snappy",
-                "pdf",
-                "imagine"
-            ]
-        },
-        {
             "name": "imagine/Imagine",
             "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine",
-                "reference": "1cb89a88d68d8bc9592ddc57c1214510d349912f"
+                "reference": "2da3004b1201649598377c1aa5b24f9788abe83f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/avalanche123/Imagine/zipball/1cb89a88d68d8bc9592ddc57c1214510d349912f",
-                "reference": "1cb89a88d68d8bc9592ddc57c1214510d349912f",
+                "url": "https://github.com/avalanche123/Imagine/zipball/2da3004b1201649598377c1aa5b24f9788abe83f",
+                "reference": "2da3004b1201649598377c1aa5b24f9788abe83f",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +143,6 @@
             "require-dev": {
                 "sami/sami": "dev-master"
             },
-            "time": "1348858156",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -161,58 +167,8 @@
                 "image processing",
                 "drawing",
                 "graphics"
-            ]
-        },
-        {
-            "name": "knplabs/knp-snappy",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/KnpLabs/snappy.git",
-                "reference": "17da0d095913d089db5546ce884e844a144b3e1f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/KnpLabs/snappy/zipball/17da0d095913d089db5546ce884e844a144b3e1f",
-                "reference": "17da0d095913d089db5546ce884e844a144b3e1f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "suggest": {
-                "symfony/process": "Process Component of Symfony2."
-            },
-            "time": "1348990625",
-            "type": "library",
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Knp\\Snappy": "src/"
-                }
-            },
-            "license": [
-                "MIT"
             ],
-            "authors": [
-                {
-                    "name": "KnpLabs Team",
-                    "homepage": "http://knplabs.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://github.com/KnpLabs/snappy/contributors"
-                }
-            ],
-            "description": "PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
-            "homepage": "http://github.com/KnpLabs/snappy",
-            "keywords": [
-                "knp",
-                "knplabs",
-                "pdf",
-                "thumbnail",
-                "snapshot"
-            ]
+            "time": "1350920158"
         },
         {
             "name": "mediavorus/mediavorus",
@@ -567,7 +523,6 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "1347278988",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -594,85 +549,8 @@
             "keywords": [
                 "dependency injection",
                 "container"
-            ]
-        },
-        {
-            "name": "silex/silex",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git://github.com/fabpot/Silex.git",
-                "reference": "ffb53a4979b731d08dde6c7b455a9374a9ddd804"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/fabpot/Silex/zipball/ffb53a4979b731d08dde6c7b455a9374a9ddd804",
-                "reference": "ffb53a4979b731d08dde6c7b455a9374a9ddd804",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/event-dispatcher": "2.1.*",
-                "symfony/http-foundation": "2.1.*",
-                "symfony/http-kernel": "2.1.*",
-                "symfony/routing": "2.1.*",
-                "php": ">=5.3.3",
-                "pimple/pimple": "1.*"
-            },
-            "require-dev": {
-                "symfony/form": "2.1.*",
-                "symfony/translation": "2.1.*",
-                "symfony/twig-bridge": "2.1.*",
-                "symfony/validator": "2.1.*",
-                "symfony/monolog-bridge": "2.1.*",
-                "symfony/browser-kit": "2.1.*",
-                "symfony/css-selector": "2.1.*",
-                "symfony/finder": "2.1.*",
-                "symfony/process": "2.1.*",
-                "symfony/security": "2.1.*",
-                "monolog/monolog": ">=1.0.0,<1.2-dev",
-                "symfony/config": "2.1.*",
-                "symfony/locale": "2.1.*",
-                "twig/twig": ">=1.8.0,<2.0-dev",
-                "swiftmailer/swiftmailer": "4.2.*",
-                "doctrine/dbal": ">=2.2.0,<2.4.0-dev"
-            },
-            "suggest": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/css-selector": "2.1.*",
-                "symfony/dom-crawler": "2.1.*"
-            },
-            "time": "1350048193",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Silex": "src/"
-                }
-            },
-            "license": [
-                "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch",
-                    "homepage": "http://wiedler.ch/igor/"
-                }
-            ],
-            "description": "The PHP micro-framework based on the Symfony2 Components",
-            "homepage": "http://silex.sensiolabs.org",
-            "keywords": [
-                "microframework"
-            ]
+            "time": "1347278988"
         },
         {
             "name": "swftools/swftools",
@@ -717,7 +595,7 @@
                 },
                 {
                     "name": "Phraseanet Team",
-                    "email": "support@alchemy.fr",
+                    "email": "info@alchemy.fr",
                     "homepage": "http://www.phraseanet.com/"
                 }
             ],
@@ -735,18 +613,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "7daac278f160073afccfcbf928ddb39282a8539d"
+                "reference": "b52c747c551d8d71c02e17853c8f637d8d5e9cef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/zipball/7daac278f160073afccfcbf928ddb39282a8539d",
-                "reference": "7daac278f160073afccfcbf928ddb39282a8539d",
+                "url": "https://github.com/symfony/Console/zipball/b52c747c551d8d71c02e17853c8f637d8d5e9cef",
+                "reference": "b52c747c551d8d71c02e17853c8f637d8d5e9cef",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1350313602",
+            "time": "1350717030",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -776,90 +654,37 @@
             "homepage": "http://symfony.com"
         },
         {
-            "name": "symfony/event-dispatcher",
-            "version": "2.1.x-dev",
-            "target-dir": "Symfony/Component/EventDispatcher",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher",
-                "reference": "fb273317c0505ba657aa3d727530d36ae671fb82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/symfony/EventDispatcher/zipball/fb273317c0505ba657aa3d727530d36ae671fb82",
-                "reference": "fb273317c0505ba657aa3d727530d36ae671fb82",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "symfony/dependency-injection": "2.1.*"
-            },
-            "suggest": {
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/http-kernel": "2.1.*"
-            },
-            "time": "1349363877",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\EventDispatcher": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony EventDispatcher Component",
-            "homepage": "http://symfony.com"
-        },
-        {
             "name": "symfony/http-foundation",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "6a6185c9458e7c29447cd0579b9be647aea95dd1"
+                "reference": "7d93dccc7813ee0b046c8ca8ebdf76eb93dafb95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/zipball/6a6185c9458e7c29447cd0579b9be647aea95dd1",
-                "reference": "6a6185c9458e7c29447cd0579b9be647aea95dd1",
+                "url": "https://github.com/symfony/HttpFoundation/zipball/7d93dccc7813ee0b046c8ca8ebdf76eb93dafb95",
+                "reference": "7d93dccc7813ee0b046c8ca8ebdf76eb93dafb95",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1350594961",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\HttpFoundation": "",
-                    "SessionHandlerInterface": "Symfony/Component/HttpFoundation/Resources/stubs"
-                }
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/HttpFoundation/Resources/stubs"
+                ]
             },
             "license": [
                 "MIT"
@@ -875,74 +700,8 @@
                 }
             ],
             "description": "Symfony HttpFoundation Component",
-            "homepage": "http://symfony.com"
-        },
-        {
-            "name": "symfony/http-kernel",
-            "version": "2.1.x-dev",
-            "target-dir": "Symfony/Component/HttpKernel",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/HttpKernel",
-                "reference": "607aae40607abf459ab6be074258ec41323c4fa6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/symfony/HttpKernel/zipball/607aae40607abf459ab6be074258ec41323c4fa6",
-                "reference": "607aae40607abf459ab6be074258ec41323c4fa6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/event-dispatcher": "2.1.*",
-                "symfony/http-foundation": "2.1.*"
-            },
-            "require-dev": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/class-loader": "2.1.*",
-                "symfony/config": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/finder": "2.1.*",
-                "symfony/process": "2.1.*",
-                "symfony/routing": "2.1.*"
-            },
-            "suggest": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/class-loader": "2.1.*",
-                "symfony/config": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/finder": "2.1.*"
-            },
-            "time": "1350122670",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
-            "installation-source": "source",
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\HttpKernel": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony HttpKernel Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "1350645725"
         },
         {
             "name": "symfony/process",
@@ -951,18 +710,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process",
-                "reference": "fc5b082e436161427e29652e3316d7def5f7a64f"
+                "reference": "6d483356f7496f1305a67f6a50cc33ec900c3930"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Process/zipball/fc5b082e436161427e29652e3316d7def5f7a64f",
-                "reference": "fc5b082e436161427e29652e3316d7def5f7a64f",
+                "url": "https://github.com/symfony/Process/zipball/6d483356f7496f1305a67f6a50cc33ec900c3930",
+                "reference": "6d483356f7496f1305a67f6a50cc33ec900c3930",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1349553363",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -989,48 +747,347 @@
                 }
             ],
             "description": "Symfony Process Component",
-            "homepage": "http://symfony.com"
-        },
+            "homepage": "http://symfony.com",
+            "time": "1350717030"
+        }
+    ],
+    "packages-dev": [
         {
-            "name": "symfony/routing",
-            "version": "2.1.x-dev",
-            "target-dir": "Symfony/Component/Routing",
+            "name": "grom/silex-service-provider",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Routing",
-                "reference": "6392f89975bd2b3ef4facbb5ef48143d035a9ff2"
+                "url": "https://github.com/GromNaN/SilexServiceProvider.git",
+                "reference": "1d37fa54aaecfacb68fde4c60392da0c1ca6300d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Routing/zipball/6392f89975bd2b3ef4facbb5ef48143d035a9ff2",
-                "reference": "6392f89975bd2b3ef4facbb5ef48143d035a9ff2",
+                "url": "https://github.com/GromNaN/SilexServiceProvider/zipball/1d37fa54aaecfacb68fde4c60392da0c1ca6300d",
+                "reference": "1d37fa54aaecfacb68fde4c60392da0c1ca6300d",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": ">=1.0.0-dev",
+                "knplabs/knp-snappy": "dev-master",
+                "imagine/imagine": "*"
+            },
+            "time": "1338686843",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Grom\\Silex": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jérôme Tamarelle",
+                    "email": "jerome@tamarelle.net"
+                }
+            ],
+            "description": "Imagine & KnpSnappy integration for Silex.",
+            "homepage": "http://github.com/GromNaN/SilexServiceProvider",
+            "keywords": [
+                "silex",
+                "image",
+                "snappy",
+                "pdf",
+                "imagine"
+            ]
+        },
+        {
+            "name": "knplabs/knp-snappy",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/KnpLabs/snappy.git",
+                "reference": "17da0d095913d089db5546ce884e844a144b3e1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/KnpLabs/snappy/zipball/17da0d095913d089db5546ce884e844a144b3e1f",
+                "reference": "17da0d095913d089db5546ce884e844a144b3e1f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "symfony/process": "Process Component of Symfony2."
+            },
+            "time": "1348990625",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Snappy": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://github.com/KnpLabs/snappy/contributors"
+                }
+            ],
+            "description": "PHP5 library allowing thumbnail, snapshot or PDF generation from a url or a html page. Wrapper for wkhtmltopdf/wkhtmltoimage.",
+            "homepage": "http://github.com/KnpLabs/snappy",
+            "keywords": [
+                "knp",
+                "knplabs",
+                "pdf",
+                "thumbnail",
+                "snapshot"
+            ]
+        },
+        {
+            "name": "silex/silex",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/fabpot/Silex.git",
+                "reference": "271e77a8545a959d19c7acd2e98a6bf503222210"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/fabpot/Silex/zipball/271e77a8545a959d19c7acd2e98a6bf503222210",
+                "reference": "271e77a8545a959d19c7acd2e98a6bf503222210",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "pimple/pimple": "1.*",
+                "symfony/event-dispatcher": ">=2.1,<2.3-dev",
+                "symfony/http-foundation": ">=2.1,<2.3-dev",
+                "symfony/http-kernel": ">=2.1,<2.3-dev",
+                "symfony/routing": ">=2.1,<2.3-dev"
+            },
+            "require-dev": {
+                "monolog/monolog": ">=1.0.0,<1.2-dev",
+                "twig/twig": ">=1.8.0,<2.0-dev",
+                "swiftmailer/swiftmailer": "4.2.*",
+                "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
+                "symfony/security": ">=2.1,<2.3-dev",
+                "symfony/config": ">=2.1,<2.3-dev",
+                "symfony/locale": ">=2.1,<2.3-dev",
+                "symfony/form": ">=2.1,<2.3-dev",
+                "symfony/browser-kit": ">=2.1,<2.3-dev",
+                "symfony/css-selector": ">=2.1,<2.3-dev",
+                "symfony/finder": ">=2.1,<2.3-dev",
+                "symfony/monolog-bridge": ">=2.1,<2.3-dev",
+                "symfony/process": ">=2.1,<2.3-dev",
+                "symfony/translation": ">=2.1,<2.3-dev",
+                "symfony/twig-bridge": ">=2.1,<2.3-dev",
+                "symfony/validator": ">=2.1,<2.3-dev"
+            },
+            "suggest": {
+                "symfony/browser-kit": ">=2.1,<2.3-dev",
+                "symfony/css-selector": ">=2.1,<2.3-dev",
+                "symfony/dom-crawler": ">=2.1,<2.3-dev"
+            },
+            "time": "1350911324",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Silex": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                }
+            ],
+            "description": "The PHP micro-framework based on the Symfony2 Components",
+            "homepage": "http://silex.sensiolabs.org",
+            "keywords": [
+                "microframework"
+            ]
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher",
+                "reference": "24a1039d52b6b9f533cb73dcb96c7748262db686"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/symfony/EventDispatcher/zipball/24a1039d52b6b9f533cb73dcb96c7748262db686",
+                "reference": "24a1039d52b6b9f533cb73dcb96c7748262db686",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/config": "2.1.*",
-                "symfony/yaml": "2.1.*",
-                "symfony/http-kernel": "2.1.*",
-                "doctrine/common": ">=2.2,<2.4-dev"
+                "symfony/dependency-injection": "2.2.*"
             },
             "suggest": {
-                "doctrine/common": ">=2.2,<2.4-dev",
-                "symfony/config": "2.1.*",
-                "symfony/yaml": "2.1.*"
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/http-kernel": "2.2.*"
             },
-            "time": "1350203264",
+            "time": "1349553479",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Routing": ""
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com"
+        },
+        {
+            "name": "symfony/http-kernel",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/HttpKernel",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/HttpKernel",
+                "reference": "350b63cd564824a61fe67695c8ded696240bdd42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/symfony/HttpKernel/zipball/350b63cd564824a61fe67695c8ded696240bdd42",
+                "reference": "350b63cd564824a61fe67695c8ded696240bdd42",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": "2.2.*",
+                "symfony/http-foundation": "2.2.*"
+            },
+            "require-dev": {
+                "symfony/browser-kit": "2.2.*",
+                "symfony/class-loader": "2.2.*",
+                "symfony/config": "2.2.*",
+                "symfony/console": "2.2.*",
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/finder": "2.2.*",
+                "symfony/process": "2.2.*",
+                "symfony/routing": "2.2.*"
+            },
+            "suggest": {
+                "symfony/browser-kit": "2.2.*",
+                "symfony/class-loader": "2.2.*",
+                "symfony/config": "2.2.*",
+                "symfony/console": "2.2.*",
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/finder": "2.2.*"
+            },
+            "time": "1350645770",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\HttpKernel\\": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony HttpKernel Component",
+            "homepage": "http://symfony.com"
+        },
+        {
+            "name": "symfony/routing",
+            "version": "dev-master",
+            "target-dir": "Symfony/Component/Routing",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Routing",
+                "reference": "89f34e43b1f6aff754a037ca8cb096e9d436d676"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/symfony/Routing/zipball/89f34e43b1f6aff754a037ca8cb096e9d436d676",
+                "reference": "89f34e43b1f6aff754a037ca8cb096e9d436d676",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/common": ">=2.2,<2.4-dev",
+                "symfony/config": "2.2.*",
+                "symfony/yaml": "2.2.*",
+                "symfony/http-kernel": "2.2.*"
+            },
+            "suggest": {
+                "doctrine/common": ">=2.2,<2.4-dev",
+                "symfony/config": "2.2.*",
+                "symfony/yaml": "2.2.*"
+            },
+            "time": "1350626200",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Routing\\": ""
                 }
             },
             "license": [
@@ -1050,9 +1107,6 @@
             "homepage": "http://symfony.com"
         }
     ],
-    "packages-dev": [
-
-    ],
     "aliases": [
 
     ],
@@ -1060,6 +1114,7 @@
     "stability-flags": {
         "mediavorus/mediavorus": 20,
         "swftools/swftools": 20,
+        "alchemy/ghostscript": 20,
         "php-ffmpeg/php-ffmpeg": 20,
         "php-unoconv/php-unoconv": 20,
         "php-mp4box/php-mp4box": 20,

@@ -2,6 +2,7 @@
 
 namespace MediaAlchemyst\Transmuter;
 
+use Ghostscript\Exception\ExceptionInterface as GhostscriptException;
 use Imagine\Exception\Exception as ImagineException;
 use Imagine\Image\ImageInterface;
 use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
@@ -27,19 +28,22 @@ class Document2Image extends AbstractTransmuter
 
         try {
 
-            /**
-             * Support for unoconv < 0.4 : pagerange is not supported
-             */
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container['unoconv']
                     ->open($source->getFile()->getPathname())
-                    ->saveAs(Unoconv::FORMAT_PDF, $tmpDest)
+                    ->saveAs(Unoconv::FORMAT_PDF, $tmpDest, '1-1')
                     ->close();
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $image = $this->container['imagine']->open($tmpDest);
+            $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
+
+            $this->container['ghostscript.pdf-transcoder']->open($tmpDest)
+                ->transcode($tmpDestSinglePage, 1, 1)
+                ->close();
+
+            $image = $this->container['imagine']->open($tmpDestSinglePage);
 
             $options = array(
                 'quality'          => $spec->getQuality(),
@@ -52,12 +56,12 @@ class Document2Image extends AbstractTransmuter
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
-                rename($dest, $tmpDest);
+                $toremove[] = $tmpImage = tempnam(sys_get_temp_dir(), 'unoconv');
+                rename($dest, $tmpImage);
 
-                $image = $this->container['imagine']->open($tmpDest);
+                $image = $this->container['imagine']->open($tmpImage);
 
-                $media = $this->container['mediavorus']->guess($tmpDest);
+                $media = $this->container['mediavorus']->guess($tmpImage);
 
                 $box = $this->boxFromImageSpec($spec, $media);
 
@@ -76,6 +80,8 @@ class Document2Image extends AbstractTransmuter
             foreach ($toremove as $tmpDest) {
                 unlink($tmpDest);
             }
+        } catch (GhostscriptException $e) {
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (UnoconvException $e) {
             throw new RuntimeException('Unable to transmute document to image due to Unoconv', null, $e);
         } catch (ImagineException $e) {
