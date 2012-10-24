@@ -30,13 +30,11 @@ class Document2Image extends Provider
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
+            $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
 
             $this->container['ghostscript.transcoder']->open($tmpDest)
                 ->transcode($tmpDestSinglePage, 1, 1)
                 ->close();
-
-            $toremove[] = $tmpDest;
 
             $image = $this->container->getImagine()->open($tmpDestSinglePage);
 
@@ -51,12 +49,12 @@ class Document2Image extends Provider
 
             if ($spec->getWidth() && $spec->getHeight()) {
 
-                $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv');
-                rename($dest, $tmpDestSinglePage);
+                $toremove[] = $tmpImage = tempnam(sys_get_temp_dir(), 'unoconv');
+                rename($dest, $tmpImage);
 
-                $image = $this->container->getImagine()->open($tmpDest);
+                $image = $this->container->getImagine()->open($tmpImage);
 
-                $media = $this->container['mediavorus']->guess(new \SplFileInfo($tmpDest));
+                $media = $this->container['mediavorus']->guess(new \SplFileInfo($tmpImage));
 
                 $box = $this->boxFromImageSpec($spec, $media);
 
