@@ -1,7 +1,7 @@
 {
     "name": "media-alchemyst/media-alchemyst",
     "type": "library",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "An Object Oriented wrapper for easy multimedia conversion, based on Imagine, FFMpeg, SwfTools, Unoconv and other libs",
     "keywords": ["video processing", "video", "audio processing", "audio", "image", "image processing"],
     "license": "MIT",
