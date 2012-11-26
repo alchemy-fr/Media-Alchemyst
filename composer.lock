@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/Ghostscript-PHP.git",
-                "reference": "5ee945dd5db00f76326dc017ea8f0d77cc87370e"
+                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/zipball/5ee945dd5db00f76326dc017ea8f0d77cc87370e",
-                "reference": "5ee945dd5db00f76326dc017ea8f0d77cc87370e",
+                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/dfb0fa60e94cbb29558d2567223ff75207169608.zip",
+                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1350491397",
+            "time": "2012-11-22 19:41:13",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -172,7 +172,7 @@
         },
         {
             "name": "mediavorus/mediavorus",
-            "version": "dev-master",
+            "version": "0.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
@@ -185,12 +185,12 @@
                 "shasum": ""
             },
             "require": {
-                "phpexiftool/phpexiftool": "dev-master",
-                "symfony/http-foundation": ">2.0",
-                "php-ffmpeg/php-ffmpeg": "dev-master",
                 "php": ">=5.3.0",
-                "monolog/monolog": "1.0.*",
-                "symfony/console": ">2.0"
+                "symfony/http-foundation": ">2.0",
+                "symfony/console": ">2.0",
+                "phpexiftool/phpexiftool": "dev-master",
+                "php-ffmpeg/php-ffmpeg": "dev-master",
+                "monolog/monolog": "1.0.*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "*",
@@ -198,6 +198,11 @@
             },
             "time": "1347368981",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -288,6 +293,11 @@
             },
             "time": "1349965750",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -595,7 +605,7 @@
                 },
                 {
                     "name": "Phraseanet Team",
-                    "email": "info@alchemy.fr",
+                    "email": "support@alchemy.fr",
                     "homepage": "http://www.phraseanet.com/"
                 }
             ],
