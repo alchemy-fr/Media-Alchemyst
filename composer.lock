@@ -60,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common",
-                "reference": "20cb487a5809a42f03020c89fa09eb4458de827f"
+                "reference": "a836c86c13e964051549e234250cf665a5f5a190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/common/zipball/20cb487a5809a42f03020c89fa09eb4458de827f",
-                "reference": "20cb487a5809a42f03020c89fa09eb4458de827f",
+                "url": "https://github.com/doctrine/common/archive/a836c86c13e964051549e234250cf665a5f5a190.zip",
+                "reference": "a836c86c13e964051549e234250cf665a5f5a190",
                 "shasum": ""
             },
             "require": {
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
-                "reference": "6741811aa4cb88c62f5300f3264c06c02bd5d0c9"
+                "reference": "9834a6460eb50424c5cae24081a5b0e2f8c4fc87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/MediaVorus/zipball/6741811aa4cb88c62f5300f3264c06c02bd5d0c9",
-                "reference": "6741811aa4cb88c62f5300f3264c06c02bd5d0c9",
+                "url": "https://github.com/romainneutron/MediaVorus/archive/9834a6460eb50424c5cae24081a5b0e2f8c4fc87.zip",
+                "reference": "9834a6460eb50424c5cae24081a5b0e2f8c4fc87",
                 "shasum": ""
             },
             "require": {
@@ -194,9 +194,9 @@
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "*",
-                "silex/silex": "dev-master"
+                "silex/silex": "1.0.*-dev"
             },
-            "time": "1347368981",
+            "time": "2012-11-26 19:06:25",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -273,12 +273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg",
-                "reference": "8ddbc82630a37d1c2134fb4d69e2dd57459adf3b"
+                "reference": "60b2aeff24f2d9a68bee89789dc567c6c1352c00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/zipball/8ddbc82630a37d1c2134fb4d69e2dd57459adf3b",
-                "reference": "8ddbc82630a37d1c2134fb4d69e2dd57459adf3b",
+                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/60b2aeff24f2d9a68bee89789dc567c6c1352c00.zip",
+                "reference": "60b2aeff24f2d9a68bee89789dc567c6c1352c00",
                 "shasum": ""
             },
             "require": {
@@ -291,7 +291,10 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1349965750",
+            "suggest": {
+                "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
+            },
+            "time": "2012-10-30 23:08:39",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -341,7 +344,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-MP4Box/zipball/2c272a3f77807771275fb4f2c404071e9c263e19",
+                "url": "https://github.com/alchemy-fr/PHP-MP4Box/archive/2c272a3f77807771275fb4f2c404071e9c263e19.zip",
                 "reference": "2c272a3f77807771275fb4f2c404071e9c263e19",
                 "shasum": ""
             },
@@ -354,7 +357,7 @@
                 "fabpot/php-cs-fixer": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1349804408",
+            "time": "2012-10-09 17:40:08",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -389,7 +392,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-Unoconv/zipball/dd49df9be9ab649af37674f07393037727077124",
+                "url": "https://github.com/alchemy-fr/PHP-Unoconv/archive/dd49df9be9ab649af37674f07393037727077124.zip",
                 "reference": "dd49df9be9ab649af37674f07393037727077124",
                 "shasum": ""
             },
@@ -402,7 +405,7 @@
                 "silex/silex": "dev-master",
                 "fabpot/php-cs-fixer": "dev-master"
             },
-            "time": "1349713000",
+            "time": "2012-10-08 16:16:40",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -437,14 +440,14 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/exiftool/zipball/c68d98b5a00aaf7ae0db7eebddfcde27d948e537",
+                "url": "https://github.com/alchemy-fr/exiftool/archive/c68d98b5a00aaf7ae0db7eebddfcde27d948e537.zip",
                 "reference": "c68d98b5a00aaf7ae0db7eebddfcde27d948e537",
                 "shasum": ""
             },
             "require": {
                 "phpexiftool/phpexiftool": "*"
             },
-            "time": "1346256086",
+            "time": "2012-08-29 16:01:26",
             "type": "library",
             "installation-source": "source",
             "license": [
@@ -473,7 +476,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/PHPExiftool/zipball/c72f9a88a74c1967fb14de62f342048c8311cb9b",
+                "url": "https://github.com/romainneutron/PHPExiftool/archive/c72f9a88a74c1967fb14de62f342048c8311cb9b.zip",
                 "reference": "c72f9a88a74c1967fb14de62f342048c8311cb9b",
                 "shasum": ""
             },
@@ -492,7 +495,7 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1346681208",
+            "time": "2012-09-03 14:06:48",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -522,12 +525,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "b9f27b8dc18c08f00627dec02359b46a24791dc3"
+                "reference": "86df0604a10c5faf20b466ae6a0b762cc6ed0a35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Pimple/zipball/b9f27b8dc18c08f00627dec02359b46a24791dc3",
-                "reference": "b9f27b8dc18c08f00627dec02359b46a24791dc3",
+                "url": "https://github.com/fabpot/Pimple/archive/86df0604a10c5faf20b466ae6a0b762cc6ed0a35.zip",
+                "reference": "86df0604a10c5faf20b466ae6a0b762cc6ed0a35",
                 "shasum": ""
             },
             "require": {
@@ -572,7 +575,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHPSwftools/zipball/9b79c0fb1f43a2e84c26e908d54b1ed98091510c",
+                "url": "https://github.com/alchemy-fr/PHPSwftools/archive/9b79c0fb1f43a2e84c26e908d54b1ed98091510c.zip",
                 "reference": "9b79c0fb1f43a2e84c26e908d54b1ed98091510c",
                 "shasum": ""
             },
@@ -586,7 +589,7 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1349705213",
+            "time": "2012-10-08 14:06:53",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1122,7 +1125,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "mediavorus/mediavorus": 20,
         "swftools/swftools": 20,
         "alchemy/ghostscript": 20,
         "php-ffmpeg/php-ffmpeg": 20,
