@@ -1,5 +1,5 @@
 {
-    "hash": "b29bb82cd79f01aff3304768a84723f6",
+    "hash": "bfb7f1b9626ea76d2383e80e09fa4873",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/Ghostscript-PHP.git",
-                "reference": "5ee945dd5db00f76326dc017ea8f0d77cc87370e"
+                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/zipball/5ee945dd5db00f76326dc017ea8f0d77cc87370e",
-                "reference": "5ee945dd5db00f76326dc017ea8f0d77cc87370e",
+                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/dfb0fa60e94cbb29558d2567223ff75207169608.zip",
+                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1351010495",
+            "time": "2012-10-24 15:39:45",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -71,7 +71,7 @@
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "1350491397",
+            "time": "2012-11-22 19:41:13",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -107,7 +107,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -143,7 +143,7 @@
             "require-dev": {
                 "sami/sami": "dev-master"
             },
-            "time": "1350920158",
+            "time": "2012-11-21 15:08:19",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -172,32 +172,37 @@
         },
         {
             "name": "mediavorus/mediavorus",
-            "version": "dev-master",
+            "version": "0.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
-                "reference": "2e194cc17b78bf1fd98f0ffa2afb29188e567211"
+                "reference": "0.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/MediaVorus/zipball/2e194cc17b78bf1fd98f0ffa2afb29188e567211",
-                "reference": "2e194cc17b78bf1fd98f0ffa2afb29188e567211",
+                "url": "https://github.com/romainneutron/MediaVorus/archive/0.1.0.zip",
+                "reference": "0.1.0",
                 "shasum": ""
             },
             "require": {
-                "phpexiftool/phpexiftool": "dev-master",
-                "symfony/http-foundation": ">2.0",
-                "php-ffmpeg/php-ffmpeg": "dev-master",
                 "php": ">=5.3.0",
-                "monolog/monolog": "1.0.*",
-                "symfony/console": ">2.0"
+                "symfony/http-foundation": ">2.0",
+                "symfony/console": ">2.0",
+                "phpexiftool/phpexiftool": "dev-master",
+                "php-ffmpeg/php-ffmpeg": "dev-master",
+                "monolog/monolog": "1.0.*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "*",
                 "silex/silex": "dev-master"
             },
-            "time": "1342615206",
+            "time": "2012-11-26 18:15:00",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -286,8 +291,16 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1340268165",
+            "suggest": {
+                "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
+            },
+            "time": "2012-10-30 23:08:39",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -344,7 +357,7 @@
                 "fabpot/php-cs-fixer": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1335481578",
+            "time": "2012-10-09 17:40:08",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -392,7 +405,7 @@
                 "silex/silex": "dev-master",
                 "fabpot/php-cs-fixer": "dev-master"
             },
-            "time": "1335481542",
+            "time": "2012-10-08 16:16:40",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -434,7 +447,7 @@
             "require": {
                 "phpexiftool/phpexiftool": "*"
             },
-            "time": "1339513761",
+            "time": "2012-08-29 16:01:26",
             "type": "library",
             "installation-source": "source",
             "license": [
@@ -482,7 +495,7 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1339680734",
+            "time": "2012-09-03 14:06:48",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -523,7 +536,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "1347278988",
+            "time": "2012-11-11 08:32:34",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -576,7 +589,7 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "1339439296",
+            "time": "2012-10-08 14:06:53",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -595,7 +608,7 @@
                 },
                 {
                     "name": "Phraseanet Team",
-                    "email": "info@alchemy.fr",
+                    "email": "support@alchemy.fr",
                     "homepage": "http://www.phraseanet.com/"
                 }
             ],
@@ -624,7 +637,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1350832147",
+            "time": "2012-11-19 12:58:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -679,7 +692,7 @@
                 "symfony/yaml": "2.2.*",
                 "symfony/config": "2.2.*"
             },
-            "time": "1350594979",
+            "time": "2012-10-24 15:41:27",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -726,7 +739,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1350645725",
+            "time": "2012-11-19 12:58:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -776,7 +789,7 @@
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "1350717030",
+            "time": "2012-11-19 20:53:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -806,7 +819,9 @@
             "homepage": "http://symfony.com"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
