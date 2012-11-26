@@ -39,5 +39,10 @@
         "psr-0": {
             "MediaAlchemyst": "src"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
     }
 }
