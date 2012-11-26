@@ -19,15 +19,15 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "pimple/pimple": "*",
-        "mediavorus/mediavorus": "dev-master",
+        "pimple/pimple": "1.*",
+        "mediavorus/mediavorus": "0.2.*",
         "swftools/swftools": "dev-master",
         "alchemy/ghostscript": "dev-master",
         "php-ffmpeg/php-ffmpeg": "dev-master",
         "php-unoconv/php-unoconv": "dev-master",
         "php-mp4box/php-mp4box": "dev-master",
         "imagine/imagine": "dev-develop",
-        "monolog/monolog": "1.0.*",
+        "monolog/monolog": "1.*",
         "symfony/console": ">=2.0,<=2.2"
     },
     "minimum-stability": "dev",
