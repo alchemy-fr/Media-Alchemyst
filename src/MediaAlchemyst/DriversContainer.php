@@ -83,7 +83,7 @@ class DriversContainer extends Pimple
             return new Exiftool();
         });
 
-        $this['ghostscript.pdf-transcoder'] = $this->share(function(Pimple $container) {
+        $this['ghostscript.transcoder'] = $this->share(function(Pimple $container) {
             $driver = new Ghostscript($container['logger'], $container['ghostscript.binary']);
 
             return $driver->getDriver();

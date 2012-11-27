@@ -39,69 +39,83 @@ class Image2ImageTest extends AbstractAlchemystTester
         }
     }
 
+   /**
+    * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+    */
+   public function testExecute()
+   {
+       $this->object->execute($this->specs, $this->source, $this->dest);
+
+       $MediaDest = $this->getMediaVorus()->guess($this->dest);
+
+       $this->assertEquals($this->source->getWidth(), $MediaDest->getWidth());
+       $this->assertEquals($this->source->getHeight(), $MediaDest->getHeight());
+   }
+
+   /**
+    * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+    */
+   public function testExecuteOverCR2()
+   {
+       $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/test001.CR2');
+       $this->object->execute($this->specs, $this->source, $this->dest);
+
+       $MediaDest = $this->getMediaVorus()->guess($this->dest);
+
+       $this->assertEquals(1872, $MediaDest->getHeight());
+       $this->assertEquals(2808, $MediaDest->getWidth());
+   }
+
     /**
      * @covers MediaAlchemyst\Transmuter\Image2Image::execute
      */
-    public function testExecute()
+    public function testExecuteOverAI()
     {
+        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/plane.ai');
         $this->object->execute($this->specs, $this->source, $this->dest);
 
         $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
-        $this->assertEquals($this->source->getWidth(), $MediaDest->getWidth());
-        $this->assertEquals($this->source->getHeight(), $MediaDest->getHeight());
+        $this->assertEquals(842, $MediaDest->getHeight());
+        $this->assertEquals(595, $MediaDest->getWidth());
     }
 
-    /**
-     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
-     */
-    public function testExecuteCR2()
-    {
-        $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/test001.CR2');
-        $this->object->execute($this->specs, $this->source, $this->dest);
+   /**
+    * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+    */
+   public function testExecuteAutorotate()
+   {
+       Image2Image::$autorotate = true;
 
-        $MediaDest = $this->getMediaVorus()->guess($this->dest);
+       $this->object->execute($this->specs, $this->source, $this->dest);
 
-        $this->assertEquals(1872, $MediaDest->getHeight());
-        $this->assertEquals(2808, $MediaDest->getWidth());
-    }
+       $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
-    /**
-     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
-     */
-    public function testExecuteAutorotate()
-    {
-        Image2Image::$autorotate = true;
+       $this->assertEquals($this->source->getWidth(), $MediaDest->getHeight());
+       $this->assertEquals($this->source->getHeight(), $MediaDest->getWidth());
+   }
 
-        $this->object->execute($this->specs, $this->source, $this->dest);
+   /**
+    * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+    * @covers MediaAlchemyst\Transmuter\Image2Image::extractEmbeddedImage
+    */
+   public function testExecutePreviewExtract()
+   {
+       Image2Image::$lookForEmbeddedPreview = true;
 
-        $MediaDest = $this->getMediaVorus()->guess($this->dest);
+       $source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/ExifTool.jpg');
 
-        $this->assertEquals($this->source->getWidth(), $MediaDest->getHeight());
-        $this->assertEquals($this->source->getHeight(), $MediaDest->getWidth());
-    }
+       $this->object->execute($this->specs, $source, $this->dest);
 
-    /**
-     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
-     * @covers MediaAlchemyst\Transmuter\Image2Image::extractEmbeddedImage
-     */
-    public function testExecutePreviewExtract()
-    {
-        Image2Image::$lookForEmbeddedPreview = true;
+       $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
-        $source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/ExifTool.jpg');
+       $this->assertEquals(192, $MediaDest->getHeight());
+       $this->assertEquals(288, $MediaDest->getWidth());
+   }
 
-        $this->object->execute($this->specs, $source, $this->dest);
-
-        $MediaDest = $this->getMediaVorus()->guess($this->dest);
-
-        $this->assertEquals(192, $MediaDest->getHeight());
-        $this->assertEquals(288, $MediaDest->getWidth());
-    }
-
-    /**
-     * @covers MediaAlchemyst\Transmuter\Image2Image::execute
-     */
+   /**
+    * @covers MediaAlchemyst\Transmuter\Image2Image::execute
+    */
     public function testExecuteSimpleResize()
     {
         $this->specs->setDimensions(320, 240);
@@ -130,7 +144,7 @@ class Image2ImageTest extends AbstractAlchemystTester
 
         $this->assertEquals(240, $MediaDest->getHeight());
         $this->assertEquals(260, $MediaDest->getWidth());
-    }
+   }
 
     /**
      * @covers MediaAlchemyst\Transmuter\Image2Image::execute
@@ -150,7 +164,7 @@ class Image2ImageTest extends AbstractAlchemystTester
         $this->assertEquals(round($this->source->getWidth() / $this->source->getHeight()), round($MediaDest->getWidth() / $MediaDest->getHeight()));
     }
 
-    /**
+   /**
      * @covers MediaAlchemyst\Transmuter\Image2Image::execute
      * @covers MediaAlchemyst\Exception\SpecNotSupportedException
      * @expectedException \MediaAlchemyst\Exception\SpecNotSupportedException
@@ -172,5 +186,5 @@ class Image2ImageTest extends AbstractAlchemystTester
 
         $this->assertEquals(1936, $MediaDest->getWidth());
         $this->assertEquals(1288, $MediaDest->getHeight());
-    }
+   }
 }
