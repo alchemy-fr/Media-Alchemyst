@@ -22,7 +22,7 @@
         "pimple/pimple": "1.*",
         "mediavorus/mediavorus": "0.1.*",
         "swftools/swftools": "dev-master",
-        "alchemy/ghostscript": "dev-master",
+        "alchemy/ghostscript": "0.1.*",
         "php-ffmpeg/php-ffmpeg": "dev-master",
         "php-unoconv/php-unoconv": "dev-master",
         "php-mp4box/php-mp4box": "dev-master",

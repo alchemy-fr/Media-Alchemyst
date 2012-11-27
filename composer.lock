@@ -1,18 +1,18 @@
 {
-    "hash": "bfb7f1b9626ea76d2383e80e09fa4873",
+    "hash": "0fa835f20ef411f4a42d3f1d8cc926e6",
     "packages": [
         {
             "name": "alchemy/ghostscript",
-            "version": "dev-master",
+            "version": "0.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/Ghostscript-PHP.git",
-                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608"
+                "reference": "0.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/dfb0fa60e94cbb29558d2567223ff75207169608.zip",
-                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608",
+                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/0.1.0.zip",
+                "reference": "0.1.0",
                 "shasum": ""
             },
             "require": {
@@ -25,8 +25,13 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-10-24 15:39:45",
+            "time": "2012-11-27 09:57:20",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -60,12 +65,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common",
-                "reference": "20cb487a5809a42f03020c89fa09eb4458de827f"
+                "reference": "a836c86c13e964051549e234250cf665a5f5a190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/common/zipball/20cb487a5809a42f03020c89fa09eb4458de827f",
-                "reference": "20cb487a5809a42f03020c89fa09eb4458de827f",
+                "url": "https://github.com/doctrine/common/archive/a836c86c13e964051549e234250cf665a5f5a190.zip",
+                "reference": "a836c86c13e964051549e234250cf665a5f5a190",
                 "shasum": ""
             },
             "require": {
@@ -129,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine",
-                "reference": "2da3004b1201649598377c1aa5b24f9788abe83f"
+                "reference": "1b771cfe813714f3b7c2a0d9381c35ffa5b4ba88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/avalanche123/Imagine/zipball/2da3004b1201649598377c1aa5b24f9788abe83f",
-                "reference": "2da3004b1201649598377c1aa5b24f9788abe83f",
+                "url": "https://github.com/avalanche123/Imagine/archive/1b771cfe813714f3b7c2a0d9381c35ffa5b4ba88.zip",
+                "reference": "1b771cfe813714f3b7c2a0d9381c35ffa5b4ba88",
                 "shasum": ""
             },
             "require": {
@@ -176,12 +181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
-                "reference": "0.1.0"
+                "reference": "a540721ccba2db82f309150c8a167d9a8b4e936c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/MediaVorus/archive/0.1.0.zip",
-                "reference": "0.1.0",
+                "url": "https://github.com/romainneutron/MediaVorus/archive/a540721ccba2db82f309150c8a167d9a8b4e936c.zip",
+                "reference": "a540721ccba2db82f309150c8a167d9a8b4e936c",
                 "shasum": ""
             },
             "require": {
@@ -196,7 +201,7 @@
                 "fabpot/php-cs-fixer": "*",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-11-26 18:15:00",
+            "time": "2012-11-26 19:04:35",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -525,12 +530,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "b9f27b8dc18c08f00627dec02359b46a24791dc3"
+                "reference": "86df0604a10c5faf20b466ae6a0b762cc6ed0a35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Pimple/zipball/b9f27b8dc18c08f00627dec02359b46a24791dc3",
-                "reference": "b9f27b8dc18c08f00627dec02359b46a24791dc3",
+                "url": "https://github.com/fabpot/Pimple/archive/86df0604a10c5faf20b466ae6a0b762cc6ed0a35.zip",
+                "reference": "86df0604a10c5faf20b466ae6a0b762cc6ed0a35",
                 "shasum": ""
             },
             "require": {
@@ -621,33 +626,33 @@
         },
         {
             "name": "symfony/console",
-            "version": "dev-master",
+            "version": "2.1.x-dev",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "915bd24ac780d4d1b9eb8cf830d8a4bf453bef0b"
+                "reference": "528b030bd94d74b06735c9da9fd9495db0567800"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/zipball/915bd24ac780d4d1b9eb8cf830d8a4bf453bef0b",
-                "reference": "915bd24ac780d4d1b9eb8cf830d8a4bf453bef0b",
+                "url": "https://github.com/symfony/Console/archive/528b030bd94d74b06735c9da9fd9495db0567800.zip",
+                "reference": "528b030bd94d74b06735c9da9fd9495db0567800",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-11-19 12:58:52",
+            "time": "2012-11-09 08:52:51",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Console\\": ""
+                    "Symfony\\Component\\Console": ""
                 }
             },
             "license": [
@@ -668,41 +673,41 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "dev-master",
+            "version": "2.1.x-dev",
             "target-dir": "Symfony/Component/DependencyInjection",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DependencyInjection",
-                "reference": "1a3657352a94cac0f2009610fdee95313427f7c1"
+                "reference": "eca7e5dfc35b2d2d67366d4b8fad66bdec819ab5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/DependencyInjection/zipball/1a3657352a94cac0f2009610fdee95313427f7c1",
-                "reference": "1a3657352a94cac0f2009610fdee95313427f7c1",
+                "url": "https://github.com/symfony/DependencyInjection/archive/eca7e5dfc35b2d2d67366d4b8fad66bdec819ab5.zip",
+                "reference": "eca7e5dfc35b2d2d67366d4b8fad66bdec819ab5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/yaml": "2.2.*",
-                "symfony/config": "2.2.*"
+                "symfony/yaml": "2.1.*",
+                "symfony/config": "2.1.*"
             },
             "suggest": {
-                "symfony/yaml": "2.2.*",
-                "symfony/config": "2.2.*"
+                "symfony/yaml": "2.1.*",
+                "symfony/config": "2.1.*"
             },
-            "time": "2012-10-24 15:41:27",
+            "time": "2012-11-11 11:59:36",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\DependencyInjection\\": ""
+                    "Symfony\\Component\\DependencyInjection": ""
                 }
             },
             "license": [
@@ -723,37 +728,35 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "dev-master",
+            "version": "2.1.x-dev",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "7d93dccc7813ee0b046c8ca8ebdf76eb93dafb95"
+                "reference": "1019af12f75155fdf9b90240d22f7fa5a0e16ceb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/zipball/7d93dccc7813ee0b046c8ca8ebdf76eb93dafb95",
-                "reference": "7d93dccc7813ee0b046c8ca8ebdf76eb93dafb95",
+                "url": "https://github.com/symfony/HttpFoundation/archive/1019af12f75155fdf9b90240d22f7fa5a0e16ceb.zip",
+                "reference": "1019af12f75155fdf9b90240d22f7fa5a0e16ceb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-11-19 12:58:52",
+            "time": "2012-11-16 16:51:07",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\HttpFoundation\\": ""
-                },
-                "classmap": [
-                    "Symfony/Component/HttpFoundation/Resources/stubs"
-                ]
+                    "Symfony\\Component\\HttpFoundation": "",
+                    "SessionHandlerInterface": "Symfony/Component/HttpFoundation/Resources/stubs"
+                }
             },
             "license": [
                 "MIT"
@@ -778,12 +781,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process",
-                "reference": "6d483356f7496f1305a67f6a50cc33ec900c3930"
+                "reference": "a7938028486f28dd611787fb691eff273f9c2752"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Process/zipball/6d483356f7496f1305a67f6a50cc33ec900c3930",
-                "reference": "6d483356f7496f1305a67f6a50cc33ec900c3930",
+                "url": "https://github.com/symfony/Process/archive/a7938028486f28dd611787fb691eff273f9c2752.zip",
+                "reference": "a7938028486f28dd611787fb691eff273f9c2752",
                 "shasum": ""
             },
             "require": {
@@ -819,17 +822,13 @@
             "homepage": "http://symfony.com"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "mediavorus/mediavorus": 20,
         "swftools/swftools": 20,
-        "alchemy/ghostscript": 20,
         "php-ffmpeg/php-ffmpeg": 20,
         "php-unoconv/php-unoconv": 20,
         "php-mp4box/php-mp4box": 20,
