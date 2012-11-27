@@ -3,7 +3,7 @@
 namespace MediaAlchemyst\Driver;
 
 use Monolog\Logger;
-use Ghostscript\PDFTranscoder;
+use Ghostscript\Transcoder;
 use Ghostscript\Exception\ExceptionInterface as GhostscriptException;
 use MediaAlchemyst\Exception\RuntimeException;
 
@@ -16,10 +16,10 @@ class Ghostscript extends AbstractDriver
         $this->logger = $logger;
 
         if ($useBinary) {
-            $this->driver = new PDFTranscoder($useBinary, $this->logger);
+            $this->driver = new Transcoder($useBinary, $this->logger);
         } else {
             try {
-                $this->driver = PDFTranscoder::load($this->logger);
+                $this->driver = Transcoder::load($this->logger);
             } catch (GhostscriptException $e) {
                 throw new RuntimeException('No driver available');
             }

@@ -1,5 +1,5 @@
 {
-    "hash": "ed517686afe18d559958913194b2bb15",
+    "hash": "dce58d0214848163d6d78ef6d29ff8d6",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/Ghostscript-PHP.git",
-                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608"
+                "reference": "731a477710d8a9d093574b5ee1876fabfb02b5ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/dfb0fa60e94cbb29558d2567223ff75207169608.zip",
-                "reference": "dfb0fa60e94cbb29558d2567223ff75207169608",
+                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/731a477710d8a9d093574b5ee1876fabfb02b5ee.zip",
+                "reference": "731a477710d8a9d093574b5ee1876fabfb02b5ee",
                 "shasum": ""
             },
             "require": {
@@ -25,8 +25,13 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-10-24 15:39:45",
+            "time": "2012-11-27 10:34:30",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2.x-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -866,12 +871,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "0829298b374167464842ad2c52e574dc6140dccf"
+                "reference": "46ac91f06d2b5b37bde03d7f185b82645f10f691"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/0829298b374167464842ad2c52e574dc6140dccf.zip",
-                "reference": "0829298b374167464842ad2c52e574dc6140dccf",
+                "url": "https://github.com/fabpot/Silex/archive/46ac91f06d2b5b37bde03d7f185b82645f10f691.zip",
+                "reference": "46ac91f06d2b5b37bde03d7f185b82645f10f691",
                 "shasum": ""
             },
             "require": {
@@ -906,7 +911,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2012-11-26 10:32:44",
+            "time": "2012-11-27 09:18:13",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1125,7 +1130,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "swftools/swftools": 20,
-        "alchemy/ghostscript": 20,
         "php-ffmpeg/php-ffmpeg": 20,
         "php-unoconv/php-unoconv": 20,
         "php-mp4box/php-mp4box": 20,

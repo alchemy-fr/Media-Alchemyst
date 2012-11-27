@@ -39,8 +39,8 @@ class Document2Image extends AbstractTransmuter
 
             $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
 
-            $this->container['ghostscript.pdf-transcoder']->open($tmpDest)
-                ->transcode($tmpDestSinglePage, 1, 1)
+            $this->container['ghostscript.transcoder']->open($tmpDest)
+                ->toPDF($tmpDestSinglePage, 1, 1)
                 ->close();
 
             $image = $this->container['imagine']->open($tmpDestSinglePage);
