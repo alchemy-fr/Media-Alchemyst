@@ -23,14 +23,30 @@ class Image2Image extends Provider
         }
 
         try {
-            $to_remove = null;
+            $to_remove = array();
 
             if (static::$lookForEmbeddedPreview) {
                 $tmpFile = $this->extractEmbeddedImage($source->getFile()->getPathname());
 
                 if ($tmpFile instanceof Media) {
                     $source = $tmpFile;
-                    $to_remove = $tmpFile->getFile();
+                    $to_remove[] = $tmpFile->getFile()->getRealPath();
+                    $to_remove[] = dirname($tmpFile->getFile()->getRealPath());
+                }
+            }
+
+            if ($source->getFile()->getMimeType() === 'application/illustrator') {
+
+                $tmpFile = tempnam(sys_get_temp_dir(), 'gs_transcoder');
+                unlink($tmpFile);
+
+                $this->container['ghostscript.transcoder']->open($source->getFile()->getRealPath())
+                    ->toImage($tmpFile)
+                    ->close();
+
+                if (file_exists($tmpFile)) {
+                    $source = $this->container['mediavorus']->guess(new \SplFileInfo($tmpFile));
+                    $to_remove[] = $tmpFile;
                 }
             }
 
@@ -67,9 +83,12 @@ class Image2Image extends Provider
 
             $image->save($dest, $options);
 
-            if ($to_remove) {
-                unlink($to_remove);
-                rmdir(dirname($to_remove));
+            foreach ($to_remove as $file) {
+                if (is_dir($file)) {
+                    rmdir($file);
+                } else {
+                    unlink($file);
+                }
             }
         } catch (\MediaVorus\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
