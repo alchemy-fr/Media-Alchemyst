@@ -33,7 +33,7 @@ class Document2Image extends Provider
             $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
 
             $this->container['ghostscript.transcoder']->open($tmpDest)
-                ->transcode($tmpDestSinglePage, 1, 1)
+                ->toPDF($tmpDestSinglePage, 1, 1)
                 ->close();
 
             $image = $this->container->getImagine()->open($tmpDestSinglePage);

@@ -1,18 +1,18 @@
 {
-    "hash": "0fa835f20ef411f4a42d3f1d8cc926e6",
+    "hash": "9fd29f465ae6dc59b3e932fd486af116",
     "packages": [
         {
             "name": "alchemy/ghostscript",
-            "version": "0.1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/Ghostscript-PHP.git",
-                "reference": "0.1.0"
+                "reference": "731a477710d8a9d093574b5ee1876fabfb02b5ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/0.1.0.zip",
-                "reference": "0.1.0",
+                "url": "https://github.com/alchemy-fr/Ghostscript-PHP/archive/731a477710d8a9d093574b5ee1876fabfb02b5ee.zip",
+                "reference": "731a477710d8a9d093574b5ee1876fabfb02b5ee",
                 "shasum": ""
             },
             "require": {
@@ -25,11 +25,11 @@
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-11-27 09:57:20",
+            "time": "2012-11-27 10:34:30",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "installation-source": "source",
@@ -822,7 +822,9 @@
             "homepage": "http://symfony.com"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
