@@ -48,6 +48,34 @@ class Image2Image extends Provider
                     $source = $this->container['mediavorus']->guess(new \SplFileInfo($tmpFile));
                     $to_remove[] = $tmpFile;
                 }
+            } elseif ($source->getFile()->getMimeType() === 'image/tiff') {
+                $image = $this->container->getImagine()->open($source->getFile()->getPathname());
+
+                $layers = array();
+
+                foreach ($image->layers() as $layer) {
+                    $tmpFile = tempnam(sys_get_temp_dir(), 'imagine-tiff-layer');
+                    unlink($tmpFile);
+
+                    $tmpFile = $tmpFile . '.' . pathinfo($dest, PATHINFO_EXTENSION);
+                    $layer->save($tmpFile);
+
+                    $layers[] = $tmpFile;
+                }
+
+                uasort($layers, function ($layer1, $layer2) {
+                    $size1 = filesize($layer1);
+                    $size2 = filesize($layer2);
+                    if ($size1 == $size2) {
+                        return 0;
+                    }
+
+                    return ($size1 > $size2) ? -1 : 1;
+                });
+
+                $to_remove = array_merge($to_remove, $layers);
+
+                $source = $this->container['mediavorus']->guess(new \SplFileInfo(array_shift($layers)));
             }
 
             $image = $this->container->getImagine()->open($source->getFile()->getPathname());
@@ -75,6 +103,7 @@ class Image2Image extends Provider
             }
 
             $options = array(
+                'flatten'          => strtolower(pathinfo($dest, PATHINFO_EXTENSION)) === 'gif',
                 'quality'          => $spec->getQuality(),
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
