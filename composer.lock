@@ -1,5 +1,5 @@
 {
-    "hash": "dce58d0214848163d6d78ef6d29ff8d6",
+    "hash": "66760bc835f5304f545c671cee932d4c",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -65,18 +65,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common",
-                "reference": "a836c86c13e964051549e234250cf665a5f5a190"
+                "reference": "d514e3920656921ba1148f16a4089222c58bc83a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/common/archive/a836c86c13e964051549e234250cf665a5f5a190.zip",
-                "reference": "a836c86c13e964051549e234250cf665a5f5a190",
+                "url": "https://github.com/doctrine/common/archive/d514e3920656921ba1148f16a4089222c58bc83a.zip",
+                "reference": "d514e3920656921ba1148f16a4089222c58bc83a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-11-22 19:41:13",
+            "time": "2012-12-05 12:03:39",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -112,9 +112,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -130,16 +130,16 @@
         },
         {
             "name": "imagine/Imagine",
-            "version": "dev-develop",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine",
-                "reference": "1b771cfe813714f3b7c2a0d9381c35ffa5b4ba88"
+                "reference": "v0.4.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/avalanche123/Imagine/archive/1b771cfe813714f3b7c2a0d9381c35ffa5b4ba88.zip",
-                "reference": "1b771cfe813714f3b7c2a0d9381c35ffa5b4ba88",
+                "url": "https://github.com/avalanche123/Imagine/archive/v0.4.0.zip",
+                "reference": "v0.4.0",
                 "shasum": ""
             },
             "require": {
@@ -148,7 +148,7 @@
             "require-dev": {
                 "sami/sami": "dev-master"
             },
-            "time": "2012-11-21 15:08:19",
+            "time": "2012-12-07 16:46:12",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -278,12 +278,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg",
-                "reference": "60b2aeff24f2d9a68bee89789dc567c6c1352c00"
+                "reference": "cf019896bf09f95506493ae3269627669caf9418"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/60b2aeff24f2d9a68bee89789dc567c6c1352c00.zip",
-                "reference": "60b2aeff24f2d9a68bee89789dc567c6c1352c00",
+                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/cf019896bf09f95506493ae3269627669caf9418.zip",
+                "reference": "cf019896bf09f95506493ae3269627669caf9418",
                 "shasum": ""
             },
             "require": {
@@ -294,12 +294,13 @@
             "require-dev": {
                 "fabpot/php-cs-fixer": "master",
                 "sami/sami": "dev-master",
-                "silex/silex": "dev-master"
+                "silex/silex": "dev-master",
+                "phpunit/phpunit": "3.7.*"
             },
             "suggest": {
                 "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
             },
-            "time": "2012-10-30 23:08:39",
+            "time": "2012-12-12 14:23:54",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -631,24 +632,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "528b030bd94d74b06735c9da9fd9495db0567800"
+                "reference": "ccfd7da81aa8a353bbd8acbe1abc69f14df64c79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/archive/528b030bd94d74b06735c9da9fd9495db0567800.zip",
-                "reference": "528b030bd94d74b06735c9da9fd9495db0567800",
+                "url": "https://github.com/symfony/Console/archive/ccfd7da81aa8a353bbd8acbe1abc69f14df64c79.zip",
+                "reference": "ccfd7da81aa8a353bbd8acbe1abc69f14df64c79",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-11-09 08:52:51",
+            "time": "2012-12-11 10:40:22",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -678,24 +674,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "1019af12f75155fdf9b90240d22f7fa5a0e16ceb"
+                "reference": "ca61913ce6b24802d0e5751fd52fb56345af09dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/archive/1019af12f75155fdf9b90240d22f7fa5a0e16ceb.zip",
-                "reference": "1019af12f75155fdf9b90240d22f7fa5a0e16ceb",
+                "url": "https://github.com/symfony/HttpFoundation/archive/ca61913ce6b24802d0e5751fd52fb56345af09dd.zip",
+                "reference": "ca61913ce6b24802d0e5751fd52fb56345af09dd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-11-16 16:51:07",
+            "time": "2012-12-11 10:40:22",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -726,24 +717,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process",
-                "reference": "a7938028486f28dd611787fb691eff273f9c2752"
+                "reference": "7468a4995e421741e37467613889765f0b21c329"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Process/archive/a7938028486f28dd611787fb691eff273f9c2752.zip",
-                "reference": "a7938028486f28dd611787fb691eff273f9c2752",
+                "url": "https://github.com/symfony/Process/archive/7468a4995e421741e37467613889765f0b21c329.zip",
+                "reference": "7468a4995e421741e37467613889765f0b21c329",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-11-19 20:53:52",
+            "time": "2012-12-11 10:40:22",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -871,12 +857,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "46ac91f06d2b5b37bde03d7f185b82645f10f691"
+                "reference": "0e69dc22400293f9364f8b918d008f3f6b634a47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/46ac91f06d2b5b37bde03d7f185b82645f10f691.zip",
-                "reference": "46ac91f06d2b5b37bde03d7f185b82645f10f691",
+                "url": "https://github.com/fabpot/Silex/archive/0e69dc22400293f9364f8b918d008f3f6b634a47.zip",
+                "reference": "0e69dc22400293f9364f8b918d008f3f6b634a47",
                 "shasum": ""
             },
             "require": {
@@ -911,7 +897,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2012-11-27 09:18:13",
+            "time": "2012-12-11 20:49:45",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -951,12 +937,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher",
-                "reference": "b5b6807bcc192f3a1c4fba7ef48466ebbd3c4485"
+                "reference": "df9bde91f8f6fa7fb40996edf30e632cfc606b4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/EventDispatcher/archive/b5b6807bcc192f3a1c4fba7ef48466ebbd3c4485.zip",
-                "reference": "b5b6807bcc192f3a1c4fba7ef48466ebbd3c4485",
+                "url": "https://github.com/symfony/EventDispatcher/archive/df9bde91f8f6fa7fb40996edf30e632cfc606b4a.zip",
+                "reference": "df9bde91f8f6fa7fb40996edf30e632cfc606b4a",
                 "shasum": ""
             },
             "require": {
@@ -969,13 +955,8 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/http-kernel": "2.1.*"
             },
-            "time": "2012-11-08 09:51:48",
+            "time": "2012-12-06 10:00:55",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -1005,12 +986,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel",
-                "reference": "5b46b62217dab8296098607100500bb7bb3087bd"
+                "reference": "8500be95a0b0107d799486b7e6a9bd78cea0bd6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpKernel/archive/5b46b62217dab8296098607100500bb7bb3087bd.zip",
-                "reference": "5b46b62217dab8296098607100500bb7bb3087bd",
+                "url": "https://github.com/symfony/HttpKernel/archive/8500be95a0b0107d799486b7e6a9bd78cea0bd6b.zip",
+                "reference": "8500be95a0b0107d799486b7e6a9bd78cea0bd6b",
                 "shasum": ""
             },
             "require": {
@@ -1036,13 +1017,8 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "2012-11-15 13:23:00",
+            "time": "2012-12-11 10:40:22",
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
@@ -1072,12 +1048,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing",
-                "reference": "1410f46bfb9702b1040c4894b167635bc61552d7"
+                "reference": "e98510a5459fcaa686523b854a816aa569f2687f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Routing/archive/1410f46bfb9702b1040c4894b167635bc61552d7.zip",
-                "reference": "1410f46bfb9702b1040c4894b167635bc61552d7",
+                "url": "https://github.com/symfony/Routing/archive/e98510a5459fcaa686523b854a816aa569f2687f.zip",
+                "reference": "e98510a5459fcaa686523b854a816aa569f2687f",
                 "shasum": ""
             },
             "require": {
@@ -1094,7 +1070,7 @@
                 "symfony/config": "2.2.*",
                 "symfony/yaml": "2.2.*"
             },
-            "time": "2012-11-23 10:39:55",
+            "time": "2012-12-11 17:46:52",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1133,7 +1109,6 @@
         "php-ffmpeg/php-ffmpeg": 20,
         "php-unoconv/php-unoconv": 20,
         "php-mp4box/php-mp4box": 20,
-        "imagine/imagine": 20,
         "phpexiftool/phpexiftool": 20,
         "grom/silex-service-provider": 20
     }
