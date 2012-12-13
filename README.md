@@ -2,7 +2,7 @@
 
 A PHP 5.3 lib to transmute media files.
 
-[![Build Status](https://secure.travis-ci.org/alchemy-fr/Media-Alchemyst.png?branch=master)](http://travis-ci.org/alchemy-fr/Media-Alchemyst)
+[![Build Status](https://travis-ci.org/alchemy-fr/Media-Alchemyst.png?branch=master)](http://travis-ci.org/alchemy-fr/Media-Alchemyst)
 
 * Want to extract audio from video ?
 * Want to extract image from office document ?
