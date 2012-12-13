@@ -23,7 +23,7 @@
         "mediavorus/mediavorus": "0.2.*",
         "swftools/swftools": "dev-master",
         "alchemy/ghostscript": "0.2.*",
-        "php-ffmpeg/php-ffmpeg": "dev-master",
+        "php-ffmpeg/php-ffmpeg": "0.2.*",
         "php-unoconv/php-unoconv": "dev-master",
         "php-mp4box/php-mp4box": "dev-master",
         "imagine/imagine": ">=0.4",

@@ -1,5 +1,5 @@
 {
-    "hash": "66760bc835f5304f545c671cee932d4c",
+    "hash": "587f0d4640c4d83ad62fbbe0513cfbac",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -181,12 +181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
-                "reference": "9834a6460eb50424c5cae24081a5b0e2f8c4fc87"
+                "reference": "774d1b4c4394c8a02b9f1463dd96374c91730277"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/MediaVorus/archive/9834a6460eb50424c5cae24081a5b0e2f8c4fc87.zip",
-                "reference": "9834a6460eb50424c5cae24081a5b0e2f8c4fc87",
+                "url": "https://github.com/romainneutron/MediaVorus/archive/774d1b4c4394c8a02b9f1463dd96374c91730277.zip",
+                "reference": "774d1b4c4394c8a02b9f1463dd96374c91730277",
                 "shasum": ""
             },
             "require": {
@@ -201,7 +201,7 @@
                 "fabpot/php-cs-fixer": "*",
                 "silex/silex": "1.0.*-dev"
             },
-            "time": "2012-11-26 19:06:25",
+            "time": "2012-12-13 11:31:30",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -531,12 +531,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "86df0604a10c5faf20b466ae6a0b762cc6ed0a35"
+                "reference": "v1.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Pimple/archive/86df0604a10c5faf20b466ae6a0b762cc6ed0a35.zip",
-                "reference": "86df0604a10c5faf20b466ae6a0b762cc6ed0a35",
+                "url": "https://github.com/fabpot/Pimple/archive/v1.0.1.zip",
+                "reference": "v1.0.1",
                 "shasum": ""
             },
             "require": {
@@ -857,12 +857,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "0e69dc22400293f9364f8b918d008f3f6b634a47"
+                "reference": "c2fc658327addb94f9032c45b851a0176c3ee850"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/0e69dc22400293f9364f8b918d008f3f6b634a47.zip",
-                "reference": "0e69dc22400293f9364f8b918d008f3f6b634a47",
+                "url": "https://github.com/fabpot/Silex/archive/c2fc658327addb94f9032c45b851a0176c3ee850.zip",
+                "reference": "c2fc658327addb94f9032c45b851a0176c3ee850",
                 "shasum": ""
             },
             "require": {
@@ -897,7 +897,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2012-12-11 20:49:45",
+            "time": "2012-12-12 21:20:27",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1106,7 +1106,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "swftools/swftools": 20,
-        "php-ffmpeg/php-ffmpeg": 20,
         "php-unoconv/php-unoconv": 20,
         "php-mp4box/php-mp4box": 20,
         "phpexiftool/phpexiftool": 20,
