@@ -11,7 +11,7 @@ class Imagine extends AbstractDriver
 
     const DRIVER_GMAGICK = 'Gmagick';
     const DRIVER_IMAGICK = 'Imagick';
-    const DRIVER_GD      = 'GD';
+    const DRIVER_GD      = 'Gd';
 
     protected $driver;
 
