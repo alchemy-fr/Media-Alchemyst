@@ -1,5 +1,5 @@
 {
-    "hash": "587f0d4640c4d83ad62fbbe0513cfbac",
+    "hash": "cc38ab21633f65129ae623541adc3678",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -61,34 +61,35 @@
         },
         {
             "name": "doctrine/common",
-            "version": "dev-master",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common",
-                "reference": "d514e3920656921ba1148f16a4089222c58bc83a"
+                "reference": "2.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/common/archive/d514e3920656921ba1148f16a4089222c58bc83a.zip",
-                "reference": "d514e3920656921ba1148f16a4089222c58bc83a",
+                "url": "https://github.com/doctrine/common/zipball/2.3.0",
+                "reference": "2.3.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "time": "2012-12-05 12:03:39",
+            "time": "2012-09-19 22:55:18",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4.x-dev"
+                    "dev-master": "2.3.x-dev"
                 }
             },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Doctrine\\Common\\": "lib/"
+                    "Doctrine\\Common": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -112,7 +113,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -134,12 +135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine",
-                "reference": "v0.4.0"
+                "reference": "v0.4.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/avalanche123/Imagine/archive/v0.4.0.zip",
-                "reference": "v0.4.0",
+                "url": "https://github.com/avalanche123/Imagine/archive/v0.4.1.zip",
+                "reference": "v0.4.1",
                 "shasum": ""
             },
             "require": {
@@ -148,7 +149,7 @@
             "require-dev": {
                 "sami/sami": "dev-master"
             },
-            "time": "2012-12-07 16:46:12",
+            "time": "2012-12-13 18:31:18",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -156,6 +157,7 @@
                     "Imagine": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -181,27 +183,27 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
-                "reference": "774d1b4c4394c8a02b9f1463dd96374c91730277"
+                "reference": "0.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/MediaVorus/archive/774d1b4c4394c8a02b9f1463dd96374c91730277.zip",
-                "reference": "774d1b4c4394c8a02b9f1463dd96374c91730277",
+                "url": "https://github.com/romainneutron/MediaVorus/archive/0.2.1.zip",
+                "reference": "0.2.1",
                 "shasum": ""
             },
             "require": {
                 "phpexiftool/phpexiftool": "dev-master",
                 "php-ffmpeg/php-ffmpeg": "dev-master",
                 "php": ">=5.3.0",
-                "monolog/monolog": "1.0.*",
                 "symfony/http-foundation": ">2.0,<=2.2",
-                "symfony/console": ">2.0,<=2.2"
+                "symfony/console": ">2.0,<=2.2",
+                "monolog/monolog": "1.*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "*",
                 "silex/silex": "1.0.*-dev"
             },
-            "time": "2012-12-13 11:31:30",
+            "time": "2012-12-21 16:17:03",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -214,6 +216,7 @@
                     "MediaVorus": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -231,29 +234,43 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog",
-                "reference": "1.0.2"
+                "reference": "52b454f89041c41c548bc242482aaf9dc6fee5d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Seldaek/monolog/zipball/1.0.2",
-                "reference": "1.0.2",
+                "url": "https://github.com/Seldaek/monolog/archive/52b454f89041c41c548bc242482aaf9dc6fee5d8.zip",
+                "reference": "52b454f89041c41c548bc242482aaf9dc6fee5d8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2011-10-24 02:39:02",
+            "require-dev": {
+                "mlehner/gelf-php": "1.0.*"
+            },
+            "suggest": {
+                "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+                "ext-mongo": "Allow sending log messages to a MongoDB server"
+            },
+            "time": "2012-12-21 09:35:52",
             "type": "library",
-            "installation-source": "dist",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Monolog": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -278,12 +295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg",
-                "reference": "0.2.0"
+                "reference": "014112a16f31b74e584b1ae7540f4b72960ebd9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/0.2.0.zip",
-                "reference": "0.2.0",
+                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/014112a16f31b74e584b1ae7540f4b72960ebd9e.zip",
+                "reference": "014112a16f31b74e584b1ae7540f4b72960ebd9e",
                 "shasum": ""
             },
             "require": {
@@ -300,7 +317,7 @@
             "suggest": {
                 "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
             },
-            "time": "2012-12-13 12:05:15",
+            "time": "2012-12-16 15:58:49",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -313,6 +330,7 @@
                     "FFMpeg": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -346,24 +364,24 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/PHP-MP4Box.git",
-                "reference": "2c272a3f77807771275fb4f2c404071e9c263e19"
+                "reference": "0.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-MP4Box/archive/2c272a3f77807771275fb4f2c404071e9c263e19.zip",
-                "reference": "2c272a3f77807771275fb4f2c404071e9c263e19",
+                "url": "https://github.com/alchemy-fr/PHP-MP4Box/archive/0.1.0.zip",
+                "reference": "0.1.0",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "1.0.*",
                 "php": ">=5.3.3",
-                "symfony/process": ">=2.0,<=2.2"
+                "symfony/process": ">=2.0,<=2.2",
+                "monolog/monolog": "1.*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-10-09 17:40:08",
+            "time": "2012-12-21 16:44:13",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -371,6 +389,7 @@
                     "MP4Box": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -394,24 +413,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-Unoconv",
-                "reference": "dd49df9be9ab649af37674f07393037727077124"
+                "reference": "0.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-Unoconv/archive/dd49df9be9ab649af37674f07393037727077124.zip",
-                "reference": "dd49df9be9ab649af37674f07393037727077124",
+                "url": "https://github.com/alchemy-fr/PHP-Unoconv/archive/0.1.0.zip",
+                "reference": "0.1.0",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "1.0.*",
                 "php": ">=5.3.3",
-                "symfony/process": ">=2.0,<=2.2"
+                "symfony/process": ">=2.0,<=2.2",
+                "monolog/monolog": "1.*"
             },
             "require-dev": {
                 "silex/silex": "dev-master",
                 "fabpot/php-cs-fixer": "dev-master"
             },
-            "time": "2012-10-08 16:16:40",
+            "time": "2012-12-21 16:41:47",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -419,6 +438,7 @@
                     "Unoconv": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -478,30 +498,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/PHPExiftool",
-                "reference": "c72f9a88a74c1967fb14de62f342048c8311cb9b"
+                "reference": "204d7a7a41458e9907c43bb1b45daf3db48de59e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/PHPExiftool/archive/c72f9a88a74c1967fb14de62f342048c8311cb9b.zip",
-                "reference": "c72f9a88a74c1967fb14de62f342048c8311cb9b",
+                "url": "https://github.com/romainneutron/PHPExiftool/archive/204d7a7a41458e9907c43bb1b45daf3db48de59e.zip",
+                "reference": "204d7a7a41458e9907c43bb1b45daf3db48de59e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "doctrine/common": ">=2.2",
                 "phpexiftool/exiftool": "dev-master",
-                "symfony/process": "2.1.*"
+                "monolog/monolog": "1.*",
+                "doctrine/common": ">=2.2,<=2.3",
+                "symfony/process": ">=2.0,<=2.2"
             },
             "require-dev": {
-                "symfony/css-selector": "2.1.*",
-                "symfony/finder": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dom-crawler": "2.1.*",
                 "fabpot/php-cs-fixer": "dev-master",
                 "sami/sami": "dev-master",
-                "silex/silex": "dev-master"
+                "silex/silex": "dev-master",
+                "symfony/css-selector": ">=2.0,<=2.2",
+                "symfony/finder": ">=2.0,<=2.2",
+                "symfony/console": ">=2.0,<=2.2",
+                "symfony/dom-crawler": ">=2.0,<=2.2"
             },
-            "time": "2012-09-03 14:06:48",
+            "time": "2012-12-21 16:05:08",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -509,6 +530,7 @@
                     "PHPExiftool": "lib"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -577,25 +599,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHPSwftools",
-                "reference": "9b79c0fb1f43a2e84c26e908d54b1ed98091510c"
+                "reference": "0.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHPSwftools/archive/9b79c0fb1f43a2e84c26e908d54b1ed98091510c.zip",
-                "reference": "9b79c0fb1f43a2e84c26e908d54b1ed98091510c",
+                "url": "https://github.com/alchemy-fr/PHPSwftools/archive/0.1.0.zip",
+                "reference": "0.1.0",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "1.0.*",
                 "php": ">=5.3.3",
-                "symfony/process": ">=2.0,<=2.2"
+                "symfony/process": ">=2.0,<=2.2",
+                "monolog/monolog": "1.*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "dev-master",
                 "sami/sami": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-10-08 14:06:53",
+            "time": "2012-12-21 16:29:27",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -603,6 +625,7 @@
                     "SwfTools": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -632,18 +655,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "ccfd7da81aa8a353bbd8acbe1abc69f14df64c79"
+                "reference": "v2.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/archive/ccfd7da81aa8a353bbd8acbe1abc69f14df64c79.zip",
-                "reference": "ccfd7da81aa8a353bbd8acbe1abc69f14df64c79",
+                "url": "https://github.com/symfony/Console/archive/v2.1.6.zip",
+                "reference": "v2.1.6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-11 10:40:22",
+            "time": "2012-12-13 17:42:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -651,6 +674,7 @@
                     "Symfony\\Component\\Console": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -674,18 +698,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "ca61913ce6b24802d0e5751fd52fb56345af09dd"
+                "reference": "v2.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/archive/ca61913ce6b24802d0e5751fd52fb56345af09dd.zip",
-                "reference": "ca61913ce6b24802d0e5751fd52fb56345af09dd",
+                "url": "https://github.com/symfony/HttpFoundation/archive/v2.1.6.zip",
+                "reference": "v2.1.6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-11 10:40:22",
+            "time": "2012-12-14 21:03:29",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -694,6 +718,7 @@
                     "SessionHandlerInterface": "Symfony/Component/HttpFoundation/Resources/stubs"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -717,18 +742,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process",
-                "reference": "7468a4995e421741e37467613889765f0b21c329"
+                "reference": "v2.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Process/archive/7468a4995e421741e37467613889765f0b21c329.zip",
-                "reference": "7468a4995e421741e37467613889765f0b21c329",
+                "url": "https://github.com/symfony/Process/archive/v2.1.6.zip",
+                "reference": "v2.1.6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-11 10:40:22",
+            "time": "2012-12-19 13:27:19",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -736,6 +761,7 @@
                     "Symfony\\Component\\Process": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -857,12 +883,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "c2fc658327addb94f9032c45b851a0176c3ee850"
+                "reference": "bd523d5970bb093d1d2c709e91a7f72b70c39108"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/c2fc658327addb94f9032c45b851a0176c3ee850.zip",
-                "reference": "c2fc658327addb94f9032c45b851a0176c3ee850",
+                "url": "https://github.com/fabpot/Silex/archive/bd523d5970bb093d1d2c709e91a7f72b70c39108.zip",
+                "reference": "bd523d5970bb093d1d2c709e91a7f72b70c39108",
                 "shasum": ""
             },
             "require": {
@@ -897,7 +923,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2012-12-12 21:20:27",
+            "time": "2012-12-18 11:32:45",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -910,6 +936,7 @@
                     "Silex": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -937,12 +964,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher",
-                "reference": "df9bde91f8f6fa7fb40996edf30e632cfc606b4a"
+                "reference": "v2.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/EventDispatcher/archive/df9bde91f8f6fa7fb40996edf30e632cfc606b4a.zip",
-                "reference": "df9bde91f8f6fa7fb40996edf30e632cfc606b4a",
+                "url": "https://github.com/symfony/EventDispatcher/archive/v2.1.6.zip",
+                "reference": "v2.1.6",
                 "shasum": ""
             },
             "require": {
@@ -963,6 +990,7 @@
                     "Symfony\\Component\\EventDispatcher": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -986,12 +1014,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel",
-                "reference": "8500be95a0b0107d799486b7e6a9bd78cea0bd6b"
+                "reference": "17fb2aeb877649a144260681bc460a3dd258e344"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpKernel/archive/8500be95a0b0107d799486b7e6a9bd78cea0bd6b.zip",
-                "reference": "8500be95a0b0107d799486b7e6a9bd78cea0bd6b",
+                "url": "https://github.com/symfony/HttpKernel/archive/17fb2aeb877649a144260681bc460a3dd258e344.zip",
+                "reference": "17fb2aeb877649a144260681bc460a3dd258e344",
                 "shasum": ""
             },
             "require": {
@@ -1017,7 +1045,7 @@
                 "symfony/dependency-injection": "2.1.*",
                 "symfony/finder": "2.1.*"
             },
-            "time": "2012-12-11 10:40:22",
+            "time": "2012-12-21 10:42:20",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -1025,6 +1053,7 @@
                     "Symfony\\Component\\HttpKernel": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1048,12 +1077,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing",
-                "reference": "e98510a5459fcaa686523b854a816aa569f2687f"
+                "reference": "eecf36850760b137fcd4f5025c64014de722874c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Routing/archive/e98510a5459fcaa686523b854a816aa569f2687f.zip",
-                "reference": "e98510a5459fcaa686523b854a816aa569f2687f",
+                "url": "https://github.com/symfony/Routing/archive/eecf36850760b137fcd4f5025c64014de722874c.zip",
+                "reference": "eecf36850760b137fcd4f5025c64014de722874c",
                 "shasum": ""
             },
             "require": {
@@ -1070,7 +1099,7 @@
                 "symfony/config": "2.2.*",
                 "symfony/yaml": "2.2.*"
             },
-            "time": "2012-12-11 17:46:52",
+            "time": "2012-12-20 07:41:17",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1083,6 +1112,7 @@
                     "Symfony\\Component\\Routing\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
