@@ -2,6 +2,8 @@
 
 namespace MediaAlchemyst;
 
+use Monolog\Logger;
+use Monolog\Handler\NullHandler;
 use MediaVorus\MediaVorus;
 use PHPExiftool\Reader;
 use PHPExiftool\RDFParser;
@@ -19,7 +21,10 @@ class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
 
     public function getExiftool()
     {
-        return new Exiftool();
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
+
+        return new Exiftool($logger);
     }
 
     public function getReader()

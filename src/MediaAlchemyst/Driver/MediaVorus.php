@@ -20,7 +20,7 @@ class MediaVorus extends AbstractDriver
     {
         $this->logger = $logger;
 
-        $exiftool = new Exiftool();
+        $exiftool = new Exiftool($logger);
 
         try {
             if ($use_binary) {

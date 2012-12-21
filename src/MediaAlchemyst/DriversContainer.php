@@ -44,7 +44,7 @@ class DriversContainer extends Pimple
 
         $this['ffmpeg.ffprobe.binary'] = $this['mp4box.binary'] = $this['unoconv.binary']
             = $this['pdf2swf.binary'] = $this['swf-render.binary'] = $this['swf-extract.binary']
-            = $this['imagine.driver'] = $this['ffmpeg.ffmpeg.binary'] 
+            = $this['imagine.driver'] = $this['ffmpeg.ffmpeg.binary']
             = $this['ghostscript.binary'] = null;
 
         $this['ffmpeg.threads'] = 1;
@@ -79,8 +79,8 @@ class DriversContainer extends Pimple
             return $driver->getDriver();
         });
 
-        $this['exiftool.exiftool'] = $this->share(function() {
-            return new Exiftool();
+        $this['exiftool.exiftool'] = $this->share(function(Pimple $container) {
+            return new Exiftool($container['logger']);
         });
 
         $this['ghostscript.transcoder'] = $this->share(function(Pimple $container) {

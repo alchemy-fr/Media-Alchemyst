@@ -21,7 +21,7 @@ class ExiftoolExtractorTest extends \PHPUnit_Framework_TestCase
     {
         $logger = new Logger('test');
 
-        $this->object = new ExiftoolExtractor(new Exiftool, $logger);
+        $this->object = new ExiftoolExtractor(new Exiftool($logger), $logger);
     }
 
 
