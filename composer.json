@@ -20,7 +20,7 @@
     "require": {
         "php": ">=5.3.3",
         "pimple/pimple": "1.*",
-        "mediavorus/mediavorus": "0.2.*",
+        "mediavorus/mediavorus": ">=0.2, <=0.3",
         "swftools/swftools": "dev-master",
         "alchemy/ghostscript": "0.2.*",
         "php-ffmpeg/php-ffmpeg": "0.2.*",
@@ -28,7 +28,7 @@
         "php-mp4box/php-mp4box": "dev-master",
         "imagine/imagine": ">=0.4",
         "monolog/monolog": "1.*",
-        "symfony/console": ">=2.0,<=2.2"
+        "symfony/console": ">=2.0,<=2.2.x-dev"
     },
     "minimum-stability": "dev",
     "require-dev": {

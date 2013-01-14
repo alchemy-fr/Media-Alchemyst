@@ -1,5 +1,5 @@
 {
-    "hash": "cc38ab21633f65129ae623541adc3678",
+    "hash": "0412fbb7010ac378972b231c1380507f",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -38,6 +38,7 @@
                     "Ghostscript": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -83,7 +84,7 @@
                     "dev-master": "2.3.x-dev"
                 }
             },
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Doctrine\\Common": "lib/"
@@ -179,38 +180,45 @@
         },
         {
             "name": "mediavorus/mediavorus",
-            "version": "dev-master",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/MediaVorus",
-                "reference": "0.2.1"
+                "reference": "0.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/MediaVorus/archive/0.2.1.zip",
-                "reference": "0.2.1",
+                "url": "https://github.com/romainneutron/MediaVorus/archive/0.3.0.zip",
+                "reference": "0.3.0",
                 "shasum": ""
             },
             "require": {
-                "phpexiftool/phpexiftool": "dev-master",
-                "php-ffmpeg/php-ffmpeg": "dev-master",
                 "php": ">=5.3.0",
+                "doctrine/common": ">=2.2, <=2.3.x-dev",
                 "symfony/http-foundation": ">2.0,<=2.2",
                 "symfony/console": ">2.0,<=2.2",
+                "phpexiftool/phpexiftool": "dev-master",
+                "php-ffmpeg/php-ffmpeg": "dev-master",
                 "monolog/monolog": "1.*"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "*",
-                "silex/silex": "1.0.*-dev"
+                "silex/silex": "1.0.*-dev",
+                "symfony/yaml": "*",
+                "jms/serializer": "1.0.x-dev"
             },
-            "time": "2012-12-21 16:17:03",
+            "suggest": {
+                "jms/serializer": "To serialize Medias",
+                "symfony/yaml": "To serialize Medias in Yaml format"
+            },
+            "time": "2013-01-14 12:39:53",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "0.2.x-dev"
                 }
             },
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "MediaVorus": "src"
@@ -238,26 +246,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog",
-                "reference": "52b454f89041c41c548bc242482aaf9dc6fee5d8"
+                "reference": "1.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Seldaek/monolog/archive/52b454f89041c41c548bc242482aaf9dc6fee5d8.zip",
-                "reference": "52b454f89041c41c548bc242482aaf9dc6fee5d8",
+                "url": "https://github.com/Seldaek/monolog/archive/1.3.1.zip",
+                "reference": "1.3.1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.3.0",
+                "psr/log": ">=1.0,<2.0"
             },
             "require-dev": {
-                "mlehner/gelf-php": "1.0.*"
+                "mlehner/gelf-php": "1.0.*",
+                "doctrine/couchdb": "dev-master",
+                "raven/raven": "0.3.*"
             },
             "suggest": {
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-                "ext-mongo": "Allow sending log messages to a MongoDB server"
+                "ext-mongo": "Allow sending log messages to a MongoDB server",
+                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+                "raven/raven": "Allow sending log messages to a Sentry server"
             },
-            "time": "2012-12-21 09:35:52",
+            "time": "2013-01-11 10:23:20",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -282,11 +295,12 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Logging for PHP 5.3",
+            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
             "homepage": "http://github.com/Seldaek/monolog",
             "keywords": [
                 "log",
-                "logging"
+                "logging",
+                "psr-3"
             ]
         },
         {
@@ -295,12 +309,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg",
-                "reference": "014112a16f31b74e584b1ae7540f4b72960ebd9e"
+                "reference": "d7bb7bd091c47ae512ab86206607e2febce7ce49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/014112a16f31b74e584b1ae7540f4b72960ebd9e.zip",
-                "reference": "014112a16f31b74e584b1ae7540f4b72960ebd9e",
+                "url": "https://github.com/alchemy-fr/PHP-FFmpeg/archive/d7bb7bd091c47ae512ab86206607e2febce7ce49.zip",
+                "reference": "d7bb7bd091c47ae512ab86206607e2febce7ce49",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +331,7 @@
             "suggest": {
                 "php-ffmpeg/extras": "A compilation of common audio & video drivers for PHP-FFMpeg"
             },
-            "time": "2012-12-16 15:58:49",
+            "time": "2012-12-27 23:01:03",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -364,12 +378,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/alchemy-fr/PHP-MP4Box.git",
-                "reference": "0.1.0"
+                "reference": "2e8db20b7ebc53818b3e23c99f4e23c6e2bfc1c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/PHP-MP4Box/archive/0.1.0.zip",
-                "reference": "0.1.0",
+                "url": "https://github.com/alchemy-fr/PHP-MP4Box/archive/2e8db20b7ebc53818b3e23c99f4e23c6e2bfc1c4.zip",
+                "reference": "2e8db20b7ebc53818b3e23c99f4e23c6e2bfc1c4",
                 "shasum": ""
             },
             "require": {
@@ -381,7 +395,7 @@
                 "fabpot/php-cs-fixer": "dev-master",
                 "silex/silex": "dev-master"
             },
-            "time": "2012-12-21 16:44:13",
+            "time": "2012-12-21 16:56:54",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -450,7 +464,7 @@
                 },
                 {
                     "name": "Phraseanet Team",
-                    "email": "info@alchemy.fr",
+                    "email": "support@alchemy.fr",
                     "homepage": "http://www.phraseanet.com/"
                 }
             ],
@@ -462,20 +476,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/exiftool",
-                "reference": "c68d98b5a00aaf7ae0db7eebddfcde27d948e537"
+                "reference": "6f833c5fcd94de99a240e9e3f549280051677269"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/alchemy-fr/exiftool/archive/c68d98b5a00aaf7ae0db7eebddfcde27d948e537.zip",
-                "reference": "c68d98b5a00aaf7ae0db7eebddfcde27d948e537",
+                "url": "https://github.com/alchemy-fr/exiftool/archive/6f833c5fcd94de99a240e9e3f549280051677269.zip",
+                "reference": "6f833c5fcd94de99a240e9e3f549280051677269",
                 "shasum": ""
             },
             "require": {
                 "phpexiftool/phpexiftool": "*"
             },
-            "time": "2012-08-29 16:01:26",
+            "time": "2013-01-03 11:16:06",
             "type": "library",
             "installation-source": "source",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "Perl Licensing"
             ],
@@ -498,31 +513,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/PHPExiftool",
-                "reference": "204d7a7a41458e9907c43bb1b45daf3db48de59e"
+                "reference": "a953aa842a555ece591603971751d90fee8620de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/romainneutron/PHPExiftool/archive/204d7a7a41458e9907c43bb1b45daf3db48de59e.zip",
-                "reference": "204d7a7a41458e9907c43bb1b45daf3db48de59e",
+                "url": "https://github.com/romainneutron/PHPExiftool/archive/a953aa842a555ece591603971751d90fee8620de.zip",
+                "reference": "a953aa842a555ece591603971751d90fee8620de",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "phpexiftool/exiftool": "dev-master",
                 "monolog/monolog": "1.*",
                 "doctrine/common": ">=2.2,<=2.3",
-                "symfony/process": ">=2.0,<=2.2"
+                "phpexiftool/exiftool": ">=9.12",
+                "symfony/process": ">=2.0,<=2.2.x-dev"
             },
             "require-dev": {
-                "fabpot/php-cs-fixer": "dev-master",
-                "sami/sami": "dev-master",
-                "silex/silex": "dev-master",
-                "symfony/css-selector": ">=2.0,<=2.2",
-                "symfony/finder": ">=2.0,<=2.2",
-                "symfony/console": ">=2.0,<=2.2",
-                "symfony/dom-crawler": ">=2.0,<=2.2"
+                "fabpot/php-cs-fixer": "*",
+                "sami/sami": "*",
+                "silex/silex": "*",
+                "symfony/css-selector": ">=2.0,<=2.2.x-dev",
+                "symfony/finder": ">=2.0,<=2.2.x-dev",
+                "symfony/console": ">=2.0,<=2.2.x-dev",
+                "symfony/dom-crawler": ">=2.0,<=2.2.x-dev"
             },
-            "time": "2012-12-21 16:05:08",
+            "time": "2013-01-03 11:53:47",
             "type": "library",
             "installation-source": "source",
             "autoload": {
@@ -553,18 +568,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "v1.0.1"
+                "reference": "d58cec632dfdd3305d6b4f2563a5cf2a75b4d978"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Pimple/archive/v1.0.1.zip",
-                "reference": "v1.0.1",
+                "url": "https://github.com/fabpot/Pimple/archive/d58cec632dfdd3305d6b4f2563a5cf2a75b4d978.zip",
+                "reference": "d58cec632dfdd3305d6b4f2563a5cf2a75b4d978",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-11-11 08:32:34",
+            "time": "2013-01-07 10:39:26",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -577,6 +592,7 @@
                     "Pimple": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -591,6 +607,45 @@
             "keywords": [
                 "dependency injection",
                 "container"
+            ]
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": ""
+            },
+            "time": "2012-12-21 11:40:51",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
             ]
         },
         {
@@ -650,28 +705,33 @@
         },
         {
             "name": "symfony/console",
-            "version": "2.1.x-dev",
+            "version": "v2.2.0-BETA1",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console",
-                "reference": "v2.1.6"
+                "reference": "v2.2.0-BETA1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Console/archive/v2.1.6.zip",
-                "reference": "v2.1.6",
+                "url": "https://github.com/symfony/Console/archive/v2.2.0-BETA1.zip",
+                "reference": "v2.2.0-BETA1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-13 17:42:00",
+            "time": "2013-01-08 18:17:41",
             "type": "library",
-            "installation-source": "source",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Console": ""
+                    "Symfony\\Component\\Console\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -693,30 +753,37 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "2.1.x-dev",
+            "version": "v2.2.0-BETA1",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "v2.1.6"
+                "reference": "v2.2.0-BETA1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/archive/v2.1.6.zip",
-                "reference": "v2.1.6",
+                "url": "https://github.com/symfony/HttpFoundation/archive/v2.2.0-BETA1.zip",
+                "reference": "v2.2.0-BETA1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-14 21:03:29",
+            "time": "2013-01-08 18:17:41",
             "type": "library",
-            "installation-source": "source",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\HttpFoundation": "",
-                    "SessionHandlerInterface": "Symfony/Component/HttpFoundation/Resources/stubs"
-                }
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/HttpFoundation/Resources/stubs"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -737,28 +804,33 @@
         },
         {
             "name": "symfony/process",
-            "version": "2.1.x-dev",
+            "version": "v2.2.0-BETA1",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process",
-                "reference": "v2.1.6"
+                "reference": "v2.2.0-BETA1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Process/archive/v2.1.6.zip",
-                "reference": "v2.1.6",
+                "url": "https://github.com/symfony/Process/archive/v2.2.0-BETA1.zip",
+                "reference": "v2.2.0-BETA1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2012-12-19 13:27:19",
+            "time": "2013-01-05 18:24:35",
             "type": "library",
-            "installation-source": "source",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Process": ""
+                    "Symfony\\Component\\Process\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -807,6 +879,7 @@
                     "Grom\\Silex": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -854,6 +927,7 @@
                     "Knp\\Snappy": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -883,12 +957,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Silex.git",
-                "reference": "bd523d5970bb093d1d2c709e91a7f72b70c39108"
+                "reference": "c3dc8d7e0fba4a2858dc2099066f7e593bee2045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Silex/archive/bd523d5970bb093d1d2c709e91a7f72b70c39108.zip",
-                "reference": "bd523d5970bb093d1d2c709e91a7f72b70c39108",
+                "url": "https://github.com/fabpot/Silex/archive/c3dc8d7e0fba4a2858dc2099066f7e593bee2045.zip",
+                "reference": "c3dc8d7e0fba4a2858dc2099066f7e593bee2045",
                 "shasum": ""
             },
             "require": {
@@ -923,7 +997,7 @@
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev"
             },
-            "time": "2012-12-18 11:32:45",
+            "time": "2013-01-13 19:52:32",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -959,35 +1033,40 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher",
-                "reference": "v2.1.6"
+                "reference": "v2.2.0-BETA1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/EventDispatcher/archive/v2.1.6.zip",
-                "reference": "v2.1.6",
+                "url": "https://github.com/symfony/EventDispatcher/archive/v2.2.0-BETA1.zip",
+                "reference": "v2.2.0-BETA1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/dependency-injection": "2.1.*"
+                "symfony/dependency-injection": "2.2.*"
             },
             "suggest": {
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/http-kernel": "2.1.*"
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/http-kernel": "2.2.*"
             },
-            "time": "2012-12-06 10:00:55",
+            "time": "2013-01-04 17:02:19",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\EventDispatcher": ""
+                    "Symfony\\Component\\EventDispatcher\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1009,48 +1088,55 @@
         },
         {
             "name": "symfony/http-kernel",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/HttpKernel",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel",
-                "reference": "17fb2aeb877649a144260681bc460a3dd258e344"
+                "reference": "b371a89177526c2a5793649229b4dea9915549b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpKernel/archive/17fb2aeb877649a144260681bc460a3dd258e344.zip",
-                "reference": "17fb2aeb877649a144260681bc460a3dd258e344",
+                "url": "https://github.com/symfony/HttpKernel/archive/b371a89177526c2a5793649229b4dea9915549b6.zip",
+                "reference": "b371a89177526c2a5793649229b4dea9915549b6",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/event-dispatcher": "2.1.*",
-                "symfony/http-foundation": "2.1.*"
+                "symfony/event-dispatcher": "2.2.*",
+                "symfony/http-foundation": "2.2.*",
+                "psr/log": ">=1.0,<2.0"
             },
             "require-dev": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/class-loader": "2.1.*",
-                "symfony/config": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/finder": "2.1.*",
-                "symfony/process": "2.1.*",
-                "symfony/routing": "2.1.*"
+                "symfony/browser-kit": "2.2.*",
+                "symfony/class-loader": "2.2.*",
+                "symfony/config": "2.2.*",
+                "symfony/console": "2.2.*",
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/finder": "2.2.*",
+                "symfony/process": "2.2.*",
+                "symfony/routing": "2.2.*",
+                "symfony/stopwatch": "2.2.*"
             },
             "suggest": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/class-loader": "2.1.*",
-                "symfony/config": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/finder": "2.1.*"
+                "symfony/browser-kit": "2.2.*",
+                "symfony/class-loader": "2.2.*",
+                "symfony/config": "2.2.*",
+                "symfony/console": "2.2.*",
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/finder": "2.2.*"
             },
-            "time": "2012-12-21 10:42:20",
+            "time": "2013-01-11 10:33:37",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "installation-source": "source",
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\HttpKernel": ""
+                    "Symfony\\Component\\HttpKernel\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1077,12 +1163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing",
-                "reference": "eecf36850760b137fcd4f5025c64014de722874c"
+                "reference": "192243b2c5e36fc21e83fd63ab54582dcc31e7e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/Routing/archive/eecf36850760b137fcd4f5025c64014de722874c.zip",
-                "reference": "eecf36850760b137fcd4f5025c64014de722874c",
+                "url": "https://github.com/symfony/Routing/archive/192243b2c5e36fc21e83fd63ab54582dcc31e7e4.zip",
+                "reference": "192243b2c5e36fc21e83fd63ab54582dcc31e7e4",
                 "shasum": ""
             },
             "require": {
@@ -1092,14 +1178,15 @@
                 "doctrine/common": ">=2.2,<2.4-dev",
                 "symfony/config": "2.2.*",
                 "symfony/yaml": "2.2.*",
-                "symfony/http-kernel": "2.2.*"
+                "symfony/http-kernel": "2.2.*",
+                "psr/log": ">=1.0,<2.0"
             },
             "suggest": {
                 "doctrine/common": ">=2.2,<2.4-dev",
                 "symfony/config": "2.2.*",
                 "symfony/yaml": "2.2.*"
             },
-            "time": "2012-12-20 07:41:17",
+            "time": "2013-01-11 17:38:19",
             "type": "library",
             "extra": {
                 "branch-alias": {
