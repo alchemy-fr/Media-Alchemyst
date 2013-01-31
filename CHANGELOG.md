@@ -1,7 +1,11 @@
 CHANGELOG
 ---------
 
-* 0.2.0
+* 0.2.1 (01-31-2013)
+
+  * Fix Composer issues
+
+* 0.2.0 (12-21-2012)
 
   * Update API, Use Pimple as driver container.
   * Update to MediaVorus 0.2.*
