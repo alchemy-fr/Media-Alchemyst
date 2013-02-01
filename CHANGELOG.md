@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.2.2 (02-01-2013)
+
+  * Use Ghostscript 0.2
+
 * 0.2.1 (01-31-2013)
 
   * Fix Composer issues
