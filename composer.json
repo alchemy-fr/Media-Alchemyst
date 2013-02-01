@@ -22,7 +22,7 @@
         "mediavorus/mediavorus"       : "~0.2",
         "phpexiftool/exiftool"        : "dev-master@dev",
         "swftools/swftools"           : "~0.1.0",
-        "alchemy/ghostscript"         : "~0.1.0",
+        "alchemy/ghostscript"         : "~0.2.0",
         "php-ffmpeg/php-ffmpeg"       : "~0.2.0",
         "php-unoconv/php-unoconv"     : "~0.1.0",
         "php-mp4box/php-mp4box"       : "~0.1.0",
