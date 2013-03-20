@@ -10,7 +10,7 @@ before_script:
   - sh -c "cd gmagick-1.1.0RC2 && phpize && ./configure --with-gmagick=/usr/local && make && sudo make install"
   - echo "extension=gmagick.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install
+  - php composer.phar install --prefer-source
 
 php:
   - 5.3
