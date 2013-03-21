@@ -6,11 +6,20 @@ use MediaAlchemyst\Specification;
 use MediaAlchemyst\Exception;
 use MediaVorus\Media\Media;
 use Imagine\Image;
+use Imagine\Image\Palette\RGB;
 
 class Image2Image extends Provider
 {
     public static $autorotate = false;
     public static $lookForEmbeddedPreview = false;
+
+    private $palette;
+
+    public function __construct(\MediaAlchemyst\DriversContainer $container)
+    {
+        parent::__construct($container);
+        $this->palette = new RGB();
+    }
 
     public function execute(Specification\Provider $spec, Media $source, $dest)
     {
@@ -97,6 +106,8 @@ class Image2Image extends Provider
             } elseif (null !== $angle = $spec->getRotationAngle()) {
                 $image = $image->rotate($angle);
             }
+
+            $image->usePalette($this->palette);
 
             if (true == $spec->getStrip()) {
                 $image = $image->strip();
