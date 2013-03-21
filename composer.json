@@ -16,6 +16,12 @@
             "homepage": "http://www.phraseanet.com/"
         }
     ],
+    "repositories": [
+        {
+            "type": "git",
+            "url":  "https://github.com/romainneutron/Imagine.git"
+        }
+    ],
     "require": {
         "php"                         : ">=5.3.3",
         "pimple/pimple"               : "~1.0",
@@ -26,7 +32,7 @@
         "php-ffmpeg/php-ffmpeg"       : "~0.2.0",
         "php-unoconv/php-unoconv"     : "~0.1.0",
         "php-mp4box/php-mp4box"       : "~0.1.0",
-        "imagine/imagine"             : "~0.4",
+        "imagine/imagine"             : "dev-ColorSpaces",
         "monolog/monolog"             : "~1.0",
         "symfony/console"             : "~2.0"
     },

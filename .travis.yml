@@ -12,7 +12,7 @@ before_script:
   - tar -xzf gmagick-1.1.0RC2.tgz
   - sh -c "cd gmagick-1.1.0RC2 && phpize && ./configure --with-gmagick=/usr/local && make && sudo make install"
   - echo "extension=gmagick.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
-  - composer install --dev
+  - composer install --dev --prefer-source
 
 php:
   - 5.3.3

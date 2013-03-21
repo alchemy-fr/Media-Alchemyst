@@ -4,6 +4,7 @@ namespace MediaAlchemyst\Transmuter;
 
 use Imagine\Exception\Exception as ImagineException;
 use Imagine\Image\ImageInterface;
+use Imagine\Image\Palette\RGB;
 use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\SpecificationInterface;
@@ -16,6 +17,14 @@ class Image2Image extends AbstractTransmuter
 {
     public static $autorotate = false;
     public static $lookForEmbeddedPreview = false;
+
+    private $palette;
+
+    public function __construct(\Pimple $container)
+    {
+        parent::__construct($container);
+        $this->palette = new RGB();
+    }
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
@@ -102,6 +111,8 @@ class Image2Image extends AbstractTransmuter
             } elseif (null !== $angle = $spec->getRotationAngle()) {
                 $image = $image->rotate($angle);
             }
+
+            $image->usePalette($this->palette);
 
             if (true == $spec->getStrip()) {
                 $image = $image->strip();
