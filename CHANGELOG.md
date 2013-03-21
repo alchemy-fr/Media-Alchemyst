@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.2.3 (03-21-2013)
+
+  * Support for Imagine ColorSpaces (@romainneutron branch)
+
 * 0.2.2 (02-01-2013)
 
   * Use Ghostscript 0.2
@@ -13,6 +17,10 @@ CHANGELOG
 
   * Update API, Use Pimple as driver container.
   * Update to MediaVorus 0.2.*
+
+* 0.1.5 (03-21-2013)
+
+  * Support for Imagine ColorSpaces (@romainneutron branch)
 
 * 0.1.4 (12-12-2012)
 
