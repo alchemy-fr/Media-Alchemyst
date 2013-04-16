@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.2.4 (04-16-2013)
+
+  * Remove exiftool dependency
+
 * 0.2.3 (03-21-2013)
 
   * Support for Imagine ColorSpaces (@romainneutron branch)
