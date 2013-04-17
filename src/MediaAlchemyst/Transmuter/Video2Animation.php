@@ -70,33 +70,17 @@ class Video2Animation extends Provider
                 unset($image);
             }
 
-            $GIF = new \Gmagick();
-
-            $GIF->readImage(array_shift($files));
-            $GIF->setImageFormat('GIF');
-            $GIF->setImageDelay(80);
-            $GIF->nextImage();
+            $image = $this->container->getImagine()->open(array_shift($files));
 
             foreach ($files as $file) {
-                $frame = new \Gmagick();
-
-                $frame->readImage($file);
-                $frame->setImageFormat('GIF');
-                $frame->setImageDelay(80);
-
-                $GIF->addImage($frame);
-                $GIF->nextImage();
-
-                $frame->clear();
-                $frame->destroy();
-                $frame = null;
+                $image->layers()->add($file);
             }
 
-            $GIF->writeimage($dest);
-            $GIF->clear();
-            $GIF->destroy();
-
-            $GIF = null;
+            $image->save($dest, array(
+                'animated' => true,
+                'animated.delay' => 800,
+                'animated.loops' => 0,
+            ));
         } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (\GmagickException $e) {

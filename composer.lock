@@ -134,7 +134,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/Imagine.git",
-                "reference": "01b3131f4ba1ce296b53ed98f3f705ffe5b3f46d"
+                "reference": "f844470bdd21b2e4fc55a4caf61fdfc4a86c12c6"
             },
             "require": {
                 "php": ">=5.3.2"
