@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.2.5 (04-19-2013)
+
+  * Support for Imagine Animated gifs (@romainneutron branch rebased)
+
 * 0.2.4 (04-16-2013)
 
   * Remove exiftool dependency
@@ -22,6 +26,10 @@ CHANGELOG
   * Update API, Use Pimple as driver container.
   * Update to MediaVorus 0.2.*
 
+* 0.1.6 (04-19-2013)
+
+  * Support for Imagine Animated gifs (@romainneutron branch rebased)
+
 * 0.1.5 (03-21-2013)
 
   * Support for Imagine ColorSpaces (@romainneutron branch)
@@ -35,5 +43,5 @@ CHANGELOG
   * Add support for PHP-Ghostscript for Document->Image transmuter
 
 * 0.1.0 (07-18-2012)
-  
+
   * First stable version.
