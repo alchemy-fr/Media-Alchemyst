@@ -3,7 +3,7 @@
 namespace MediaAlchemyst;
 
 use FFMpeg\FFMpegServiceProvider;
-use Grom\Silex\ImagineServiceProvider;
+use Neutron\Silex\Provider\ImagineServiceProvider;
 use MediaVorus\MediaVorusServiceProvider;
 use MP4Box\MP4BoxServiceProvider;
 use PHPExiftool\PHPExiftoolServiceProvider;

@@ -4,8 +4,7 @@ namespace MediaAlchemyst\Transmuter;
 
 use FFMpeg\Exception\ExceptionInterface as FFMpegException;
 use Imagine\Image\ImageInterface;
-use Gmagick;
-use GmagickException;
+use Imagine\Exception\Exception as ImagineException;
 use MediaAlchemyst\Specification\Animation;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Exception\SpecNotSupportedException;
@@ -25,10 +24,6 @@ class Video2Animation extends AbstractTransmuter
 
         if ($source->getType() !== MediaInterface::TYPE_VIDEO) {
             throw new SpecNotSupportedException('Imagine Adapter only supports Images');
-        }
-
-        if ( ! class_exists('\\Gmagick')) {
-            throw new RuntimeException('Gmagick is required for animated gif');
         }
 
         try {
@@ -87,8 +82,8 @@ class Video2Animation extends AbstractTransmuter
             ));
         } catch (FFMpegException $e) {
             throw new RuntimeException('Unable to transmute video to animation due to FFMpeg', null, $e);
-        } catch (GmagickException $e) {
-            throw new RuntimeException('Unable to transmute video to animation due to Gmagick', null, $e);
+        } catch (ImagineException $e) {
+            throw new RuntimeException('Unable to transmute video to animation due to Imagine', null, $e);
         }
 
         return $this;

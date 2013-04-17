@@ -1,5 +1,5 @@
 {
-    "hash": "f323f0745e464c36cd32be6d4f4816c2",
+    "hash": "ffd9ee8f91359f59962216619416cdec",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -890,6 +890,53 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "neutron/silex-imagine-provider",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/romainneutron/Imagine-Silex-Service-Provider.git",
+                "reference": "0.1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/romainneutron/Imagine-Silex-Service-Provider/zipball/0.1.1",
+                "reference": "0.1.1",
+                "shasum": ""
+            },
+            "require": {
+                "imagine/imagine": "*",
+                "php": ">=5.3.3",
+                "silex/silex": "1.0.x-dev@dev"
+            },
+            "require-dev": {
+                "symfony/browser-kit": ">=2.0,<3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Neutron": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romain Neutron",
+                    "email": "imprec@gmail.com",
+                    "homepage": "http://www.lickmychip.com/"
+                }
+            ],
+            "description": "A Silex service provider for Imagine Image Processing Library",
+            "keywords": [
+                "image processing",
+                "imagine",
+                "silex"
+            ],
+            "time": "2013-04-17 23:39:16"
+        },
         {
             "name": "silex/silex",
             "version": "dev-master",
