@@ -74,33 +74,17 @@ class Video2Animation extends AbstractTransmuter
                 unset($image);
             }
 
-            $GIF = new Gmagick();
-
-            $GIF->readImage(array_shift($files));
-            $GIF->setImageFormat('GIF');
-            $GIF->setImageDelay(80);
-            $GIF->nextImage();
+            $image = $this->container['imagine']->open(array_shift($files));
 
             foreach ($files as $file) {
-                $frame = new \Gmagick();
-
-                $frame->readImage($file);
-                $frame->setImageFormat('GIF');
-                $frame->setImageDelay(80);
-
-                $GIF->addImage($frame);
-                $GIF->nextImage();
-
-                $frame->clear();
-                $frame->destroy();
-                $frame = null;
+                $image->layers()->add($file);
             }
 
-            $GIF->writeimage($dest);
-            $GIF->clear();
-            $GIF->destroy();
-
-            $GIF = null;
+            $image->save($dest, array(
+                'animated' => true,
+                'animated.delay' => 800,
+                'animated.loops' => 0,
+            ));
         } catch (FFMpegException $e) {
             throw new RuntimeException('Unable to transmute video to animation due to FFMpeg', null, $e);
         } catch (GmagickException $e) {
