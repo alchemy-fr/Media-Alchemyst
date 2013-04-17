@@ -23,10 +23,6 @@ class Video2Animation extends Provider
             throw new Exception\SpecNotSupportedException('Imagine Adapter only supports Images');
         }
 
-        if ( ! class_exists('\\Gmagick')) {
-            throw new Exception\RuntimeException('Gmagick is required for animated gif');
-        }
-
         try {
             $movie = $this->container->getFFMpeg()->open($source->getFile()->getPathname());
 
@@ -83,7 +79,7 @@ class Video2Animation extends Provider
             ));
         } catch (\FFMpeg\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } catch (\GmagickException $e) {
+        } catch (\Imagine\Exception\Exception $e) {
             throw new Exception\RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
 
