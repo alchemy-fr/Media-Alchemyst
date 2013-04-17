@@ -73,7 +73,7 @@ class Video2Animation extends Provider
             $image = $this->container->getImagine()->open(array_shift($files));
 
             foreach ($files as $file) {
-                $image->layers()->add($file);
+                $image->layers()->add($this->container->getImagine()->open($file));
             }
 
             $image->save($dest, array(
