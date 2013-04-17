@@ -36,10 +36,8 @@
         "symfony/console"             : "~2.0"
     },
     "require-dev": {
-        "phpexiftool/phpexiftool"     : "~0.1.0",
-        "grom/silex-service-provider" : "dev-master",
-        "silex/silex"                 : "1.0.x-dev@dev",
-        "knplabs/knp-snappy"          : "dev-master"
+        "phpexiftool/phpexiftool"     : "~0.1",
+        "silex/silex"                 : "1.0.*@dev"
     },
     "autoload": {
         "psr-0": {
