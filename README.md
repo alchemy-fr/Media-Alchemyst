@@ -50,8 +50,10 @@ $alchemyst->open('movie.mp4')
 
 Need a [Silex](silex.sensiolabs.org) service provider ? Of course it's provided !
 
-```php
+Please note that Media-Alchemyst service provider requires MediaVorus service
+provider.
 
+```php
 use Silex\Application;
 use MediaAlchemyst\Alchemyst;
 use MediaAlchemyst\MediaAlchemystServiceProvider;
@@ -66,8 +68,27 @@ $app->register(new MediaVorusServiceProvider());
 
 // Have fun OH YEAH
 assert($app['media-alchemyst'] instanceof Alchemyst);
+```
+
+You can customize the service provider with the following options :
 
 ```
+$app->register(new MediaVorusServiceProvider(), array(
+    'media-alchemyst.logger'                => $logger,  // A Monolog Logger
+    'media-alchemyst.ffmpeg.timeout'        => 200,
+    'media-alchemyst.ffmpeg.ffprobe.binary' => '/path/to/custom/ffprobe',
+    'media-alchemyst.ffmpeg.ffmpeg.binary'  => '/path/to/custom/ffmpeg',
+    'media-alchemyst.ffmpeg.threads'        => 8,
+    'media-alchemyst.mp4box.binary'         => '/path/to/custom/MP4Box',
+    'media-alchemyst.unoconv.binary'        => '/path/to/custom/unoconv',
+    'media-alchemyst.swf-extract.binary'    => '/path/to/custom/swfextract',
+    'media-alchemyst.swf-render.binary'     => '/path/to/custom/swfrender',
+    'media-alchemyst.pdf2swf.binary'        => '/path/to/custom/pdf2swf',
+    'media-alchemyst.imagine.driver'        => 'imagick',
+    'media-alchemyst.ghostscript.binary'    => '/path/to/custom/gs',
+));
+```
+
 
 ## Customize drivers
 
