@@ -16,7 +16,6 @@ use MediaAlchemyst\Transmuter\Image2Image;
 use MediaAlchemyst\Transmuter\Video2Animation;
 use MediaAlchemyst\Transmuter\Video2Image;
 use MediaAlchemyst\Transmuter\Video2Video;
-use Pimple;
 
 class Alchemyst
 {
@@ -33,9 +32,14 @@ class Alchemyst
      */
     protected $drivers;
 
-    public function __construct(Pimple $container)
+    public function __construct(DriversContainer $container)
     {
         $this->drivers = $container;
+    }
+
+    public function getDrivers()
+    {
+        return $this->drivers;
     }
 
     public function open($pathfile)
