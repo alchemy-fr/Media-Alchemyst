@@ -13,10 +13,6 @@ class MediaAlchemystServiceProvider implements ServiceProviderInterface
     {
         $app['media-alchemyst'] = $app->share(function(Application $app) {
 
-            if (!isset($app['mediavorus'])) {
-                throw new RuntimeException('Media-Alchemyst requires MediaVorus Service Provider');
-            }
-
             $drivers = new DriversContainer();
 
             $drivers['mediavorus'] = function() use ($app) {
@@ -53,6 +49,12 @@ class MediaAlchemystServiceProvider implements ServiceProviderInterface
                 };
             }
 
+            if (isset($app['ffmpeg.timeout'])) {
+                $drivers['ffmpeg.timeout'] = function() use ($app) {
+                    return $app['ffmpeg.timeout'];
+                };
+            }
+
             foreach ($app->keys() as $key) {
                 if (strpos($key, 'media-alchemyst.') === 0) {
                     $drivers[substr($key, 16)] = function() use ($app, $key) {
@@ -67,5 +69,8 @@ class MediaAlchemystServiceProvider implements ServiceProviderInterface
 
     public function boot(Application $app)
     {
+        if (!isset($app['mediavorus'])) {
+            throw new RuntimeException('Media-Alchemyst requires MediaVorus Service Provider');
+        }
     }
 }

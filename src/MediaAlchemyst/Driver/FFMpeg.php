@@ -12,15 +12,15 @@ class FFMpeg extends AbstractDriver
 {
     protected $driver;
 
-    public function __construct(Logger $logger, $useBinary = null, $useProberBinary = null, $threads = 1)
+    public function __construct(Logger $logger, $useBinary = null, $useProberBinary = null, $threads = 1, $timeout = 60)
     {
         $this->logger = $logger;
 
         try {
             if ($useBinary) {
-                $this->driver = new FFMpegDriver($useBinary, $this->logger);
+                $this->driver = new FFMpegDriver($useBinary, $this->logger, $timeout);
             } else {
-                $this->driver = FFMpegDriver::load($this->logger);
+                $this->driver = FFMpegDriver::load($this->logger, $timeout);
             }
         } catch (BinaryNotFoundException $e) {
             throw new RuntimeException('No driver available');
@@ -29,9 +29,9 @@ class FFMpeg extends AbstractDriver
         try {
 
             if ($useProberBinary) {
-                $prober = new FFProbe($useProberBinary, $this->logger);
+                $prober = new FFProbe($useProberBinary, $this->logger, $timeout);
             } else {
-                $prober = FFProbe::load($this->logger);
+                $prober = FFProbe::load($this->logger, $timeout);
             }
         } catch (BinaryNotFoundException $e) {
             throw new RuntimeException('No driver available');

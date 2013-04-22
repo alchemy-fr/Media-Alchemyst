@@ -42,6 +42,8 @@ class DriversContainer extends Pimple
             return $logger;
         });
 
+        $this['ffmpeg.timeout'] = 0;
+
         $this['ffmpeg.ffprobe.binary'] = $this['mp4box.binary'] = $this['unoconv.binary']
             = $this['pdf2swf.binary'] = $this['swf-render.binary'] = $this['swf-extract.binary']
             = $this['imagine.driver'] = $this['ffmpeg.ffmpeg.binary']
@@ -50,7 +52,13 @@ class DriversContainer extends Pimple
         $this['ffmpeg.threads'] = 1;
 
         $this['ffmpeg.ffmpeg'] = $this->share(function(Pimple $container) {
-            $driver = new FFMpeg($container['logger'], $container['ffmpeg.ffmpeg.binary'], $container['ffmpeg.ffprobe.binary'], $container['ffmpeg.threads']);
+            $driver = new FFMpeg(
+                $container['logger'],
+                $container['ffmpeg.ffmpeg.binary'],
+                $container['ffmpeg.ffprobe.binary'],
+                $container['ffmpeg.threads'],
+                $container['ffmpeg.timeout']
+            );
 
             return $driver->getDriver();
         });

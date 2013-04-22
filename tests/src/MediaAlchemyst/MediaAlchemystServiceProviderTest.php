@@ -17,11 +17,17 @@ class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $app = $this->getApplication();
         $app->register(new MediaVorusServiceProvider());
-        $app->register(new MediaAlchemystServiceProvider());
+        $app->register(new MediaAlchemystServiceProvider(), array(
+            'ffmpeg.timeout' => 124,
+        ));
 
         $this->assertInstanceOf('\\MediaAlchemyst\\Alchemyst', $app['media-alchemyst']);
         $alchemyst = $app['media-alchemyst'];
         $this->assertEquals($alchemyst, $app['media-alchemyst']);
+
+        $drivers = $app['media-alchemyst']->getDrivers();
+
+        $this->assertEquals(124, $drivers['ffmpeg.ffmpeg']->getTimeout());
     }
 
     /**
@@ -32,6 +38,6 @@ class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = $this->getApplication();
         $app->register(new MediaAlchemystServiceProvider());
 
-        $app['media-alchemyst'];
+        $app->boot();
     }
 }

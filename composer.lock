@@ -1,5 +1,5 @@
 {
-    "hash": "ffd9ee8f91359f59962216619416cdec",
+    "hash": "3bfa1e3b8bc7c4794f3a0be8cd54bcbc",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -355,16 +355,16 @@
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "0.2.2",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alchemy-fr/PHP-FFmpeg",
-                "reference": "0.2.2"
+                "url": "https://github.com/alchemy-fr/PHP-FFmpeg.git",
+                "reference": "0.2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/0.2.2",
-                "reference": "0.2.2",
+                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/0.2.3",
+                "reference": "0.2.3",
                 "shasum": ""
             },
             "require": {
@@ -412,7 +412,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2013-02-11 11:24:37"
+            "time": "2013-04-21 16:03:45"
         },
         {
             "name": "php-mp4box/php-mp4box",
@@ -693,16 +693,16 @@
         },
         {
             "name": "swftools/swftools",
-            "version": "0.1.1",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alchemy-fr/PHPSwftools",
-                "reference": "0.1.1"
+                "url": "https://github.com/alchemy-fr/PHPSwftools.git",
+                "reference": "0.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHPSwftools/zipball/0.1.1",
-                "reference": "0.1.1",
+                "url": "https://api.github.com/repos/alchemy-fr/PHPSwftools/zipball/0.2.0",
+                "reference": "0.2.0",
                 "shasum": ""
             },
             "require": {
@@ -742,7 +742,7 @@
                 "flash",
                 "swf"
             ],
-            "time": "2013-02-11 11:46:21"
+            "time": "2013-04-22 16:13:53"
         },
         {
             "name": "symfony/console",
