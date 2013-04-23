@@ -29,7 +29,7 @@ class SwfToolsPDFFileTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('Unable to detect pdf2swf that is required for this test');
         }
 
-        $driver = new SwfToolsFlashFile($logger, $pdf2swf, 40);
+        $driver = new SwfToolsPDFFile($logger, $pdf2swf, 40);
         $this->assertInstanceOf('SwfTools\Processor\PDFFile', $driver->getDriver());
     }
 }
