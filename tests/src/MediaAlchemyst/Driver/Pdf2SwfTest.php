@@ -25,6 +25,31 @@ class Pdf2SwfTest extends \PHPUnit_Framework_TestCase
         return new Pdf2Swf($logger, $binary);
     }
 
+    public function testSettingATimeout()
+    {
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
+
+        $pdf2swf = new Pdf2Swf($logger, null, 42);
+        $this->assertEquals(42, $pdf2swf->getDriver()->getTimeout());
+    }
+
+    public function testSettingATimeoutWithACustomBinaryFile()
+    {
+        $finder = new ExecutableFinder();
+        $binary = $finder->find('pdf2swf');
+
+        if (!$binary) {
+            $this->markTestSkipped('Unable to detect pdf2swf binary');
+        }
+
+        $logger = new Logger('test');
+        $logger->pushHandler(new NullHandler());
+
+        $pdf2swf = new Pdf2Swf($logger, $binary, 42);
+        $this->assertEquals(42, $pdf2swf->getDriver()->getTimeout());
+    }
+
     /**
      * @covers MediaAlchemyst\Driver\Pdf2Swf::__construct
      */

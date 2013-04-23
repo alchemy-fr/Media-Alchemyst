@@ -4,6 +4,7 @@ CHANGELOG
 * 0.2.6 (xx-xx-2013)
 
   * Add support for PHP-FFMpeg timeouts
+  * Add support for PHP-SwfTool timeouts
 
 * 0.2.5 (04-19-2013)
 

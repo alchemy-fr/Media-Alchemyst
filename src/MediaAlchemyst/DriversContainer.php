@@ -43,6 +43,7 @@ class DriversContainer extends Pimple
         });
 
         $this['ffmpeg.timeout'] = 0;
+        $this['swftools.timeout'] = 0;
 
         $this['ffmpeg.ffprobe.binary'] = $this['mp4box.binary'] = $this['unoconv.binary']
             = $this['pdf2swf.binary'] = $this['swf-render.binary'] = $this['swf-extract.binary']
@@ -70,13 +71,22 @@ class DriversContainer extends Pimple
         });
 
         $this['swftools.flash-file'] = $this->share(function(Pimple $container) {
-            $driver = new SwfToolsFlashFile($container['logger'], $container['swf-extract.binary'], $container['swf-render.binary']);
+            $driver = new SwfToolsFlashFile(
+                $container['logger'],
+                $container['swf-extract.binary'],
+                $container['swf-render.binary'],
+                $container['swftools.timeout']
+            );
 
             return $driver->getDriver();
         });
 
         $this['swftools.pdf-file'] = $this->share(function(Pimple $container) {
-            $driver = new SwfToolsPDFFile($container['logger'], $container['pdf2swf.binary']);
+            $driver = new SwfToolsPDFFile(
+                $container['logger'],
+                $container['pdf2swf.binary'],
+                $container['swftools.timeout']
+            );
 
             return $driver->getDriver();
         });

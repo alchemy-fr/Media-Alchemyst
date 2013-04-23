@@ -81,6 +81,7 @@ $app->register(new MediaVorusServiceProvider(), array(
     'media-alchemyst.ffmpeg.threads'        => 8,
     'media-alchemyst.mp4box.binary'         => '/path/to/custom/MP4Box',
     'media-alchemyst.unoconv.binary'        => '/path/to/custom/unoconv',
+    'media-alchemyst.swftools.timeout'      => 100,
     'media-alchemyst.swf-extract.binary'    => '/path/to/custom/swfextract',
     'media-alchemyst.swf-render.binary'     => '/path/to/custom/swfrender',
     'media-alchemyst.pdf2swf.binary'        => '/path/to/custom/pdf2swf',

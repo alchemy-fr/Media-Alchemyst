@@ -12,15 +12,16 @@ class Pdf2Swf extends AbstractDriver
 {
     protected $driver;
 
-    public function __construct(Logger $logger, $use_binary = null)
+    public function __construct(Logger $logger, $use_binary = null, $timeout = 0)
     {
         $this->logger = $logger;
 
         try {
             if ($use_binary) {
-                $this->driver = new Pdf2swfBinary($use_binary, $this->logger);
+                $this->driver = new Pdf2swfBinary($use_binary, $this->logger, $timeout);
             } else {
-                $this->driver = Pdf2swfBinary::load(new Configuration(), $this->logger);
+                $conf = array('timeout' => $timeout);
+                $this->driver = Pdf2swfBinary::load(new Configuration($conf), $this->logger);
             }
         } catch (BinaryNotFoundException $e) {
             throw new RuntimeException('No driver available');

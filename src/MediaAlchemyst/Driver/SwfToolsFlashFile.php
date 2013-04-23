@@ -10,7 +10,7 @@ class SwfToolsFlashFile extends AbstractDriver
 {
     protected $driver;
 
-    public function __construct(Logger $logger, $swf_extract_binary = null, $swf_render_binary = null)
+    public function __construct(Logger $logger, $swf_extract_binary = null, $swf_render_binary = null, $timeout = null)
     {
         $this->logger = $logger;
 
@@ -21,6 +21,9 @@ class SwfToolsFlashFile extends AbstractDriver
         }
         if ($swf_render_binary) {
             $conf['swfrender'] = $swf_render_binary;
+        }
+        if (null !== $timeout) {
+            $conf['timeout'] = $timeout;
         }
 
 
