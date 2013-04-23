@@ -1,5 +1,5 @@
 {
-    "hash": "3bfa1e3b8bc7c4794f3a0be8cd54bcbc",
+    "hash": "f979116b62465872118ad168ba8bafec",
     "packages": [
         {
             "name": "alchemy/ghostscript",
@@ -843,17 +843,17 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.2.1",
+            "version": "dev-master",
             "target-dir": "Symfony/Component/Process",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "v2.2.1"
+                "reference": "a7177e400f55d62d5b94027ce7df6a715cef51ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/v2.2.1",
-                "reference": "v2.2.1",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/a7177e400f55d62d5b94027ce7df6a715cef51ff",
+                "reference": "a7177e400f55d62d5b94027ce7df6a715cef51ff",
                 "shasum": ""
             },
             "require": {
@@ -862,7 +862,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -886,7 +886,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2013-03-23 07:49:54"
+            "time": "2013-04-21 08:43:42"
         }
     ],
     "packages-dev": [
@@ -943,12 +943,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "1cd7f3f050b78dae4458d93892355720f56659f9"
+                "reference": "0b6aed3029c79190af3bda403ea9430c6ac4e725"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/1cd7f3f050b78dae4458d93892355720f56659f9",
-                "reference": "1cd7f3f050b78dae4458d93892355720f56659f9",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/0b6aed3029c79190af3bda403ea9430c6ac4e725",
+                "reference": "0b6aed3029c79190af3bda403ea9430c6ac4e725",
                 "shasum": ""
             },
             "require": {
@@ -1017,7 +1017,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-11 12:23:56"
+            "time": "2013-04-23 13:03:08"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1207,6 +1207,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "imagine/imagine": 20,
+        "symfony/process": 20,
         "silex/silex": 20
     },
     "platform": {
