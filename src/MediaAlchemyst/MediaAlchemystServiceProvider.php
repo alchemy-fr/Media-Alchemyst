@@ -31,30 +31,8 @@ class MediaAlchemystServiceProvider implements ServiceProviderInterface
                 return $app['exiftool.processor'];
             };
 
-            if (isset($app['imagine'])) {
-                $drivers['imagine'] = function() use ($app) {
-                    return $app['imagine'];
-                };
-            }
-
-            if (isset($app['ffmpeg.ffprobe'])) {
-                $drivers['ffmpeg.ffprobe'] = function() use ($app) {
-                    return $app['ffmpeg.ffprobe'];
-                };
-            }
-
-            if (isset($app['ffmpeg.ffmpeg'])) {
-                $drivers['ffmpeg.ffmpeg'] = function() use ($app) {
-                    return $app['ffmpeg.ffmpeg'];
-                };
-            }
-
-            if (isset($app['ffmpeg.timeout'])) {
-                $drivers['ffmpeg.timeout'] = function() use ($app) {
-                    return $app['ffmpeg.timeout'];
-                };
-            }
-
+            // If some parameters defined with the media-alchemyst prefix
+            // inject them in DriversContainer
             foreach ($app->keys() as $key) {
                 if (strpos($key, 'media-alchemyst.') === 0) {
                     $drivers[substr($key, 16)] = function() use ($app, $key) {

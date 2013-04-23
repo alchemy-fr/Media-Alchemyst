@@ -18,7 +18,7 @@ class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = $this->getApplication();
         $app->register(new MediaVorusServiceProvider());
         $app->register(new MediaAlchemystServiceProvider(), array(
-            'ffmpeg.timeout' => 124,
+            'media-alchemyst.ffmpeg.timeout' => 124,
         ));
 
         $this->assertInstanceOf('\\MediaAlchemyst\\Alchemyst', $app['media-alchemyst']);
@@ -28,6 +28,23 @@ class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
         $drivers = $app['media-alchemyst']->getDrivers();
 
         $this->assertEquals(124, $drivers['ffmpeg.ffmpeg']->getTimeout());
+    }
+
+    public function testThatACustomFFMpegCabeDefined()
+    {
+        $ffmpeg = $this->getMockBuilder('FFMpeg\FFMpeg')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $app = $this->getApplication();
+        $app->register(new MediaVorusServiceProvider());
+        $app->register(new MediaAlchemystServiceProvider(), array(
+            'media-alchemyst.ffmpeg.ffmpeg' => $ffmpeg,
+        ));
+
+        $drivers = $app['media-alchemyst']->getDrivers();
+
+        $this->assertEquals($ffmpeg, $drivers['ffmpeg.ffmpeg']);
     }
 
     /**
