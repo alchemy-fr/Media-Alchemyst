@@ -11,6 +11,7 @@
 
 namespace MediaAlchemyst\Transmuter;
 
+use Alchemy\BinaryDriver\Exception\ExceptionInterface as BinaryAdapterException;
 use MediaAlchemyst\Specification\Flash;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Exception\SpecNotSupportedException;
@@ -43,6 +44,8 @@ class Document2Flash extends AbstractTransmuter
             $this->container['swftools.pdf-file']->toSwf($tmpDest, $dest);
 
             unlink($tmpDest);
+        } catch (BinaryAdapterException $e) {
+            throw new RuntimeException('Unable to transmute flash to image due to Binary Adapter', $e->getCode(), $e);
         } catch (UnoconvException $e) {
             throw new RuntimeException('Unable to transmute document to flash due to Unoconv', null, $e);
         } catch (SwfToolsException $e) {

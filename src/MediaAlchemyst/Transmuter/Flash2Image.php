@@ -66,7 +66,7 @@ class Flash2Image extends AbstractTransmuter
 
             unlink($tmpDest);
         } catch (BinaryAdapterException $e) {
-            throw new RuntimeException('Unable to transmute flash to image due to Binary Adappter', $e->getCode(), $e);
+            throw new RuntimeException('Unable to transmute flash to image due to Binary Adapter', $e->getCode(), $e);
         } catch (SwfToolsException $e) {
             throw new RuntimeException('Unable to transmute flash to image due to SwfTools', $e->getCode(), $e);
         } catch (ImagineException $e) {
