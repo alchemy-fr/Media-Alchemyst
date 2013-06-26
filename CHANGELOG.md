@@ -1,10 +1,16 @@
 CHANGELOG
 ---------
 
-* 0.2.6 (xx-xx-2013)
-
-  * Add support for PHP-FFMpeg timeouts
-  * Add support for PHP-SwfTool timeouts
+* 0.3.0 (xx-xx-2013)
+ 
+  * Update PHP FFMpeg to 0.3
+  * Update PHP Ghostscript to 0.4
+  * Update MediaVorus to 0.3
+  * Update PHP Unoconv to 0.3
+  * Update PHP MP4Box to 0.3
+  * Update PHP Swf Tools to 0.3
+  * BC Break in Alchemyst API
+  * BC Break in MediaAlchemystServiceProvider configuration 
 
 * 0.2.5 (04-19-2013)
 
