@@ -1,6 +1,6 @@
 #MediAlchemyst
 
-A PHP 5.3 lib to transmute media files.
+A PHP 5.3+ lib to transmute media files.
 
 [![Build Status](https://travis-ci.org/alchemy-fr/Media-Alchemyst.png?branch=master)](http://travis-ci.org/alchemy-fr/Media-Alchemyst)
 
@@ -29,11 +29,10 @@ $video->setDimensions(320, 240)
     ->setGOPSize(200);
 
 // AMAZING
-$alchemyst->open('movie.mp4')
-    ->turnInto('animation.gif', new Animation())
-    ->turnInto('screenshot.jpg', new Image())
-    ->turnInto('preview.ogv', $video)
-    ->close();
+$alchemyst
+    ->turnInto('movie.mp4', 'animation.gif', new Animation())
+    ->turnInto('movie.mp4', 'screenshot.jpg', new Image())
+    ->turnInto('movie.mp4', 'preview.ogv', $video);
 
 ```
 
@@ -45,6 +44,39 @@ $alchemyst->open('movie.mp4')
 * GraphicsMagick and its Gmagick PHP Extension (recommended) or ImageMagick (Image processing)
 * Unoconv (for Office documents processing)
 * SwfTools (for Flash files processing)
+
+## Customize drivers
+
+Drivers preferences can be specified through the `DriversContainer` :
+
+```php
+use MediaAlchemyst\Alchemyst;
+use MediaAlchemyst\DriversContainer;
+
+$drivers = new DriversContainer();
+$drivers['configuration'] = array(
+    'ffmpeg.threads'               => 4,
+    'ffmpeg.ffmpeg.timeout'        => 3600,
+    'ffmpeg.ffprobe.timeout'       => 60,
+    'ffmpeg.ffmpeg.binaries'       => '/path/to/custom/ffmpeg',
+    'ffmpeg.ffprobe.binaries'      => '/path/to/custom/ffprobe',
+    'imagine.driver'               => 'imagick',
+    'gs.timeout'                   => 60,
+    'gs.binaries'                  => '/path/to/custom/gs',
+    'mp4box.timeout'               => 60,
+    'mp4box.binaries'              => '/path/to/custom/MP4Box',
+    'swftools.timeout'             => 60,
+    'swftools.pdf2swf.binaries'    => '/path/to/custom/pdf2swf',
+    'swftools.swfrender.binaries'  => '/path/to/custom/swfrender',
+    'swftools.swfextract.binaries' => '/path/to/custom/swfextract',
+    'unoconv.binaries'             => '/path/to/custom/unoconv',
+    'unoconv.timeout'              => 60,
+);
+
+$alchemyst = new Alchemyst($drivers);
+$alchemyst
+    ->turnInto('movie.mp4', 'animation.gif', new Animation())
+```
 
 ## Silex service provider ?
 
@@ -62,47 +94,34 @@ use MediaVorus\MediaVorusServiceProvider;
 $app = new Application();
 $app->register(new MediaAlchemystSerciceProvider());
 
-// MediaVorus service provider is required to use MediaAlchemyst service provider
-// Find it here https://github.com/romainneutron/MediaVorus
-$app->register(new MediaVorusServiceProvider());
-
 // Have fun OH YEAH
-assert($app['media-alchemyst'] instanceof Alchemyst);
+$app['media-alchemyst']->turnInto('movie.mp4', 'animation.gif', new Animation());
 ```
 
-You can customize the service provider with the following options :
+You can customize the service provider with any of the following options :
 
 ```
 $app->register(new MediaVorusServiceProvider(), array(
-    'media-alchemyst.logger'                => $logger,  // A Monolog Logger
-    'media-alchemyst.ffmpeg.timeout'        => 200,
-    'media-alchemyst.ffmpeg.ffprobe.binary' => '/path/to/custom/ffprobe',
-    'media-alchemyst.ffmpeg.ffmpeg.binary'  => '/path/to/custom/ffmpeg',
-    'media-alchemyst.ffmpeg.threads'        => 8,
-    'media-alchemyst.mp4box.binary'         => '/path/to/custom/MP4Box',
-    'media-alchemyst.unoconv.binary'        => '/path/to/custom/unoconv',
-    'media-alchemyst.swftools.timeout'      => 100,
-    'media-alchemyst.swf-extract.binary'    => '/path/to/custom/swfextract',
-    'media-alchemyst.swf-render.binary'     => '/path/to/custom/swfrender',
-    'media-alchemyst.pdf2swf.binary'        => '/path/to/custom/pdf2swf',
-    'media-alchemyst.imagine.driver'        => 'imagick',
-    'media-alchemyst.ghostscript.binary'    => '/path/to/custom/gs',
+    'media-alchemyst.configuration' => array(
+        'ffmpeg.threads'               => 4,
+        'ffmpeg.ffmpeg.timeout'        => 3600,
+        'ffmpeg.ffprobe.timeout'       => 60,
+        'ffmpeg.ffmpeg.binaries'       => '/path/to/custom/ffmpeg',
+        'ffmpeg.ffprobe.binaries'      => '/path/to/custom/ffprobe',
+        'imagine.driver'               => 'imagick',
+        'gs.timeout'                   => 60,
+        'gs.binaries'                  => '/path/to/custom/gs',
+        'mp4box.timeout'               => 60,
+        'mp4box.binaries'              => '/path/to/custom/MP4Box',
+        'swftools.timeout'             => 60,
+        'swftools.pdf2swf.binaries'    => '/path/to/custom/pdf2swf',
+        'swftools.swfrender.binaries'  => '/path/to/custom/swfrender',
+        'swftools.swfextract.binaries' => '/path/to/custom/swfextract',
+        'unoconv.binaries'             => '/path/to/custom/unoconv',
+        'unoconv.timeout'              => 60,
+    ),
+    'media-alchemyst.logger' => $logger,  // A PSR Logger
 ));
-```
-
-
-## Customize drivers
-
-Drivers preferences can be specified through the `DriversContainer` :
-
-```php
-
-$container = new DriversContainer();
-
-$container['ffmpeg.ffmpeg.binary'] = '/path/to/ffmpeg/custom/build';
-$container['image.driver'] = 'Gmagick'; // use Gmagick ImagineDriver
-$container['mp4box.binary'] = '/path/to/mp4box/custom/build';
-
 ```
 
 ## License
