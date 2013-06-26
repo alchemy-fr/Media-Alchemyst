@@ -87,9 +87,6 @@ class Alchemyst extends Command
             }
         }
 
-        $logger = new Logger('Logger');
-        new StreamHandler('php://stdout');
-
         $drivers = new DriversContainer();
         $drivers['ffmpeg.threads'] = $input->getOption('threads') ?: 1;
 
