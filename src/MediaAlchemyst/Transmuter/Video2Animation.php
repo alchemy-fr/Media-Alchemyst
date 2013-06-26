@@ -10,6 +10,7 @@ use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Exception\SpecNotSupportedException;
 use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\MediaInterface;
+use FFMpeg\Coordinate\TimeCode;
 
 class Video2Animation extends AbstractTransmuter
 {
@@ -18,7 +19,7 @@ class Video2Animation extends AbstractTransmuter
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Animation) {
+        if (! $spec instanceof Animation) {
             throw new SpecNotSupportedException('Imagine Adapter only supports Image specs');
         }
 
@@ -27,7 +28,8 @@ class Video2Animation extends AbstractTransmuter
         }
 
         try {
-            $movie = $this->container['ffmpeg.ffmpeg']->open($source->getFile()->getPathname());
+            $movie = $this->container['ffmpeg.ffmpeg']
+                ->open($source->getFile()->getPathname());
 
             $duration = $source->getDuration();
 
@@ -36,12 +38,9 @@ class Video2Animation extends AbstractTransmuter
 
             while (ceil($time) < floor($duration)) {
                 $files[] = $tmpFile = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
-                $movie->extractImage(round($time), $tmpFile);
+                $movie->frame(TimeCode::fromSeconds($time))->saveAs($tmpFile);
                 $time += $pas;
             }
-
-            $movie->close();
-            unset($movie);
 
             foreach ($files as $file) {
 

@@ -27,13 +27,13 @@ class AudioTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediaAlchemyst\Specification\Audio::setKiloBitrate
-     * @covers MediaAlchemyst\Specification\Audio::getKiloBitrate
+     * @covers MediaAlchemyst\Specification\Audio::setAudioKiloBitrate
+     * @covers MediaAlchemyst\Specification\Audio::getAudioKiloBitrate
      */
-    public function testSetKiloBitrate()
+    public function testSetAudioKiloBitrate()
     {
-        $this->object->setKiloBitrate(200);
-        $this->assertEquals(200, $this->object->getKiloBitrate());
+        $this->object->setAudioKiloBitrate(200);
+        $this->assertEquals(200, $this->object->getAudioKiloBitrate());
     }
 
     /**

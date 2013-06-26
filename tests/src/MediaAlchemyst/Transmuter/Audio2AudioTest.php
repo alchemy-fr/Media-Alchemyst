@@ -6,7 +6,6 @@ use MediaAlchemyst\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\UnknownSpecs;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
@@ -58,7 +57,7 @@ class Audio2AudioTest extends AbstractAlchemystTester
     {
         $this->specs->setAudioCodec('flac');
         $this->specs->setAudioSampleRate(96000);
-        $this->specs->setKiloBitrate(256);
+        $this->specs->setAudioKiloBitrate(256);
 
         $this->object->execute($this->specs, $this->source, $this->dest);
 

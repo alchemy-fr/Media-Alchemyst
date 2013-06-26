@@ -2,33 +2,27 @@
 
 namespace MediaAlchemyst\Specification;
 
-
 class Audio extends AbstractSpecification
 {
 
-    protected $kiloBitrate;
+    protected $audioKiloBitrate;
     protected $audioCodec;
     protected $audioSampleRate;
     protected $fileType;
-
-    public function __construct()
-    {
-
-    }
 
     public function getType()
     {
         return self::TYPE_AUDIO;
     }
 
-    public function setKiloBitrate($kiloBitrate)
+    public function setAudioKiloBitrate($kiloBitrate)
     {
-        $this->kiloBitrate = $kiloBitrate;
+        $this->audioKiloBitrate = $kiloBitrate;
     }
 
-    public function getKiloBitrate()
+    public function getAudioKiloBitrate()
     {
-        return $this->kiloBitrate;
+        return $this->audioKiloBitrate;
     }
 
     public function setAudioCodec($audioCodec)

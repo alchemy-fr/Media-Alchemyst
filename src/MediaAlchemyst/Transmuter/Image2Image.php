@@ -28,7 +28,7 @@ class Image2Image extends AbstractTransmuter
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Image) {
+        if (! $spec instanceof Image) {
             throw new SpecNotSupportedException('Imagine Adapter only supports Image specs');
         }
 
@@ -54,9 +54,9 @@ class Image2Image extends AbstractTransmuter
                 $tmpFile = tempnam(sys_get_temp_dir(), 'gs_transcoder');
                 unlink($tmpFile);
 
-                $this->container['ghostscript.transcoder']->open($source->getFile()->getRealPath())
-                    ->toImage($tmpFile)
-                    ->close();
+                $this->container['ghostscript.transcoder']->toImage(
+                    $source->getFile()->getRealPath(), $tmpFile
+                );
 
                 if (file_exists($tmpFile)) {
                     $source = $this->container['mediavorus']->guess($tmpFile);

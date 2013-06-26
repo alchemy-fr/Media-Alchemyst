@@ -2,7 +2,6 @@
 
 namespace MediaAlchemyst\Specification;
 
-
 class Flash extends AbstractSpecification
 {
 

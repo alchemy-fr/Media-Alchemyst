@@ -6,7 +6,6 @@ use MediaAlchemyst\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\UnknownSpecs;
 use MediaAlchemyst\Specification\Image;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';

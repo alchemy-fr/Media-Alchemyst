@@ -23,7 +23,6 @@ class Image extends AbstractSpecification
     const RESOLUTION_PIXELPERINCH = 'ppi';
     const RESOLUTION_PIXELPERCENTIMETER = 'ppc';
 
-
     public function getType()
     {
         return self::TYPE_IMAGE;

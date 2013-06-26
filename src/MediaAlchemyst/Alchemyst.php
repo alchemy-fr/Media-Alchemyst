@@ -5,7 +5,6 @@ namespace MediaAlchemyst;
 use MediaVorus\Media\MediaInterface;
 use MediaVorus\Exception\FileNotFoundException as MediaVorusFileNotFoundException;
 use MediaAlchemyst\Exception\FileNotFoundException;
-use MediaAlchemyst\Exception\LogicException;
 use MediaAlchemyst\Exception\RuntimeException;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Transmuter\Audio2Audio;
@@ -19,18 +18,8 @@ use MediaAlchemyst\Transmuter\Video2Video;
 
 class Alchemyst
 {
-
-    /**
-     *
-     * @var \MediaVorus\media\MediaMediaInterface
-     */
-    protected $mediaFile;
-
-    /**
-     *
-     * @var Pimple
-     */
-    protected $drivers;
+    /** @var DriversContainer */
+    private $drivers;
 
     public function __construct(DriversContainer $container)
     {
@@ -42,35 +31,15 @@ class Alchemyst
         return $this->drivers;
     }
 
-    public function open($pathfile)
+    public function turnInto($source, $pathfile_dest, SpecificationInterface $specs)
     {
-        if ($this->mediaFile) {
-            $this->close();
-        }
-
         try {
-            $this->mediaFile = $this->drivers['mediavorus']->guess($pathfile);
+            $mediafile = $this->drivers['mediavorus']->guess($source);
         } catch (MediaVorusFileNotFoundException $e) {
-            throw new FileNotFoundException(sprintf('File %s not found', $pathfile));
+            throw new FileNotFoundException(sprintf('File %s not found', $source));
         }
 
-        return $this;
-    }
-
-    public function turnInto($pathfile_dest, SpecificationInterface $specs)
-    {
-        if ( ! $this->mediaFile) {
-            throw new LogicException('You must open a file before transmute it');
-        }
-
-        $this->routeAction($pathfile_dest, $specs);
-
-        return $this;
-    }
-
-    public function close()
-    {
-        $this->mediaFile = null;
+        $this->routeAction($mediafile, $pathfile_dest, $specs);
 
         return $this;
     }
@@ -80,9 +49,9 @@ class Alchemyst
         return new static(DriversContainer::create());
     }
 
-    private function routeAction($pathfile_dest, SpecificationInterface $specs)
+    private function routeAction($mediafile, $pathfile_dest, SpecificationInterface $specs)
     {
-        $route = sprintf('%s-%s', $this->mediaFile->getType(), $specs->getType());
+        $route = sprintf('%s-%s', $mediafile->getType(), $specs->getType());
 
         switch ($route) {
             case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, SpecificationInterface::TYPE_IMAGE):
@@ -124,7 +93,7 @@ class Alchemyst
                 break;
         }
 
-        $transmuter->execute($specs, $this->mediaFile, $pathfile_dest);
+        $transmuter->execute($specs, $mediafile, $pathfile_dest);
 
         return $this;
     }

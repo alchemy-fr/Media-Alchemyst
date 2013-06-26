@@ -7,7 +7,6 @@ use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\AbstractAlchemystTester;
 use MediaAlchemyst\Specification\Flash;
 use MediaAlchemyst\Specification\Video;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Process\ExecutableFinder;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';

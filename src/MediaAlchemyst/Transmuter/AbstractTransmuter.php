@@ -31,7 +31,7 @@ abstract class AbstractTransmuter
      * Return the box for a spec
      *
      * @param  Specification\Image $spec
-     * @param  MediaInterface               $source
+     * @param  MediaInterface      $source
      * @return \Image\Box
      */
     protected function boxFromImageSpec(Image $spec, MediaInterface $source)

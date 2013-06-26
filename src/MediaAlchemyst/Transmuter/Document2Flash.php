@@ -13,10 +13,9 @@ use Unoconv\Exception\ExceptionInterface as UnoconvException;
 
 class Document2Flash extends AbstractTransmuter
 {
-
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Flash) {
+        if (! $spec instanceof Flash) {
             throw new SpecNotSupportedException('SwfTools only accept Flash specs');
         }
 
@@ -25,18 +24,14 @@ class Document2Flash extends AbstractTransmuter
         try {
 
             if ($source->getFile()->getMimeType() != 'application/pdf') {
-                $this->container['unoconv']
-                    ->open($source->getFile()->getPathname())
-                    ->saveAs(Unoconv::FORMAT_PDF, $tmpDest)
-                    ->close();
+                $this->container['unoconv']->transcode(
+                    $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest
+                );
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $this->container['swftools.pdf-file']
-                ->open($tmpDest)
-                ->toSwf($dest);
-             $this->container['swftools.pdf-file']->close();
+            $this->container['swftools.pdf-file']->toSwf($tmpDest, $dest);
 
             unlink($tmpDest);
         } catch (UnoconvException $e) {

@@ -3,7 +3,6 @@
 namespace MediaAlchemyst;
 
 use Symfony\Component\Process\ExecutableFinder;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 abstract class AbstractDriversContainerTest extends \PHPUnit_Framework_TestCase
 {

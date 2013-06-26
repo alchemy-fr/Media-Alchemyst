@@ -39,9 +39,6 @@ class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
 
     public function getProbe()
     {
-        $logger = $this->getMockBuilder('\\Monolog\\Logger')
-            ->disableOriginalConstructor()
-            ->getMock();
-        return FFProbe::load($logger);
+        return FFProbe::create();
     }
 }

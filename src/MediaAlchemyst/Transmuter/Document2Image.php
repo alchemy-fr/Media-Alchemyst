@@ -16,10 +16,9 @@ use Unoconv\Exception\ExceptionInterface as UnoconvException;
 
 class Document2Image extends AbstractTransmuter
 {
-
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Image) {
+        if (! $spec instanceof Image) {
             throw new SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
@@ -29,19 +28,18 @@ class Document2Image extends AbstractTransmuter
         try {
 
             if ($source->getFile()->getMimeType() != 'application/pdf') {
-                $this->container['unoconv']
-                    ->open($source->getFile()->getPathname())
-                    ->saveAs(Unoconv::FORMAT_PDF, $tmpDest, '1-1')
-                    ->close();
+                $this->container['unoconv']->transcode(
+                    $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, '1-1'
+                );
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
             $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
 
-            $this->container['ghostscript.transcoder']->open($tmpDest)
-                ->toPDF($tmpDestSinglePage, 1, 1)
-                ->close();
+            $this->container['ghostscript.transcoder']->toPDF(
+                $tmpDest, $tmpDestSinglePage, 1, 1
+            );
 
             $image = $this->container['imagine']->open($tmpDestSinglePage);
 

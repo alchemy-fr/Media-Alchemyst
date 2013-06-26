@@ -6,9 +6,6 @@ use MediaAlchemyst\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\UnknownSpecs;
 use MediaAlchemyst\Specification\Video;
-use Monolog\Logger;
-use Monolog\Handler\NullHandler;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 require_once __DIR__ . '/../Specification/UnknownSpecs.php';
@@ -86,7 +83,7 @@ class Video2VideoTest extends AbstractAlchemystTester
 
         $this->specs->setAudioCodec('libmp3lame');
         $this->specs->setVideoCodec('libx264');
-        $this->specs->setAudioSampleRate(10025);
+        $this->specs->setAudioSampleRate(44100);
         $this->specs->setKiloBitrate(1000);
         $this->specs->setGOPSize(10);
         $this->specs->setFramerate(5);
@@ -108,7 +105,7 @@ class Video2VideoTest extends AbstractAlchemystTester
     {
         $this->specs->setAudioCodec('libvorbis');
         $this->specs->setVideoCodec('libvpx');
-        $this->specs->setAudioSampleRate(10025);
+        $this->specs->setAudioSampleRate(44100);
         $this->specs->setKiloBitrate(1000);
         $this->specs->setGOPSize(10);
         $this->specs->setFramerate(5);

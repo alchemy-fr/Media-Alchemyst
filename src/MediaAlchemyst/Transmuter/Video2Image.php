@@ -3,6 +3,7 @@
 namespace MediaAlchemyst\Transmuter;
 
 use FFMpeg\Exception\ExceptionInterface as FFMpegException;
+use FFMpeg\Coordinate\TimeCode;
 use Imagine\Exception\Exception as ImagineException;
 use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
 use MediaAlchemyst\Specification\SpecificationInterface;
@@ -18,12 +19,11 @@ class Video2Image extends AbstractTransmuter
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Image) {
+        if (! $spec instanceof Image) {
             throw new SpecNotSupportedException('FFMpeg Adapter only supports Video specs');
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Image */
-
         $tmpDest = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
 
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
@@ -31,8 +31,8 @@ class Video2Image extends AbstractTransmuter
         try {
             $this->container['ffmpeg.ffmpeg']
                 ->open($source->getFile()->getPathname())
-                ->extractImage($time, $tmpDest)
-                ->close();
+                ->frame(TimeCode::fromSeconds($time))
+                ->saveAs($tmpDest);
 
             $image = $this->container['imagine']->open($tmpDest);
 

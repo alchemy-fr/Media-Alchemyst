@@ -24,25 +24,31 @@
     ],
     "require": {
         "php"                            : ">=5.3.3",
-        "alchemy/ghostscript"            : "~0.2.0",
+        "alchemy/ghostscript"            : "~0.4.0",
         "imagine/imagine"                : "dev-ColorSpaces",
-        "mediavorus/mediavorus"          : "~0.2",
+        "mediavorus/mediavorus"          : "0.3.x-dev",
         "monolog/monolog"                : "~1.0",
         "pimple/pimple"                  : "~1.0",
-        "php-ffmpeg/php-ffmpeg"          : "~0.2.3",
-        "php-unoconv/php-unoconv"        : "~0.1.0",
-        "php-mp4box/php-mp4box"          : "~0.1.0",
-        "swftools/swftools"              : "~0.2.0",
+        "php-ffmpeg/php-ffmpeg"          : "0.3.x-dev@dev",
+        "php-unoconv/php-unoconv"        : "~0.3.0",
+        "php-mp4box/php-mp4box"          : "~0.3.0",
+        "swftools/swftools"              : "~0.3.0",
         "symfony/console"                : "~2.0"
     },
     "require-dev": {
+        "phpunit/phpunit"                : "~3.7",
         "neutron/silex-imagine-provider" : "~0.1",
         "phpexiftool/phpexiftool"        : "~0.1",
-        "silex/silex"                    : "1.0.*@dev"
+        "silex/silex"                    : "~1.0"
     },
     "autoload": {
         "psr-0": {
             "MediaAlchemyst": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.3-dev"
         }
     }
 }

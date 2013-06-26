@@ -7,7 +7,6 @@ use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\Video;
 use Symfony\Component\Process\ExecutableFinder;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
@@ -27,7 +26,6 @@ class Document2ImageTest extends AbstractAlchemystTester
         if (!$executableFinder->find('unoconv')) {
             $this->markTestSkipped('Unoconv is not installed');
         }
-
 
         $this->object = new Document2Image(new DriversContainer());
 

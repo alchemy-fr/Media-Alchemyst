@@ -2,7 +2,7 @@
 
 namespace MediaAlchemyst\Specification;
 
-use FFMpeg\Format\Video\DefaultVideo;
+use FFMpeg\Filters\Video\ResizeFilter;
 use MediaAlchemyst\Exception\InvalidArgumentException;
 
 class Video extends Audio
@@ -13,9 +13,10 @@ class Video extends Audio
     protected $resizeMode = self::RESIZE_MODE_INSET;
     protected $GOPSize;
     protected $framerate;
+    protected $kiloBitrate;
 
-    const RESIZE_MODE_FIT = DefaultVideo::RESIZEMODE_FIT;
-    const RESIZE_MODE_INSET = DefaultVideo::RESIZEMODE_INSET;
+    const RESIZE_MODE_FIT = ResizeFilter::RESIZEMODE_FIT;
+    const RESIZE_MODE_INSET = ResizeFilter::RESIZEMODE_INSET;
 
     public function getType()
     {
@@ -80,5 +81,15 @@ class Video extends Audio
     public function setFramerate($framerate)
     {
         $this->framerate = $framerate;
+    }
+
+    public function setKiloBitrate($kiloBitrate)
+    {
+        $this->kiloBitrate = $kiloBitrate;
+    }
+
+    public function getKiloBitrate()
+    {
+        return $this->kiloBitrate;
     }
 }

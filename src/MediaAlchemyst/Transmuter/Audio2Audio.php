@@ -2,10 +2,10 @@
 
 namespace MediaAlchemyst\Transmuter;
 
-
 use FFMpeg\Format\Audio\Flac;
 use FFMpeg\Format\Audio\Mp3;
 use FFMpeg\Exception\ExceptionInterface as FFMpegException;
+use FFMpeg\Filters\Audio\AudioResamplableFilter;
 use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Exception\FormatNotSupportedException;
@@ -18,8 +18,15 @@ class Audio2Audio extends AbstractTransmuter
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
-        if ( ! $spec instanceof Audio) {
+        if (!$spec instanceof Audio) {
             throw new SpecNotSupportedException('FFMpeg Adapter only supports Audio specs');
+        }
+
+        try {
+            $audio = $this->container['ffmpeg.ffmpeg']
+              ->open($source->getFile()->getPathname());
+        } catch (FFMpegException $e) {
+            throw new RuntimeException('Unable to transmute audio to audio due to FFMpeg', null, $e);
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Audio */
@@ -29,17 +36,14 @@ class Audio2Audio extends AbstractTransmuter
             $format->setAudioCodec($spec->getAudioCodec());
         }
         if ($spec->getAudioSampleRate()) {
-            $format->setAudioSampleRate($spec->getAudioSampleRate());
+            $audio->addFilter(new AudioResamplableFilter($spec->getAudioSampleRate()));
         }
-        if ($spec->getKiloBitrate()) {
-            $format->getKiloBitrate($spec->getKiloBitrate());
+        if ($spec->getAudioKiloBitrate()) {
+            $format->setAudioKiloBitrate($spec->getAudioKiloBitrate());
         }
 
         try {
-            $this->container['ffmpeg.ffmpeg']
-              ->open($source->getFile()->getPathname())
-              ->encode($format, $dest)
-              ->close();
+            $audio->save($format, $dest);
         } catch (FFMpegException $e) {
             throw new RuntimeException('Unable to transmute audio to audio due to FFMpeg', null, $e);
         }

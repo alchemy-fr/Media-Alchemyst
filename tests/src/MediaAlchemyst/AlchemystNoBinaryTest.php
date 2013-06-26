@@ -2,8 +2,6 @@
 
 namespace MediaAlchemyst;
 
-use \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
-
 class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -23,13 +21,17 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
     {
         $driversContainer = new DriversContainer();
 
-        $driversContainer['unoconv.binary'] = 'nofile';
-        $driversContainer['mp4box.binary'] = 'nofile';
-        $driversContainer['ffmpeg.ffmpeg.binary'] = 'nofile';
-        $driversContainer['ffmpeg.ffprobe.binary'] = 'nofile';
-        $driversContainer['pdf2swf.binary'] = 'nofile';
-        $driversContainer['swf-render.binary'] = 'nofile';
-        $driversContainer['swf-extract.binary'] = 'nofile';
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffmpeg.binaries'       => 'nofile',
+            'ffmpeg.ffprobe.binaries'      => 'nofile',
+            'imagine.driver'               => 'nofile',
+            'gs.binaries'                  => 'nofile',
+            'mp4box.binaries'              => 'nofile',
+            'swftools.pdf2swf.binaries'    => 'nofile',
+            'swftools.swfrender.binaries'  => 'nofile',
+            'swftools.swfextract.binaries' => 'nofile',
+            'unoconv.binaries'             => 'nofile',
+        );
 
         $this->object = new Alchemyst($driversContainer);
 
@@ -42,38 +44,12 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::open
-     * @covers MediaAlchemyst\Alchemyst::close
-     * @expectedException MediaAlchemyst\Exception\RuntimeException
-     */
-    public function testOpen()
-    {
-        $this->object->open(__DIR__ . '/../../files/ExifTool.jpg');
-        $this->object->close();
-        $this->object->open(__DIR__ . '/../../files/ExifTool.jpg');
-        $this->object->open(__DIR__ . '/../../files/photo03.JPG');
-    }
-
-    /**
-     * @covers MediaAlchemyst\Alchemyst::open
      * @covers MediaAlchemyst\Exception\FileNotFoundException
-     * @expectedException MediaAlchemyst\Exception\RuntimeException
+     * @expectedException MediaAlchemyst\Exception\FileNotFoundException
      */
     public function testOpenUnknownFile()
     {
-        $this->object->open(__DIR__ . '/../../files/invalid.file');
-    }
-
-    /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Exception\LogicException
-     * @expectedException MediaAlchemyst\Exception\LogicException
-     */
-    public function testTurnIntoNoFile()
-    {
-        $specs = new Specification\Audio();
-
-        $this->object->turnInto(__DIR__ . '/../../files/output', $specs);
+        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'dest.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
     }
 
     /**
@@ -83,25 +59,19 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoAudioAudio()
     {
-        $this->object->open(__DIR__ . '/../../files/Audio.mp3');
-
         $dest = __DIR__ . '/../../files/output.flac';
 
-        $this->object->turnInto($dest, $this->specsAudio);
+        $this->object->turnInto(__DIR__ . '/../../files/Audio.mp3', $dest, $this->specsAudio);
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Alchemyst::routeAction
      * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testTurnIntoFlashImage()
     {
-        $this->object->open(__DIR__ . '/../../files/flashfile.swf');
-
         $dest = __DIR__ . '/../../files/output.png';
 
-        $this->object->turnInto($dest, $this->specsImage);
+        $this->object->turnInto(__DIR__ . '/../../files/flashfile.swf', $dest, $this->specsImage);
     }
 
     /**
@@ -111,11 +81,9 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoDocumentImage()
     {
-        $this->object->open(__DIR__ . '/../../files/Hello.odt');
-
         $dest = __DIR__ . '/../../files/output.png';
 
-        $this->object->turnInto($dest, $this->specsImage);
+        $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsImage);
     }
 
     /**
@@ -125,11 +93,9 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoDocumentFlash()
     {
-        $this->object->open(__DIR__ . '/../../files/Hello.odt');
-
         $dest = __DIR__ . '/../../files/output.swf';
 
-        $this->object->turnInto($dest, $this->specsFlash);
+        $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
     }
 
     /**
@@ -139,11 +105,9 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoVideoImage()
     {
-        $this->object->open(__DIR__ . '/../../files/Test.ogv');
-
         $dest = __DIR__ . '/../../files/output.png';
 
-        $this->object->turnInto($dest, $this->specsImage);
+        $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsImage);
     }
 
     /**
@@ -153,11 +117,9 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoVideoVideo()
     {
-        $this->object->open(__DIR__ . '/../../files/Test.ogv');
-
         $dest = __DIR__ . '/../../files/output.webm';
 
-        $this->object->turnInto($dest, $this->specsVideo);
+        $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsVideo);
     }
 
 }

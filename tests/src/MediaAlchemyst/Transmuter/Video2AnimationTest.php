@@ -5,7 +5,6 @@ namespace MediaAlchemyst\Transmuter;
 use MediaAlchemyst\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Animation;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
@@ -52,5 +51,3 @@ class Video2AnimationTest extends AbstractAlchemystTester
     }
 
 }
-
-?>
