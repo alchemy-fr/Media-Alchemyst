@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaAlchemyst\Specification;
+namespace MediaAlchemyst\Tests\Specification;
+
+use MediaAlchemyst\Specification\Video;
+use MediaAlchemyst\Specification\SpecificationInterface;
 
 class VideoTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Video
      */
@@ -64,5 +66,4 @@ class VideoTest extends \PHPUnit_Framework_TestCase
         $this->object->setFramerate(10);
         $this->assertEquals(10, $this->object->getFramerate());
     }
-
 }

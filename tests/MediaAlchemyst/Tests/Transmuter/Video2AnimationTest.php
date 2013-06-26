@@ -1,16 +1,14 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Video2Animation;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Animation;
 
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-
 class Video2AnimationTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Video2Animation
      */
@@ -49,5 +47,4 @@ class Video2AnimationTest extends AbstractAlchemystTester
         $this->assertEquals(130, $output->getWidth());
         $this->assertEquals(110, $output->getHeight());
     }
-
 }

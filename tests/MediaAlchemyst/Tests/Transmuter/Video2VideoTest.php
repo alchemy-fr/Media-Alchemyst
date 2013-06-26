@@ -1,18 +1,15 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Video2Video;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
-use MediaAlchemyst\Specification\UnknownSpecs;
+use MediaAlchemyst\Tests\Specification\UnknownSpecs;
 use MediaAlchemyst\Specification\Video;
-
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-require_once __DIR__ . '/../Specification/UnknownSpecs.php';
 
 class Video2VideoTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Video2Video
      */
@@ -160,12 +157,10 @@ class Video2VideoTest extends AbstractAlchemystTester
 
         $Object->testgetFormatFromFileType('out.jpg', 200, 200);
     }
-
 }
 
 class Video2VideoExtended extends Video2Video
 {
-
     public function __construct()
     {
 
@@ -175,5 +170,4 @@ class Video2VideoExtended extends Video2Video
     {
         return parent::getFormatFromFileType($dest, $width, $height);
     }
-
 }

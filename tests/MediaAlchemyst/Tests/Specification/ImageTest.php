@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaAlchemyst\Specification;
+namespace MediaAlchemyst\Tests\Specification;
+
+use MediaAlchemyst\Specification\Image;
+use MediaAlchemyst\Specification\SpecificationInterface;
 
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Image
      */
@@ -139,5 +141,4 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->object->setStrip(false);
         $this->assertEquals(false, $this->object->getStrip());
     }
-
 }

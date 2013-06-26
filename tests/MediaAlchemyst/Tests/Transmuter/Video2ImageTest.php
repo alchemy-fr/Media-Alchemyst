@@ -1,17 +1,15 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Video2Image;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\Video;
 
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-
 class Video2ImageTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Video2Image
      */
@@ -101,12 +99,10 @@ class Video2ImageTest extends AbstractAlchemystTester
           array('0.5', 0.5),
         );
     }
-
 }
 
 class Video2ImageExtended extends Video2Image
 {
-
     public function __construct()
     {
 
@@ -116,5 +112,4 @@ class Video2ImageExtended extends Video2Image
     {
         return parent::parseTimeAsRatio($time);
     }
-
 }

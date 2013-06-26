@@ -1,7 +1,8 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
 
+use MediaAlchemyst\Alchemyst;
 use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\Flash;
@@ -9,11 +10,8 @@ use MediaAlchemyst\Specification\Video;
 use MediaVorus\Media\MediaInterface;
 use Symfony\Component\Process\ExecutableFinder;
 
-require_once __DIR__ . '/AbstractAlchemystTester.php';
-
 class AlchemystTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Alchemyst
      */
@@ -167,5 +165,4 @@ class AlchemystTest extends AbstractAlchemystTester
 
         unlink($dest);
     }
-
 }

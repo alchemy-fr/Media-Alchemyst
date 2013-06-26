@@ -1,18 +1,15 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Audio2Audio;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Audio;
-use MediaAlchemyst\Specification\UnknownSpecs;
-
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-require_once __DIR__ . '/../Specification/UnknownSpecs.php';
+use MediaAlchemyst\Tests\Specification\UnknownSpecs;
 
 class Audio2AudioTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Audio2Audio
      */
@@ -91,5 +88,4 @@ class Audio2AudioTest extends AbstractAlchemystTester
     {
         $this->object->execute(new UnknownSpecs(), $this->source, $this->dest);
     }
-
 }

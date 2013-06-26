@@ -1,17 +1,15 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Flash2Image;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\Video;
 
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-
 class Flash2ImageTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Flash2Image
      */
@@ -71,5 +69,4 @@ class Flash2ImageTest extends AbstractAlchemystTester
         $this->assertEquals(320, $MediaDest->getWidth());
         $this->assertEquals(148, $MediaDest->getHeight());
     }
-
 }

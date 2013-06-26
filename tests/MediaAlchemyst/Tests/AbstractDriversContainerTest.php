@@ -1,12 +1,11 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
 
 use Symfony\Component\Process\ExecutableFinder;
 
 abstract class AbstractDriversContainerTest extends \PHPUnit_Framework_TestCase
 {
-
     abstract public function getDrivers();
 
     /**

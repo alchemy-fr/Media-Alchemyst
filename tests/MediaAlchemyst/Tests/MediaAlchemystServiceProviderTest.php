@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
 
-use MediaVorus\MediaVorusServiceProvider;
+use MediaAlchemyst\MediaAlchemystServiceProvider;
 use Silex\Application;
 
 class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
@@ -15,7 +15,6 @@ class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
     public function testInit()
     {
         $app = $this->getApplication();
-        $app->register(new MediaVorusServiceProvider());
         $app->register(new MediaAlchemystServiceProvider(), array(
             'media-alchemyst.configuration' => array(
                 'ffmpeg.ffmpeg.timeout' => 124,

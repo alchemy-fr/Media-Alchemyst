@@ -1,10 +1,16 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
+
+use MediaAlchemyst\DriversContainer;
+use MediaAlchemyst\Alchemyst;
+use MediaAlchemyst\Specification\Audio;
+use MediaAlchemyst\Specification\Video;
+use MediaAlchemyst\Specification\Flash;
+use MediaAlchemyst\Specification\Image;
 
 class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Alchemyst
      */
@@ -35,11 +41,11 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
 
         $this->object = new Alchemyst($driversContainer);
 
-        $this->specsAudio = new Specification\Audio();
-        $this->specsFlash = new Specification\Flash();
-        $this->specsVideo = new Specification\Video();
+        $this->specsAudio = new Audio();
+        $this->specsFlash = new Flash();
+        $this->specsVideo = new Video();
         $this->specsVideo->setDimensions(320, 240);
-        $this->specsImage = new Specification\Image();
+        $this->specsImage = new Image();
         $this->specsImage->setDimensions(320, 240);
     }
 
@@ -121,5 +127,4 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
 
         $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsVideo);
     }
-
 }

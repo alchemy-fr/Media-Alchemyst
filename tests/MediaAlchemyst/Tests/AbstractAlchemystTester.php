@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
 
 use Monolog\Logger;
 use Monolog\Handler\NullHandler;
@@ -13,7 +13,6 @@ use FFMpeg\FFProbe;
 
 class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
 {
-
     public function getMediaVorus()
     {
         return new MediaVorus($this->getReader(), $this->getWriter(), $this->getProbe());

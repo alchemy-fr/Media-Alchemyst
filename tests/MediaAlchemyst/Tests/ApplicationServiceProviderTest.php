@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
 
 use FFMpeg\FFMpegServiceProvider;
 use Neutron\Silex\Provider\ImagineServiceProvider;
@@ -10,12 +10,10 @@ use PHPExiftool\PHPExiftoolServiceProvider;
 use Silex\Application;
 use SwfTools\SwfToolsServiceProvider;
 use Unoconv\UnoconvServiceProvider;
-
-require_once __DIR__ . '/AbstractDriversContainerTest.php';
+use MediaAlchemyst\MediaAlchemystServiceProvider;
 
 class ApplicationServiceProviderTest extends AbstractDriversContainerTest
 {
-
     public function getDrivers()
     {
         $app = new Application();

@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaAlchemyst\Specification;
+namespace MediaAlchemyst\Tests\Specification;
+
+use MediaAlchemyst\Specification\Animation;
+use MediaAlchemyst\Specification\SpecificationInterface;
 
 class AnimationTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Animation
      */
@@ -29,5 +31,4 @@ class AnimationTest extends \PHPUnit_Framework_TestCase
         $this->object->setDelay(800);
         $this->assertEquals(800, $this->object->getDelay());
     }
-
 }

@@ -1,14 +1,12 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Image2Image;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
-use MediaAlchemyst\Specification\UnknownSpecs;
+use MediaAlchemyst\Tests\Specification\UnknownSpecs;
 use MediaAlchemyst\Specification\Image;
-
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-require_once __DIR__ . '/../Specification/UnknownSpecs.php';
 
 class Image2ImageTest extends AbstractAlchemystTester
 {

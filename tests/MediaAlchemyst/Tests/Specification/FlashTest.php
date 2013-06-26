@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaAlchemyst\Specification;
+namespace MediaAlchemyst\Tests\Specification;
+
+use MediaAlchemyst\Specification\Flash;
+use MediaAlchemyst\Specification\SpecificationInterface;
 
 class FlashTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @covers MediaAlchemyst\Specification\Flash::getType
      */
@@ -13,5 +15,4 @@ class FlashTest extends \PHPUnit_Framework_TestCase
         $specs = new Flash;
         $this->assertEquals(SpecificationInterface::TYPE_SWF, $specs->getType());
     }
-
 }

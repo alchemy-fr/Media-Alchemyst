@@ -1,8 +1,8 @@
 <?php
 
-namespace MediaAlchemyst;
+namespace MediaAlchemyst\Tests;
 
-require_once __DIR__ . '/AbstractDriversContainerTest.php';
+use MediaAlchemyst\DriversContainer;
 
 class DriversContainersTest extends AbstractDriversContainerTest
 {

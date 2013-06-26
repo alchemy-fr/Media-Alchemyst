@@ -1,19 +1,17 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
+use MediaAlchemyst\Transmuter\Document2Flash;
 use MediaVorus\Media\MediaInterface;
 use MediaAlchemyst\DriversContainer;
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\Specification\Flash;
 use MediaAlchemyst\Specification\Video;
 use Symfony\Component\Process\ExecutableFinder;
 
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
-
 class Document2FlashTest extends AbstractAlchemystTester
 {
-
     /**
      * @var Document2Flash
      */
@@ -65,5 +63,4 @@ class Document2FlashTest extends AbstractAlchemystTester
         $this->specs = new Video();
         $this->object->execute($this->specs, $this->source, $this->dest);
     }
-
 }

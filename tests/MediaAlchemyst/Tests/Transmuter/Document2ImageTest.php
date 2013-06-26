@@ -1,14 +1,13 @@
 <?php
 
-namespace MediaAlchemyst\Transmuter;
+namespace MediaAlchemyst\Tests\Transmuter;
 
-use MediaAlchemyst\AbstractAlchemystTester;
+use MediaAlchemyst\Transmuter\Document2Image;
+use MediaAlchemyst\Tests\AbstractAlchemystTester;
 use MediaAlchemyst\DriversContainer;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\Video;
 use Symfony\Component\Process\ExecutableFinder;
-
-require_once __DIR__ . '/../AbstractAlchemystTester.php';
 
 class Document2ImageTest extends AbstractAlchemystTester
 {

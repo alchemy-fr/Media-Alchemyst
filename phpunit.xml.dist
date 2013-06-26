@@ -9,7 +9,7 @@
          stopOnFailure="false"
          syntaxCheck="true"
          verbose="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
 >
     <php>
       <ini name="display_errors" value="on"/>
@@ -17,7 +17,7 @@
 
     <testsuites>
         <testsuite name="MediAlchemyst Tests Suite">
-            <directory>tests</directory>
+            <directory>tests/MediaAlchemyst/Tests</directory>
         </testsuite>
     </testsuites>
     <filter>

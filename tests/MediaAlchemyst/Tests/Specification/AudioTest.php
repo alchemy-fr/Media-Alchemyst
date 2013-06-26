@@ -1,10 +1,12 @@
 <?php
 
-namespace MediaAlchemyst\Specification;
+namespace MediaAlchemyst\Tests\Specification;
+
+use MediaAlchemyst\Specification\Audio;
+use MediaAlchemyst\Specification\SpecificationInterface;
 
 class AudioTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @var Audio
      */
@@ -55,5 +57,4 @@ class AudioTest extends \PHPUnit_Framework_TestCase
         $this->object->setAudioSampleRate(22050);
         $this->assertEquals(22050, $this->object->getAudioSampleRate());
     }
-
 }
