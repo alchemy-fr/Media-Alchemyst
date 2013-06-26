@@ -12,7 +12,7 @@ A PHP 5.3+ lib to transmute media files.
 Media-Alchemyst is a tool to transmute your medias from media-type to
 media-type.
 
-## Exemple of use
+## Usage example
 
 ```php
 
