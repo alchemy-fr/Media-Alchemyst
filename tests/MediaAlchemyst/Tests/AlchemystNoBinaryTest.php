@@ -11,36 +11,13 @@ use MediaAlchemyst\Specification\Image;
 
 class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Alchemyst
-     */
-    protected $object;
     protected $specsAudio;
     protected $specsFlash;
     protected $specsImage;
     protected $specsVideo;
 
-    /**
-     * @covers MediaAlchemyst\Alchemyst::__construct
-     */
     protected function setUp()
     {
-        $driversContainer = new DriversContainer();
-
-        $driversContainer['configuration'] = array(
-            'ffmpeg.ffmpeg.binaries'       => 'nofile',
-            'ffmpeg.ffprobe.binaries'      => 'nofile',
-            'imagine.driver'               => 'nofile',
-            'gs.binaries'                  => 'nofile',
-            'mp4box.binaries'              => 'nofile',
-            'swftools.pdf2swf.binaries'    => 'nofile',
-            'swftools.swfrender.binaries'  => 'nofile',
-            'swftools.swfextract.binaries' => 'nofile',
-            'unoconv.binaries'             => 'nofile',
-        );
-
-        $this->object = new Alchemyst($driversContainer);
-
         $this->specsAudio = new Audio();
         $this->specsFlash = new Flash();
         $this->specsVideo = new Video();
@@ -50,23 +27,46 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException MediaAlchemyst\Exception\RuntimeException
+     * @expectedException MediaAlchemyst\Exception\FileNotFoundException
      */
     public function testOpenUnknownFile()
     {
-        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'dest.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
+        $driversContainer = new DriversContainer();
+        $object = new Alchemyst($driversContainer);
+
+        $object->turnInto(__DIR__ . '/../../files/invalid.file', 'dest.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Alchemyst::routeAction
      * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testTurnIntoAudioAudio()
     {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffmpeg.binaries'       => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
+
         $dest = __DIR__ . '/../../files/output.flac';
 
-        $this->object->turnInto(__DIR__ . '/../../files/Audio.mp3', $dest, $this->specsAudio);
+        $object->turnInto(__DIR__ . '/../../files/Audio.mp3', $dest, $this->specsAudio);
+    }
+
+    /**
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
+     */
+    public function testTurnIntoAudioAudioWithFFProbe()
+    {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffprobe.binaries'       => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
+
+        $dest = __DIR__ . '/../../files/output.flac';
+
+        $object->turnInto(__DIR__ . '/../../files/Audio.mp3', $dest, $this->specsAudio);
     }
 
     /**
@@ -74,56 +74,118 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
      */
     public function testTurnIntoFlashImage()
     {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'swftools.swfrender.binaries'  => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
         $dest = __DIR__ . '/../../files/output.png';
 
-        $this->object->turnInto(__DIR__ . '/../../files/flashfile.swf', $dest, $this->specsImage);
+        $object->turnInto(__DIR__ . '/../../files/flashfile.swf', $dest, $this->specsImage);
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Alchemyst::routeAction
      * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testTurnIntoDocumentImage()
     {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'unoconv.binaries'                  => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
         $dest = __DIR__ . '/../../files/output.png';
 
-        $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsImage);
+        $object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsImage);
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Alchemyst::routeAction
      * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testTurnIntoDocumentFlash()
     {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'swftools.pdf2swf.binaries'                  => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
         $dest = __DIR__ . '/../../files/output.swf';
 
-        $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
+        $object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Alchemyst::routeAction
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
+     */
+    public function testTurnIntoDocumentFlashWithUnoconv()
+    {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'unoconv.binaries'                  => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
+        $dest = __DIR__ . '/../../files/output.swf';
+
+        $object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
+    }
+
+    /**
      * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testTurnIntoVideoImage()
     {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffmpeg.binaries'       => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
         $dest = __DIR__ . '/../../files/output.png';
 
-        $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsImage);
+        $object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsImage);
     }
 
     /**
-     * @covers MediaAlchemyst\Alchemyst::turnInto
-     * @covers MediaAlchemyst\Alchemyst::routeAction
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
+     */
+    public function testTurnIntoVideoImageWithFFprobe()
+    {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffprobe.binaries'       => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
+        $dest = __DIR__ . '/../../files/output.png';
+
+        $object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsImage);
+    }
+
+    /**
      * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testTurnIntoVideoVideo()
     {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffmpeg.binaries'       => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
         $dest = __DIR__ . '/../../files/output.webm';
 
-        $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsVideo);
+        $object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsVideo);
+    }
+
+    /**
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
+     */
+    public function testTurnIntoVideoVideoWithFFProbe()
+    {
+        $driversContainer = new DriversContainer();
+        $driversContainer['configuration'] = array(
+            'ffmpeg.ffprobe.binaries'       => 'nofile',
+        );
+        $object = new Alchemyst($driversContainer);
+        $dest = __DIR__ . '/../../files/output.webm';
+
+        $object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsVideo);
     }
 }
