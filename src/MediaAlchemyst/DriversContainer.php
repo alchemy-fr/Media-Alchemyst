@@ -75,6 +75,7 @@ class DriversContainer extends Pimple
         $this['ffmpeg.ffmpeg'] = $this->share(function(Pimple $container) {
             try {
                 return FFMpeg::create(array_filter(array(
+                    'ffmpeg.threads'  => $container['configuration.merged']['ffmpeg.threads'],
                     'timeout'         => $container['configuration.merged']['ffmpeg.ffmpeg.timeout'],
                     'ffmpeg.binaries' => $container['configuration.merged']['ffmpeg.ffmpeg.binaries'],
                 )), $container['logger'], $container['ffmpeg.ffprobe']);
@@ -89,7 +90,7 @@ class DriversContainer extends Pimple
             try {
                 return FFProbe::create(array_filter(array(
                     'timeout'         => $container['configuration.merged']['ffmpeg.ffprobe.timeout'],
-                    'ffmpeg.binaries' => $container['configuration.merged']['ffmpeg.ffprobe.binaries'],
+                    'ffprobe.binaries' => $container['configuration.merged']['ffmpeg.ffprobe.binaries'],
                 )), $container['logger'], $container['ffmpeg.ffprobe.cache']);
             } catch (ExecutableNotFoundException $e) {
                 throw new RuntimeException('Unable to create FFProbe driver', $e->getCode(), $e);
