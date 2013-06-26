@@ -50,8 +50,7 @@ class AlchemystNoBinaryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediaAlchemyst\Exception\FileNotFoundException
-     * @expectedException MediaAlchemyst\Exception\FileNotFoundException
+     * @expectedException MediaAlchemyst\Exception\RuntimeException
      */
     public function testOpenUnknownFile()
     {
