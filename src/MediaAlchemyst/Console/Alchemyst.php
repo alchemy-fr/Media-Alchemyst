@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Media-Alchemyst.
+ *
+ * (c) Alchemy <dev.team@alchemy.fr>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace MediaAlchemyst\Console;
 
 use MediaAlchemyst\Alchemyst as AlchemystTransmuter;
@@ -11,8 +20,6 @@ use MediaAlchemyst\Specification\Video;
 use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Exception\InvalidArgumentException;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -21,7 +28,6 @@ use Symfony\Component\Console\Command\Command;
 
 class Alchemyst extends Command
 {
-
     public function __construct($name = null)
     {
         parent::__construct($name);
@@ -101,21 +107,16 @@ class Alchemyst extends Command
         switch ($name) {
             case SpecificationInterface::TYPE_ANIMATION:
                 return new Animation();
-                break;
             case SpecificationInterface::TYPE_VIDEO:
                 return new Video();
-                break;
             case SpecificationInterface::TYPE_SWF:
                 return new Flash();
-                break;
             case SpecificationInterface::TYPE_IMAGE:
                 return new Image();
-                break;
             case SpecificationInterface::TYPE_AUDIO:
                 return new Audio();
-                break;
+            default:
+                throw new InvalidArgumentException(sprintf('Spec `s` is unknown', $name));
         }
-
-        throw new InvalidArgumentException(sprintf('Spec `s` is unknown', $name));
     }
 }

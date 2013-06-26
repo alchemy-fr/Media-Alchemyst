@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Media-Alchemyst.
+ *
+ * (c) Alchemy <dev.team@alchemy.fr>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace MediaAlchemyst\Transmuter;
 
 use FFMpeg\Format\Audio\Flac;
@@ -15,7 +24,6 @@ use MediaVorus\Media\MediaInterface;
 
 class Audio2Audio extends AbstractTransmuter
 {
-
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
         if (!$spec instanceof Audio) {
@@ -67,5 +75,4 @@ class Audio2Audio extends AbstractTransmuter
 
         return $format;
     }
-
 }
