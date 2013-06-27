@@ -16,17 +16,11 @@
             "homepage": "http://www.phraseanet.com/"
         }
     ],
-    "repositories": [
-        {
-            "type": "git",
-            "url":  "https://github.com/romainneutron/Imagine.git"
-        }
-    ],
     "require": {
         "php"                            : ">=5.3.3",
         "alchemy/ghostscript"            : "~0.4.0",
-        "imagine/imagine"                : "dev-ColorSpaces",
-        "mediavorus/mediavorus"          : "0.3.x-dev",
+        "neutron/imagine"                : "dev-neutron-colorspace@dev",
+        "mediavorus/mediavorus"          : "0.3.x-dev@dev",
         "monolog/monolog"                : "~1.0",
         "pimple/pimple"                  : "~1.0",
         "php-ffmpeg/php-ffmpeg"          : "0.3.x-dev@dev",
