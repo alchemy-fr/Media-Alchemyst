@@ -28,7 +28,7 @@ class Document2Image extends AbstractTransmuter
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
         if (! $spec instanceof Image) {
-            throw new SpecNotSupportedException('SwfTools only accept Image specs');
+            throw new SpecNotSupportedException('Document2Image only accept Image specs');
         }
 
         $toremove = array();

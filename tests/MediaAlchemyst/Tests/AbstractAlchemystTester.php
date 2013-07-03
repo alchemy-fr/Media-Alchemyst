@@ -2,6 +2,7 @@
 
 namespace MediaAlchemyst\Tests;
 
+use FFMpeg\Exception\ExecutableNotFoundException as FFMpegExecutableNotFound;
 use Monolog\Logger;
 use Monolog\Handler\NullHandler;
 use MediaVorus\MediaVorus;
@@ -10,11 +11,27 @@ use PHPExiftool\RDFParser;
 use PHPExiftool\Writer;
 use PHPExiftool\Exiftool;
 use FFMpeg\FFProbe;
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
+use MediaVorus\Utils\AudioMimeTypeGuesser;
+use MediaVorus\Utils\PostScriptMimeTypeGuesser;
+use MediaVorus\Utils\RawImageMimeTypeGuesser;
+use MediaVorus\Utils\VideoMimeTypeGuesser;
 
 class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
 {
     public function getMediaVorus()
     {
+        static $initialized;
+
+        if (null === $initialized) {
+            $guesser = MimeTypeGuesser::getInstance();
+            $guesser->register(new AudioMimeTypeGuesser());
+            $guesser->register(new PostScriptMimeTypeGuesser());
+            $guesser->register(new RawImageMimeTypeGuesser());
+            $guesser->register(new VideoMimeTypeGuesser());
+            $initialized = true;
+        }
+
         return new MediaVorus($this->getReader(), $this->getWriter(), $this->getProbe());
     }
 
@@ -38,6 +55,12 @@ class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
 
     public function getProbe()
     {
-        return FFProbe::create();
+        try {
+            return FFProbe::create();
+        } catch (FFMpegExecutableNotFound $e) {
+
+        }
+
+        return null;
     }
 }

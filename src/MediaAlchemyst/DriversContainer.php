@@ -15,6 +15,7 @@ use Alchemy\BinaryDriver\Exception\ExecutableNotFoundException;
 use Doctrine\Common\Cache\ArrayCache;
 use FFMpeg\FFMpeg;
 use FFMpeg\FFProbe;
+use FFMpeg\Exception\ExecutableNotFoundException as FFMpegExecutableNotFound;
 use Ghostscript\Transcoder;
 use MediaVorus\MediaVorus;
 use MediaAlchemyst\Exception\RuntimeException;
@@ -88,7 +89,7 @@ class DriversContainer extends Pimple
                     'timeout'         => $container['configuration.merged']['ffmpeg.ffmpeg.timeout'],
                     'ffmpeg.binaries' => $container['configuration.merged']['ffmpeg.ffmpeg.binaries'],
                 )), $container['logger'], $container['ffmpeg.ffprobe']);
-            } catch (ExecutableNotFoundException $e) {
+            } catch (FFMpegExecutableNotFound $e) {
                 throw new RuntimeException('Unable to create FFMpeg driver', $e->getCode(), $e);
             }
         });
@@ -101,7 +102,7 @@ class DriversContainer extends Pimple
                     'timeout'         => $container['configuration.merged']['ffmpeg.ffprobe.timeout'],
                     'ffprobe.binaries' => $container['configuration.merged']['ffmpeg.ffprobe.binaries'],
                 )), $container['logger'], $container['ffmpeg.ffprobe.cache']);
-            } catch (ExecutableNotFoundException $e) {
+            } catch (FFMpegExecutableNotFound $e) {
                 throw new RuntimeException('Unable to create FFProbe driver', $e->getCode(), $e);
             }
         });
@@ -182,24 +183,39 @@ class DriversContainer extends Pimple
         });
 
         $this['ghostscript.transcoder'] = $this->share(function(Pimple $container) {
-            return Transcoder::create(array_filter(array(
-                'gs.binaries' => $container['configuration.merged']['gs.binaries'],
-                'timeout'     => $container['configuration.merged']['gs.timeout'],
-            )), $container['logger']);
+            try {
+                return Transcoder::create(array_filter(array(
+                    'gs.binaries' => $container['configuration.merged']['gs.binaries'],
+                    'timeout'     => $container['configuration.merged']['gs.timeout'],
+                )), $container['logger']);
+            } catch (ExecutableNotFoundException $e) {
+                throw new RuntimeException('Unable to create Unoconv driver', $e->getCode(), $e);
+            }
         });
 
         $this['mp4box'] = $this->share(function(Pimple $container) {
-            return MP4Box::create(array_filter(array(
-                'mp4box.binaries' => $container['configuration.merged']['mp4box.binaries'],
-                'timeout'         => $container['configuration.merged']['mp4box.timeout'],
-            )));
+            try {
+                return MP4Box::create(array_filter(array(
+                    'mp4box.binaries' => $container['configuration.merged']['mp4box.binaries'],
+                    'timeout'         => $container['configuration.merged']['mp4box.timeout'],
+                )));
+            } catch (ExecutableNotFoundException $e) {
+                throw new RuntimeException('Unable to create Unoconv driver', $e->getCode(), $e);
+            }
         });
 
         $this['mediavorus'] = $this->share(function(Pimple $container) {
+            $ffprobe = null;
+            try {
+                $ffprobe = $container['ffmpeg.ffprobe'];
+            } catch (RuntimeException $e) {
+
+            }
+
             return new MediaVorus(
                 $container['exiftool.reader'],
                 $container['exiftool.writer'],
-                $container['ffmpeg.ffprobe']
+                $ffprobe
             );
         });
     }

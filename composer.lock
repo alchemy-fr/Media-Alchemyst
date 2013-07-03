@@ -811,28 +811,27 @@
         },
         {
             "name": "swftools/swftools",
-            "version": "0.3.0",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHPSwftools.git",
-                "reference": "0.3.0"
+                "reference": "0.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHPSwftools/zipball/0.3.0",
-                "reference": "0.3.0",
+                "url": "https://api.github.com/repos/alchemy-fr/PHPSwftools/zipball/0.3.1",
+                "reference": "0.3.1",
                 "shasum": ""
             },
             "require": {
-                "alchemy/binary-driver": ">=1.5,<2.0",
-                "monolog/monolog": ">=1.0,<2.0",
+                "alchemy/binary-driver": "~1.5",
                 "php": ">=5.3.3",
-                "pimple/pimple": ">=1.0,<2.0"
+                "pimple/pimple": "~1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7,<4.0",
-                "sami/sami": ">=1.0,<2.0",
-                "silex/silex": ">=1.0,<2.0"
+                "phpunit/phpunit": "~3.7",
+                "sami/sami": "~1.0",
+                "silex/silex": "~1.0"
             },
             "type": "library",
             "autoload": {
@@ -852,7 +851,7 @@
                 },
                 {
                     "name": "Phraseanet Team",
-                    "email": "info@alchemy.fr",
+                    "email": "support@alchemy.fr",
                     "homepage": "http://www.phraseanet.com/"
                 }
             ],
@@ -862,7 +861,7 @@
                 "flash",
                 "swf"
             ],
-            "time": "2013-06-25 12:09:36"
+            "time": "2013-07-03 13:11:36"
         },
         {
             "name": "symfony/console",

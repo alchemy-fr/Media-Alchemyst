@@ -74,4 +74,36 @@ class DriversContainersTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(42, $object['unoconv']->getProcessBuilderFactory()->getTimeout());
         $this->assertEquals(42, $object['mp4box']->getProcessBuilderFactory()->getTimeout());
     }
+
+    /**
+     * @dataProvider provideKeysToTest
+     */
+    public function testInvalidDrivers($key1)
+    {
+        $object = new DriversContainer();
+        $object['configuration'] = array(
+            'ffmpeg.ffmpeg.binaries'       => '/path/to/nowhere',
+            'ffmpeg.ffprobe.binaries'      => '/path/to/nowhere',
+            'gs.binaries'                  => '/path/to/nowhere',
+            'mp4box.binaries'              => '/path/to/nowhere',
+            'swftools.pdf2swf.binaries'    => '/path/to/nowhere',
+            'swftools.swfrender.binaries'  => '/path/to/nowhere',
+            'swftools.swfextract.binaries' => '/path/to/nowhere',
+            'unoconv.binaries'             => '/path/to/nowhere',
+        );
+
+        $this->setExpectedException('MediaAlchemyst\Exception\RuntimeException');
+        $object[$key1];
+    }
+
+    public function provideKeysToTest()
+    {
+        return array(
+            array('ffmpeg.ffmpeg'),
+            array('ffmpeg.ffprobe'),
+            array('ghostscript.transcoder'),
+            array('unoconv'),
+            array('mp4box'),
+        );
+    }
 }
