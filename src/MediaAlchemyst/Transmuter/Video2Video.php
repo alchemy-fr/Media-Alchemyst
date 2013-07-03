@@ -18,7 +18,7 @@ use FFMpeg\Format\Video\DefaultVideo;
 use FFMpeg\Exception\ExceptionInterface as FFMpegException;
 use FFMpeg\Filters\Video\ResizeFilter;
 use FFMpeg\Filters\Video\SynchronizeFilter;
-use FFMpeg\Filters\Video\VideoResampleFilter;
+use FFMpeg\Filters\Video\FrameRateFilter;
 use FFMpeg\Filters\Audio\AudioResamplableFilter;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Coordinate\FrameRate;
@@ -77,7 +77,7 @@ class Video2Video extends AbstractTransmuter
         }
         if ($spec->getFramerate() && $spec->getGOPSize()) {
             $video->addFilter(
-                new VideoResampleFilter(
+                new FrameRateFilter(
                     new Framerate($spec->getFramerate()), $spec->getGOPSize()
                 )
             );

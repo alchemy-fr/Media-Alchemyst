@@ -47,7 +47,7 @@ class Video2Animation extends AbstractTransmuter
 
             while (ceil($time) < floor($duration)) {
                 $files[] = $tmpFile = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
-                $movie->frame(TimeCode::fromSeconds($time))->saveAs($tmpFile);
+                $movie->frame(TimeCode::fromSeconds($time))->save($tmpFile);
                 $time += $pas;
             }
 

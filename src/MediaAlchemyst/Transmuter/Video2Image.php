@@ -41,7 +41,7 @@ class Video2Image extends AbstractTransmuter
             $this->container['ffmpeg.ffmpeg']
                 ->open($source->getFile()->getPathname())
                 ->frame(TimeCode::fromSeconds($time))
-                ->saveAs($tmpDest);
+                ->save($tmpDest);
 
             $image = $this->container['imagine']->open($tmpDest);
 

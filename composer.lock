@@ -466,12 +466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg.git",
-                "reference": "8e87d243d9096e8bec832c781a8aeaca9056f268"
+                "reference": "8bb596a919bb3a950973edec5b838b0c17cf016b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/8e87d243d9096e8bec832c781a8aeaca9056f268",
-                "reference": "8e87d243d9096e8bec832c781a8aeaca9056f268",
+                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/8bb596a919bb3a950973edec5b838b0c17cf016b",
+                "reference": "8bb596a919bb3a950973edec5b838b0c17cf016b",
                 "shasum": ""
             },
             "require": {
@@ -526,7 +526,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2013-07-03 12:13:29"
+            "time": "2013-07-03 18:33:57"
         },
         {
             "name": "php-mp4box/php-mp4box",
