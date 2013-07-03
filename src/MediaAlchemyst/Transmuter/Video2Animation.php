@@ -56,8 +56,7 @@ class Video2Animation extends AbstractTransmuter
                 $image = $this->container['imagine']->open($file);
 
                 if ($spec->getWidth() && $spec->getHeight()) {
-
-                    $box = $this->boxFromImageSpec($spec, $this->container['mediavorus']->guess($file));
+                    $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
 
                     if ($spec->getResizeMode() == Animation::RESIZE_MODE_OUTBOUND) {
                         /* @var $image \Imagine\Gmagick\Image */

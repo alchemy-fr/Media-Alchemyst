@@ -40,10 +40,12 @@ abstract class AbstractTransmuter
      * Return the box for a spec
      *
      * @param  Specification\Image $spec
-     * @param  MediaInterface      $source
+     * @param  integer      $width
+     * @param  integer      $height
+     *
      * @return \Image\Box
      */
-    protected function boxFromImageSpec(Image $spec, MediaInterface $source)
+    protected function boxFromSize(Image $spec, $width, $height)
     {
         if ( ! $spec->getWidth() && ! $spec->getHeight()) {
             throw new InvalidArgumentException('The specification you provide must have width nad height');
@@ -52,7 +54,7 @@ abstract class AbstractTransmuter
         if ($spec->getResizeMode() == Image::RESIZE_MODE_INBOUND_FIXEDRATIO) {
 
             $ratioOut = $spec->getWidth() / $spec->getHeight();
-            $ratioIn = $source->getWidth() / $source->getHeight();
+            $ratioIn = $width / $height;
 
             if ($ratioOut > $ratioIn) {
 

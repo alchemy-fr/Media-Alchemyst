@@ -104,8 +104,7 @@ class Image2Image extends AbstractTransmuter
             $image = $this->container['imagine']->open($source->getFile()->getPathname());
 
             if ($spec->getWidth() && $spec->getHeight()) {
-
-                $box = $this->boxFromImageSpec($spec, $source);
+                $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
 
                 if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */

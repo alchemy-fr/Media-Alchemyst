@@ -40,10 +40,7 @@ class Flash2Image extends AbstractTransmuter
             $image = $this->container['imagine']->open($tmpDest);
 
             if ($spec->getWidth() && $spec->getHeight()) {
-
-                $media = $this->container['mediavorus']->guess($tmpDest);
-
-                $box = $this->boxFromImageSpec($spec, $media);
+                $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
 
                 if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
@@ -51,8 +48,6 @@ class Flash2Image extends AbstractTransmuter
                 } else {
                     $image = $image->resize($box);
                 }
-
-                unset($media);
             }
 
             $options = array(

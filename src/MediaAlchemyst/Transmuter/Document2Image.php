@@ -59,18 +59,8 @@ class Document2Image extends AbstractTransmuter
                 'resolution-y'     => $spec->getResolutionY(),
             );
 
-            $image->save($dest, $options);
-
             if ($spec->getWidth() && $spec->getHeight()) {
-
-                $toremove[] = $tmpImage = tempnam(sys_get_temp_dir(), 'unoconv');
-                rename($dest, $tmpImage);
-
-                $image = $this->container['imagine']->open($tmpImage);
-
-                $media = $this->container['mediavorus']->guess($tmpImage);
-
-                $box = $this->boxFromImageSpec($spec, $media);
+                $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
 
                 if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
@@ -78,11 +68,9 @@ class Document2Image extends AbstractTransmuter
                 } else {
                     $image = $image->resize($box);
                 }
-
-                $image->save($dest, $options);
-
-                unset($media);
             }
+
+            $image->save($dest, $options);
 
             foreach ($toremove as $tmpDest) {
                 unlink($tmpDest);
