@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.3.0 (xx-xx-2013)
+* 0.3.0 (07-04-2013)
 
   * Update PHP FFMpeg to 0.3
   * Update PHP Ghostscript to 0.4
