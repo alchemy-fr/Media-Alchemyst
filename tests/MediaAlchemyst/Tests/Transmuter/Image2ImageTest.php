@@ -184,4 +184,12 @@ class Image2ImageTest extends AbstractAlchemystTester
         $this->assertEquals(1936, $MediaDest->getWidth());
         $this->assertEquals(1288, $MediaDest->getHeight());
    }
+
+   public function testWithMultiLayer()
+   {
+        $source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/multi-layer.psd');
+        $this->object->execute($this->specs, $source, $this->dest);
+
+        $this->assertFileExists($this->dest);
+   }
 }

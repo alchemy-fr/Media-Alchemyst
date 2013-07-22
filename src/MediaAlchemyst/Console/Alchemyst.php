@@ -97,9 +97,7 @@ class Alchemyst extends Command
         $drivers['ffmpeg.threads'] = $input->getOption('threads') ?: 1;
 
         $Alchemyst = new AlchemystTransmuter($drivers);
-        $Alchemyst->open($file);
-        $Alchemyst->turnInto($target, $spec);
-        $Alchemyst->close();
+        $Alchemyst->turnInto($file, $target, $spec);
     }
 
     protected function getSpecification($name)

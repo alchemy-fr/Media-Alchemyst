@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.3.2 (07-22-2013)
+ 
+  * Merge with 0.1.7, fix image flatten.
+
 * 0.3.1 (07-22-2013)
  
   * Use Imagine 0.6.x, forget custom fork.
