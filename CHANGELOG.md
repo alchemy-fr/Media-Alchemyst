@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.3.1 (07-xx-2013)
+ 
+  * Use Imagine 0.6.x, forget custom fork.
+
 * 0.3.0 (07-04-2013)
 
   * Update PHP FFMpeg to 0.3
