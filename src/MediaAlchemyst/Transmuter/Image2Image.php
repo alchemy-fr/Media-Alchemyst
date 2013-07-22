@@ -114,7 +114,7 @@ class Image2Image extends Provider
             }
 
             $options = array(
-                'flatten'          => strtolower(pathinfo($dest, PATHINFO_EXTENSION)) === 'gif',
+                'flatten'          => strtolower(pathinfo($dest, PATHINFO_EXTENSION)) !== 'gif',
                 'quality'          => $spec->getQuality(),
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
