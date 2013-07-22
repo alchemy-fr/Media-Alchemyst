@@ -19,7 +19,7 @@
     "require": {
         "php"                            : ">=5.3.3",
         "alchemy/ghostscript"            : "~0.4.0",
-        "neutron/imagine"                : "dev-neutron-colorspace@dev",
+        "imagine/imagine"                : "0.6.x@dev",
         "mediavorus/mediavorus"          : "~0.4.0",
         "monolog/monolog"                : "~1.0",
         "pimple/pimple"                  : "~1.0",
