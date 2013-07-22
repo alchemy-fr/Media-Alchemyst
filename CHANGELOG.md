@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.3.1 (07-xx-2013)
+* 0.3.1 (07-22-2013)
  
   * Use Imagine 0.6.x, forget custom fork.
 
