@@ -82,6 +82,9 @@ class Document2Image extends AbstractTransmuter
         } catch (MediaVorusException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to image due to MediaVorus', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
     }
 }

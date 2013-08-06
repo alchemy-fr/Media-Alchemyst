@@ -75,6 +75,9 @@ class Video2Image extends AbstractTransmuter
         } catch (MediaVorusException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to image due to Mediavorus', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
     }
 

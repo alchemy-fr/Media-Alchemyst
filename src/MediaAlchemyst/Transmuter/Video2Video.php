@@ -78,7 +78,7 @@ class Video2Video extends AbstractTransmuter
         if ($spec->getFramerate() && $spec->getGOPSize()) {
             $video->addFilter(
                 new FrameRateFilter(
-                    new Framerate($spec->getFramerate()), $spec->getGOPSize()
+                    new FrameRate($spec->getFramerate()), $spec->getGOPSize()
                 )
             );
         }
