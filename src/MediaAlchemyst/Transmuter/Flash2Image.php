@@ -30,12 +30,14 @@ class Flash2Image extends AbstractTransmuter
             throw new SpecNotSupportedException('SwfTools only accept Image specs');
         }
 
-        $tmpDest = tempnam(sys_get_temp_dir(), 'swfrender');
+        $tmpDest = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'swfrender');
 
         try {
+            // swfrender may change the output filename given the format
             $tmpDest = $this->container['swftools.flash-file']->render(
                 $source->getFile()->getPathname(), $tmpDest
             );
+            $this->tmpFileManager->add($tmpDest, self::TMP_FILE_SCOPE);
 
             $image = $this->container['imagine']->open($tmpDest);
 
@@ -58,15 +60,18 @@ class Flash2Image extends AbstractTransmuter
             );
 
             $image->save($dest, $options);
-
-            unlink($tmpDest);
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (BinaryAdapterException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute flash to image due to Binary Adapter', $e->getCode(), $e);
         } catch (SwfToolsException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute flash to image due to SwfTools', $e->getCode(), $e);
         } catch (ImagineException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute flash to image due to Imagine', $e->getCode(), $e);
         } catch (MediaVorusException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute flash to image due to MediaVorus', $e->getCode(), $e);
         }
     }

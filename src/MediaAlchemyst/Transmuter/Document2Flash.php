@@ -29,10 +29,9 @@ class Document2Flash extends AbstractTransmuter
             throw new SpecNotSupportedException('SwfTools only accept Flash specs');
         }
 
-        $tmpDest = tempnam(sys_get_temp_dir(), 'pdf2swf');
+        $tmpDest = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'pdf2swf');
 
         try {
-
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container['unoconv']->transcode(
                     $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest
@@ -42,13 +41,15 @@ class Document2Flash extends AbstractTransmuter
             }
 
             $this->container['swftools.pdf-file']->toSwf($tmpDest, $dest);
-
-            unlink($tmpDest);
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (BinaryAdapterException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute flash to image due to Binary Adapter', $e->getCode(), $e);
         } catch (UnoconvException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to flash due to Unoconv', null, $e);
         } catch (SwfToolsException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to flash due to SwfTools', null, $e);
         }
     }

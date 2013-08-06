@@ -25,7 +25,7 @@ class Video2ImageTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Video2Image(new DriversContainer());
+        $this->object = new Video2Image(new DriversContainer(), $this->getFsManager());
 
         $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
