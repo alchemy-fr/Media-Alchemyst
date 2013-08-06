@@ -24,15 +24,21 @@ use MediaAlchemyst\Transmuter\Image2Image;
 use MediaAlchemyst\Transmuter\Video2Animation;
 use MediaAlchemyst\Transmuter\Video2Image;
 use MediaAlchemyst\Transmuter\Video2Video;
+use Neutron\TemporaryFilesystem\Manager;
+use Neutron\TemporaryFilesystem\TemporaryFilesystem;
+use Symfony\Component\Filesystem\Filesystem;
 
 class Alchemyst
 {
     /** @var DriversContainer */
     private $drivers;
+    /** @var Manager */
+    private $tmpFileManager;
 
-    public function __construct(DriversContainer $container)
+    public function __construct(DriversContainer $container, Manager $manager)
     {
         $this->drivers = $container;
+        $this->tmpFileManager = $manager;
     }
 
     public function getDrivers()
@@ -55,7 +61,9 @@ class Alchemyst
 
     public static function create()
     {
-        return new static(DriversContainer::create());
+        $fs = new Filesystem();
+
+        return new static(DriversContainer::create(), new Manager(new TemporaryFilesystem($fs), $fs));
     }
 
     private function routeAction($mediafile, $pathfile_dest, SpecificationInterface $specs)
@@ -70,32 +78,32 @@ class Alchemyst
                 throw new RuntimeException('Not transmuter avalaible... Implement it !');
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, SpecificationInterface::TYPE_AUDIO):
-                $transmuter = new Audio2Audio($this->drivers);
+                $transmuter = new Audio2Audio($this->drivers, $this->tmpFileManager);
                 break;
 
             case sprintf('%s-%s', MediaInterface::TYPE_FLASH, SpecificationInterface::TYPE_IMAGE):
-                $transmuter = new Flash2Image($this->drivers);
+                $transmuter = new Flash2Image($this->drivers, $this->tmpFileManager);
                 break;
 
             case sprintf('%s-%s', MediaInterface::TYPE_DOCUMENT, SpecificationInterface::TYPE_IMAGE):
-                $transmuter = new Document2Image($this->drivers);
+                $transmuter = new Document2Image($this->drivers, $this->tmpFileManager);
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_DOCUMENT, SpecificationInterface::TYPE_SWF):
-                $transmuter = new Document2Flash($this->drivers);
+                $transmuter = new Document2Flash($this->drivers, $this->tmpFileManager);
                 break;
 
             case sprintf('%s-%s', MediaInterface::TYPE_IMAGE, SpecificationInterface::TYPE_IMAGE):
-                $transmuter = new Image2Image($this->drivers);
+                $transmuter = new Image2Image($this->drivers, $this->tmpFileManager);
                 break;
 
             case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, SpecificationInterface::TYPE_IMAGE):
-                $transmuter = new Video2Image($this->drivers);
+                $transmuter = new Video2Image($this->drivers, $this->tmpFileManager);
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, SpecificationInterface::TYPE_ANIMATION):
-                $transmuter = new Video2Animation($this->drivers);
+                $transmuter = new Video2Animation($this->drivers, $this->tmpFileManager);
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, SpecificationInterface::TYPE_VIDEO):
-                $transmuter = new Video2Video($this->drivers);
+                $transmuter = new Video2Video($this->drivers, $this->tmpFileManager);
                 break;
             default:
                 throw new RuntimeException(sprintf('Not transmuter avalaible for `%s` Implement it !', $route));

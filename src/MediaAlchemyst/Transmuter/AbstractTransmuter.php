@@ -16,6 +16,7 @@ use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Exception\InvalidArgumentException;
 use MediaVorus\Media\MediaInterface;
+use Neutron\TemporaryFilesystem\Manager;
 use Pimple;
 
 abstract class AbstractTransmuter
@@ -25,10 +26,15 @@ abstract class AbstractTransmuter
      * @var Pimple
      */
     protected $container;
+    /** @var Manager */
+    protected $tmpFileManager;
 
-    public function __construct(Pimple $container)
+    const TMP_FILE_SCOPE = '_media_alchemyst_';
+
+    public function __construct(Pimple $container, Manager $manager)
     {
         $this->container = $container;
+        $this->tmpFileManager = $manager;
     }
 
     public function __destruct()

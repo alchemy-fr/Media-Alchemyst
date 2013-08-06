@@ -31,11 +31,9 @@ class Document2Image extends AbstractTransmuter
             throw new SpecNotSupportedException('Document2Image only accept Image specs');
         }
 
-        $toremove = array();
-        $toremove[] = $tmpDest = tempnam(sys_get_temp_dir(), 'unoconv');
+        $tmpDest = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'unoconv');
 
         try {
-
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container['unoconv']->transcode(
                     $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, '1-1'
@@ -44,7 +42,7 @@ class Document2Image extends AbstractTransmuter
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
 
-            $toremove[] = $tmpDestSinglePage = tempnam(sys_get_temp_dir(), 'unoconv-single');
+            $tmpDestSinglePage = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'unoconv-single');
 
             $this->container['ghostscript.transcoder']->toPDF(
                 $tmpDest, $tmpDestSinglePage, 1, 1
@@ -71,18 +69,22 @@ class Document2Image extends AbstractTransmuter
             }
 
             $image->save($dest, $options);
-
-            foreach ($toremove as $tmpDest) {
-                unlink($tmpDest);
-            }
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (GhostscriptException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         } catch (UnoconvException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to image due to Unoconv', null, $e);
         } catch (ImagineException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to image due to Imagine', null, $e);
         } catch (MediaVorusException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to image due to MediaVorus', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
     }
 }
