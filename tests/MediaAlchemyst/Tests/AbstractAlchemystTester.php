@@ -16,6 +16,9 @@ use MediaVorus\Utils\AudioMimeTypeGuesser;
 use MediaVorus\Utils\PostScriptMimeTypeGuesser;
 use MediaVorus\Utils\RawImageMimeTypeGuesser;
 use MediaVorus\Utils\VideoMimeTypeGuesser;
+use Neutron\TemporaryFilesystem\Manager;
+use Neutron\TemporaryFilesystem\TemporaryFilesystem;
+use Symfony\Component\Filesystem\Filesystem;
 
 class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
 {
@@ -62,5 +65,12 @@ class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
         }
 
         return null;
+    }
+
+    public function getFsManager()
+    {
+        $fs = new Filesystem();
+
+        return new Manager(new TemporaryFilesystem($fs), $fs);
     }
 }

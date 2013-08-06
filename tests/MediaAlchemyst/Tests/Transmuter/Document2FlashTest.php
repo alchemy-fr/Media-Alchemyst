@@ -27,7 +27,7 @@ class Document2FlashTest extends AbstractAlchemystTester
             $this->markTestSkipped('Unoconv is not installed');
         }
 
-        $this->object = new Document2Flash(new DriversContainer());
+        $this->object = new Document2Flash(new DriversContainer(), $this->getFsManager());
 
         $this->specs = new Flash();
 
