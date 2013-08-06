@@ -51,6 +51,9 @@ class Document2Flash extends AbstractTransmuter
         } catch (SwfToolsException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute document to flash due to SwfTools', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
     }
 }

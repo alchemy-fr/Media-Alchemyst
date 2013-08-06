@@ -73,6 +73,9 @@ class Flash2Image extends AbstractTransmuter
         } catch (MediaVorusException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute flash to image due to MediaVorus', $e->getCode(), $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
     }
 }

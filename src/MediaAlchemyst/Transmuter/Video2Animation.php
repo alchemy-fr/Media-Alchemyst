@@ -93,6 +93,9 @@ class Video2Animation extends AbstractTransmuter
         } catch (ImagineException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to animation due to Imagine', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
 
         return $this;
