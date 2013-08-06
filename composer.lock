@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9ac95c39fbbe21d38c1da68018f6aa28",
+    "hash": "aa43e1baefb5dceee97b1dcb878a8ab9",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -464,16 +464,16 @@
         },
         {
             "name": "neutron/temporary-filesystem",
-            "version": "dev-master",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/Temporary-Filesystem.git",
-                "reference": "3fd8c2f45b2081a7cdb9e5fae47cb483b6d3ed26"
+                "reference": "2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romainneutron/Temporary-Filesystem/zipball/3fd8c2f45b2081a7cdb9e5fae47cb483b6d3ed26",
-                "reference": "3fd8c2f45b2081a7cdb9e5fae47cb483b6d3ed26",
+                "url": "https://api.github.com/repos/romainneutron/Temporary-Filesystem/zipball/2.1.0",
+                "reference": "2.1.0",
                 "shasum": ""
             },
             "require": {
@@ -500,20 +500,20 @@
                 }
             ],
             "description": "Symfony filesystem extension to handle temporary files",
-            "time": "2013-08-06 10:57:20"
+            "time": "2013-08-06 14:38:12"
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "0.3.x-dev",
+            "version": "0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg.git",
-                "reference": "aa26a1efd0c0c069cecde799d583b4b054355d51"
+                "reference": "0.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/aa26a1efd0c0c069cecde799d583b4b054355d51",
-                "reference": "aa26a1efd0c0c069cecde799d583b4b054355d51",
+                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/0.3.1",
+                "reference": "0.3.1",
                 "shasum": ""
             },
             "require": {
@@ -568,7 +568,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2013-08-06 12:59:28"
+            "time": "2013-08-06 14:40:26"
         },
         {
             "name": "php-mp4box/php-mp4box",
@@ -1892,9 +1892,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "imagine/imagine": 20,
-        "neutron/temporary-filesystem": 20,
-        "php-ffmpeg/php-ffmpeg": 20
+        "imagine/imagine": 20
     },
     "platform": {
         "php": ">=5.3.3"
