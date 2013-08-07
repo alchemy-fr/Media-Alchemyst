@@ -46,13 +46,12 @@ class Video2Animation extends AbstractTransmuter
             $files = array();
 
             while (ceil($time) < floor($duration)) {
-                $files[] = $tmpFile = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
+                $files[] = $tmpFile =  $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'ffmpeg', 'jpg');
                 $movie->frame(TimeCode::fromSeconds($time))->save($tmpFile);
                 $time += $pas;
             }
 
             foreach ($files as $file) {
-
                 $image = $this->container['imagine']->open($file);
 
                 if ($spec->getWidth() && $spec->getHeight()) {
@@ -87,10 +86,16 @@ class Video2Animation extends AbstractTransmuter
                 'animated.delay' => 800,
                 'animated.loops' => 0,
             ));
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (FFMpegException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to animation due to FFMpeg', null, $e);
         } catch (ImagineException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to animation due to Imagine', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
 
         return $this;

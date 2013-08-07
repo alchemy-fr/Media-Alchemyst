@@ -11,8 +11,11 @@
 
 namespace MediaAlchemyst;
 
+use Neutron\TemporaryFilesystem\Manager;
+use Neutron\TemporaryFilesystem\TemporaryFilesystem;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 class MediaAlchemystServiceProvider implements ServiceProviderInterface
 {
@@ -32,8 +35,20 @@ class MediaAlchemystServiceProvider implements ServiceProviderInterface
             return $drivers;
         });
 
+        $app['media-alchemyst.filesystem-manager'] = $app->share(function (Application $app){
+            return new Manager($app['media-alchemyst.temporary-filesystem'], $app['media-alchemyst.filesystem']);
+        });
+
+        $app['media-alchemyst.filesystem'] = $app->share(function (Application $app){
+            return new Filesystem();
+        });
+
+        $app['media-alchemyst.temporary-filesystem'] = $app->share(function (Application $app){
+            return new TemporaryFilesystem($app['media-alchemyst.filesystem']);
+        });
+
         $app['media-alchemyst'] = $app->share(function(Application $app) {
-            return new Alchemyst($app['media-alchemyst.drivers']);
+            return new Alchemyst($app['media-alchemyst.drivers'], $app['media-alchemyst.filesystem-manager']);
         });
     }
 

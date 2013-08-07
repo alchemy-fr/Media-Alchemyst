@@ -26,7 +26,7 @@ class Document2ImageTest extends AbstractAlchemystTester
             $this->markTestSkipped('Unoconv is not installed');
         }
 
-        $this->object = new Document2Image(new DriversContainer());
+        $this->object = new Document2Image(new DriversContainer(), $this->getFsManager());
 
         $this->specs = new Image();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Hello.odt');

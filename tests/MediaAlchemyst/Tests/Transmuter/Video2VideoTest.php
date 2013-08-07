@@ -21,7 +21,7 @@ class Video2VideoTest extends AbstractAlchemystTester
 
     protected function setUp()
     {
-        $this->object = new Video2Video(new DriversContainer());
+        $this->object = new Video2Video(new DriversContainer(), $this->getFsManager());
 
         $this->specs = new Video();
         $this->specs->setDimensions(320, 240);

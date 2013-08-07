@@ -33,7 +33,7 @@ class Video2Image extends AbstractTransmuter
         }
 
         /* @var $spec \MediaAlchemyst\Specification\Image */
-        $tmpDest = tempnam(sys_get_temp_dir(), 'ffmpeg') . '.jpg';
+        $tmpDest = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'ffmpeg', 'jpg');
 
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
 
@@ -64,15 +64,20 @@ class Video2Image extends AbstractTransmuter
             );
 
             $image->save($dest, $options);
-
             $image = null;
-            unlink($tmpDest);
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (FFMpegException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to image due to FFMpeg', null, $e);
         } catch (ImagineException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to image due to Imagine', null, $e);
         } catch (MediaVorusException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute video to image due to Mediavorus', null, $e);
+        } catch (RuntimeException $e) {
+            $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
+            throw $e;
         }
     }
 
