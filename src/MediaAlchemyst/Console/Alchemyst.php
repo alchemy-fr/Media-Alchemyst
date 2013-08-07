@@ -20,11 +20,14 @@ use MediaAlchemyst\Specification\Video;
 use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Exception\InvalidArgumentException;
+use Neutron\TemporaryFilesystem\TemporaryFilesystem;
+use Neutron\TemporaryFilesystem\Manager;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Filesystem\Filesystem;
 
 class Alchemyst extends Command
 {
@@ -96,7 +99,10 @@ class Alchemyst extends Command
         $drivers = new DriversContainer();
         $drivers['ffmpeg.threads'] = $input->getOption('threads') ?: 1;
 
-        $Alchemyst = new AlchemystTransmuter($drivers);
+        $fs = new Filesystem();
+        $manager = new Manager(new TemporaryFilesystem($fs), $fs);
+
+        $Alchemyst = new AlchemystTransmuter($drivers, $manager);
         $Alchemyst->turnInto($file, $target, $spec);
     }
 
