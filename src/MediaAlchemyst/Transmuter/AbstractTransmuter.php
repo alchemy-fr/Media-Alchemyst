@@ -45,9 +45,9 @@ abstract class AbstractTransmuter
     /**
      * Return the box for a spec
      *
-     * @param  Specification\Image $spec
-     * @param  integer      $width
-     * @param  integer      $height
+     * @param Specification\Image $spec
+     * @param integer             $width
+     * @param integer             $height
      *
      * @return \Image\Box
      */
