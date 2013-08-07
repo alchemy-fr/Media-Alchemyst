@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.3.3 (xx-xx-2013)
+* 0.3.3 (08-07-2013)
 
   * Use TemporaryFilesystem Manager to manage temporary files.
 
