@@ -89,6 +89,17 @@ class Image2Image extends AbstractTransmuter
                 });
 
                 $source = $this->container['mediavorus']->guess(array_shift($layers));
+            } elseif (preg_match('#(application|image)\/([a-z0-9-_\.]*)photoshop([a-z0-9-_\.]*)#i', $source->getFile()->getMimeType())) {
+                $image = $this->container['imagine']->open($source->getFile()->getRealPath());
+
+                foreach ($image->layers() as $layer) {
+                    $tmpFile = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'imagine-photoshop-layer', 'jpg');
+                    $layer->save($tmpFile);
+                    if (file_exists($tmpFile)) {
+                        $source = $this->container['mediavorus']->guess($tmpFile);
+                    }
+                    break;
+                }
             }
 
             $image = $this->container['imagine']->open($source->getFile()->getPathname());
