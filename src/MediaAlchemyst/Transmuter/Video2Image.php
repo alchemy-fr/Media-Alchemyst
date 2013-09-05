@@ -38,10 +38,11 @@ class Video2Image extends AbstractTransmuter
         $time = (int) ($source->getDuration() * $this->parseTimeAsRatio(static::$time));
 
         try {
-            $this->container['ffmpeg.ffmpeg']
+            $frame = $this->container['ffmpeg.ffmpeg']
                 ->open($source->getFile()->getPathname())
-                ->frame(TimeCode::fromSeconds($time))
-                ->save($tmpDest);
+                ->frame(TimeCode::fromSeconds($time));
+            $frame->filters()->fixDisplayRatio();
+            $frame->save($tmpDest);
 
             $image = $this->container['imagine']->open($tmpDest);
 
