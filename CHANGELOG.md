@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.3.5 (xx-xx-2013)
+
+  * Use PHP-FFMpeg display ratio fixer filter for frames extraction.
+
 * 0.3.4 (08-08-2013)
 
   * Enhance support for Photoshop files.
