@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.3.5 (xx-xx-2013)
+* 0.3.5 (09-05-2013)
 
   * Use PHP-FFMpeg display ratio fixer filter for frames extraction.
 
