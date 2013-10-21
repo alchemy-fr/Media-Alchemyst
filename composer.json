@@ -24,7 +24,7 @@
         "monolog/monolog"                : "~1.0",
         "neutron/temporary-filesystem"   : "~2.1",
         "pimple/pimple"                  : "~1.0",
-        "php-ffmpeg/php-ffmpeg"          : "~0.3.4",
+        "php-ffmpeg/php-ffmpeg"          : "~0.3, >=0.3.4",
         "php-unoconv/php-unoconv"        : "~0.3.0",
         "php-mp4box/php-mp4box"          : "~0.3.0",
         "swftools/swftools"              : "~0.3.0",
