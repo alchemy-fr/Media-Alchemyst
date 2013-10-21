@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.3.6 (xx-xx-2013)
+* 0.3.6 (10-21-2013)
 
   * Add compatibility with PHP-FFMpeg 0.4.
 
