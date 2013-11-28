@@ -116,7 +116,7 @@ class Image2Image extends AbstractTransmuter
             }
 
             if (static::$autorotate) {
-                $image = $image->rotate(- $source->getOrientation());
+                $image = $image->rotate($source->getOrientation());
             } elseif (null !== $angle = $spec->getRotationAngle()) {
                 $image = $image->rotate($angle);
             }
