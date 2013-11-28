@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.3.7 (10-21-2013)
+
+  * Fix image auto-rotation.
+
 * 0.3.6 (10-21-2013)
 
   * Add compatibility with PHP-FFMpeg 0.4.
