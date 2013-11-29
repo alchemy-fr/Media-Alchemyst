@@ -1,9 +1,10 @@
 CHANGELOG
 ---------
 
-* 0.3.7 (10-21-2013)
+* 0.3.7 (xx-xx-xxxx)
 
   * Fix image auto-rotation.
+  * Add video auto-rotation.
 
 * 0.3.6 (10-21-2013)
 

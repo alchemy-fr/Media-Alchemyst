@@ -20,7 +20,7 @@
         "php"                            : ">=5.3.3",
         "alchemy/ghostscript"            : "~0.4.0",
         "imagine/imagine"                : "0.6.x@dev",
-        "mediavorus/mediavorus"          : "~0.4.0",
+        "mediavorus/mediavorus"          : "~0.4.2",
         "monolog/monolog"                : "~1.0",
         "neutron/temporary-filesystem"   : "~2.1",
         "pimple/pimple"                  : "~1.0",
