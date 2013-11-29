@@ -90,8 +90,11 @@ use Silex\Application;
 use MediaAlchemyst\Alchemyst;
 use MediaAlchemyst\MediaAlchemystServiceProvider;
 use MediaVorus\MediaVorusServiceProvider;
+use PHPExiftool\PHPExiftoolServiceProvider;
 
 $app = new Application();
+
+$app->register(new PHPExiftoolServiceProvider());
 $app->register(new MediaAlchemystSerciceProvider());
 
 // Have fun OH YEAH
