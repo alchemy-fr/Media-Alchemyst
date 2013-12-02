@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.4.0 (12-xx-2013)
+* 0.4.1 (12-02-2013)
 
   * Fix video to animation auto-rotation.
 
