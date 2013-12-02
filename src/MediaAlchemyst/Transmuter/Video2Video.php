@@ -74,7 +74,6 @@ class Video2Video extends AbstractTransmuter
             }
         }
 
-        var_dump($spec->getWidth(), $spec->getHeight(), $resizeMode);
         $video->addFilter(new SynchronizeFilter());
         $video->addFilter(
             new ResizeFilter(
