@@ -92,7 +92,7 @@ use MediaAlchemyst\MediaAlchemystServiceProvider;
 use MediaVorus\MediaVorusServiceProvider;
 
 $app = new Application();
-$app->register(new MediaAlchemystSerciceProvider());
+$app->register(new MediaAlchemystServiceProvider());
 
 // Have fun OH YEAH
 $app['media-alchemyst']->turnInto('movie.mp4', 'animation.gif', new Animation());
