@@ -48,13 +48,16 @@ class Video2Image extends AbstractTransmuter
 
             $image = $this->container['imagine']->open($tmpDest);
 
+            $rotated = false;
             if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
                 switch ($source->getOrientation()) {
                     case MediaVorusVideo::ORIENTATION_90:
                         $image->rotate(90);
+                        $rotated = true;
                         break;
                     case MediaVorusVideo::ORIENTATION_270:
                         $image->rotate(-90);
+                        $rotated = true;
                         break;
                     case MediaVorusVideo::ORIENTATION_180:
                         $image->rotate(180);
@@ -65,7 +68,11 @@ class Video2Image extends AbstractTransmuter
             }
 
             if ($spec->getWidth() && $spec->getHeight()) {
-                $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
+                if (!$rotated) {
+                    $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
+                } else {
+                    $box = $this->boxFromSize($spec, $image->getSize()->getHeight(), $image->getSize()->getWidth());
+                }
 
                 if ($spec->getResizeMode() == Image::RESIZE_MODE_OUTBOUND) {
                     /* @var $image \Imagine\Gmagick\Image */
