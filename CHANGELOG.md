@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.4.0 (xx-xx-xxxx)
+* 0.4.0 (12-02-2013)
 
   * Fix image auto-rotation.
   * Add video auto-rotation.
