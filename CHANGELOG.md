@@ -3,6 +3,10 @@ CHANGELOG
 
 * 0.4.1 (12-02-2013)
 
+  * Remove debug.
+
+* 0.4.2 (12-02-2013)
+
   * Fix video to animation auto-rotation.
 
 * 0.4.0 (12-02-2013)
