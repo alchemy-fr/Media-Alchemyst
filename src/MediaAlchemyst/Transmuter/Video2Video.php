@@ -34,7 +34,7 @@ use MediaVorus\Media\Video as MediaVorusVideo;
 
 class Video2Video extends AbstractTransmuter
 {
-    public static $autorotate = false;
+    public static $autorotate = true;
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
@@ -57,6 +57,24 @@ class Video2Video extends AbstractTransmuter
             $resizeMode = $spec->getResizeMode();
         }
 
+
+        if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
+            switch ($source->getOrientation()) {
+                case MediaVorusVideo::ORIENTATION_90:
+                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_90));
+                    break;
+                case MediaVorusVideo::ORIENTATION_270:
+                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_270));
+                    break;
+                case MediaVorusVideo::ORIENTATION_180:
+                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_180));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        var_dump($spec->getWidth(), $spec->getHeight(), $resizeMode);
         $video->addFilter(new SynchronizeFilter());
         $video->addFilter(
             new ResizeFilter(
@@ -85,22 +103,6 @@ class Video2Video extends AbstractTransmuter
                     new FrameRate($spec->getFramerate()), $spec->getGOPSize()
                 )
             );
-        }
-
-        if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
-            switch ($source->getOrientation()) {
-                case MediaVorusVideo::ORIENTATION_90:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_90));
-                    break;
-                case MediaVorusVideo::ORIENTATION_270:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_270));
-                    break;
-                case MediaVorusVideo::ORIENTATION_180:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_180));
-                    break;
-                default:
-                    break;
-            }
         }
 
         try {

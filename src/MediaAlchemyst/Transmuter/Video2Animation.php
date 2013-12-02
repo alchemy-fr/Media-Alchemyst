@@ -23,7 +23,7 @@ use FFMpeg\Coordinate\TimeCode;
 
 class Video2Animation extends AbstractTransmuter
 {
-    public static $autorotate = false;
+    public static $autorotate = true;
     public static $lookForEmbeddedPreview = false;
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)

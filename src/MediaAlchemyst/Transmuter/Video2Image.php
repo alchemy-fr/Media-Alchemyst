@@ -21,9 +21,11 @@ use Imagine\Image\ImageInterface;
 use MediaAlchemyst\Exception\RuntimeException;
 use MediaAlchemyst\Exception\SpecNotSupportedException;
 use MediaVorus\Media\MediaInterface;
+use MediaVorus\Media\Video as MediaVorusVideo;
 
 class Video2Image extends AbstractTransmuter
 {
+    public static $autorotate = true;
     public static $time = '60%';
 
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
@@ -45,6 +47,22 @@ class Video2Image extends AbstractTransmuter
             $frame->save($tmpDest);
 
             $image = $this->container['imagine']->open($tmpDest);
+
+            if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
+                switch ($source->getOrientation()) {
+                    case MediaVorusVideo::ORIENTATION_90:
+                        $image->rotate(90);
+                        break;
+                    case MediaVorusVideo::ORIENTATION_270:
+                        $image->rotate(-90);
+                        break;
+                    case MediaVorusVideo::ORIENTATION_180:
+                        $image->rotate(180);
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             if ($spec->getWidth() && $spec->getHeight()) {
                 $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());

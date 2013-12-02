@@ -26,7 +26,7 @@ use Pimple;
 
 class Image2Image extends AbstractTransmuter
 {
-    public static $autorotate = false;
+    public static $autorotate = true;
     public static $lookForEmbeddedPreview = false;
 
     private $palette;

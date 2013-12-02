@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d1856546ecd188042088f516130c45c5",
+    "hash": "bd4e099178a5d91d0adb1f298f03534e",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -511,16 +511,16 @@
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "0.4.1",
+            "version": "0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-FFmpeg.git",
-                "reference": "59f6ffd32a5a66784d1827e405fac04d09bef7fa"
+                "reference": "5a9d4a0f04b49afe48f81c797be6fe223bc97b00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/59f6ffd32a5a66784d1827e405fac04d09bef7fa",
-                "reference": "59f6ffd32a5a66784d1827e405fac04d09bef7fa",
+                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/5a9d4a0f04b49afe48f81c797be6fe223bc97b00",
+                "reference": "5a9d4a0f04b49afe48f81c797be6fe223bc97b00",
                 "shasum": ""
             },
             "require": {
@@ -576,7 +576,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2013-11-26 22:35:52"
+            "time": "2013-11-29 10:38:16"
         },
         {
             "name": "php-mp4box/php-mp4box",

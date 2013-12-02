@@ -1,10 +1,11 @@
 CHANGELOG
 ---------
 
-* 0.3.7 (xx-xx-xxxx)
+* 0.4.0 (xx-xx-xxxx)
 
   * Fix image auto-rotation.
   * Add video auto-rotation.
+  * BC Break : PHP-FFmpeg 0.4 is required
 
 * 0.3.6 (10-21-2013)
 
