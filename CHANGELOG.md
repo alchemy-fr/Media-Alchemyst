@@ -1,11 +1,15 @@
 CHANGELOG
 ---------
 
-* 0.4.1 (12-02-2013)
+* 0.4.3 (12-03-2013)
+
+  * Fix autorotation and spec rotation conflict.
+
+* 0.4.2 (12-02-2013)
 
   * Remove debug.
 
-* 0.4.2 (12-02-2013)
+* 0.4.1 (12-02-2013)
 
   * Fix video to animation auto-rotation.
 
