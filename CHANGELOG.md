@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.4.4 (xx-xx-2014)
+
+  * Avoid interpolation for image and videos.
+
 * 0.4.3 (12-03-2013)
 
   * Fix autorotation and spec rotation conflict.

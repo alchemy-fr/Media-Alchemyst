@@ -85,11 +85,13 @@ class Video2Animation extends AbstractTransmuter
                         $box = $this->boxFromSize($spec, $image->getSize()->getWidth(), $image->getSize()->getHeight());
                     }
 
-                    if ($spec->getResizeMode() == Animation::RESIZE_MODE_OUTBOUND) {
-                        /* @var $image \Imagine\Gmagick\Image */
-                        $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
-                    } else {
-                        $image = $image->resize($box);
+                    if (null !== $box) {
+                        if ($spec->getResizeMode() == Animation::RESIZE_MODE_OUTBOUND) {
+                            /* @var $image \Imagine\Gmagick\Image */
+                            $image = $image->thumbnail($box, ImageInterface::THUMBNAIL_OUTBOUND);
+                        } else {
+                            $image = $image->resize($box);
+                        }
                     }
                 }
 

@@ -75,11 +75,13 @@ class Video2Video extends AbstractTransmuter
         }
 
         $video->addFilter(new SynchronizeFilter());
-        $video->addFilter(
-            new ResizeFilter(
-                new Dimension($spec->getWidth(), $spec->getHeight()), $resizeMode
-            )
-        );
+        if ($source->getWidth() > $spec->getWidth() || $source->getHeight() > $spec->getHeight()) {
+            $video->addFilter(
+                new ResizeFilter(
+                    new Dimension($spec->getWidth(), $spec->getHeight()), $resizeMode
+                )
+            );
+        }
 
         if ($spec->getAudioCodec()) {
             $format->setAudioCodec($spec->getAudioCodec());
