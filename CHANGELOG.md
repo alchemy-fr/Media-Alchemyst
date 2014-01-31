@@ -1,7 +1,7 @@
 CHANGELOG
 ---------
 
-* 0.4.4 (xx-xx-2014)
+* 0.4.4 (01-31-2014)
 
   * Avoid interpolation for image and videos.
 
