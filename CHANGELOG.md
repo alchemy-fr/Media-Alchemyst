@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.4.5 (08-26-2014)
+
+  * Add flatten property for image specification.
+
 * 0.4.4 (01-31-2014)
 
   * Avoid interpolation for image and videos.
