@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "bd4e099178a5d91d0adb1f298f03534e",
+    "hash": "cee21286e16014f38da744fe005251da",
     "packages": [
         {
             "name": "alchemy/binary-driver",
@@ -11,23 +12,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/BinaryDriver.git",
-                "reference": "1.5.0"
+                "reference": "b32c03d4b56ce29f783051eac55887adae654b41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/BinaryDriver/zipball/1.5.0",
-                "reference": "1.5.0",
+                "url": "https://api.github.com/repos/alchemy-fr/BinaryDriver/zipball/b32c03d4b56ce29f783051eac55887adae654b41",
+                "reference": "b32c03d4b56ce29f783051eac55887adae654b41",
                 "shasum": ""
             },
             "require": {
-                "evenement/evenement": ">=1.0,<2.0",
-                "monolog/monolog": ">=1.3,<2.0",
+                "evenement/evenement": "~1.0",
+                "monolog/monolog": "~1.3",
                 "php": ">=5.3.3",
-                "psr/log": ">=1.0,<2.0",
-                "symfony/process": ">=2.0,<3.0"
+                "psr/log": "~1.0",
+                "symfony/process": "~2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7,<4.0"
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "autoload": {
@@ -46,7 +47,7 @@
                     "homepage": "http://www.lickmychip.com/"
                 },
                 {
-                    "name": "nlegoff",
+                    "name": "Nicolas Le Goff",
                     "email": "legoff.n@gmail.com"
                 },
                 {
@@ -68,22 +69,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/Ghostscript-PHP.git",
-                "reference": "0.4.0"
+                "reference": "a5d40c29efa4c4e4016a1f83cd5645300ad602d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/Ghostscript-PHP/zipball/0.4.0",
-                "reference": "0.4.0",
+                "url": "https://api.github.com/repos/alchemy-fr/Ghostscript-PHP/zipball/a5d40c29efa4c4e4016a1f83cd5645300ad602d7",
+                "reference": "a5d40c29efa4c4e4016a1f83cd5645300ad602d7",
                 "shasum": ""
             },
             "require": {
-                "alchemy/binary-driver": ">=1.5,<2.0",
+                "alchemy/binary-driver": "~1.5",
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7,<4.0",
-                "sami/sami": ">=1.0,<2.0",
-                "silex/silex": ">=1.0,<2.0"
+                "phpunit/phpunit": "~3.7",
+                "sami/sami": "~1.0",
+                "silex/silex": "~1.0"
             },
             "type": "library",
             "autoload": {
@@ -151,7 +152,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan H. Wage",
+                    "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -170,9 +171,9 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -190,12 +191,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "v1.1"
+                "reference": "560f29c39cfcfbcd210e5d549d993a39d898b04b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/v1.1",
-                "reference": "v1.1",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/560f29c39cfcfbcd210e5d549d993a39d898b04b",
+                "reference": "560f29c39cfcfbcd210e5d549d993a39d898b04b",
                 "shasum": ""
             },
             "require": {
@@ -220,7 +221,8 @@
                 {
                     "name": "Jonathan Wage",
                     "email": "jonwage@gmail.com",
-                    "homepage": "http://www.jwage.com/"
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
                 },
                 {
                     "name": "Guilherme Blanco",
@@ -238,7 +240,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -256,13 +258,13 @@
             "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/igorw/evenement",
-                "reference": "v1.0.0"
+                "url": "https://github.com/igorw/evenement.git",
+                "reference": "fa966683e7df3e5dd5929d984a44abfbd6bafe8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/igorw/evenement/zipball/v1.0.0",
-                "reference": "v1.0.0",
+                "url": "https://api.github.com/repos/igorw/evenement/zipball/fa966683e7df3e5dd5929d984a44abfbd6bafe8d",
+                "reference": "fa966683e7df3e5dd5929d984a44abfbd6bafe8d",
                 "shasum": ""
             },
             "require": {
@@ -289,20 +291,77 @@
             "keywords": [
                 "event-dispatcher"
             ],
-            "time": "2012-05-30 08:01:08"
+            "time": "2012-05-30 15:01:08"
         },
         {
-            "name": "mediavorus/mediavorus",
-            "version": "0.4.2",
+            "name": "imagine/imagine",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/romainneutron/MediaVorus.git",
-                "reference": "b80ab6acd79f69b2040f7915e1393f08f68277fc"
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "725279fd560faa1c7012a80b427b31d7f08f36ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romainneutron/MediaVorus/zipball/b80ab6acd79f69b2040f7915e1393f08f68277fc",
-                "reference": "b80ab6acd79f69b2040f7915e1393f08f68277fc",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/725279fd560faa1c7012a80b427b31d7f08f36ff",
+                "reference": "725279fd560faa1c7012a80b427b31d7f08f36ff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "dev-master"
+            },
+            "suggest": {
+                "ext-gd": "to use the GD implementation",
+                "ext-gmagick": "to use the Gmagick implementation",
+                "ext-imagick": "to use the Imagick implementation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Imagine": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "time": "2014-06-16 20:53:48"
+        },
+        {
+            "name": "mediavorus/mediavorus",
+            "version": "0.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/romainneutron/MediaVorus.git",
+                "reference": "2df98b5b180c50b1bc7be838e36bc6ecc573e646"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/romainneutron/MediaVorus/zipball/2df98b5b180c50b1bc7be838e36bc6ecc573e646",
+                "reference": "2df98b5b180c50b1bc7be838e36bc6ecc573e646",
                 "shasum": ""
             },
             "require": {
@@ -325,11 +384,6 @@
                 "symfony/yaml": "To serialize Medias in Yaml format"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.5.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "MediaVorus": "src"
@@ -350,7 +404,7 @@
             "keywords": [
                 "metadata"
             ],
-            "time": "2013-11-28 16:41:54"
+            "time": "2014-08-26 12:32:10"
         },
         {
             "name": "monolog/monolog",
@@ -415,61 +469,6 @@
             "time": "2013-07-28 22:38:30"
         },
         {
-            "name": "neutron/imagine",
-            "version": "dev-neutron-colorspace",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/romainneutron/Imagine.git",
-                "reference": "6f80efbd5c2addca16c8676485ddabec3309a217"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/romainneutron/Imagine/zipball/6f80efbd5c2addca16c8676485ddabec3309a217",
-                "reference": "6f80efbd5c2addca16c8676485ddabec3309a217",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "replace": {
-                "imagine/imagine": "*"
-            },
-            "require-dev": {
-                "sami/sami": "dev-master"
-            },
-            "suggest": {
-                "ext-gd": "to use the GD implementation",
-                "ext-gmagick": "to use the Gmagick implementation",
-                "ext-imagick": "to use the Imagick implementation"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Imagine": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bulat Shakirzyanov",
-                    "email": "mallluhuct@gmail.com",
-                    "homepage": "http://avalanche123.com"
-                }
-            ],
-            "description": "Image processing for PHP 5.3",
-            "homepage": "http://imagine.readthedocs.org/",
-            "keywords": [
-                "drawing",
-                "graphics",
-                "image manipulation",
-                "image processing"
-            ],
-            "time": "2013-06-27 15:40:09"
-        },
-        {
             "name": "neutron/temporary-filesystem",
             "version": "2.1.1",
             "source": {
@@ -511,16 +510,16 @@
         },
         {
             "name": "php-ffmpeg/php-ffmpeg",
-            "version": "0.4.2",
+            "version": "0.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alchemy-fr/PHP-FFmpeg.git",
-                "reference": "5a9d4a0f04b49afe48f81c797be6fe223bc97b00"
+                "url": "https://github.com/PHP-FFMpeg/PHP-FFMpeg.git",
+                "reference": "c8949fe3df89edd7692368cc110a51a27971f28a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-FFmpeg/zipball/5a9d4a0f04b49afe48f81c797be6fe223bc97b00",
-                "reference": "5a9d4a0f04b49afe48f81c797be6fe223bc97b00",
+                "url": "https://api.github.com/repos/PHP-FFMpeg/PHP-FFMpeg/zipball/c8949fe3df89edd7692368cc110a51a27971f28a",
+                "reference": "c8949fe3df89edd7692368cc110a51a27971f28a",
                 "shasum": ""
             },
             "require": {
@@ -541,7 +540,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.4-dev"
+                    "dev-master": "0.5-dev"
                 }
             },
             "autoload": {
@@ -576,7 +575,7 @@
                 "video",
                 "video processing"
             ],
-            "time": "2013-11-29 10:38:16"
+            "time": "2014-08-26 08:46:56"
         },
         {
             "name": "php-mp4box/php-mp4box",
@@ -584,21 +583,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-MP4Box.git",
-                "reference": "0.3.0"
+                "reference": "baa466be3f6d0b46d27bc0e255e958a95cb7738c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-MP4Box/zipball/0.3.0",
-                "reference": "0.3.0",
+                "url": "https://api.github.com/repos/alchemy-fr/PHP-MP4Box/zipball/baa466be3f6d0b46d27bc0e255e958a95cb7738c",
+                "reference": "baa466be3f6d0b46d27bc0e255e958a95cb7738c",
                 "shasum": ""
             },
             "require": {
-                "alchemy/binary-driver": ">=1.5,<2.0",
+                "alchemy/binary-driver": "~1.5",
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7,<4.0",
-                "silex/silex": ">=1.0,<2.0"
+                "phpunit/phpunit": "~3.7",
+                "silex/silex": "~1.0"
             },
             "type": "library",
             "autoload": {
@@ -635,21 +634,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHP-Unoconv.git",
-                "reference": "0.3.0"
+                "reference": "6d1e14a7467b5d637741396549529dc4d5f9f355"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHP-Unoconv/zipball/0.3.0",
-                "reference": "0.3.0",
+                "url": "https://api.github.com/repos/alchemy-fr/PHP-Unoconv/zipball/6d1e14a7467b5d637741396549529dc4d5f9f355",
+                "reference": "6d1e14a7467b5d637741396549529dc4d5f9f355",
                 "shasum": ""
             },
             "require": {
-                "alchemy/binary-driver": ">=1.5,<2.0",
+                "alchemy/binary-driver": "~1.5",
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7,<4.0",
-                "silex/silex": ">=1.0,<2.0"
+                "phpunit/phpunit": "~3.7",
+                "silex/silex": "~1.0"
             },
             "type": "library",
             "autoload": {
@@ -677,20 +676,20 @@
             "keywords": [
                 "unoconv"
             ],
-            "time": "2013-06-25 09:53:08"
+            "time": "2013-06-25 10:09:59"
         },
         {
             "name": "phpexiftool/exiftool",
             "version": "9.15",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alchemy-fr/exiftool",
-                "reference": "9.15"
+                "url": "https://github.com/alchemy-fr/exiftool.git",
+                "reference": "0b05edb639d032181f3fae7df8dc1194e9210dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/exiftool/zipball/9.15",
-                "reference": "9.15",
+                "url": "https://api.github.com/repos/alchemy-fr/exiftool/zipball/0b05edb639d032181f3fae7df8dc1194e9210dc4",
+                "reference": "0b05edb639d032181f3fae7df8dc1194e9210dc4",
                 "shasum": ""
             },
             "require": {
@@ -815,7 +814,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
@@ -831,13 +832,13 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log",
-                "reference": "1.0.0"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
             "type": "library",
@@ -870,12 +871,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alchemy-fr/PHPSwftools.git",
-                "reference": "0.3.1"
+                "reference": "5a0fefbd5a518c9b1ec2ba247640aadbab4cc396"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alchemy-fr/PHPSwftools/zipball/0.3.1",
-                "reference": "0.3.1",
+                "url": "https://api.github.com/repos/alchemy-fr/PHPSwftools/zipball/5a0fefbd5a518c9b1ec2ba247640aadbab4cc396",
+                "reference": "5a0fefbd5a518c9b1ec2ba247640aadbab4cc396",
                 "shasum": ""
             },
             "require": {
@@ -960,7 +961,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1007,7 +1010,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1057,7 +1062,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1104,7 +1111,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1123,21 +1132,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/romainneutron/Imagine-Silex-Service-Provider.git",
-                "reference": "0.1.2"
+                "reference": "a8a7862ae90419f2b23746cd8436c2310e4eb084"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/romainneutron/Imagine-Silex-Service-Provider/zipball/0.1.2",
-                "reference": "0.1.2",
+                "url": "https://api.github.com/repos/romainneutron/Imagine-Silex-Service-Provider/zipball/a8a7862ae90419f2b23746cd8436c2310e4eb084",
+                "reference": "a8a7862ae90419f2b23746cd8436c2310e4eb084",
                 "shasum": ""
             },
             "require": {
                 "imagine/imagine": "*",
                 "php": ">=5.3.3",
-                "silex/silex": ">=1.0,<2.0"
+                "silex/silex": "~1.0"
             },
             "require-dev": {
-                "symfony/browser-kit": ">=2.0,<3.0"
+                "symfony/browser-kit": "~2.0"
             },
             "type": "library",
             "autoload": {
@@ -1275,13 +1284,13 @@
             "version": "1.1.4",
             "source": {
                 "type": "git",
-                "url": "git://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "1.1.4"
+                "url": "https://github.com/sebastianbergmann/php-text-template.git",
+                "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sebastianbergmann/php-text-template/zipball/1.1.4",
-                "reference": "1.1.4",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/5180896f51c5b3648ac946b05f9ec02be78a0b23",
+                "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23",
                 "shasum": ""
             },
             "require": {
@@ -1312,7 +1321,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2012-10-31 11:15:28"
+            "time": "2012-10-31 18:15:28"
         },
         {
             "name": "phpunit/php-timer",
@@ -1487,13 +1496,13 @@
             "version": "1.2.3",
             "source": {
                 "type": "git",
-                "url": "git://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "1.2.3"
+                "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
+                "reference": "5794e3c5c5ba0fb037b11d8151add2a07fa82875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sebastianbergmann/phpunit-mock-objects/archive/1.2.3.zip",
-                "reference": "1.2.3",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5794e3c5c5ba0fb037b11d8151add2a07fa82875",
+                "reference": "5794e3c5c5ba0fb037b11d8151add2a07fa82875",
                 "shasum": ""
             },
             "require": {
@@ -1600,7 +1609,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Igor Wiedler",
@@ -1659,12 +1670,12 @@
             ],
             "authors": [
                 {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
                     "name": "Symfony Community",
                     "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Symfony Debug Component",
@@ -1714,7 +1725,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1785,7 +1798,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1843,7 +1858,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1890,7 +1907,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Symfony Community",
@@ -1902,17 +1921,14 @@
             "time": "2013-09-22 18:04:39"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "imagine/imagine": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
