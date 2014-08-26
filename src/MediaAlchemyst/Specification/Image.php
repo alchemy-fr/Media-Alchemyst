@@ -25,6 +25,7 @@ class Image extends AbstractSpecification
     protected $resolution_x = 72;
     protected $resolution_y = 72;
     protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
+    protected $flatten = false;
 
     const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
     const RESIZE_MODE_INBOUND_FIXEDRATIO = 'inset_fixedRatio';
@@ -130,5 +131,15 @@ class Image extends AbstractSpecification
     public function getStrip()
     {
         return $this->strip;
+    }
+
+    public function setFlatten($boolean)
+    {
+        $this->flatten = (Boolean) $boolean;
+    }
+
+    public function isFlatten()
+    {
+        return $this->flatten;
     }
 }

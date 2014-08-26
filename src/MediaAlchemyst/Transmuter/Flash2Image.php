@@ -59,6 +59,7 @@ class Flash2Image extends AbstractTransmuter
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
                 'resolution-y'     => $spec->getResolutionY(),
+                'flatten'          => $spec->isFlatten(),
             );
 
             $image->save($dest, $options);
