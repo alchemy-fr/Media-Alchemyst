@@ -1,6 +1,10 @@
 CHANGELOG
 ---------
 
+* 0.4.6 (09-10-2014)
+
+  * Update mediavorus & php-ffmpeg dependencies.
+
 * 0.4.5 (08-26-2014)
 
   * Add flatten property for image specification.
