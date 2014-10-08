@@ -93,7 +93,9 @@ class Video2Image extends AbstractTransmuter
             );
 
             $image->save($dest, $options);
-            $image = null;
+
+            unset($image);
+
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (FFMpegException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);

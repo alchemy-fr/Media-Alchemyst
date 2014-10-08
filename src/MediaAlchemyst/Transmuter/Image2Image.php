@@ -79,7 +79,6 @@ class Image2Image extends AbstractTransmuter
                 }
 
                 unset($image);
-                gc_collect_cycles();
 
                 uasort($layers, function ($layer1, $layer2) {
                     $size1 = filesize($layer1);
@@ -105,7 +104,6 @@ class Image2Image extends AbstractTransmuter
                 }
 
                 unset($image);
-                gc_collect_cycles();
             }
 
             $image = $this->container['imagine']->open($source->getFile()->getPathname());
@@ -146,7 +144,6 @@ class Image2Image extends AbstractTransmuter
             $image->save($dest, $options);
 
             unset($image);
-            gc_collect_cycles();
 
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (MediaVorusException $e) {

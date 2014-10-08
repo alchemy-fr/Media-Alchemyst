@@ -112,6 +112,8 @@ class Video2Video extends AbstractTransmuter
             if ($format instanceof X264) {
                 $this->container['mp4box']->process($dest);
             }
+
+            unset($video);
         } catch (FFMpegException $e) {
             throw new RuntimeException('Unable to transmute video to video due to FFMpeg', null, $e);
         } catch (MP4BoxException $e) {

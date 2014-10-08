@@ -52,6 +52,8 @@ class Audio2Audio extends AbstractTransmuter
 
         try {
             $audio->save($format, $dest);
+
+            unset($audio);
         } catch (FFMpegException $e) {
             throw new RuntimeException('Unable to transmute audio to audio due to FFMpeg', null, $e);
         }
