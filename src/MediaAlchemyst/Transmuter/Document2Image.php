@@ -72,6 +72,9 @@ class Document2Image extends AbstractTransmuter
             }
 
             $image->save($dest, $options);
+
+            unset($image);
+
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (GhostscriptException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);

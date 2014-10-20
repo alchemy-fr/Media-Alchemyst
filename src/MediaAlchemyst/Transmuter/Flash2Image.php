@@ -63,6 +63,9 @@ class Flash2Image extends AbstractTransmuter
             );
 
             $image->save($dest, $options);
+
+            unset($image);
+
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (BinaryAdapterException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
