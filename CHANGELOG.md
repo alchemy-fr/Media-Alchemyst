@@ -1,6 +1,11 @@
 CHANGELOG
 ---------
 
+* 0.4.7 (01-14-2015)
+
+  * Enhance memory management
+  * Enhance Animation specification
+
 * 0.4.6 (09-10-2014)
 
   * Update mediavorus & php-ffmpeg dependencies.
