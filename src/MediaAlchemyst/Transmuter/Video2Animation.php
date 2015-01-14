@@ -113,8 +113,8 @@ class Video2Animation extends AbstractTransmuter
 
             $image->save($dest, array(
                 'animated' => true,
-                'animated.delay' => 800,
-                'animated.loops' => 0,
+                'animated.delay' => $spec->getDelay(),
+                'animated.loops' => $spec->getLoops(),
             ));
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (FFMpegException $e) {

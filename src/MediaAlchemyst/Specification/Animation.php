@@ -13,7 +13,8 @@ namespace MediaAlchemyst\Specification;
 
 class Animation extends Image
 {
-    protected $delay;
+    protected $delay = 800;
+    protected $loops = 0;
 
     public function getType()
     {
@@ -28,5 +29,15 @@ class Animation extends Image
     public function getDelay()
     {
         return $this->delay;
+    }
+
+    public function getLoops()
+    {
+        return $this->loops;
+    }
+
+    public function setLoops($loops)
+    {
+        $this->loops = $loops;
     }
 }
