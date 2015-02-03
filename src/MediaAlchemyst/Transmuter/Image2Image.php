@@ -134,7 +134,8 @@ class Image2Image extends AbstractTransmuter
             }
 
             $options = array(
-                'flatten'          => $spec->isFlatten() && strtolower(pathinfo($dest, PATHINFO_EXTENSION)) !== 'gif',
+//                'flatten'          => $spec->isFlatten() && strtolower(pathinfo($dest, PATHINFO_EXTENSION)) !== 'gif',
+                'disable-alpha'    => $spec->isFlatten(),
                 'quality'          => $spec->getQuality(),
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),

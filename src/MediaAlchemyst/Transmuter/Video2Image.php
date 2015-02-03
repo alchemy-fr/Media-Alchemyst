@@ -89,7 +89,8 @@ class Video2Image extends AbstractTransmuter
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
                 'resolution-y'     => $spec->getResolutionY(),
-                'flatten'          => $spec->isFlatten(),
+//                'flatten'          => $spec->isFlatten(),
+                'disable-alpha'    => $spec->isFlatten(),
             );
 
             $image->save($dest, $options);
