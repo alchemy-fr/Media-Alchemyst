@@ -4,10 +4,10 @@ A PHP 5.3+ lib to transmute media files.
 
 [![Build Status](https://travis-ci.org/alchemy-fr/Media-Alchemyst.png?branch=master)](http://travis-ci.org/alchemy-fr/Media-Alchemyst)
 
-* Want to extract audio from video ?
-* Want to extract image from office document ?
+* Want to extract audio from a video file ?
+* Want to convert an office document to an image?
 * Want to resize images ?
-* Want to generate Gif Animation from Video ?
+* Want to generate a Gif animation from a video ?
 
 Media-Alchemyst is a tool to transmute your medias from media-type to
 media-type.
@@ -38,12 +38,12 @@ $alchemyst
 
 ## What is currently supported ?
 
-* Working install of FFMpeg (for AUdio / Video processing)
-* Gpac (for X264 Video processing)
+* Working install of FFmpeg (for Audio / Video processing)
+* GPAC (for X264 Video processing)
 * Perl (for metadata analysis)
 * GraphicsMagick and its Gmagick PHP Extension (recommended) or ImageMagick (Image processing)
-* Unoconv (for Office documents processing)
-* SwfTools (for Flash files processing)
+* Universal Office Converter (unoconv) which supports about 100 different document formats
+* SWFTools (for Flash files processing)
 
 ## Customize drivers
 
