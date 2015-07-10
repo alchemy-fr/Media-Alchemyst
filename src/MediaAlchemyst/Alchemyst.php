@@ -72,10 +72,10 @@ class Alchemyst
 
         switch ($route) {
             case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, SpecificationInterface::TYPE_IMAGE):
-                throw new RuntimeException('Not transmuter avalaible... Implement it !');
+                throw new RuntimeException('No transmuter available... Please join the community to implement it !');
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, SpecificationInterface::TYPE_VIDEO):
-                throw new RuntimeException('Not transmuter avalaible... Implement it !');
+                throw new RuntimeException('No transmuter available... Please join the community to implement it !');
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_AUDIO, SpecificationInterface::TYPE_AUDIO):
                 $transmuter = new Audio2Audio($this->drivers, $this->tmpFileManager);
@@ -106,7 +106,7 @@ class Alchemyst
                 $transmuter = new Video2Video($this->drivers, $this->tmpFileManager);
                 break;
             default:
-                throw new RuntimeException(sprintf('Not transmuter avalaible for `%s` Implement it !', $route));
+                throw new RuntimeException(sprintf('No transmuter available for `%s`. Please join the community to implement it !', $route));
                 break;
         }
 
