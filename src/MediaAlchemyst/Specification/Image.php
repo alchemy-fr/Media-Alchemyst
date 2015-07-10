@@ -74,7 +74,7 @@ class Image extends AbstractSpecification
             throw new InvalidArgumentException('Resolution should be greater than 0');
         }
         if ( ! in_array($units, array(self::RESOLUTION_PIXELPERCENTIMETER, self::RESOLUTION_PIXELPERINCH))) {
-            throw new InvalidArgumentException('Unkonwn resolution units');
+            throw new InvalidArgumentException('Unknown resolution units');
         }
 
         $this->resolution_units = $units;
