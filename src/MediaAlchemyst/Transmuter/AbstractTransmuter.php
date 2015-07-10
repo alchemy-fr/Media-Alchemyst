@@ -54,7 +54,7 @@ abstract class AbstractTransmuter
     protected function boxFromSize(Image $spec, $width, $height)
     {
         if ( ! $spec->getWidth() && ! $spec->getHeight()) {
-            throw new InvalidArgumentException('The specification you provide must have width nad height');
+            throw new InvalidArgumentException('The specification you provide must have width and height');
         }
 
         if ($spec->getWidth() >= $width && $spec->getHeight() >= $height) {
