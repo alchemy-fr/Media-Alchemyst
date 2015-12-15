@@ -17,18 +17,23 @@ before_script:
   - composer self-update
   - composer update --prefer-source --no-interaction $LOW_DEPS
 
-env: IMAGICK_VERSION="3.4.0RC3"
 
 matrix:
+  fast_finish: true
   include:
     - php: 5.3.3
       env: IMAGICK_VERSION="3.1.0RC2"
     - php: 5.3.3
       env: IMAGICK_VERSION="3.1.0RC2" LOW_DEPS="--prefer-lowest"
     - php: 5.3
+      env: IMAGICK_VERSION="3.4.0RC3"
     - php: 5.4
+      env: IMAGICK_VERSION="3.4.0RC3"
     - php: 5.5
+      env: IMAGICK_VERSION="3.4.0RC3"
     - php: 5.6
+      env: IMAGICK_VERSION="3.4.0RC3"
     - php: 7.0
+      env: IMAGICK_VERSION="3.4.0RC3"
   allow_failures:
     - php: 7.0
