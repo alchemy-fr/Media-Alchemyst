@@ -22,7 +22,7 @@
         "alchemy/mediavorus": "^0.4.4",
         "imagine/imagine": "0.6.x@dev",
         "monolog/monolog": "~1.0",
-        "neutron/temporary-filesystem": "~2.1",
+        "neutron/temporary-filesystem": "^2.1.1",
         "php-ffmpeg/php-ffmpeg": ">=0.4.2,<0.6",
         "php-mp4box/php-mp4box": "~0.3.0",
         "php-unoconv/php-unoconv": "~0.3.0",
