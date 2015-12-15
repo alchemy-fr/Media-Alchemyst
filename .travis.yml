@@ -10,9 +10,9 @@ before_script:
   - sudo apt-get clean
   - wget http://www.swftools.org/swftools-0.9.1.tar.gz
   - sh -c "tar xzvf swftools-0.9.1.tar.gz && cd swftools-0.9.1 && ./configure && make && sudo make install"
-  - wget http://pecl.php.net/get/imagick-3.1.0RC2.tgz
-  - tar -xzf imagick-3.1.0RC2.tgz
-  - sh -c "cd imagick-3.1.0RC2 && phpize && ./configure --with-imagick=/usr/local && make -j && sudo make install"
+  - wget http://pecl.php.net/get/imagick-3.4.0RC3.tgz
+  - tar -xzf imagick-3.4.0RC3.tgz
+  - sh -c "cd imagick-3.4.0RC3 && phpize && ./configure --with-imagick=/usr/local && make -j && sudo make install"
   - echo "extension=imagick.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - composer self-update
   - composer update --prefer-source --no-interaction $LOW_DEPS
