@@ -35,5 +35,3 @@ matrix:
       env: IMAGICK_VERSION="3.4.0RC3"
     - php: 7.0
       env: IMAGICK_VERSION="3.4.0RC3"
-  allow_failures:
-    - php: 7.0
