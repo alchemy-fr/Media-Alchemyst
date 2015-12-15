@@ -17,22 +17,23 @@
         }
     ],
     "require": {
-        "php"                            : ">=5.3.3",
-        "alchemy/ghostscript"            : "~0.4.0",
-        "imagine/imagine"                : "0.6.x@dev",
-        "mediavorus/mediavorus"          : ">=0.4.2,<0.5",
-        "monolog/monolog"                : "~1.0",
-        "neutron/temporary-filesystem"   : "~2.1",
-        "pimple/pimple"                  : "~1.0",
-        "php-ffmpeg/php-ffmpeg"          : ">=0.4.2,<0.6",
-        "php-unoconv/php-unoconv"        : "~0.3.0",
-        "php-mp4box/php-mp4box"          : "~0.3.0",
-        "swftools/swftools"              : "~0.3.0",
-        "symfony/console"                : "~2.0",
-        "symfony/filesystem"             : "~2.0"
+        "php": ">=5.3.3",
+        "alchemy/ghostscript": "~0.4.0",
+        "alchemy/mediavorus": "^0.4.4",
+        "imagine/imagine": "0.6.x@dev",
+        "monolog/monolog": "~1.0",
+        "neutron/temporary-filesystem": "^2.1.1",
+        "php-ffmpeg/php-ffmpeg": ">=0.4.2,<0.6",
+        "php-mp4box/php-mp4box": "~0.3.0",
+        "php-unoconv/php-unoconv": "~0.3.0",
+        "pimple/pimple": "~1.0",
+        "swftools/swftools": "~0.3.0",
+        "symfony/console": "^2.1|^3.0",
+        "symfony/filesystem": "^2.1|^3.0",
+        "symfony/process": "^2.1.1|^3.0"
     },
     "require-dev": {
-        "phpunit/phpunit"                : "~3.7",
+        "phpunit/phpunit"                : "^4.1|^5.0",
         "neutron/silex-imagine-provider" : "~0.1",
         "phpexiftool/phpexiftool"        : "~0.1",
         "silex/silex"                    : "~1.0"
