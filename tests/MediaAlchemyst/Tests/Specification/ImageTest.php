@@ -29,6 +29,16 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers MediaAlchemyst\Specification\Image::setImageCodec
+     * @covers MediaAlchemyst\Specification\Image::getImageCodec
+     */
+    public function testCodec()
+    {
+        $this->object->setImageCodec("a_codec");
+        $this->assertEquals("a_codec", $this->object->getImageCodec());
+    }
+
+    /**
      * @covers MediaAlchemyst\Specification\Image::setDimensions
      * @covers MediaAlchemyst\Specification\Image::getWidth
      * @covers MediaAlchemyst\Specification\Image::getHeight
