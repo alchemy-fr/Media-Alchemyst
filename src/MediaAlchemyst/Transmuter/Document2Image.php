@@ -55,7 +55,8 @@ class Document2Image extends AbstractTransmuter
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
                 'resolution-y'     => $spec->getResolutionY(),
-                'flatten'          => $spec->isFlatten(),
+//                'flatten'          => $spec->isFlatten(),
+                'disable-alpha'    => $spec->isFlatten(),
             );
 
             if ($spec->getWidth() && $spec->getHeight()) {
@@ -72,6 +73,9 @@ class Document2Image extends AbstractTransmuter
             }
 
             $image->save($dest, $options);
+
+            unset($image);
+
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (GhostscriptException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);

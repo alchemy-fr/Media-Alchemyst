@@ -59,10 +59,14 @@ class Flash2Image extends AbstractTransmuter
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
                 'resolution-y'     => $spec->getResolutionY(),
-                'flatten'          => $spec->isFlatten(),
+//                'flatten'          => $spec->isFlatten(),
+                'disable-alpha'    => $spec->isFlatten(),
             );
 
             $image->save($dest, $options);
+
+            unset($image);
+
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
         } catch (BinaryAdapterException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);

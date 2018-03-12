@@ -26,6 +26,7 @@ class Image extends AbstractSpecification
     protected $resolution_y = 72;
     protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
     protected $flatten = false;
+    protected $imageCodec = 'jpeg';
 
     const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
     const RESIZE_MODE_INBOUND_FIXEDRATIO = 'inset_fixedRatio';
@@ -36,6 +37,16 @@ class Image extends AbstractSpecification
     public function getType()
     {
         return self::TYPE_IMAGE;
+    }
+
+    public function setImageCodec($imageCodec)
+    {
+        $this->imageCodec = $imageCodec;
+    }
+
+    public function getImageCodec()
+    {
+        return $this->imageCodec;
     }
 
     public function setDimensions($width, $height)
@@ -74,7 +85,7 @@ class Image extends AbstractSpecification
             throw new InvalidArgumentException('Resolution should be greater than 0');
         }
         if ( ! in_array($units, array(self::RESOLUTION_PIXELPERCENTIMETER, self::RESOLUTION_PIXELPERINCH))) {
-            throw new InvalidArgumentException('Unkonwn resolution units');
+            throw new InvalidArgumentException('Unknown resolution units');
         }
 
         $this->resolution_units = $units;
