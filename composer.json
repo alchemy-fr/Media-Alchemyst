@@ -28,6 +28,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/jygaulier/PHPSwftools"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jygaulier/PHP-MP4Box"
         }
     ],
     "require": {
@@ -38,7 +42,7 @@
         "monolog/monolog": "~1.0",
         "neutron/temporary-filesystem": "^2.1.1",
         "php-ffmpeg/php-ffmpeg": "~2.0",
-        "php-mp4box/php-mp4box": "~0.3.0",
+        "php-mp4box/php-mp4box": "~2.0",
         "php-unoconv/php-unoconv": "~0.3.0",
         "pimple/pimple": "~3.0",
         "swftools/swftools": "~2.0",
