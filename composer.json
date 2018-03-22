@@ -22,6 +22,7 @@
             "url": "https://github.com/avalanche123/Imagine"
         },
         {
+<<<<<<< HEAD
             "packagist.org": false,
             "type": "vcs",
             "url": "https://github.com/alchemy-fr/Imagine-Silex-Service-Provider"
@@ -45,11 +46,20 @@
             "packagist.org": false,
             "type": "vcs",
             "url": "https://github.com/alchemy-fr/PHP-Unoconv"
+=======
+            "type": "vcs",
+            "url": "https://github.com/jygaulier/Imagine-Silex-Service-Provider"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/jygaulier/PHPSwftools"
+>>>>>>> silex2
         }
     ],
     "require": {
         "php": "~7.0",
         "alchemy/ghostscript": "~0.4.0",
+<<<<<<< HEAD
         "alchemy/mediavorus": "~4.1",
         "imagine/imagine": "~0.7",
         "monolog/monolog": "~1.0",
@@ -59,6 +69,17 @@
         "php-unoconv/php-unoconv": "~4.1",
         "pimple/pimple": "~3.0",
         "swftools/swftools": "~4.1",
+=======
+        "alchemy/mediavorus": "~2.0",
+        "imagine/imagine": "~0.7",
+        "monolog/monolog": "~1.0",
+        "neutron/temporary-filesystem": "^2.1.1",
+        "php-ffmpeg/php-ffmpeg": ">=0.4.2,<0.6",
+        "php-mp4box/php-mp4box": "~0.3.0",
+        "php-unoconv/php-unoconv": "~0.3.0",
+        "pimple/pimple": "~3.0",
+        "swftools/swftools": "~2.0",
+>>>>>>> silex2
         "symfony/console": "^2.1|^3.0",
         "symfony/filesystem": "^2.1|^3.0",
         "symfony/process": "^2.1.1|^3.0"
