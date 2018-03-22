@@ -22,14 +22,17 @@
             "url": "https://github.com/avalanche123/Imagine"
         },
         {
+            "packagist.org": false,
             "type": "vcs",
             "url": "https://github.com/jygaulier/Imagine-Silex-Service-Provider"
         },
         {
+            "packagist.org": false,
             "type": "vcs",
             "url": "https://github.com/jygaulier/PHPSwftools"
         },
         {
+            "packagist.org": false,
             "type": "vcs",
             "url": "https://github.com/jygaulier/PHP-MP4Box"
         }
