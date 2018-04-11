@@ -35,6 +35,11 @@
             "packagist.org": false,
             "type": "vcs",
             "url": "https://github.com/alchemy-fr/PHP-MP4Box"
+        },
+        {
+            "packagist.org": false,
+            "type": "vcs",
+            "url": "https://github.com/alchemy-fr/MediaVorus"
         }
     ],
     "require": {
