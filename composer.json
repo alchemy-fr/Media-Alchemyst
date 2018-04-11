@@ -40,11 +40,11 @@
     "require": {
         "php": "~7.0",
         "alchemy/ghostscript": "~0.4.0",
-        "alchemy/mediavorus": "~2.0",
+        "alchemy/mediavorus": "~4.1",
         "imagine/imagine": "~0.7",
         "monolog/monolog": "~1.0",
         "neutron/temporary-filesystem": "^2.1.1",
-        "php-ffmpeg/php-ffmpeg": "~2.0",
+        "php-ffmpeg/php-ffmpeg": "~4.1",
         "php-mp4box/php-mp4box": "~4.1",
         "php-unoconv/php-unoconv": "~2.0",
         "pimple/pimple": "~3.0",
