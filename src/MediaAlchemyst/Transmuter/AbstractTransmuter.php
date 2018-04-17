@@ -17,13 +17,13 @@ use MediaAlchemyst\Specification\SpecificationInterface;
 use MediaAlchemyst\Exception\InvalidArgumentException;
 use MediaVorus\Media\MediaInterface;
 use Neutron\TemporaryFilesystem\Manager;
-use Pimple;
+use Pimple\Container;
 
 abstract class AbstractTransmuter
 {
     /**
      *
-     * @var Pimple
+     * @var Container
      */
     protected $container;
     /** @var Manager */
@@ -31,7 +31,7 @@ abstract class AbstractTransmuter
 
     const TMP_FILE_SCOPE = '_media_alchemyst_';
 
-    public function __construct(Pimple $container, Manager $manager)
+    public function __construct(Container $container, Manager $manager)
     {
         $this->container = $container;
         $this->tmpFileManager = $manager;
@@ -45,11 +45,11 @@ abstract class AbstractTransmuter
     /**
      * Return the box for a spec
      *
-     * @param Specification\Image $spec
+     * @param Image $spec
      * @param integer             $width
      * @param integer             $height
      *
-     * @return \Image\Box
+     * @return Box
      */
     protected function boxFromSize(Image $spec, $width, $height)
     {
