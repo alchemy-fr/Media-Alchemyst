@@ -22,7 +22,7 @@ use MediaAlchemyst\Exception\RuntimeException;
 use MediaVorus\Media\MediaInterface;
 use Neutron\TemporaryFilesystem\Manager;
 use PHPExiftool\Exception\ExceptionInterface as PHPExiftoolException;
-use Pimple;
+use Pimple\Container;
 
 class Image2Image extends AbstractTransmuter
 {
@@ -31,7 +31,7 @@ class Image2Image extends AbstractTransmuter
 
     private $palette;
 
-    public function __construct(Pimple $container, Manager $manager)
+    public function __construct(Container $container, Manager $manager)
     {
         parent::__construct($container, $manager);
         $this->palette = new RGB();

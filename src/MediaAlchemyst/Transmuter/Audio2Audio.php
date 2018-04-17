@@ -11,6 +11,7 @@
 
 namespace MediaAlchemyst\Transmuter;
 
+use FFMpeg\FFMpeg;
 use FFMpeg\Format\Audio\Flac;
 use FFMpeg\Format\Audio\Mp3;
 use FFMpeg\Exception\ExceptionInterface as FFMpegException;
@@ -31,9 +32,11 @@ class Audio2Audio extends AbstractTransmuter
         }
 
         try {
-            $audio = $this->container['ffmpeg.ffmpeg']
-              ->open($source->getFile()->getPathname());
-        } catch (FFMpegException $e) {
+            /** @var FFMpeg $ffmpeg */
+            $ffmpeg = $this->container['ffmpeg.ffmpeg'];
+            $audio = $ffmpeg->open($source->getFile()->getPathname());
+        }
+        catch (FFMpegException $e) {
             throw new RuntimeException('Unable to transmute audio to audio due to FFMpeg', null, $e);
         }
 

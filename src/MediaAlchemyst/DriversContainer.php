@@ -28,35 +28,37 @@ use PHPExiftool\PreviewExtractor;
 use PHPExiftool\Reader;
 use PHPExiftool\RDFParser;
 use PHPExiftool\Writer;
-use Pimple;
+use Pimple\Container;
 use SwfTools\Binary\DriverContainer;
 use SwfTools\Processor\FlashFile;
 use SwfTools\Processor\PDFFile;
 use Unoconv\Unoconv;
 
-class DriversContainer extends Pimple
+class DriversContainer extends Container
 {
     public function __construct()
     {
-        $this['logger.name'] = 'Media-Alchemyst drivers logger';
-        $this['logger.level'] = function (Pimple $container) {
-            return Logger::DEBUG;
-        };
+        parent::__construct();
 
-        $this['logger.handler'] = $this->share(function(Pimple $container) {
-            return new NullHandler($container['logger.level']);
+        $this['logger.name'] = 'Media-Alchemyst drivers logger';
+        $this['logger.level'] = $this->factory(function (Container $container) {
+            return Logger::DEBUG;
         });
+
+        $this['logger.handler'] = function(Container $container) {
+            return new NullHandler($container['logger.level']);
+        };
 
         $bridge = class_exists('Symfony\Bridge\Monolog\Logger');
 
         $this['logger.class'] = $bridge ? 'Symfony\Bridge\Monolog\Logger' : 'Monolog\Logger';
 
-        $this['logger'] = $this->share(function(Pimple $container) {
+        $this['logger'] = function(Container $container) {
             $logger = new $container['logger.class']($container['logger.name']);
             $logger->pushHandler($container['logger.handler']);
 
             return $logger;
-        });
+        };
 
         $this['default.configuration'] = array(
             'ffmpeg.threads'               => 4,
@@ -76,13 +78,16 @@ class DriversContainer extends Pimple
             'unoconv.binaries'             => null,
             'unoconv.timeout'              => 60,
         );
+
         $this['configuration'] = array();
-        $this['configuration.merged'] = $this->share(function(Pimple $container) {
+
+        $this['configuration.merged'] = function(Container $container) {
             return array_replace(
                 $container['default.configuration'], $container['configuration']
             );
-        });
-        $this['ffmpeg.ffmpeg'] = $this->share(function(Pimple $container) {
+        };
+
+        $this['ffmpeg.ffmpeg'] = function(Container $container) {
             try {
                 return FFMpeg::create(array_filter(array(
                     'ffmpeg.threads'  => $container['configuration.merged']['ffmpeg.threads'],
@@ -92,11 +97,13 @@ class DriversContainer extends Pimple
             } catch (FFMpegExecutableNotFound $e) {
                 throw new RuntimeException('Unable to create FFMpeg driver', $e->getCode(), $e);
             }
-        });
-        $this['ffmpeg.ffprobe.cache'] = $this->share(function(Pimple $container) {
+        };
+
+        $this['ffmpeg.ffprobe.cache'] = function(Container $container) {
             return new ArrayCache();
-        });
-        $this['ffmpeg.ffprobe'] = $this->share(function(Pimple $container) {
+        };
+
+        $this['ffmpeg.ffprobe'] = function(Container $container) {
             try {
                 return FFProbe::create(array_filter(array(
                     'timeout'         => $container['configuration.merged']['ffmpeg.ffprobe.timeout'],
@@ -105,8 +112,9 @@ class DriversContainer extends Pimple
             } catch (FFMpegExecutableNotFound $e) {
                 throw new RuntimeException('Unable to create FFProbe driver', $e->getCode(), $e);
             }
-        });
-        $this['imagine'] = $this->share(function(Pimple $container) {
+        };
+
+        $this['imagine'] = function(Container $container) {
             $driver = $container['configuration.merged']['imagine.driver'];
 
             switch (true) {
@@ -129,26 +137,26 @@ class DriversContainer extends Pimple
             }
 
             return new $driver();
-        });
+        };
 
-        $this['swftools.driver-container'] = $this->share(function(Pimple $container) {
+        $this['swftools.driver-container'] = function(Container $container) {
             return DriverContainer::create(array_filter(array(
                 'pdf2swf.binaries'    => $container['configuration.merged']['swftools.pdf2swf.binaries'],
                 'swfrender.binaries'  => $container['configuration.merged']['swftools.swfrender.binaries'],
                 'swfextract.binaries' => $container['configuration.merged']['swftools.swfextract.binaries'],
                 'timeout'             => $container['configuration.merged']['swftools.timeout'],
             )), $container['logger']);
-        });
+        };
 
-        $this['swftools.flash-file'] = $this->share(function(Pimple $container) {
+        $this['swftools.flash-file'] = function(Container $container) {
             return new FlashFile($container['swftools.driver-container']);
-        });
+        };
 
-        $this['swftools.pdf-file'] = $this->share(function(Pimple $container) {
+        $this['swftools.pdf-file'] = function(Container $container) {
             return new PDFFile($container['swftools.driver-container']);
-        });
+        };
 
-        $this['unoconv'] = $this->share(function(Pimple $container) {
+        $this['unoconv'] = function(Container $container) {
             try {
                 return Unoconv::create(array_filter(array(
                     'unoconv.binaries' => $container['configuration.merged']['unoconv.binaries'],
@@ -157,32 +165,32 @@ class DriversContainer extends Pimple
             } catch (ExecutableNotFoundException $e) {
                 throw new RuntimeException('Unable to create Unoconv driver', $e->getCode(), $e);
             }
-        });
+        };
 
-        $this['exiftool.exiftool'] = $this->share(function(Pimple $container) {
+        $this['exiftool.exiftool'] = function(Container $container) {
             return new Exiftool($container['logger']);
-        });
+        };
 
-        $this['exiftool.rdf-parser'] = $this->share(function(Pimple $container) {
+        $this['exiftool.rdf-parser'] = function(Container $container) {
             return new RDFParser();
-        });
+        };
 
-        $this['exiftool.reader'] = $this->share(function(Pimple $container) {
+        $this['exiftool.reader'] = function(Container $container) {
             return new Reader(
                 $container['exiftool.exiftool'],
                 $container['exiftool.rdf-parser']
             );
-        });
+        };
 
-        $this['exiftool.writer'] = $this->share(function(Pimple $container) {
+        $this['exiftool.writer'] = function(Container $container) {
             return new Writer($container['exiftool.exiftool']);
-        });
+        };
 
-        $this['exiftool.preview-extractor'] = $this->share(function(Pimple $container) {
+        $this['exiftool.preview-extractor'] = function(Container $container) {
             return new PreviewExtractor($container['exiftool.exiftool']);
-        });
+        };
 
-        $this['ghostscript.transcoder'] = $this->share(function(Pimple $container) {
+        $this['ghostscript.transcoder'] = function(Container $container) {
             try {
                 return Transcoder::create(array_filter(array(
                     'gs.binaries' => $container['configuration.merged']['gs.binaries'],
@@ -191,9 +199,9 @@ class DriversContainer extends Pimple
             } catch (ExecutableNotFoundException $e) {
                 throw new RuntimeException('Unable to create Unoconv driver', $e->getCode(), $e);
             }
-        });
+        };
 
-        $this['mp4box'] = $this->share(function(Pimple $container) {
+        $this['mp4box'] = function(Container $container) {
             try {
                 return MP4Box::create(array_filter(array(
                     'mp4box.binaries' => $container['configuration.merged']['mp4box.binaries'],
@@ -202,9 +210,9 @@ class DriversContainer extends Pimple
             } catch (ExecutableNotFoundException $e) {
                 throw new RuntimeException('Unable to create Unoconv driver', $e->getCode(), $e);
             }
-        });
+        };
 
-        $this['mediavorus'] = $this->share(function(Pimple $container) {
+        $this['mediavorus'] = function(Container $container) {
             $ffprobe = null;
             try {
                 $ffprobe = $container['ffmpeg.ffprobe'];
@@ -217,7 +225,7 @@ class DriversContainer extends Pimple
                 $container['exiftool.writer'],
                 $ffprobe
             );
-        });
+        };
     }
 
     public static function create()
