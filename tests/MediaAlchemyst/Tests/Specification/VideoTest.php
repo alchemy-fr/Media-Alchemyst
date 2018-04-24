@@ -4,8 +4,9 @@ namespace MediaAlchemyst\Tests\Specification;
 
 use MediaAlchemyst\Specification\Video;
 use MediaAlchemyst\Specification\SpecificationInterface;
+use \PHPUnit\Framework\TestCase;
 
-class VideoTest extends \PHPUnit_Framework_TestCase
+class VideoTest extends TestCase
 {
     /**
      * @var Video

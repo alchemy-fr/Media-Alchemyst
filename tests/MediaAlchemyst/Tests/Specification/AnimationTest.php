@@ -4,8 +4,9 @@ namespace MediaAlchemyst\Tests\Specification;
 
 use MediaAlchemyst\Specification\Animation;
 use MediaAlchemyst\Specification\SpecificationInterface;
+use \PHPUnit\Framework\TestCase;
 
-class AnimationTest extends \PHPUnit_Framework_TestCase
+class AnimationTest extends TestCase
 {
     /**
      * @var Animation

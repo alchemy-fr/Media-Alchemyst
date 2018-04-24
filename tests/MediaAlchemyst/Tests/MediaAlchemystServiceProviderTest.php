@@ -5,8 +5,9 @@ namespace MediaAlchemyst\Tests;
 use MediaAlchemyst\MediaAlchemystServiceProvider;
 use Silex\Application;
 use Symfony\Component\Process\ExecutableFinder;
+use \PHPUnit\Framework\TestCase;
 
-class MediaAlchemystServiceProviderTest extends \PHPUnit_Framework_TestCase
+class MediaAlchemystServiceProviderTest extends TestCase
 {
     public function testSimpleUsage()
     {

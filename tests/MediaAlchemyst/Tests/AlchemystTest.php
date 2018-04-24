@@ -41,7 +41,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     public function testOpenUnknownFile()
     {
-        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'here.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
+        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'here.mpg', $this->createMock('MediaAlchemyst\Specification\SpecificationInterface'));
     }
 
     /**

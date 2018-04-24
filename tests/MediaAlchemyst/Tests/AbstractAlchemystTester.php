@@ -11,6 +11,7 @@ use PHPExiftool\RDFParser;
 use PHPExiftool\Writer;
 use PHPExiftool\Exiftool;
 use FFMpeg\FFProbe;
+use \PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
 use MediaVorus\Utils\AudioMimeTypeGuesser;
 use MediaVorus\Utils\PostScriptMimeTypeGuesser;
@@ -20,7 +21,7 @@ use Neutron\TemporaryFilesystem\Manager;
 use Neutron\TemporaryFilesystem\TemporaryFilesystem;
 use Symfony\Component\Filesystem\Filesystem;
 
-class AbstractAlchemystTester extends \PHPUnit_Framework_TestCase
+class AbstractAlchemystTester extends TestCase
 {
     public function getMediaVorus()
     {

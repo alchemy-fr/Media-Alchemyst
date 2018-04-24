@@ -4,8 +4,9 @@ namespace MediaAlchemyst\Tests\Specification;
 
 use MediaAlchemyst\Specification\Audio;
 use MediaAlchemyst\Specification\SpecificationInterface;
+use \PHPUnit\Framework\TestCase;
 
-class AudioTest extends \PHPUnit_Framework_TestCase
+class AudioTest extends TestCase
 {
     protected $object;
 
