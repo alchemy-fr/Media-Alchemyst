@@ -26,6 +26,6 @@ matrix:
     - php: 7.0
       env: IMAGICK_VERSION="3.4.0RC3"
     - php: 7.1
-      env: IMAGICK_VERSION="3.4.0RC3"
+      env: IMAGICK_VERSION="3.4.3"
     - php: 7.2
-      env: IMAGICK_VERSION="3.4.0RC3"
+      env: IMAGICK_VERSION="3.4.3"
