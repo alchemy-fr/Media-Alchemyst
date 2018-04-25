@@ -1,4 +1,4 @@
-#MediAlchemyst
+# MediAlchemyst
 
 A PHP 5.3+ lib to transmute media files.
 
