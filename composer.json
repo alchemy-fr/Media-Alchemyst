@@ -59,7 +59,7 @@
         {
             "packagist.org": false,
             "type": "vcs",
-            "url": "https://github.com/KallooaSan/Ghostscript-PHP"
+            "url": "https://github.com/alchemy-fr/Ghostscript-PHP"
         }
     ],
     "require": {
