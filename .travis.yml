@@ -20,6 +20,9 @@ before_script:
   - if [ "$TRAVIS_PHP_VERSION" = "5.3.3" ]; then composer config disable-tls true; composer config secure-http false; fi
   - composer update --prefer-source --no-interaction $LOW_DEPS
 
+cache:
+  directories:
+        - $HOME/.composer/cache
 
 matrix:
   fast_finish: true
