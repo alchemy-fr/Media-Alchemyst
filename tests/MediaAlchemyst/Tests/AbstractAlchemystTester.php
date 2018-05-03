@@ -17,6 +17,8 @@ use MediaVorus\Utils\AudioMimeTypeGuesser;
 use MediaVorus\Utils\PostScriptMimeTypeGuesser;
 use MediaVorus\Utils\RawImageMimeTypeGuesser;
 use MediaVorus\Utils\VideoMimeTypeGuesser;
+use MediaVorus\Utils\DocumentMimeTypeGuesser;
+use MediaVorus\Utils\FlashMimeTypeGuesser;
 use Neutron\TemporaryFilesystem\Manager;
 use Neutron\TemporaryFilesystem\TemporaryFilesystem;
 use Symfony\Component\Filesystem\Filesystem;
@@ -33,6 +35,8 @@ class AbstractAlchemystTester extends TestCase
             $guesser->register(new PostScriptMimeTypeGuesser());
             $guesser->register(new RawImageMimeTypeGuesser());
             $guesser->register(new VideoMimeTypeGuesser());
+            $guesser->register(new DocumentMimeTypeGuesser());
+            $guesser->register(new FlashMimeTypeGuesser());
             $initialized = true;
         }
 
