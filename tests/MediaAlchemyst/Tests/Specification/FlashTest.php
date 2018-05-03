@@ -4,8 +4,9 @@ namespace MediaAlchemyst\Tests\Specification;
 
 use MediaAlchemyst\Specification\Flash;
 use MediaAlchemyst\Specification\SpecificationInterface;
+use \PHPUnit\Framework\TestCase;
 
-class FlashTest extends \PHPUnit_Framework_TestCase
+class FlashTest extends TestCase
 {
     /**
      * @covers MediaAlchemyst\Specification\Flash::getType

@@ -41,7 +41,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     public function testOpenUnknownFile()
     {
-        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'here.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
+        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'here.mpg', $this->createMock('MediaAlchemyst\Specification\SpecificationInterface'));
     }
 
     /**
@@ -100,6 +100,8 @@ class AlchemystTest extends AbstractAlchemystTester
     /**
      * @covers MediaAlchemyst\Alchemyst::turnInto
      * @covers MediaAlchemyst\Alchemyst::routeAction
+     * @throws \MediaAlchemyst\Exception\FileNotFoundException
+     * @throws \MediaVorus\Exception\FileNotFoundException
      */
     public function testTurnIntoDocumentFlash()
     {
@@ -113,6 +115,7 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
 
         $media = $this->getMediaVorus()->guess($dest);
+
         $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
 
         unlink($dest);
@@ -121,6 +124,8 @@ class AlchemystTest extends AbstractAlchemystTester
     /**
      * @covers MediaAlchemyst\Alchemyst::turnInto
      * @covers MediaAlchemyst\Alchemyst::routeAction
+     * @throws \MediaAlchemyst\Exception\FileNotFoundException
+     * @throws \MediaVorus\Exception\FileNotFoundException
      */
     public function testTurnIntoImageImage()
     {
@@ -137,6 +142,8 @@ class AlchemystTest extends AbstractAlchemystTester
     /**
      * @covers MediaAlchemyst\Alchemyst::turnInto
      * @covers MediaAlchemyst\Alchemyst::routeAction
+     * @throws \MediaVorus\Exception\FileNotFoundException
+     * @throws \MediaAlchemyst\Exception\FileNotFoundException
      */
     public function testTurnIntoVideoImage()
     {

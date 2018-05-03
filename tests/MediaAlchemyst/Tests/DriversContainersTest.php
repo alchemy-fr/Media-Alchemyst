@@ -4,8 +4,9 @@ namespace MediaAlchemyst\Tests;
 
 use MediaAlchemyst\DriversContainer;
 use Symfony\Component\Process\ExecutableFinder;
+use \PHPUnit\Framework\TestCase;
 
-class DriversContainersTest extends \PHPUnit_Framework_TestCase
+class DriversContainersTest extends TestCase
 {
     public function testDrivers()
     {
@@ -92,7 +93,7 @@ class DriversContainersTest extends \PHPUnit_Framework_TestCase
             'unoconv.binaries'             => '/path/to/nowhere',
         );
 
-        $this->setExpectedException('MediaAlchemyst\Exception\RuntimeException');
+        $this->expectException('MediaAlchemyst\Exception\RuntimeException');
         $object[$key1];
     }
 

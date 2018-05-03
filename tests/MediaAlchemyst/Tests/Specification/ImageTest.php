@@ -4,8 +4,9 @@ namespace MediaAlchemyst\Tests\Specification;
 
 use MediaAlchemyst\Specification\Image;
 use MediaAlchemyst\Specification\SpecificationInterface;
+use \PHPUnit\Framework\TestCase;
 
-class ImageTest extends \PHPUnit_Framework_TestCase
+class ImageTest extends TestCase
 {
     /**
      * @var Image
