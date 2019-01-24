@@ -165,4 +165,20 @@ class AlchemystTest extends AbstractAlchemystTester
 
         unlink($dest);
     }
+
+    /**
+     * @covers MediaAlchemyst\Alchemyst::turnInto
+     * @covers MediaAlchemyst\Alchemyst::routeAction
+     */
+    public function testTurnIntoVideoAudio()
+    {
+        $dest = __DIR__ . '/../../files/output.wav';
+
+        $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsAudio);
+
+        $media = $this->getMediaVorus()->guess($dest);
+        $this->assertEquals(MediaInterface::TYPE_AUDIO, $media->getType());
+
+        unlink($dest);
+    }
 }
