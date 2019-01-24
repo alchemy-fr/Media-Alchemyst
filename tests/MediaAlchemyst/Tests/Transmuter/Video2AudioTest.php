@@ -28,7 +28,7 @@ class Video2AudioTest extends AbstractAlchemystTester
 
         $this->specs = new Audio();
         $this->source = $this->getMediaVorus()->guess(__DIR__ . '/../../../files/Test.ogv');
-        $this->dest = __DIR__ . '/../../../files/output_.wav';
+        $this->dest = __DIR__ . '/../../../files/output_.mp3';
     }
 
     protected function tearDown()
@@ -47,7 +47,7 @@ class Video2AudioTest extends AbstractAlchemystTester
 
         $mediaDest = $this->getMediaVorus()->guess($this->dest);
 
-        $this->assertEquals('audio/x-wav', $mediaDest->getFile()->getMimeType());
+        $this->assertEquals('audio/mpeg', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
     }
 
@@ -57,7 +57,7 @@ class Video2AudioTest extends AbstractAlchemystTester
      */
     public function testExecuteWithOptions()
     {
-        $this->specs->setAudioCodec('pcm_s16le');
+        $this->specs->setAudioCodec('libmp3lame');
         $this->specs->setAudioSampleRate(16000);
         $this->specs->setAudioKiloBitrate(256);
 
@@ -65,7 +65,7 @@ class Video2AudioTest extends AbstractAlchemystTester
 
         $mediaDest = $this->getMediaVorus()->guess($this->dest);
 
-        $this->assertEquals('audio/x-wav', $mediaDest->getFile()->getMimeType());
+        $this->assertEquals('audio/mpeg', $mediaDest->getFile()->getMimeType());
         $this->assertEquals(round($this->source->getDuration()), round($mediaDest->getDuration()));
     }
 
