@@ -113,7 +113,13 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
+
+        if (PHP_VERSION[0] == 7) {
+            $this->assertEquals('DefaultMedia', $media->getType());
+        } else {
+            $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
+        }
+
 
         unlink($dest);
     }
