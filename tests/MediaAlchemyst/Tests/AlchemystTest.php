@@ -114,7 +114,7 @@ class AlchemystTest extends AbstractAlchemystTester
 
         $media = $this->getMediaVorus()->guess($dest);
 
-        if (PHP_VERSION[0] == 7) {
+        if (version_compare(phpversion(), '7') == 1) {
             $this->assertEquals('DefaultMedia', $media->getType());
         } else {
             $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
