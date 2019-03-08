@@ -75,6 +75,7 @@ class DriversContainer extends Pimple
             'swftools.swfextract.binaries' => null,
             'unoconv.binaries'             => null,
             'unoconv.timeout'              => 60,
+            'unoconv.port'                 => null,
         );
         $this['configuration'] = array();
         $this['configuration.merged'] = $this->share(function(Pimple $container) {
@@ -153,6 +154,7 @@ class DriversContainer extends Pimple
                 return Unoconv::create(array_filter(array(
                     'unoconv.binaries' => $container['configuration.merged']['unoconv.binaries'],
                     'timeout'          => $container['configuration.merged']['unoconv.timeout'],
+                    'unoconv.port'     => $container['configuration.merged']['unoconv.port'],
                 )), $container['logger']);
             } catch (ExecutableNotFoundException $e) {
                 throw new RuntimeException('Unable to create Unoconv driver', $e->getCode(), $e);
