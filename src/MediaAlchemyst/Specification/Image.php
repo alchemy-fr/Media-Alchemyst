@@ -27,6 +27,8 @@ class Image extends AbstractSpecification
     protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
     protected $flatten = false;
     protected $imageCodec = 'jpeg';
+    protected $pageStart = 1;
+    protected $pageQuantity = 1;
 
     const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
     const RESIZE_MODE_INBOUND_FIXEDRATIO = 'inset_fixedRatio';
@@ -152,5 +154,21 @@ class Image extends AbstractSpecification
     public function isFlatten()
     {
         return $this->flatten;
+    }
+
+    public function fromPages($pageStart, $pageQuantity)
+    {
+        $this->pageStart = $pageStart;
+        $this->pageQuantity = $pageQuantity;
+    }
+
+    public function getPageStart()
+    {
+        return $this->pageStart;
+    }
+
+    public function getPageQuantity()
+    {
+        return $this->pageQuantity;
     }
 }
