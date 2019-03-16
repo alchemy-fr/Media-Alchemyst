@@ -25,6 +25,8 @@ use Unoconv\Exception\ExceptionInterface as UnoconvException;
 
 class Document2Image extends AbstractTransmuter
 {
+    public static $page = 1;
+
     public function execute(SpecificationInterface $spec, MediaInterface $source, $dest)
     {
         if (! $spec instanceof Image) {
@@ -34,10 +36,12 @@ class Document2Image extends AbstractTransmuter
         $tmpDest = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'unoconv');
 
         try {
+            $page = $this->page;
             if ($source->getFile()->getMimeType() != 'application/pdf') {
                 $this->container['unoconv']->transcode(
-                    $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, '1-1'
+                    $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, $page . '-' . $page
                 );
+                $page = 1;
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);
             }
@@ -45,7 +49,7 @@ class Document2Image extends AbstractTransmuter
             $tmpDestSinglePage = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'unoconv-single');
 
             $this->container['ghostscript.transcoder']->toPDF(
-                $tmpDest, $tmpDestSinglePage, 1, 1
+                $tmpDest, $tmpDestSinglePage, $page, 1
             );
 
             $image = $this->container['imagine']->open($tmpDestSinglePage);
