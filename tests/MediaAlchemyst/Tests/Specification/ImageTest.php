@@ -163,4 +163,16 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->object->setFlatten(false);
         $this->assertEquals(false, $this->object->isFlatten());
     }
+
+    /**
+     * @covers MediaAlchemyst\Specification\Image::setfromPages
+     * @covers MediaAlchemyst\Specification\Image::getPageStart
+     * @covers MediaAlchemyst\Specification\Image::getPageQuantity
+     */
+    public function testFromPages()
+    {
+        $this->object->fromPages(1, 2);
+        $this->assertEquals(1, $this->object->getPageStart());
+        $this->assertEquals(2, $this->object->getPageQuantity());
+    }
 }
