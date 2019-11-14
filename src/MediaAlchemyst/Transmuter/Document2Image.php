@@ -35,7 +35,7 @@ class Document2Image extends AbstractTransmuter
 
         try {
             if ($source->getFile()->getMimeType() != 'application/pdf') {
-                $pageRange = $spec->getPageStart() . '-' . $spec->getPageQuantity();
+                $pageRange = $spec->getPage() . '-' . $spec->getPage();
                 $this->container['unoconv']->transcode(
                     $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, $pageRange
                 );
@@ -46,7 +46,7 @@ class Document2Image extends AbstractTransmuter
             $tmpDestSinglePage = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'unoconv-single');
 
             $this->container['ghostscript.transcoder']->toPDF(
-                $tmpDest, $tmpDestSinglePage, $spec->getPageStart(), $spec->getPageQuantity()
+                $tmpDest, $tmpDestSinglePage, 1, 1
             );
 
             $image = $this->container['imagine']->open($tmpDestSinglePage);
