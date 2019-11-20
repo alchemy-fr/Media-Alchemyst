@@ -74,9 +74,10 @@ class Video2Animation extends AbstractTransmuter
             foreach ($files as $file) {
                 $image = $this->container['imagine']->open($file);
 
-                if (0 !== $rotate) {
-                    $image->rotate($rotate);
-                }
+                // the image frame from imagine is already rotated if the video source is also rotated
+//                if (0 !== $rotate) {
+//                    $image->rotate($rotate);
+//                }
 
                 if ($spec->getWidth() && $spec->getHeight()) {
                     if (0 !== $rotate / 90 % 2) {
