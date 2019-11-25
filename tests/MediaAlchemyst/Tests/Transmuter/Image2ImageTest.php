@@ -59,7 +59,7 @@ class Image2ImageTest extends AbstractAlchemystTester
 
        $MediaDest = $this->getMediaVorus()->guess($this->dest);
     
-       $this->assertEquals(1884, $MediaDest->getHeight());
+       $this->assertEquals(1876, $MediaDest->getHeight());
        $this->assertEquals(2807, $MediaDest->getWidth());
    }
 
