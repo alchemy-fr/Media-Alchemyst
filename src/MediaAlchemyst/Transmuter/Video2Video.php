@@ -57,22 +57,24 @@ class Video2Video extends AbstractTransmuter
             $resizeMode = $spec->getResizeMode();
         }
 
+        //  ffmpeg rotate automatically the generated video based on the rotate metadata
+        //  https://trac.ffmpeg.org/ticket/515#comment:12
 
-        if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
-            switch ($source->getOrientation()) {
-                case MediaVorusVideo::ORIENTATION_90:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_90));
-                    break;
-                case MediaVorusVideo::ORIENTATION_270:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_270));
-                    break;
-                case MediaVorusVideo::ORIENTATION_180:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_180));
-                    break;
-                default:
-                    break;
-            }
-        }
+//        if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
+//            switch ($source->getOrientation()) {
+//                case MediaVorusVideo::ORIENTATION_90:
+//                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_90));
+//                    break;
+//                case MediaVorusVideo::ORIENTATION_270:
+//                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_270));
+//                    break;
+//                case MediaVorusVideo::ORIENTATION_180:
+//                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_180));
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
 
         $video->addFilter(new SynchronizeFilter());
         if ($source->getWidth() > $spec->getWidth() || $source->getHeight() > $spec->getHeight()) {

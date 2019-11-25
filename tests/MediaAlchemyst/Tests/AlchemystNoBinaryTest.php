@@ -34,7 +34,7 @@ class AlchemystNoBinaryTest extends AbstractAlchemystTester
         $driversContainer = new DriversContainer();
         $object = new Alchemyst($driversContainer, $this->getFsManager());
 
-        $object->turnInto(__DIR__ . '/../../files/invalid.file', 'dest.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
+        $object->turnInto(__DIR__ . '/../../files/invalid.file', 'dest.mpg', $this->createMock('MediaAlchemyst\Specification\SpecificationInterface'));
     }
 
     /**
