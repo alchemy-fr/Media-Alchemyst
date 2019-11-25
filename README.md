@@ -15,7 +15,6 @@ media-type.
 ## Usage example
 
 ```php
-
 use MediaAlchemyst\Alchemyst;
 use MediaAlchemyst\Specification\Animation;
 use MediaAlchemyst\Specification\Image;
