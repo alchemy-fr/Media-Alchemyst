@@ -57,30 +57,50 @@ class Video2Video extends AbstractTransmuter
             $resizeMode = $spec->getResizeMode();
         }
 
+        //  ffmpeg rotate automatically the generated video based on the rotate metadata
+        //  https://trac.ffmpeg.org/ticket/515#comment:12
 
-        if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
-            switch ($source->getOrientation()) {
-                case MediaVorusVideo::ORIENTATION_90:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_90));
-                    break;
-                case MediaVorusVideo::ORIENTATION_270:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_270));
-                    break;
-                case MediaVorusVideo::ORIENTATION_180:
-                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_180));
-                    break;
-                default:
-                    break;
-            }
-        }
+//        if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
+//            switch ($source->getOrientation()) {
+//                case MediaVorusVideo::ORIENTATION_90:
+//                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_90));
+//                    break;
+//                case MediaVorusVideo::ORIENTATION_270:
+//                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_270));
+//                    break;
+//                case MediaVorusVideo::ORIENTATION_180:
+//                    $video->addFilter(new RotateFilter(RotateFilter::ROTATE_180));
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
 
         $video->addFilter(new SynchronizeFilter());
         if ($source->getWidth() > $spec->getWidth() || $source->getHeight() > $spec->getHeight()) {
-            $video->addFilter(
-                new ResizeFilter(
-                    new Dimension($spec->getWidth(), $spec->getHeight()), $resizeMode
-                )
-            );
+            // if it is a portrait video ,get reverse ratio from the source to calculate dimension
+            if (method_exists($source, 'getOrientation')
+                && in_array($source->getOrientation(), [MediaVorusVideo::ORIENTATION_90, MediaVorusVideo::ORIENTATION_270])) {
+
+                // reverse origin dimension
+                $reverseOriginalDimension = new Dimension($source->getHeight(), $source->getWidth());
+                $reverseRatio = $reverseOriginalDimension->getRatio();
+
+                // resizes the video to fit the dimension height to avoid anamorphosis
+                $width = $reverseRatio->calculateWidth($spec->getHeight(), $format->getModulus());
+
+                $video->addFilter(
+                    new ResizeFilter(
+                        new Dimension($width, $spec->getHeight()), ResizeFilter::RESIZEMODE_FIT
+                    )
+                );
+            } else {
+                $video->addFilter(
+                    new ResizeFilter(
+                        new Dimension($spec->getWidth(), $spec->getHeight()), $resizeMode
+                    )
+                );
+            }
         }
 
         if ($spec->getAudioCodec()) {
