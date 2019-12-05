@@ -165,14 +165,12 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers MediaAlchemyst\Specification\Image::setfromPages
-     * @covers MediaAlchemyst\Specification\Image::getPageStart
-     * @covers MediaAlchemyst\Specification\Image::getPageQuantity
+     * @covers MediaAlchemyst\Specification\Image::setfromPage
+     * @covers MediaAlchemyst\Specification\Image::getPage
      */
-    public function testFromPages()
+    public function testFromPage()
     {
-        $this->object->fromPages(1, 2);
-        $this->assertEquals(1, $this->object->getPageStart());
-        $this->assertEquals(2, $this->object->getPageQuantity());
+        $this->object->fromPage(2);
+        $this->assertEquals(2, $this->object->getPage());
     }
 }
