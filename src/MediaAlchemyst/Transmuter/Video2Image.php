@@ -48,24 +48,29 @@ class Video2Image extends AbstractTransmuter
 
             $image = $this->container['imagine']->open($tmpDest);
 
+            // the image frame from imagine is already rotated if the video source is also rotated
             $rotated = false;
-            if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
-                switch ($source->getOrientation()) {
-                    case MediaVorusVideo::ORIENTATION_90:
-                        $image->rotate(90);
-                        $rotated = true;
-                        break;
-                    case MediaVorusVideo::ORIENTATION_270:
-                        $image->rotate(-90);
-                        $rotated = true;
-                        break;
-                    case MediaVorusVideo::ORIENTATION_180:
-                        $image->rotate(180);
-                        break;
-                    default:
-                        break;
-                }
+            if (method_exists($source, 'getOrientation') && !empty($source->getOrientation())) {
+                $rotated = true;
             }
+
+//            if (true === static::$autorotate && method_exists($source, 'getOrientation')) {
+//                switch ($source->getOrientation()) {
+//                    case MediaVorusVideo::ORIENTATION_90:
+//                        $image->rotate(90);
+//                        $rotated = true;
+//                        break;
+//                    case MediaVorusVideo::ORIENTATION_270:
+//                        $image->rotate(-90);
+//                        $rotated = true;
+//                        break;
+//                    case MediaVorusVideo::ORIENTATION_180:
+//                        $image->rotate(180);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
 
             if ($spec->getWidth() && $spec->getHeight()) {
                 if (!$rotated) {

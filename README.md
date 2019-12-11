@@ -1,8 +1,8 @@
 # MediAlchemyst
 
-A PHP 5.3+ lib to transmute media files.
+A PHP 7.0+ lib to transmute media files.
 
-[![Build Status](https://travis-ci.org/alchemy-fr/Media-Alchemyst.png?branch=master)](http://travis-ci.org/alchemy-fr/Media-Alchemyst)
+[![CircleCI](https://circleci.com/gh/alchemy-fr/Media-Alchemyst.svg?style=svg)](https://circleci.com/gh/alchemy-fr/Media-Alchemyst)
 
 * Want to extract audio from a video file ?
 * Want to convert an office document to an image?
@@ -15,7 +15,6 @@ media-type.
 ## Usage example
 
 ```php
-
 use MediaAlchemyst\Alchemyst;
 use MediaAlchemyst\Specification\Animation;
 use MediaAlchemyst\Specification\Image;
