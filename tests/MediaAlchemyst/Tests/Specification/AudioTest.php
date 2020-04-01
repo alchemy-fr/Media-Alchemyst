@@ -36,4 +36,10 @@ class AudioTest extends \PHPUnit_Framework_TestCase
         $this->object->setAudioSampleRate(22050);
         $this->assertEquals(22050, $this->object->getAudioSampleRate());
     }
+
+    public function testSetAudioChannels()
+    {
+        $this->object->setAudioChannels(4);
+        $this->assertEquals(4, $this->object->getAudioChannels());
+    }
 }

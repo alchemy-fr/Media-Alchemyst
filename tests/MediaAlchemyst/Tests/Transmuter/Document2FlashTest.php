@@ -51,7 +51,11 @@ class Document2FlashTest extends AbstractAlchemystTester
 
         $MediaDest = $this->getMediaVorus()->guess($this->dest);
 
-        $this->assertEquals(MediaInterface::TYPE_FLASH, $MediaDest->getType());
+        if (version_compare(phpversion(), '7') == 1) {
+            $this->assertEquals('DefaultMedia', $MediaDest->getType());
+        } else {
+            $this->assertEquals(MediaInterface::TYPE_FLASH, $MediaDest->getType());
+        }
     }
 
     /**

@@ -35,8 +35,9 @@ class Document2Image extends AbstractTransmuter
 
         try {
             if ($source->getFile()->getMimeType() != 'application/pdf') {
+                $pageRange = $spec->getPage() . '-' . $spec->getPage();
                 $this->container['unoconv']->transcode(
-                    $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, '1-1'
+                    $source->getFile()->getPathname(), Unoconv::FORMAT_PDF, $tmpDest, $pageRange
                 );
             } else {
                 copy($source->getFile()->getPathname(), $tmpDest);

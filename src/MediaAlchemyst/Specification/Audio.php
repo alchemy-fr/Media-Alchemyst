@@ -17,6 +17,7 @@ class Audio extends AbstractSpecification
     protected $audioCodec;
     protected $audioSampleRate;
     protected $fileType;
+    protected $audioChannel;
 
     public function getType()
     {
@@ -51,5 +52,15 @@ class Audio extends AbstractSpecification
     public function getAudioSampleRate()
     {
         return $this->audioSampleRate;
+    }
+
+    public function setAudioChannels($audioChannel)
+    {
+        $this->audioChannel = $audioChannel;
+    }
+
+    public function getAudioChannels()
+    {
+        return $this->audioChannel;
     }
 }

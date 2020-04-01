@@ -27,6 +27,7 @@ class Image extends AbstractSpecification
     protected $resolution_units = self::RESOLUTION_PIXELPERINCH;
     protected $flatten = false;
     protected $imageCodec = 'jpeg';
+    protected $page = 1;
 
     const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
     const RESIZE_MODE_INBOUND_FIXEDRATIO = 'inset_fixedRatio';
@@ -152,5 +153,15 @@ class Image extends AbstractSpecification
     public function isFlatten()
     {
         return $this->flatten;
+    }
+
+    public function fromPage($page)
+    {
+        $this->page = $page;
+    }
+
+    public function getPage()
+    {
+        return $this->page;
     }
 }

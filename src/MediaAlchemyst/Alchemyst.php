@@ -22,6 +22,7 @@ use MediaAlchemyst\Transmuter\Document2Image;
 use MediaAlchemyst\Transmuter\Flash2Image;
 use MediaAlchemyst\Transmuter\Image2Image;
 use MediaAlchemyst\Transmuter\Video2Animation;
+use MediaAlchemyst\Transmuter\Video2Audio;
 use MediaAlchemyst\Transmuter\Video2Image;
 use MediaAlchemyst\Transmuter\Video2Video;
 use Neutron\TemporaryFilesystem\Manager;
@@ -104,6 +105,9 @@ class Alchemyst
                 break;
             case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, SpecificationInterface::TYPE_VIDEO):
                 $transmuter = new Video2Video($this->drivers, $this->tmpFileManager);
+                break;
+            case sprintf('%s-%s', MediaInterface::TYPE_VIDEO, SpecificationInterface::TYPE_AUDIO):
+                $transmuter = new Video2Audio($this->drivers, $this->tmpFileManager);
                 break;
             default:
                 throw new RuntimeException(sprintf('No transmuter available for `%s`. Please join the community to implement it !', $route));

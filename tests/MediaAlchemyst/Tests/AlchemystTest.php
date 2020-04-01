@@ -41,7 +41,7 @@ class AlchemystTest extends AbstractAlchemystTester
      */
     public function testOpenUnknownFile()
     {
-        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'here.mpg', $this->getMock('MediaAlchemyst\Specification\SpecificationInterface'));
+        $this->object->turnInto(__DIR__ . '/../../files/invalid.file', 'here.mpg', $this->createMock('MediaAlchemyst\Specification\SpecificationInterface'));
     }
 
     /**
@@ -113,7 +113,13 @@ class AlchemystTest extends AbstractAlchemystTester
         $this->object->turnInto(__DIR__ . '/../../files/Hello.odt', $dest, $this->specsFlash);
 
         $media = $this->getMediaVorus()->guess($dest);
-        $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
+
+        if (version_compare(phpversion(), '7') == 1) {
+            $this->assertEquals('DefaultMedia', $media->getType());
+        } else {
+            $this->assertEquals(MediaInterface::TYPE_FLASH, $media->getType());
+        }
+
 
         unlink($dest);
     }
@@ -162,6 +168,22 @@ class AlchemystTest extends AbstractAlchemystTester
 
         $media = $this->getMediaVorus()->guess($dest);
         $this->assertEquals(MediaInterface::TYPE_VIDEO, $media->getType());
+
+        unlink($dest);
+    }
+
+    /**
+     * @covers MediaAlchemyst\Alchemyst::turnInto
+     * @covers MediaAlchemyst\Alchemyst::routeAction
+     */
+    public function testTurnIntoVideoAudio()
+    {
+        $dest = __DIR__ . '/../../files/output.wav';
+
+        $this->object->turnInto(__DIR__ . '/../../files/Test.ogv', $dest, $this->specsAudio);
+
+        $media = $this->getMediaVorus()->guess($dest);
+        $this->assertEquals(MediaInterface::TYPE_AUDIO, $media->getType());
 
         unlink($dest);
     }
