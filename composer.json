@@ -23,7 +23,7 @@
         "imagine/imagine": "^0.6.2",
         "monolog/monolog": "~1.0",
         "neutron/temporary-filesystem": "^2.1.1",
-        "php-ffmpeg/php-ffmpeg": ">=0.4.2,<0.6",
+        "php-ffmpeg/php-ffmpeg": "^v0.15",
         "php-mp4box/php-mp4box": "~0.3.0",
         "php-unoconv/php-unoconv": "~0.3.0",
         "pimple/pimple": "~1.0",
