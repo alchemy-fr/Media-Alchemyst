@@ -16,6 +16,12 @@
             "homepage": "http://www.phraseanet.com/"
         }
     ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/alchemy-fr/imagine"
+    }
+  ],
     "require": {
         "php": ">=5.3.3",
         "alchemy/ghostscript": "~0.4.0",
