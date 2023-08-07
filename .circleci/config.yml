@@ -10,6 +10,8 @@ jobs:
           key: dependency-cache
           paths:
             - ~/.composer
+      - run: sudo mv /etc/apt/sources.list /etc/apt/sources.list.bkp && sudo touch /etc/apt/sources.list
+      - run: echo "deb http://archive.debian.org/debian stretch main non-free" | sudo tee -a /etc/apt/sources.list
       - run: sudo apt-get update
       - run: sudo apt-get install -y zlib1g-dev ghostscript gpac imagemagick libav-tools libfreetype6-dev libicu-dev libmagickwand-dev libmcrypt-dev librabbitmq-dev libssl-dev libxslt-dev libzmq3-dev ufraw mcrypt swftools unoconv unzip xpdf
       - run: sudo apt-get clean
