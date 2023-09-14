@@ -12,6 +12,8 @@
 namespace MediaAlchemyst\Transmuter;
 
 use Imagine\Exception\Exception as ImagineException;
+use Imagine\Image\AbstractImage;
+use Imagine\Image\AbstractImagine;
 use Imagine\Image\ImageInterface;
 use Imagine\Image\Palette\RGB;
 use MediaVorus\Exception\ExceptionInterface as MediaVorusException;
@@ -66,32 +68,61 @@ class Image2Image extends AbstractTransmuter
                 if (file_exists($tmpFile)) {
                     $source = $this->container['mediavorus']->guess($tmpFile);
                 }
-            } elseif ($source->getFile()->getMimeType() === 'image/tiff') {
-                $image = $this->container['imagine']->open($source->getFile()->getRealPath());
+            }
+            elseif ($source->getFile()->getMimeType() === 'image/tiff') {
 
-                $layers = array();
+                /** @var AbstractImagine $imagine */
+                $imagine = $this->container['imagine'];
+                $image = $imagine->open($source->getFile()->getRealPath());
 
-                foreach ($image->layers() as $layer) {
-                    $tmpFile = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'imagine-tiff-layer', pathinfo($dest, PATHINFO_EXTENSION));
+
+                // find the biggest layer by w*h, keep index(es) of each layer by size
+                $layersBySize = array();
+                $maxLayerSize = 0;
+                $layers = $image->layers();
+                /** @var ImageInterface $layer */
+                foreach ($layers as $i=>$layer) {
+                    $sizeKey = '_' . ($layerSize = $layer->getSize()->getWidth() * $layer->getSize()->getHeight());
+                    if($layerSize > $maxLayerSize) {
+                        $maxLayerSize = $layerSize;
+                    }
+                    if(!array_key_exists($sizeKey, $layersBySize)) {
+                        $layersBySize[$sizeKey] = array();
+                    }
+                    $layersBySize[$sizeKey][] = $i;
+                }
+
+                // remove the smallest layers, then merge the biggest ones
+                foreach ($layersBySize as $sizeKey => $indexes) {
+                    if($sizeKey !== '_'.$maxLayerSize) {
+                        foreach ($indexes as $i) {
+                            $layers->remove($i);
+                        }
+                    }
+                }
+
+                try {
+                    $image->layers()->merge();
+                }
+                catch (\Exception $e) {
+                    // ignore: anyway we will use only the first layer
+                }
+
+                $tmpFile =  null;
+                foreach ($image->layers() as $i=>$layer) {
+                    // we should have only one layer after merge, but who knows ?
+                    $tmpFile = $this->tmpFileManager->createTemporaryFile(self::TMP_FILE_SCOPE, 'imagine-tiff-layer', $source->getFile()->getExtension());
                     $layer->save($tmpFile);
-
-                    $layers[] = $tmpFile;
+                    break;      // only the first
                 }
 
                 unset($image);
 
-                uasort($layers, function ($layer1, $layer2) {
-                    $size1 = filesize($layer1);
-                    $size2 = filesize($layer2);
-                    if ($size1 == $size2) {
-                        return 0;
-                    }
-
-                    return ($size1 > $size2) ? -1 : 1;
-                });
-
-                $source = $this->container['mediavorus']->guess(array_shift($layers));
-            } elseif (preg_match('#(application|image)\/([a-z0-9-_\.]*)photoshop([a-z0-9-_\.]*)#i', $source->getFile()->getMimeType())) {
+                if($tmpFile) {
+                    $source = $this->container['mediavorus']->guess($tmpFile);
+                }
+            }
+            elseif (preg_match('#(application|image)\/([a-z0-9-_\.]*)photoshop([a-z0-9-_\.]*)#i', $source->getFile()->getMimeType())) {
                 $image = $this->container['imagine']->open($source->getFile()->getRealPath());
 
                 foreach ($image->layers() as $layer) {
@@ -106,6 +137,7 @@ class Image2Image extends AbstractTransmuter
                 unset($image);
             }
 
+            /** @var AbstractImage $image */
             $image = $this->container['imagine']->open($source->getFile()->getPathname());
 
             if ($spec->getWidth() && $spec->getHeight()) {
@@ -140,6 +172,7 @@ class Image2Image extends AbstractTransmuter
                 'resolution-units' => $spec->getResolutionUnit(),
                 'resolution-x'     => $spec->getResolutionX(),
                 'resolution-y'     => $spec->getResolutionY(),
+                'background-color' => $spec->getBackgroundColor(),
             );
 
             $image->save($dest, $options);
@@ -147,16 +180,20 @@ class Image2Image extends AbstractTransmuter
             unset($image);
 
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
-        } catch (MediaVorusException $e) {
+        }
+        catch (MediaVorusException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute image to image due to Mediavorus', null, $e);
-        } catch (PHPExiftoolException $e) {
+        }
+        catch (PHPExiftoolException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute image to image due to PHPExiftool', null, $e);
-        } catch (ImagineException $e) {
+        }
+        catch (ImagineException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw new RuntimeException('Unable to transmute image to image due to Imagine', null, $e);
-        } catch (RuntimeException $e) {
+        }
+        catch (RuntimeException $e) {
             $this->tmpFileManager->clean(self::TMP_FILE_SCOPE);
             throw $e;
         }

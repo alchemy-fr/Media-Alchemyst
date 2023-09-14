@@ -28,6 +28,7 @@ class Image extends AbstractSpecification
     protected $flatten = false;
     protected $imageCodec = 'jpeg';
     protected $page = 1;
+    protected $backgroundColor = null;
 
     const RESIZE_MODE_INBOUND = ImageInterface::THUMBNAIL_INSET;
     const RESIZE_MODE_INBOUND_FIXEDRATIO = 'inset_fixedRatio';
@@ -163,5 +164,15 @@ class Image extends AbstractSpecification
     public function getPage()
     {
         return $this->page;
+    }
+
+    public function setBackgroundColor($color)
+    {
+        $this->backgroundColor = $color;
+    }
+
+    public function getBackgroundColor()
+    {
+        return $this->backgroundColor;
     }
 }
