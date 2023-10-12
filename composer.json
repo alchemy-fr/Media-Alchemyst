@@ -26,7 +26,7 @@
         "php": ">=5.3.3",
         "alchemy/ghostscript": "~0.4.0",
         "alchemy/mediavorus": "^0.4.4",
-        "imagine/imagine": "^0.10.0",
+        "imagine/imagine": "^0.11.0",
         "monolog/monolog": "~1.0",
         "neutron/temporary-filesystem": "^2.1.1",
         "php-ffmpeg/php-ffmpeg": "^v0.15",
